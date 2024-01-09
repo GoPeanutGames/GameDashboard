@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: 01_Dashboard
+  m_Name: 03_Game2
   m_EditorClassIdentifier: 
-  m_GroupName: 01_Dashboard
+  m_GroupName: 03_Game2
   m_Data:
     m_SerializedData: []
-  m_GUID: ee693b41761f91f46b19b5fe63342a30
+  m_GUID: 9b5aa719a61ca184b9fca7a18026211b
   m_SerializeEntries:
-  - m_GUID: 2cda990e2423bbf4892e6590ba056729
-    m_Address: DashboardScene
+  - m_GUID: 0d96e876f6f11ae41bd504cbb96aa166
+    m_Address: Game2Scene
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Dashboard
+    - Game2
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 74829ed82c83c284ebefc3c7eb8de385, type: 2}
-    - {fileID: 11400000, guid: 7ee459685c96bd0438d3b2535dd04c5b, type: 2}
+    - {fileID: 11400000, guid: 56e5493152d8289449ae9500af673e22, type: 2}
+    - {fileID: 11400000, guid: 9cc48eba7dea5c0478ce4cd5596030a3, type: 2}
