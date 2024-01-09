@@ -1080,10 +1080,10 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PeanutDashboard.Dashboard.DashboardController,
           Assembly-CSharp
         m_MethodName: OpenGameButtonClick
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 2ddb8e6a62b069347a226a7ad4b28823, type: 2}
+          m_ObjectArgumentAssemblyTypeName: PeanutDashboard.Init.SceneInfo, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Game2
@@ -1214,10 +1214,10 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PeanutDashboard.Dashboard.DashboardController,
           Assembly-CSharp
         m_MethodName: OpenGameButtonClick
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 4b0f896a5b3cda1468326daad997f381, type: 2}
+          m_ObjectArgumentAssemblyTypeName: PeanutDashboard.Init.SceneInfo, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Game1

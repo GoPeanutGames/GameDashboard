@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
@@ -15,7 +14,6 @@ namespace PeanutDashboard.Init
 		//TODO: Dashboard should be a constant specified in a reference file
 		//TODO: logs should be handled by a manager, that has a type, source, system so it can be easily filtered
 
-		public TMP_Text downloadText;
 		public Slider downloadProgressSlider;
 
 		IEnumerator Start()
@@ -38,7 +36,6 @@ namespace PeanutDashboard.Init
 				float sizeInKb = totalBytes / 1024f;
 				Debug.Log($"{nameof(InitController)}::{nameof(OnAddressablesInitialised)} - Downloading dashboard - size is {sizeInKb:F2} Kb");
 				do{
-					downloadText.text = "Downloading..." + Mathf.FloorToInt(downloadDependenciesAsync.GetDownloadStatus().DownloadedBytes / (float)totalBytes * 100) + "%";
 					downloadProgressSlider.value = downloadDependenciesAsync.GetDownloadStatus().DownloadedBytes / (float)totalBytes;
 					yield return null;
 				} while (!downloadDependenciesAsync.IsDone);
