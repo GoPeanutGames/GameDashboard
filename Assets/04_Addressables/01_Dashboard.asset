@@ -23,8 +23,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3e7f1d3050165a440aaaf4a4d10e4c57
-    m_Address: Assets/02_Art/01_Dashboard/WhiteBg.png
+  - m_GUID: bb953a0b0a81ee648813c657cdfdb8e2
+    m_Address: Assets/02_Art/01_Dashboard/Sidebar.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
@@ -43,6 +43,24 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9b962c2db6751d4fa2b77024c7923ab
     m_Address: Assets/02_Art/01_Dashboard/TopNewsBg.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbab89b1a07ca994799c2214e5551caf
+    m_Address: Assets/02_Art/01_Dashboard/BubbleBotsSplash.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 103f6732a55a0f1448d555378cd47bd9
+    m_Address: Assets/02_Art/01_Dashboard/MobileTopBanner.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d3d748cb64bf02478762a464d4fc426
+    m_Address: Assets/02_Art/01_Dashboard/MobileTopBarBg.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
