@@ -23,6 +23,30 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e7f1d3050165a440aaaf4a4d10e4c57
+    m_Address: Assets/02_Art/01_Dashboard/WhiteBg.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5daf665f23c93cf4b93d0b2fbfd71ac4
+    m_Address: Assets/02_Art/01_Dashboard/CentralSplash.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 907b8ef8832f227488eb2fe8e1a68123
+    m_Address: Assets/02_Art/01_Dashboard/GameGridBg.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9b962c2db6751d4fa2b77024c7923ab
+    m_Address: Assets/02_Art/01_Dashboard/TopNewsBg.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
