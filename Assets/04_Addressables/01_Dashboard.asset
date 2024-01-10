@@ -29,8 +29,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5daf665f23c93cf4b93d0b2fbfd71ac4
-    m_Address: Assets/02_Art/01_Dashboard/CentralSplash.png
+  - m_GUID: 3036499c1e4f956479cf8f94bb0e3e77
+    m_Address: Assets/02_Art/01_Dashboard/BannerMobile.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
@@ -41,20 +41,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b9b962c2db6751d4fa2b77024c7923ab
-    m_Address: Assets/02_Art/01_Dashboard/TopNewsBg.png
+  - m_GUID: fd3a78a2470c1ac4d829ed5ddbcce854
+    m_Address: Assets/02_Art/01_Dashboard/BattleDashSplashDesktop.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fbab89b1a07ca994799c2214e5551caf
-    m_Address: Assets/02_Art/01_Dashboard/BubbleBotsSplash.png
+  - m_GUID: 3f86d47767788004ab072a544b2e7724
+    m_Address: Assets/02_Art/01_Dashboard/BattleDashSplashMobile.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 103f6732a55a0f1448d555378cd47bd9
-    m_Address: Assets/02_Art/01_Dashboard/MobileTopBanner.png
+  - m_GUID: 61ebc156b77065f499eeb1a704236580
+    m_Address: Assets/02_Art/01_Dashboard/BannerDesktop.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard

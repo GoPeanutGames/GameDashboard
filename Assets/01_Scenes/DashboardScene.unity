@@ -325,7 +325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9b962c2db6751d4fa2b77024c7923ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61ebc156b77065f499eeb1a704236580, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5daf665f23c93cf4b93d0b2fbfd71ac4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd3a78a2470c1ac4d829ed5ddbcce854, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2277,7 +2277,7 @@ RectTransform:
   m_GameObject: {fileID: 1148482770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 597339715}
@@ -2286,8 +2286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1585.9762, y: -960}
-  m_SizeDelta: {x: -3171.9521, y: -1920}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1152673700
 GameObject:
@@ -2626,7 +2626,6 @@ GameObject:
   - component: {fileID: 1380504908}
   - component: {fileID: 1380504907}
   - component: {fileID: 1380504906}
-  - component: {fileID: 1380504905}
   - component: {fileID: 1380504904}
   m_Layer: 5
   m_Name: MobileCanvas
@@ -2648,19 +2647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeOnMobile: 1
---- !u!114 &1380504905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380504903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb30e4412f844c0eb735a4f7d653867c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeOnMobile: 0
 --- !u!114 &1380504906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3019,7 +3005,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 30
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3431,7 +3417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 103f6732a55a0f1448d555378cd47bd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3036499c1e4f956479cf8f94bb0e3e77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3795,7 +3781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fbab89b1a07ca994799c2214e5551caf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3f86d47767788004ab072a544b2e7724, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4171,7 +4157,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
