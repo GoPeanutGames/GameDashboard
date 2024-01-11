@@ -152,7 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629189c96699b044ea33a5dce3992a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashboardScene: {fileID: 11400000, guid: 4e7d8cacf2c6ea6488c9ba6e5d0b2122, type: 2}
   downloadProgressSlider: {fileID: 1199093111}
+  transitionEffects:
+  - {fileID: 739479564}
+  - {fileID: 509262339}
+  - {fileID: 740741776}
+  transitionDuration: 1.2
 --- !u!4 &67620714
 Transform:
   m_ObjectHideFlags: 0
@@ -179,6 +185,7 @@ GameObject:
   - component: {fileID: 509262336}
   - component: {fileID: 509262338}
   - component: {fileID: 509262337}
+  - component: {fileID: 509262339}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -243,6 +250,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509262335}
   m_CullTransparentMesh: 1
+--- !u!114 &509262339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509262335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce76b7a490bd74f34a2f2752641aea24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0
+  m_Width: 0.151
+  m_Softness: 0.5
+  m_Color: {r: 0, g: 0.8588236, b: 0.8705883, a: 1}
+  m_ColorMode: 2
+  m_TransitionTexture: {fileID: 2800000, guid: 3e04c247fb2604af186173fce0bc62de, type: 3}
+  m_EffectArea: 0
+  m_KeepAspectRatio: 0
+  m_Player:
+    play: 0
+    initialPlayDelay: 0
+    duration: 1
+    loop: 0
+    loopDelay: 0
+    updateMode: 0
+  m_Reverse: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +450,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!224 &659416222
 RectTransform:
@@ -516,6 +551,7 @@ GameObject:
   - component: {fileID: 739479561}
   - component: {fileID: 739479563}
   - component: {fileID: 739479562}
+  - component: {fileID: 739479564}
   m_Layer: 5
   m_Name: MainUIContainer
   m_TagString: Untagged
@@ -581,6 +617,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739479560}
   m_CullTransparentMesh: 1
+--- !u!114 &739479564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739479560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce76b7a490bd74f34a2f2752641aea24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0
+  m_Width: 0.151
+  m_Softness: 0.5
+  m_Color: {r: 0, g: 0.8588236, b: 0.8705883, a: 1}
+  m_ColorMode: 2
+  m_TransitionTexture: {fileID: 2800000, guid: 3e04c247fb2604af186173fce0bc62de, type: 3}
+  m_EffectArea: 0
+  m_KeepAspectRatio: 0
+  m_Player:
+    play: 0
+    initialPlayDelay: 0
+    duration: 1
+    loop: 0
+    loopDelay: 0
+    updateMode: 0
+  m_Reverse: 0
 --- !u!1 &740741772
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +656,7 @@ GameObject:
   - component: {fileID: 740741773}
   - component: {fileID: 740741775}
   - component: {fileID: 740741774}
+  - component: {fileID: 740741776}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -656,6 +721,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740741772}
   m_CullTransparentMesh: 1
+--- !u!114 &740741776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740741772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce76b7a490bd74f34a2f2752641aea24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectFactor: 0
+  m_Width: 0.151
+  m_Softness: 0.5
+  m_Color: {r: 0, g: 0.8588236, b: 0.8705883, a: 1}
+  m_ColorMode: 2
+  m_TransitionTexture: {fileID: 2800000, guid: 3e04c247fb2604af186173fce0bc62de, type: 3}
+  m_EffectArea: 0
+  m_KeepAspectRatio: 0
+  m_Player:
+    play: 0
+    initialPlayDelay: 0
+    duration: 1
+    loop: 0
+    loopDelay: 0
+    updateMode: 0
+  m_Reverse: 0
 --- !u!1 &1199093109
 GameObject:
   m_ObjectHideFlags: 0

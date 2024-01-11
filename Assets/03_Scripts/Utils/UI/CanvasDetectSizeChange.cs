@@ -14,13 +14,7 @@ namespace PeanutDashboard.Utils.UI
 
 		protected override void Start()
 		{
-			if (_rectTransform.rect.size.x < 1080){
-				this.GetComponent<Canvas>().sortingOrder = activeOnMobile ? 100: 0;
-			}
-			else if(_rectTransform.rect.size.x >= 1080)
-			{
-				this.GetComponent<Canvas>().sortingOrder = !activeOnMobile ? 100 : 0;
-			}
+			OnRectTransformDimensionsChange();
 		}
 
 		protected override void OnRectTransformDimensionsChange()

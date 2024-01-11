@@ -1,49 +1,61 @@
-using System.Collections;
 using System.Collections.Generic;
+using Coffee.UIEffects;
+using PeanutDashboard.Shared;
+using PeanutDashboard.Shared.Events;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.AddressableAssets.ResourceLocators;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace PeanutDashboard.Init
 {
 	public class InitController : MonoBehaviour
 	{
-		//TODO: Dashboard should be a constant specified in a reference file
 		//TODO: logs should be handled by a manager, that has a type, source, system so it can be easily filtered
 
+		public SceneInfo dashboardScene;
 		public Slider downloadProgressSlider;
+		public List<UIDissolve> transitionEffects;
+		public float transitionDuration = 1.2f;
 
-		IEnumerator Start()
+		private void Start()
 		{
 			Debug.Log($"{nameof(InitController)}:: {nameof(Start)}");
-			AsyncOperationHandle<IResourceLocator> handle = Addressables.InitializeAsync();
-			yield return handle;
-			StartCoroutine(OnAddressablesInitialised());
+			AddressablesEvents.Instance.addressablesInitialised += OnAddressablesInitialised;
+			AddressablesService.Instance.InitialiseAddressables();
 		}
 
-		private IEnumerator OnAddressablesInitialised()
+		private void OnAddressablesInitialised()
 		{
-			Debug.Log($"{nameof(InitController)}::{nameof(OnAddressablesInitialised)}");
-			AsyncOperationHandle<IList<IResourceLocation>> loadResourceLocationsAsync = Addressables.LoadResourceLocationsAsync("Dashboard", Addressables.MergeMode.Union);
-			yield return loadResourceLocationsAsync;
-			IList<IResourceLocation> resourceLocations = loadResourceLocationsAsync.Result;
-			AsyncOperationHandle downloadDependenciesAsync = Addressables.DownloadDependenciesAsync(resourceLocations);
-			long totalBytes = downloadDependenciesAsync.GetDownloadStatus().TotalBytes;
-			if (totalBytes > 0){
-				float sizeInKb = totalBytes / 1024f;
-				Debug.Log($"{nameof(InitController)}::{nameof(OnAddressablesInitialised)} - Downloading dashboard - size is {sizeInKb:F2} Kb");
-				do{
-					downloadProgressSlider.value = downloadDependenciesAsync.GetDownloadStatus().DownloadedBytes / (float)totalBytes;
-					yield return null;
-				} while (!downloadDependenciesAsync.IsDone);
+			SceneLoaderEvents.Instance.sceneLoaded += OnDashboardSceneLoaded;
+			SceneLoaderEvents.Instance.sceneLoadProgressUpdated += OnSceneLoadProgressUpdate;
+			SceneLoaderService.Instance.LoadScene(dashboardScene);
+		}
+
+		private void OnSceneLoadProgressUpdate(float value)
+		{
+			downloadProgressSlider.value = value;
+		}
+		
+		private void OnDashboardSceneLoaded()
+		{
+			SceneLoaderEvents.Instance.sceneLoaded -= OnDashboardSceneLoaded;
+			SceneLoaderEvents.Instance.sceneLoadProgressUpdated -= OnSceneLoadProgressUpdate;
+			foreach (UIDissolve transitionEffect in transitionEffects)
+			{
+				transitionEffect.effectPlayer.duration = transitionDuration;
+				transitionEffect.Play();
 			}
-			else{
-				Debug.LogWarning($"{nameof(InitController)}::{nameof(OnAddressablesInitialised)} - Download size is 0 for dashboard");
-			}
-			Addressables.LoadSceneAsync("DashboardScene");
+			Invoke(nameof(OnTransitionDone), transitionDuration + 0.2f);
+		}
+
+		private void OnTransitionDone()
+		{
+			SceneManager.UnloadSceneAsync(0);
+		}
+
+		private void OnDestroy()
+		{
+			AddressablesEvents.Instance.addressablesInitialised -= OnAddressablesInitialised;
 		}
 	}
 }
