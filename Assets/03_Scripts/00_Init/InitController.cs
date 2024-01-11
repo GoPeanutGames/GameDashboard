@@ -4,6 +4,7 @@ using PeanutDashboard.Shared;
 using PeanutDashboard.Shared.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PeanutDashboard.Init
@@ -13,7 +14,8 @@ namespace PeanutDashboard.Init
 		//TODO: logs should be handled by a manager, that has a type, source, system so it can be easily filtered
 
 		public SceneInfo dashboardScene;
-		public Slider downloadProgressSlider;
+		public Slider desktopDownloadProgressSlider;
+		public Slider mobileDownloadProgressSlider;
 		public List<UIDissolve> transitionEffects;
 		public float transitionDuration = 1.2f;
 
@@ -33,7 +35,8 @@ namespace PeanutDashboard.Init
 
 		private void OnSceneLoadProgressUpdate(float value)
 		{
-			downloadProgressSlider.value = value;
+			desktopDownloadProgressSlider.value = value;
+			mobileDownloadProgressSlider.value = value;
 		}
 		
 		private void OnDashboardSceneLoaded()
