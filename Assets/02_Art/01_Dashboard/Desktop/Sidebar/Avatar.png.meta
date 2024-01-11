@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d41ababb69bae6d43b3cdf67a5a27c8f
+guid: 2778a383877c3564d8362e63b46dcaff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -74,7 +74,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -136,5 +136,5 @@ TextureImporter:
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
-  assetBundleName: init-screen
+  assetBundleName: dashboard
   assetBundleVariant: 
