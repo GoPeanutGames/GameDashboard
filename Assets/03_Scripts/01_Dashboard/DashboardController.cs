@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using PeanutDashboard.Dashboard.Events;
 using PeanutDashboard.Init;
+using PeanutDashboard.Shared.User.Events;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -10,6 +12,11 @@ namespace PeanutDashboard.Dashboard
 {
 	public class DashboardController : MonoBehaviour
 	{
+		private void Start()
+		{
+			UserEvents.Instance.userLoggedIn += OnUserLoggedIn;
+		}
+
 		public void OpenGameButtonClick(SceneInfo sceneInfo)
 		{
 			StartCoroutine(DownloadAndStartGame(sceneInfo));
@@ -23,6 +30,16 @@ namespace PeanutDashboard.Dashboard
 			AsyncOperationHandle downloadDependenciesAsync = Addressables.DownloadDependenciesAsync(resourceLocations);
 			yield return downloadDependenciesAsync;
 			Addressables.LoadSceneAsync(sceneInfo.name);
+		}
+
+		private void OnUserLoggedIn(bool loggedIn)
+		{
+			DashboardUIEvents.Instance.showLogInUI.Invoke(loggedIn);
+		}
+
+		private void OnDestroy()
+		{
+			UserEvents.Instance.userLoggedIn -= OnUserLoggedIn;
 		}
 	}
 }

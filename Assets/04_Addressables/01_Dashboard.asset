@@ -107,6 +107,36 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94cfb8f5b04cc904dbee8348780a9b6a
+    m_Address: Assets/02_Art/01_Dashboard/Shared/DisconnectButton.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7d4c3277a9e03e47b58ac3ffd09b307
+    m_Address: Assets/02_Art/01_Dashboard/Shared/GreenPlayButton.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2778a383877c3564d8362e63b46dcaff
+    m_Address: Assets/02_Art/01_Dashboard/Desktop/Sidebar/Avatar.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb66f3aa58afcc642b801a09e01eb728
+    m_Address: Assets/02_Art/01_Dashboard/Desktop/Sidebar/Bubble Bots Icon Left side.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73d864e21b889ac41a2b3b5216ea275e
+    m_Address: Assets/02_Art/01_Dashboard/Desktop/Sidebar/PG Logo - White.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
