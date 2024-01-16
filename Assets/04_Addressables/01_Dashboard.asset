@@ -137,6 +137,48 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99ac1702c604b5d448a41f024d0dea44
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Bubbles.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4ed5ae34de17b14bb7bfe9622e3ea47
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Gems.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 797ed7a117dbd2e479d66da527b63153
+    m_Address: Assets/02_Art/01_Dashboard/Desktop/Welcome Back Box.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83891cbb9b93ec94bae9be5f989404cc
+    m_Address: Assets/02_Art/01_Dashboard/Desktop/Bubbles Gems Box.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3a764fead002e747b9a23f064b7534c
+    m_Address: Assets/02_Art/01_Dashboard/Desktop/Latest News.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6745b3d5dc1e4fa4d8a35cea99230494
+    m_Address: Assets/05_Scriptables/01_Dashboard/Environments/DevEnv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 430c5be40a5b4704d963940dc15a186e
+    m_Address: Assets/05_Scriptables/01_Dashboard/Environments/ProdEnv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
