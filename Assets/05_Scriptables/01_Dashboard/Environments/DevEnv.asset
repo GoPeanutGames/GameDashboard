@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dbadab36a54a478e7254b765fc23ab, type: 3}
   m_Name: DevEnv
   m_EditorClassIdentifier: 
+  isDev: 1
   allowLogs: 1
   useRSA: 0
   serverUrl: https://api-bb.peanuthub.dev

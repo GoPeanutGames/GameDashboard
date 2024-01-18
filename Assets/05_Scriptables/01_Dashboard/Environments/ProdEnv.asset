@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dbadab36a54a478e7254b765fc23ab, type: 3}
   m_Name: ProdEnv
   m_EditorClassIdentifier: 
+  isDev: 0
+  allowLogs: 0
+  useRSA: 1
   serverUrl: https://api-bb.peanutgames.com
   unityEnvironmentName: production
   publicKey:

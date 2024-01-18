@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using AOT;
+using PeanutDashboard.Shared.Environment;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils;
@@ -10,15 +11,15 @@ namespace PeanutDashboard.Shared.Authentication
     public class MetamaskService : Singleton<MetamaskService>
     {
         [DllImport("__Internal")]
-        private static extern string Login(Action<string> cb);
-        
+        private static extern string Login(bool isDev, Action<string> cb);
+
         [DllImport("__Internal")]
         private static extern string RequestSignature(string schema, string address, Action<string> cb);
-        
+
         public static void LoginMetamask()
         {
             LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(LoginMetamask)}");
-            Login(OnMetamaskLoginSuccess);
+            Login(EnvironmentManager.Instance.IsDev() ,OnMetamaskLoginSuccess);
         }
 
         public static void RequestMetamaskSignature(string schema, string address)

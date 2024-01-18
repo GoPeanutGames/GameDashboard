@@ -1,6 +1,24 @@
 mergeInto(LibraryManager.library, {
-
-    Login: async function (obj) {
+    Login: async function (isDev, obj) {
+        let chainId = await window.ethereum.request({ method: "eth_chainId" });
+        if (chainId !== 80001) {
+            await window.ethereum.request({
+                method: "wallet_addEthereumChain",
+                params: [
+                    {
+                        chainId: isDev ? "0x" + (80001).toString(16) : "0x" + (137).toString(16),
+                        rpcUrls: isDev ? ["https://rpc-mumbai.maticvigil.com"] : ["https://polygon-rpc.com"],
+                        chainName: isDev ? "Matic Mumbai" : "Polygon Mainnet",
+                        nativeCurrency:{
+                            name: "MATIC",
+                            symbol: "MATIC",
+                            decimals: 18
+                        },
+                        blockExplorerUrls: isDev ? ["https://mumbai.polygonscan.com/"] : ["https://polygonscan.com/"]
+                    },
+                ],
+            });
+        }
         try {
             let userAddress;
             const accounts = await ethereum.request({ method: "eth_requestAccounts" });

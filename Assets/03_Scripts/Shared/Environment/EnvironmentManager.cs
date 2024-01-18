@@ -1,5 +1,4 @@
-﻿using System;
-using PeanutDashboard.Utils;
+﻿using PeanutDashboard.Utils;
 using UnityEngine;
 
 namespace PeanutDashboard.Shared.Environment
@@ -36,6 +35,11 @@ namespace PeanutDashboard.Shared.Environment
         public bool IsLoggingEnabled()
         {
             return _currentEnvironment.allowLogs;
+        }
+
+        public bool IsDev()
+        {
+            return _currentEnvironment.isDev;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace PeanutDashboard.Shared.Environment
     )]
     public class EnvironmentModel: ScriptableObject
     {
+        public bool isDev;
         public bool allowLogs;
         public bool useRSA;
         public string serverUrl;
