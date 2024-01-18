@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils;
+﻿using MetaMask.Unity;
+using PeanutDashboard.Utils;
 using UnityEngine;
 
 namespace PeanutDashboard.Shared.Environment
@@ -40,6 +41,11 @@ namespace PeanutDashboard.Shared.Environment
         public bool IsDev()
         {
             return _currentEnvironment.isDev;
+        }
+
+        public MetaMaskConfig GetMetamaskConfig()
+        {
+            return _currentEnvironment.metaMaskConfig;
         }
     }
 }

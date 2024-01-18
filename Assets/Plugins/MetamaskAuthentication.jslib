@@ -1,4 +1,8 @@
 mergeInto(LibraryManager.library, {
+    IsMobile: function(){
+        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    },
+
     Login: async function (isDev, obj) {
         let chainId = await window.ethereum.request({ method: "eth_chainId" });
         if (chainId !== 80001) {
@@ -54,5 +58,13 @@ mergeInto(LibraryManager.library, {
         const buffer = _malloc(bufferSize);
         stringToUTF8(signature, buffer, bufferSize);
         Module.dynCall_vi(obj, [buffer]);
-    }
+    },
+    
+    GetURLFromPage: function () {
+        var returnStr = window.top.location.href;
+        var bufferSize = lengthBytesUTF8(returnStr) + 1
+        var buffer = _malloc(bufferSize);
+        stringToUTF8(returnStr, buffer, bufferSize);
+        return buffer;
+    },
 });

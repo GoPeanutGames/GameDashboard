@@ -26,3 +26,4 @@ MonoBehaviour:
   - lORcG6qrXFxW2Yl9yY/rWiVYYpindw9LrAq2kCWqkRO7pIofpJ9l28nIUj5vUb8k
   - nEmr4FedhKA1/ug868eSFWLxOFRdu7XqqwIDAQAB
   - -----END RSA PUBLIC KEY-----
+  metaMaskConfig: {fileID: 11400000, guid: 19f270dd658539145a4cdf3bcfef5238, type: 2}

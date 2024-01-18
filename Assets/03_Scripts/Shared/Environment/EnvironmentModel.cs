@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MetaMask.Unity;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
@@ -16,5 +17,6 @@ namespace PeanutDashboard.Shared.Environment
         public string serverUrl;
         public string unityEnvironmentName;
         public List<string> publicKey;
+        public MetaMaskConfig metaMaskConfig;
     }
 }
