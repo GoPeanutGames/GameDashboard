@@ -6,7 +6,7 @@ using PeanutDashboard.Shared.User;
 using PeanutDashboard.Utils;
 using UnityEngine;
 
-namespace PeanutDashboard.Shared.Authentication
+namespace PeanutDashboard.Shared.Metamask
 {
     public class AuthenticationService : Singleton<AuthenticationService>
     {

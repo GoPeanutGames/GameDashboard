@@ -1,5 +1,5 @@
 ﻿using System;
-using PeanutDashboard.Shared.Authentication;
+using PeanutDashboard.Shared.Metamask;
 using UnityEngine;
 using UnityEngine.UI;
 
