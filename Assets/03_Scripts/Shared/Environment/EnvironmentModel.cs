@@ -17,6 +17,5 @@ namespace PeanutDashboard.Shared.Environment
         public string serverUrl;
         public string unityEnvironmentName;
         public List<string> publicKey;
-        public MetaMaskConfig metaMaskConfig;
     }
 }

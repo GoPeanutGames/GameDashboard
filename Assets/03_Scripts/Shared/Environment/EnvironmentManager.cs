@@ -42,10 +42,5 @@ namespace PeanutDashboard.Shared.Environment
         {
             return _currentEnvironment.isDev;
         }
-
-        public MetaMaskConfig GetMetamaskConfig()
-        {
-            return _currentEnvironment.metaMaskConfig;
-        }
     }
 }

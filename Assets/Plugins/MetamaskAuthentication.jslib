@@ -58,13 +58,5 @@ mergeInto(LibraryManager.library, {
         const buffer = _malloc(bufferSize);
         stringToUTF8(signature, buffer, bufferSize);
         Module.dynCall_vi(obj, [buffer]);
-    },
-    
-    GetURLFromPage: function () {
-        var returnStr = window.top.location.href;
-        var bufferSize = lengthBytesUTF8(returnStr) + 1
-        var buffer = _malloc(bufferSize);
-        stringToUTF8(returnStr, buffer, bufferSize);
-        return buffer;
-    },
+    }
 });
