@@ -55,6 +55,9 @@ namespace PeanutDashboard.Shared.Metamask
 				MetaMaskUnity.Instance.Wallet.AccountChangedHandler += OnAccountChangeHandler;
 				SwitchChain(ChainData);
 			}
+			else{
+				AuthenticationEvents.Instance.RaiseUserMetamaskConnectedEvent(WalletAddress);
+			}
 		}
 
 		private static void OnChainSwitched(object sender, EventArgs e)
