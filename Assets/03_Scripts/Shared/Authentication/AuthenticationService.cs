@@ -6,7 +6,7 @@ using PeanutDashboard.Shared.User;
 using PeanutDashboard.Utils;
 using UnityEngine;
 
-namespace PeanutDashboard.Shared.Authentication
+namespace PeanutDashboard.Shared.Metamask
 {
     public class AuthenticationService : Singleton<AuthenticationService>
     {
@@ -16,7 +16,7 @@ namespace PeanutDashboard.Shared.Authentication
         public void StartMetamaskLogin()
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(StartMetamaskLogin)}");
-            AuthenticationEvents.Instance.userMetamaskConnected += OnUserMetamaskConnected;
+            AuthenticationEvents.Instance.UserMetamaskConnected += OnUserMetamaskConnected;
             MetamaskService.LoginMetamask();
         }
 
@@ -24,14 +24,14 @@ namespace PeanutDashboard.Shared.Authentication
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnUserMetamaskConnected)}");
             _walletAddress = walletAddress;
-            AuthenticationEvents.Instance.userMetamaskConnected -= OnUserMetamaskConnected;
+            AuthenticationEvents.Instance.UserMetamaskConnected -= OnUserMetamaskConnected;
             ServerService.Instance.GetSchemaDataFromServer(AuthenticationApi.GetLoginSchema, OnGetSchemaFromServer, walletAddress);
         }
 
         private void OnGetSchemaFromServer(string schema)
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnGetSchemaFromServer)}");
-            AuthenticationEvents.Instance.userSignatureReceived += OnMetamaskSignatureReceived;
+            AuthenticationEvents.Instance.UserSignatureReceived += OnMetamaskSignatureReceived;
             MetamaskService.RequestMetamaskSignature(schema, _walletAddress);
         }
 
@@ -39,7 +39,7 @@ namespace PeanutDashboard.Shared.Authentication
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnMetamaskSignatureReceived)}");
             _signature = signature;
-            AuthenticationEvents.Instance.userSignatureReceived -= OnMetamaskSignatureReceived;
+            AuthenticationEvents.Instance.UserSignatureReceived -= OnMetamaskSignatureReceived;
             CheckWeb3Login();
         }
 
@@ -59,6 +59,7 @@ namespace PeanutDashboard.Shared.Authentication
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(CheckWeb3LoginCallback)}");
             CheckWeb3LoginResponse response = JsonUtility.FromJson<CheckWeb3LoginResponse>(result);
+            LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(CheckWeb3LoginCallback)} - Web3 Login check: {response.status}");
             if (response.status)
             {
                 UserService.Instance.UserLogInComplete(_walletAddress, _signature);

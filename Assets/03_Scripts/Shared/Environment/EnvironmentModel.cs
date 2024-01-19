@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MetaMask.Unity;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 

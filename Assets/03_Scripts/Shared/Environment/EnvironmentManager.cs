@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils;
+﻿using MetaMask.Unity;
+using PeanutDashboard.Utils;
 using UnityEngine;
 
 namespace PeanutDashboard.Shared.Environment

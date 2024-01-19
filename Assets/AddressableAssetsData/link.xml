@@ -13,6 +13,13 @@
     <type fullname="PeanutDashboard.Utils.UI.UserNicknameDisplay" preserve="all" />
     <type fullname="PeanutDashboard.Utils.UI.UserResourceDisplay" preserve="all" />
   </assembly>
+  <assembly fullname="MetaMaskUnity.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="MetaMask.IO.MetaMaskHttpService" preserve="all" />
+    <type fullname="MetaMask.Unity.MetaMaskConfig" preserve="all" />
+    <type fullname="MetaMask.Unity.MetaMaskUnity" preserve="all" />
+    <type fullname="MetaMask.Unity.MetaMaskUnityEventHandler" preserve="all" />
+    <type fullname="MetaMask.Unity.MetaMaskUnity/MetaMaskUnityRpcUrlConfig" preserve="nothing" serialized="true" />
+  </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
     <type fullname="UnityEngine.AddressableAssets.Initialization.CacheInitialization" preserve="all" />

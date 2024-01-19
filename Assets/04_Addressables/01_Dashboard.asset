@@ -179,6 +179,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ad1fb4333105ce4c85a05256edb6ab6
+    m_Address: Assets/05_Scriptables/01_Dashboard/MetamaskConfig/Dev.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19f270dd658539145a4cdf3bcfef5238
+    m_Address: Assets/05_Scriptables/01_Dashboard/MetamaskConfig/Prod.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
