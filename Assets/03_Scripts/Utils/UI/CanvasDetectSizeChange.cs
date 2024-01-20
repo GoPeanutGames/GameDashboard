@@ -23,8 +23,8 @@ namespace PeanutDashboard.Utils.UI
 		protected override void OnRectTransformDimensionsChange()
 		{
 			if (_rectTransform != null){
-				LoggerService.LogInfo($"{nameof(CanvasDetectSizeChange)}::{nameof(OnRectTransformDimensionsChange)} - Detected change, rebuilding layout");
-				LoggerService.LogInfo($"{nameof(CanvasDetectSizeChange)}::{nameof(OnRectTransformDimensionsChange)} - Rect size: {_rectTransform.rect.size}");
+				Debug.Log($"{nameof(CanvasDetectSizeChange)}::{nameof(OnRectTransformDimensionsChange)} - Detected change, rebuilding layout");
+				Debug.Log($"{nameof(CanvasDetectSizeChange)}::{nameof(OnRectTransformDimensionsChange)} - Rect size: {_rectTransform.rect.size}");
 				if (_rectTransform.rect.size.x < 1080){
 					this.GetComponent<Canvas>().sortingOrder = activeOnMobile ? sortOrder : 0;
 				}

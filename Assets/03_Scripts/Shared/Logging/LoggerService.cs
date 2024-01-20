@@ -7,21 +7,30 @@ namespace PeanutDashboard.Shared.Logging
 	{
 		public static void LogInfo(string log)
 		{
-			if (EnvironmentManager.Instance.IsLoggingEnabled()){
+			if (EnvironmentManager.Instance == null){
+				Debug.Log(log);
+			}
+			else if (EnvironmentManager.Instance.IsLoggingEnabled()){
 				Debug.Log(log);
 			}
 		}
 
 		public static void LogWarning(string log)
 		{
-			if (EnvironmentManager.Instance.IsLoggingEnabled()){
+			if (EnvironmentManager.Instance == null){
+				Debug.LogWarning(log);
+			}
+			else if (EnvironmentManager.Instance.IsLoggingEnabled()){
 				Debug.LogWarning(log);
 			}
 		}
 
 		public static void LogError(string log)
 		{
-			if (EnvironmentManager.Instance.IsLoggingEnabled()){
+			if (EnvironmentManager.Instance == null){
+				Debug.LogError(log);
+			}
+			else if (EnvironmentManager.Instance.IsLoggingEnabled()){
 				Debug.LogError(log);
 			}
 		}
