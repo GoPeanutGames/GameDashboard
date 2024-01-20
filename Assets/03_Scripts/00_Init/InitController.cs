@@ -2,17 +2,15 @@ using System.Collections.Generic;
 using Coffee.UIEffects;
 using PeanutDashboard.Shared;
 using PeanutDashboard.Shared.Events;
+using PeanutDashboard.Shared.Logging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace PeanutDashboard.Init
 {
 	public class InitController : MonoBehaviour
 	{
-		//TODO: logs should be handled by a manager, that has a type, source, system so it can be easily filtered
-
 		public SceneInfo dashboardScene;
 		public Slider desktopDownloadProgressSlider;
 		public Slider mobileDownloadProgressSlider;
@@ -21,30 +19,32 @@ namespace PeanutDashboard.Init
 
 		private void Start()
 		{
-			Debug.Log($"{nameof(InitController)}:: {nameof(Start)}");
-			AddressablesEvents.Instance.addressablesInitialised += OnAddressablesInitialised;
+			LoggerService.LogInfo($"{nameof(InitController)}:: {nameof(Start)}");
+			AddressablesEvents.Instance.AddressablesInitialised += OnAddressablesInitialised;
 			AddressablesService.Instance.InitialiseAddressables();
 		}
 
 		private void OnAddressablesInitialised()
 		{
-			SceneLoaderEvents.Instance.sceneLoaded += OnDashboardSceneLoaded;
-			SceneLoaderEvents.Instance.sceneLoadProgressUpdated += OnSceneLoadProgressUpdate;
+			LoggerService.LogInfo($"{nameof(InitController)}:: {nameof(OnAddressablesInitialised)}");
+			SceneLoaderEvents.Instance.SceneLoaded += OnDashboardSceneLoaded;
+			SceneLoaderEvents.Instance.SceneLoadProgressUpdated += OnSceneLoadProgressUpdate;
 			SceneLoaderService.Instance.LoadScene(dashboardScene);
 		}
 
 		private void OnSceneLoadProgressUpdate(float value)
 		{
+			LoggerService.LogInfo($"{nameof(InitController)}:: {nameof(OnSceneLoadProgressUpdate)} - percentage: {value}");
 			desktopDownloadProgressSlider.value = value;
 			mobileDownloadProgressSlider.value = value;
 		}
-		
+
 		private void OnDashboardSceneLoaded()
 		{
-			SceneLoaderEvents.Instance.sceneLoaded -= OnDashboardSceneLoaded;
-			SceneLoaderEvents.Instance.sceneLoadProgressUpdated -= OnSceneLoadProgressUpdate;
-			foreach (UIDissolve transitionEffect in transitionEffects)
-			{
+			LoggerService.LogInfo($"{nameof(InitController)}:: {nameof(OnDashboardSceneLoaded)}");
+			SceneLoaderEvents.Instance.SceneLoaded -= OnDashboardSceneLoaded;
+			SceneLoaderEvents.Instance.SceneLoadProgressUpdated -= OnSceneLoadProgressUpdate;
+			foreach (UIDissolve transitionEffect in transitionEffects){
 				transitionEffect.effectPlayer.duration = transitionDuration;
 				transitionEffect.Play();
 			}
@@ -53,12 +53,14 @@ namespace PeanutDashboard.Init
 
 		private void OnTransitionDone()
 		{
+			LoggerService.LogInfo($"{nameof(InitController)}:: {nameof(OnTransitionDone)}");
 			SceneManager.UnloadSceneAsync(0);
 		}
 
 		private void OnDestroy()
 		{
-			AddressablesEvents.Instance.addressablesInitialised -= OnAddressablesInitialised;
+			LoggerService.LogInfo($"{nameof(InitController)}:: {nameof(OnDestroy)}");
+			AddressablesEvents.Instance.AddressablesInitialised -= OnAddressablesInitialised;
 		}
 	}
 }

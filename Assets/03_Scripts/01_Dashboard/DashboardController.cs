@@ -14,7 +14,7 @@ namespace PeanutDashboard.Dashboard
 	{
 		private void Start()
 		{
-			UserEvents.Instance.userLoggedIn += OnUserLoggedIn;
+			UserEvents.Instance.UserLoggedIn += OnUserLoggedIn;
 		}
 
 		public void OpenGameButtonClick(SceneInfo sceneInfo)
@@ -34,12 +34,12 @@ namespace PeanutDashboard.Dashboard
 
 		private void OnUserLoggedIn(bool loggedIn)
 		{
-			DashboardUIEvents.Instance.showLogInUI.Invoke(loggedIn);
+			DashboardUIEvents.Instance.RaiseShowLogInUIEvent(loggedIn);
 		}
 
 		private void OnDestroy()
 		{
-			UserEvents.Instance.userLoggedIn -= OnUserLoggedIn;
+			UserEvents.Instance.UserLoggedIn -= OnUserLoggedIn;
 		}
 	}
 }

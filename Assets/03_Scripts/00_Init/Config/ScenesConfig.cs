@@ -8,9 +8,8 @@ namespace PeanutDashboard.Init
 		fileName = nameof(ScenesConfig) + ExtensionNames.DotAsset,
 		menuName = PeanutDashboardMenuNames.Configs + nameof(ScenesConfig)
 	)]
-	public class ScenesConfig: ScriptableObject
+	public class ScenesConfig : ScriptableObject
 	{
 		public List<SceneInfo> sceneInfos;
 	}
 }
-

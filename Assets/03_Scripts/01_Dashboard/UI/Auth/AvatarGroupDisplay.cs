@@ -22,7 +22,7 @@ namespace PeanutDashboard.Dashboard.UI.Auth
 		[SerializeField]
 		private Sprite _loggedInAvatarSprite;
 		[SerializeField]
-		[TextArea(2,10)]
+		[TextArea(2, 10)]
 		private string _logInText;
 
 		private void Start()
@@ -32,7 +32,7 @@ namespace PeanutDashboard.Dashboard.UI.Auth
 
 		private void OnEnable()
 		{
-			DashboardUIEvents.Instance.showLogInUI += ChangeLogInUI;
+			DashboardUIEvents.Instance.ShowLogInUI += ChangeLogInUI;
 		}
 
 		private void ChangeLogInUI(bool loggedIn)
@@ -52,7 +52,7 @@ namespace PeanutDashboard.Dashboard.UI.Auth
 
 		private void OnDisable()
 		{
-			DashboardUIEvents.Instance.showLogInUI -= ChangeLogInUI;
+			DashboardUIEvents.Instance.ShowLogInUI -= ChangeLogInUI;
 		}
 	}
 }

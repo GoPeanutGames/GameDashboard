@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PeanutDashboard.Server.Data
 {
-    [Serializable]
-    public class EncryptedData
-    {
-        public List<string> data;
-    }
+	[Serializable]
+	public class EncryptedData
+	{
+		public List<string> data;
+	}
 }

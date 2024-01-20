@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace PeanutDashboard.Dashboard.UI.Metamask
 {
 	[RequireComponent(typeof(Button))]
-	public class DisconnectMetamaskButton: MonoBehaviour
+	public class DisconnectMetamaskButton : MonoBehaviour
 	{
 		private Button _button;
 

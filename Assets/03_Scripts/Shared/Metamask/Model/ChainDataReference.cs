@@ -9,7 +9,7 @@ namespace PeanutDashboard.Shared.Metamask.Model
 		public string symbol;
 		public int decimals;
 	}
-	
+
 	[Serializable]
 	public class Chain
 	{
@@ -24,8 +24,8 @@ namespace PeanutDashboard.Shared.Metamask.Model
 	{
 		public const long MumbaiChainId = 80001;
 		public const long PolygonChainId = 137;
-		
-		public static readonly Chain MumbaiChain = new ()
+
+		public static readonly Chain MumbaiChain = new()
 		{
 			chainId = "0x13881", //80001
 			rpcUrls = new[] { "https://rpc-mumbai.maticvigil.com" },
@@ -38,8 +38,8 @@ namespace PeanutDashboard.Shared.Metamask.Model
 			},
 			blockExplorerUrls = new[] { "https://mumbai.polygonscan.com/" }
 		};
-		
-		public static readonly Chain PolygonChain = new ()
+
+		public static readonly Chain PolygonChain = new()
 		{
 			chainId = "0x89", //137
 			rpcUrls = new[] { "https://polygon-rpc.com" },
