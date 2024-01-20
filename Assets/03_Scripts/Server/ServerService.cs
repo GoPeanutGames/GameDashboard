@@ -9,9 +9,9 @@ using UnityEngine.Networking;
 
 namespace PeanutDashboard.Server
 {
-	public class ServerService : Singleton<ServerService>
+	public static class ServerService
 	{
-		private string Encrypt(string jsonForm)
+		private static string Encrypt(string jsonForm)
 		{
 			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(Encrypt)}");
 			EncryptedData jsonEncryptedForm = new()
@@ -21,14 +21,14 @@ namespace PeanutDashboard.Server
 			return JsonUtility.ToJson(jsonEncryptedForm);
 		}
 
-		private string Decrypt(string formEncryptedData)
+		private static string Decrypt(string formEncryptedData)
 		{
 			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(Decrypt)}");
 			EncryptedData jsonEncryptedData = JsonUtility.FromJson<EncryptedData>(formEncryptedData);
 			return RSAUtility.Decrypt(jsonEncryptedData.data);
 		}
 
-		private UnityWebRequest SetupPostWebRequest(string api, string formData)
+		private static UnityWebRequest SetupPostWebRequest(string api, string formData)
 		{
 			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(SetupPostWebRequest)}");
 			string encryptedFormData = EnvironmentManager.Instance.IsRSAActive() ? Encrypt(formData) : formData;
@@ -43,7 +43,7 @@ namespace PeanutDashboard.Server
 			return webRequest;
 		}
 
-		private UnityWebRequest SetupGetWebRequest(string api)
+		private static UnityWebRequest SetupGetWebRequest(string api)
 		{
 			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(SetupGetWebRequest)}");
 			string serverUrl = EnvironmentManager.Instance.GetServerUrl();
@@ -55,7 +55,7 @@ namespace PeanutDashboard.Server
 			return webRequest;
 		}
 
-		private void SendWebRequest(UnityWebRequest webRequest, Action<string> onComplete, Action<string> onFail = null)
+		private static void SendWebRequest(UnityWebRequest webRequest, Action<string> onComplete, Action<string> onFail = null)
 		{
 			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(SendWebRequest)}");
 			AsyncOperation operation = webRequest.SendWebRequest();
@@ -73,27 +73,48 @@ namespace PeanutDashboard.Server
 				webRequest.Dispose();
 			};
 		}
-
-		public void GetSchemaDataFromServer(AuthenticationApi api, Action<string> onComplete, string address)
+		
+		private static void SendWebRequest<T,U>(UnityWebRequest webRequest, Action<T> onComplete, Action<U> onFail = null)
 		{
-			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(GetSchemaDataFromServer)} - {api}, with {address}");
-			UnityWebRequest webRequest = SetupGetWebRequest(ApiReference.AuthApiMap[api] + address);
-			SendWebRequest(webRequest, onComplete);
+			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(SendWebRequest)}");
+			AsyncOperation operation = webRequest.SendWebRequest();
+			operation.completed += (result) =>
+			{
+				string data = webRequest.downloadHandler.text;
+				string decryptedData = EnvironmentManager.Instance.IsRSAActive() ? Decrypt(data) : data;
+				if (webRequest.result == UnityWebRequest.Result.Success){
+					LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(SendWebRequest)} - complete with data: {decryptedData}");
+					T completeData = JsonUtility.FromJson<T>(decryptedData);
+					onComplete?.Invoke(completeData);
+				}
+				else{
+					LoggerService.LogWarning($"{nameof(ServerService)}::{nameof(SendWebRequest)} - fail with data: {decryptedData}");
+					U failData = JsonUtility.FromJson<U>(decryptedData);
+					onFail?.Invoke(failData);
+				}
+
+				webRequest.Dispose();
+			};
 		}
 
-		public void CheckWeb3Login(AuthenticationApi api, string formData, Action<string> onComplete)
+		public static void GetDataFromServer<T, U, V>(T api, Action<U> onComplete, string address = "", Action<V> onFail = null) where T : struct, IConvertible
 		{
-			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(CheckWeb3Login)} - {api}, with {formData}");
-			UnityWebRequest webRequest = SetupPostWebRequest(ApiReference.AuthApiMap[api], formData);
-			SendWebRequest(webRequest, onComplete);
+			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(GetDataFromServer)} - {api}, with {address}");
+			UnityWebRequest webRequest = SetupGetWebRequest(ApiReference.GetApi(api) + address);
+			SendWebRequest(webRequest, onComplete, onFail);
 		}
 
-		public void GetPlayerDataFromServer(
-			PlayerApi api, Action<string> onComplete, string address = "",
-			Action<string> onFail = null
-		)
+		public static void GetDataFromServer<T>(T api, Action<string> onComplete, string address = "", Action<string> onFail = null) where T : struct, IConvertible
 		{
-			UnityWebRequest webRequest = SetupGetWebRequest(ApiReference.PlayerApiMap[api] + address);
+			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(GetDataFromServer)} - {api}, with {address}");
+			UnityWebRequest webRequest = SetupGetWebRequest(ApiReference.GetApi(api) + address);
+			SendWebRequest(webRequest, onComplete, onFail);
+		}
+		
+		public static void PostDataToServer<T>(T api, string formData, Action<string> onComplete, Action<string> onFail = null) where T : struct, IConvertible
+		{
+			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(GetDataFromServer)} - {api}, with {formData}");
+			UnityWebRequest webRequest = SetupPostWebRequest(ApiReference.GetApi(api), formData);
 			SendWebRequest(webRequest, onComplete, onFail);
 		}
 	}

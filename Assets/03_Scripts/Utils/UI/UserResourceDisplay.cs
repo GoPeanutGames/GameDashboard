@@ -13,6 +13,7 @@ namespace PeanutDashboard.Utils.UI
 		private void OnEnable()
 		{
 			UserEvents.Instance.UserResourcesUpdated += OnUserResourcesChanged;
+			OnUserResourcesChanged();
 		}
 
 		private void OnUserResourcesChanged()

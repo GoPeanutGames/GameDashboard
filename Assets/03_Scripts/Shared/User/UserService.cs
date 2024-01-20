@@ -1,9 +1,7 @@
 ﻿using PeanutDashboard.Server;
-using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.User.Events;
 using PeanutDashboard.Utils;
-using UnityEngine;
 
 namespace PeanutDashboard.Shared.User
 {
@@ -20,7 +18,8 @@ namespace PeanutDashboard.Shared.User
 				walletAddress = address,
 				signature = signature
 			};
-			GetUserDataFromServer();
+			UserEvents.Instance.RaiseUserLoggedInEvent(_currentUser.loggedIn);
+			UserServerChannel.GetUserDataFromServer(_currentUser.walletAddress);
 		}
 
 		public void UserLoggedOut()
@@ -29,35 +28,14 @@ namespace PeanutDashboard.Shared.User
 			UserEvents.Instance.RaiseUserLoggedInEvent(_currentUser.loggedIn);
 		}
 
-		public void GetUserDataFromServer()
+		public void SetUserGeneralInfo(GeneralInfo generalInfo)
 		{
-			LoggerService.LogInfo($"{nameof(UserService)}::{nameof(GetUserDataFromServer)}");
-			ServerService.Instance.GetPlayerDataFromServer(PlayerApi.GetGeneralData, GetGeneralDataSuccess, _currentUser.walletAddress);
+			_currentUser.generalInfo = generalInfo;
 		}
 
-		private void GetGeneralDataSuccess(string response)
+		public void SetUserWalletInfo(WalletInfo walletInfo)
 		{
-			LoggerService.LogInfo($"{nameof(UserService)}::{nameof(GetGeneralDataSuccess)} - {response}");
-			GetGeneralDataResponse getGeneralDataResponse = JsonUtility.FromJson<GetGeneralDataResponse>(response);
-			_currentUser.generalInfo = new()
-			{
-				nickname = getGeneralDataResponse.nickname
-			};
-			ServerService.Instance.GetPlayerDataFromServer(PlayerApi.GetWallet, GetWalletDataSuccess, _currentUser.walletAddress);
-		}
-
-		private void GetWalletDataSuccess(string response)
-		{
-			LoggerService.LogInfo($"{nameof(UserService)}::{nameof(GetWalletDataSuccess)} - {response}");
-			GetPlayerWalletResponse getGeneralDataResponse = JsonUtility.FromJson<GetPlayerWalletResponse>(response);
-			_currentUser.walletInfo = new()
-			{
-				gems = getGeneralDataResponse.gems,
-				bubbles = getGeneralDataResponse.bubbles
-			};
-			UserEvents.Instance.RaiseUserLoggedInEvent(_currentUser.loggedIn);
-			UserEvents.Instance.RaiseUserGeneralInfoUpdatedEvent();
-			UserEvents.Instance.RaiseUserResourcesUpdatedEvent();
+			_currentUser.walletInfo = walletInfo;
 		}
 
 		public bool IsLoggedIn()

@@ -14,6 +14,7 @@ namespace PeanutDashboard.Utils.UI
 		private void OnEnable()
 		{
 			UserEvents.Instance.UserGeneralInfoUpdated += OnUserGeneralInfoUpdated;
+			OnUserGeneralInfoUpdated();
 		}
 
 		private void OnUserGeneralInfoUpdated()

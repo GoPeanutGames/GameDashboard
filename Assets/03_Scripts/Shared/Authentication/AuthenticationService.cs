@@ -30,7 +30,7 @@ namespace PeanutDashboard.Shared.Metamask
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnUserMetamaskConnected)}");
 			_walletAddress = walletAddress;
 			AuthenticationEvents.Instance.UserMetamaskConnected -= OnUserMetamaskConnected;
-			ServerService.Instance.GetSchemaDataFromServer(AuthenticationApi.GetLoginSchema, OnGetSchemaFromServer, walletAddress);
+			ServerService.GetDataFromServer(AuthenticationApi.GetLoginSchema, OnGetSchemaFromServer, walletAddress);
 		}
 
 		private static void OnGetSchemaFromServer(string schema)
@@ -57,7 +57,7 @@ namespace PeanutDashboard.Shared.Metamask
 				signature = _signature
 			};
 			string requestJson = JsonUtility.ToJson(request);
-			ServerService.Instance.CheckWeb3Login(AuthenticationApi.Web3LoginCheck, requestJson, CheckWeb3LoginCallback);
+			ServerService.PostDataToServer(AuthenticationApi.Web3LoginCheck, requestJson, CheckWeb3LoginCallback);
 		}
 
 		private static void CheckWeb3LoginCallback(string result)
