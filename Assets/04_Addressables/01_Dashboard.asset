@@ -89,8 +89,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1a9e54cf0bcc52e41bae8f542b31d257
-    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter-Medium.ttf
+  - m_GUID: 88e3d644422b36845bd12518b7a365a4
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-BlackItalic SDF.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
@@ -187,6 +187,225 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 19f270dd658539145a4cdf3bcfef5238
     m_Address: Assets/05_Scriptables/01_Dashboard/MetamaskConfig/Prod.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 328aac24009fb0e4aaab937f16d3fea2
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-BlackItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67907b68a8bf8fc41b92119f4f01c881
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-BoldItalic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e65a5d7be1625247b2af554f22cca02
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-BoldItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f066c74770fec3439668b71a32cf01e
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-ExtraBoldItalic
+      SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4545842ae70c57449b27ed9aceca8c88
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-ExtraBoldItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e84d8070fb5f19246919c2b639e69e47
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-ExtraLightItalic
+      SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d39840b1807995f4fb95ed201aceabbb
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-ExtraLightItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 296947ed56058ff4dab7f795200b888a
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-Italic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bce78a883abf6574daf4a813064b599b
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-Italic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48bec1abde43b5a4a909c14dcfefb0d5
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-LightItalic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d01cbda22dae024cb7da2e1cc754cb0
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-LightItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2ddedc80a37d324891c77c75f79abbf
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-MediumItalic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87569321bce97a240813e56fdb03ba91
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-MediumItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65828137bf7165649a92047eca80203f
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-SemiBoldItalic
+      SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7697b06a7b4808f44bc5d43d510f56e7
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-SemiBoldItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43e2410d42e581a46b1b7abcef90bd68
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-ThinItalic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e079a1521d64334438fff89579ba799f
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-ThinItalic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 626e189aee422144b9d9b80f1ee47ddf
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Black SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64bb5ef8b6ed1eb4cb4214ba52a383a8
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Black.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ec57810890cc2042a8b62ee756ad447
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Bold SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a21c42a149ae1b04e9ea59e71defccc5
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Bold.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0d4b4e02ed912744ae93710fd453f4d
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-ExtraBold SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d5b9e65500ef3d47aad533a2a9857a9
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-ExtraBold.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 620ab5055f436ab44a351473cef7a5ff
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-ExtraLight SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c191016399196e4190a497347fde7fe
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-ExtraLight.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c62fab1497596aa47aaa3eea9f19b116
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Light SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72b18ce3bfe78f444a6e0967d5497143
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Light.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c2b706123b4a9b4489fa7c799592a1a
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Medium SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f1b3a53bff856b45bd1b24d34925963
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Medium.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d06c0ace5b85eec4ab7f96b4cf2cf2a5
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Regular SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68bdb4a961c37e44db26b56b0f5cccba
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Regular.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c207e724ab66374bb44be859610a84f
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-SemiBold SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be0bef2d5cf9d7549941d9eaf8dba32d
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-SemiBold.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7476f215862415d4f897d11c5b1d0242
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Thin SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 328acdab2d06c244c86e67a296a92813
+    m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Normal/Inter-Thin.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 221604f9e3b3b9148b21da245901196a
+    m_Address: Assets/02_Art/01_Dashboard/Shared/AvatarColor.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard

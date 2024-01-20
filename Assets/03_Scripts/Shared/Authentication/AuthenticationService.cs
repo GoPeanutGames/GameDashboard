@@ -3,7 +3,6 @@ using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.User;
-using PeanutDashboard.Utils;
 using UnityEngine;
 
 namespace PeanutDashboard.Shared.Metamask

@@ -79,5 +79,10 @@ namespace PeanutDashboard.Shared.User
         {
             return _currentUser != null ? _currentUser.walletInfo.gems : 0;
         }
+
+        public string GetUserAddress()
+        {
+            return _currentUser.walletAddress;
+        }
     }
 }
