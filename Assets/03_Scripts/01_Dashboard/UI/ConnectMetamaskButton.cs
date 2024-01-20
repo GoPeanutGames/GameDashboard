@@ -1,5 +1,4 @@
-﻿using System;
-using PeanutDashboard.Shared.Metamask;
+﻿using PeanutDashboard.Shared.Metamask;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +21,7 @@ namespace PeanutDashboard.Dashboard.UI
 
         private void OnConnectMetamaskButtonClick()
         {
-            AuthenticationService.Instance.StartMetamaskLogin();
+            AuthenticationService.StartMetamaskLogin();
         }
 
         private void OnDisable()

@@ -8,19 +8,25 @@ using UnityEngine;
 
 namespace PeanutDashboard.Shared.Metamask
 {
-    public class AuthenticationService : Singleton<AuthenticationService>
+    public static class AuthenticationService
     {
-        private string _walletAddress;
-        private string _signature;
+        private static string _walletAddress;
+        private static string _signature;
         
-        public void StartMetamaskLogin()
+        public static void StartMetamaskLogin()
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(StartMetamaskLogin)}");
             AuthenticationEvents.Instance.UserMetamaskConnected += OnUserMetamaskConnected;
             MetamaskService.LoginMetamask();
         }
 
-        private void OnUserMetamaskConnected(string walletAddress)
+        public static void DisconnectMetamask()
+        {
+            UserService.Instance.UserLoggedOut();
+            MetamaskService.LogOutMetamask();
+        }
+
+        private static void OnUserMetamaskConnected(string walletAddress)
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnUserMetamaskConnected)}");
             _walletAddress = walletAddress;
@@ -28,14 +34,14 @@ namespace PeanutDashboard.Shared.Metamask
             ServerService.Instance.GetSchemaDataFromServer(AuthenticationApi.GetLoginSchema, OnGetSchemaFromServer, walletAddress);
         }
 
-        private void OnGetSchemaFromServer(string schema)
+        private static void OnGetSchemaFromServer(string schema)
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnGetSchemaFromServer)}");
             AuthenticationEvents.Instance.UserSignatureReceived += OnMetamaskSignatureReceived;
             MetamaskService.RequestMetamaskSignature(schema, _walletAddress);
         }
 
-        private void OnMetamaskSignatureReceived(string signature)
+        private static void OnMetamaskSignatureReceived(string signature)
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnMetamaskSignatureReceived)}");
             _signature = signature;
@@ -43,7 +49,7 @@ namespace PeanutDashboard.Shared.Metamask
             CheckWeb3Login();
         }
 
-        private void CheckWeb3Login()
+        private static void CheckWeb3Login()
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(CheckWeb3Login)}");
             CheckWeb3LoginRequest request = new CheckWeb3LoginRequest()
@@ -55,7 +61,7 @@ namespace PeanutDashboard.Shared.Metamask
             ServerService.Instance.CheckWeb3Login(AuthenticationApi.Web3LoginCheck, requestJson, CheckWeb3LoginCallback);
         }
 
-        private void CheckWeb3LoginCallback(string result)
+        private static void CheckWeb3LoginCallback(string result)
         {
             LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(CheckWeb3LoginCallback)}");
             CheckWeb3LoginResponse response = JsonUtility.FromJson<CheckWeb3LoginResponse>(result);

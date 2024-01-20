@@ -22,6 +22,12 @@ namespace PeanutDashboard.Shared.User
             };
             GetUserDataFromServer();
         }
+
+        public void UserLoggedOut()
+        {
+            _currentUser = new User() { loggedIn = false };
+            UserEvents.Instance.userLoggedIn.Invoke(_currentUser.loggedIn);
+        }
         
         public void GetUserDataFromServer()
         {

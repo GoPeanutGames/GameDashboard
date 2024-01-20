@@ -11,7 +11,7 @@ using PeanutDashboard.Shared.Metamask.Model;
 
 namespace PeanutDashboard.Shared.Metamask
 {
-	public class MetamaskService : Utils.Singleton<MetamaskService>
+	public static class MetamaskService
 	{
 		[DllImport("__Internal")]
 		private static extern bool IsMobile();
@@ -37,6 +37,19 @@ namespace PeanutDashboard.Shared.Metamask
 			}
 			else{
 				Login(EnvironmentManager.Instance.IsDev(), OnMetamaskLoginSuccess);
+			}
+		}
+
+		public static void LogOutMetamask()
+		{
+			if (IsMobile()){
+				MetaMaskUnity.Instance.Wallet.WalletConnectedHandler = null;
+				MetaMaskUnity.Instance.Wallet.WalletAuthorizedHandler = null;
+				MetaMaskUnity.Instance.Wallet.ChainIdChangedHandler = null;
+				MetaMaskUnity.Instance.Wallet.AccountChangedHandler = null;
+				if (MetaMaskUnity.Instance.Wallet.IsConnected){
+					MetaMaskUnity.Instance.Wallet.Disconnect();
+				}
 			}
 		}
 

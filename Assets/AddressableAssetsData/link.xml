@@ -5,6 +5,7 @@
     <type fullname="MovePlayerUpDown" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.DashboardController" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.ConnectMetamaskButton" preserve="all" />
+    <type fullname="PeanutDashboard.Dashboard.UI.DisconnectMetamaskButton" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.UIChangeWithLogIn" preserve="all" />
     <type fullname="PeanutDashboard.Init.SceneInfo" preserve="all" />
     <type fullname="PeanutDashboard.Shared.Environment.EnvironmentManager" preserve="all" />

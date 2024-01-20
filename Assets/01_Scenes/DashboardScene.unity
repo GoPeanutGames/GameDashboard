@@ -244,8 +244,9 @@ GameObject:
   m_Component:
   - component: {fileID: 19345494}
   - component: {fileID: 19345496}
+  - component: {fileID: 19345497}
   m_Layer: 5
-  m_Name: MetamaskButton
+  m_Name: DisconnectMetamaskButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,6 +316,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &19345497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19345493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db1d09d6288495fafbcc929e6025c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &37953630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1288,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 21.25
   m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1871,6 +1884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 244189251}
   - component: {fileID: 244189252}
+  - component: {fileID: 244189253}
   m_Layer: 5
   m_Name: MetamaskButton
   m_TagString: Untagged
@@ -1942,6 +1956,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &244189253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244189250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db1d09d6288495fafbcc929e6025c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &288089285
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3332,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
+  m_fontSize: 32.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4049,7 +4075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 3.1216092
+  m_AspectRatio: 3.1216094
 --- !u!114 &592431753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4856,6 +4882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 753228398}
   - component: {fileID: 753228399}
+  - component: {fileID: 753228400}
   m_Layer: 5
   m_Name: MetamaskButton
   m_TagString: Untagged
@@ -4927,6 +4954,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &753228400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753228397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db1d09d6288495fafbcc929e6025c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &757498031
 GameObject:
   m_ObjectHideFlags: 0
@@ -9398,7 +9437,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14.5
+  m_fontSize: 13.8
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11017,7 +11056,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
+  m_fontSize: 15.35
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
