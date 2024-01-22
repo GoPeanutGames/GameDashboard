@@ -1,16 +1,17 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="MovePlayerLeftRight" preserve="all" />
     <type fullname="MovePlayerUpDown" preserve="all" />
+    <type fullname="PeanutDashboard.BattleDash.BattleDashMenuController" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.DashboardController" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Auth.AvatarGroupDisplay" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Auth.UIChangeWithLogIn" preserve="all" />
+    <type fullname="PeanutDashboard.Dashboard.UI.External.AirdropButton" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.External.BubbleBotsButton" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Metamask.ConnectMetamaskButton" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Metamask.DisconnectMetamaskButton" preserve="all" />
     <type fullname="PeanutDashboard.Init.SceneInfo" preserve="all" />
-    <type fullname="PeanutDashboard.Shared.Environment.EnvironmentManager" preserve="all" />
     <type fullname="PeanutDashboard.Shared.Environment.EnvironmentModel" preserve="all" />
+    <type fullname="PeanutDashboard.Shared.UI.OpenSceneButton" preserve="all" />
     <type fullname="PeanutDashboard.Utils.UI.CanvasDetectSizeChange" preserve="all" />
     <type fullname="PeanutDashboard.Utils.UI.UserNicknameDisplay" preserve="all" />
     <type fullname="PeanutDashboard.Utils.UI.UserResourceDisplay" preserve="all" />
@@ -63,9 +64,7 @@
     <type fullname="UnityEngine.Sprite" preserve="all" />
     <type fullname="UnityEngine.Texture2D" preserve="all" />
     <type fullname="UnityEngine.Transform" preserve="all" />
-    <type fullname="UnityEngine.Events.ArgumentCache" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Events.PersistentListenerMode" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.RectOffset" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">

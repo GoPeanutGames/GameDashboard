@@ -410,6 +410,42 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 080dcfd1b29e33844b32872f8c16951b
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Game 01.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aeac0204e64dfed48935eec2a14b2e0f
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Game 02.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 832b08178a90a7541ac4de8435e9bad2
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Game 03.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f52a4628bf961c4c8f1448c7bc6be0e
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Game 04.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dafa458e6d5c75b4ba20de3a60de1534
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Coming Soon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ce9385d1688e934ba7bdda470d739be
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Airdrop Logo.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

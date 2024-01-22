@@ -45,22 +45,22 @@ namespace PeanutDashboard.Shared.User
 
 		public string GetUserNickname()
 		{
-			return _currentUser != null ? _currentUser.generalInfo.nickname : "";
+			return _currentUser?.generalInfo?.nickname ?? "";
 		}
 
 		public int GetUserBubbles()
 		{
-			return _currentUser != null ? _currentUser.walletInfo.bubbles : 0;
+			return _currentUser?.walletInfo?.bubbles ?? 0;
 		}
 
 		public int GetUserGems()
 		{
-			return _currentUser != null ? _currentUser.walletInfo.gems : 0;
+			return _currentUser?.walletInfo?.gems ?? 0;
 		}
 
 		public string GetUserAddress()
 		{
-			return _currentUser.walletAddress;
+			return _currentUser?.walletAddress ?? "";
 		}
 	}
 }

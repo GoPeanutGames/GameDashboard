@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 8756e55e16a28144082b24673c3e8a53
   m_currentHash:
     serializedVersion: 2
-    Hash: a863803c0a2990f6ca65cb5479b49e2c
+    Hash: c7ef60fb2be7980a021e6bb6bdf857fb
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - Dashboard
-    - Game1
+    - BattleDash
     - Game2
   m_SchemaTemplates: []
   m_GroupTemplateObjects:

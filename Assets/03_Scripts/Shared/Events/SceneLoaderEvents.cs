@@ -1,3 +1,4 @@
+using PeanutDashboard.Init;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils;
 using UnityEngine.Events;
@@ -8,6 +9,13 @@ namespace PeanutDashboard.Shared.Events
 	{
 		private UnityAction<float> _sceneLoadProgressUpdated;
 		private UnityAction _sceneLoaded;
+		private UnityAction<SceneInfo> _loadAndOpenScene;
+		
+		public event UnityAction<SceneInfo> LoadAndOpenScene
+		{
+			add => _loadAndOpenScene += value;
+			remove => _loadAndOpenScene -= value;
+		}
 		
 		public event UnityAction<float> SceneLoadProgressUpdated
 		{
@@ -19,6 +27,15 @@ namespace PeanutDashboard.Shared.Events
 		{
 			add => _sceneLoaded += value;
 			remove => _sceneLoaded -= value;
+		}
+		
+		public void RaiseLoadAndOpenSceneEvent(SceneInfo sceneInfo)
+		{
+			if (_loadAndOpenScene == null){
+				LoggerService.LogWarning($"{nameof(SceneLoaderEvents)}::{nameof(RaiseLoadAndOpenSceneEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_loadAndOpenScene.Invoke(sceneInfo);
 		}
 		
 		public void RaiseSceneLoadProgressUpdatedEvent(float progress)

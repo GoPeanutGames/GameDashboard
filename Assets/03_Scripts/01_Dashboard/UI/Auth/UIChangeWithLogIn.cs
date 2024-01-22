@@ -8,7 +8,7 @@ namespace PeanutDashboard.Dashboard.UI.Auth
 		public GameObject buttonLoggedInParent;
 		public GameObject buttonLoggedOutParent;
 
-		private void Start()
+		private void Awake()
 		{
 			ChangeLogInUI(false);
 		}

@@ -25,7 +25,7 @@ namespace PeanutDashboard.Dashboard.UI.Auth
 		[TextArea(2, 10)]
 		private string _logInText;
 
-		private void Start()
+		private void Awake()
 		{
 			ChangeLogInUI(false);
 		}

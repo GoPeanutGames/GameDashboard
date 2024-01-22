@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Shared.Logging;
+﻿using PeanutDashboard.Init;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils;
 using UnityEngine.Events;
 

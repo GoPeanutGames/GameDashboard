@@ -38,10 +38,10 @@ namespace PeanutDashboard.Shared
 			}
 		}
 
-		public async Task LoadAddressablesScene(SceneInfo sceneInfo)
+		public async Task LoadAddressablesScene(SceneInfo sceneInfo, LoadSceneMode loadSceneMode)
 		{
 			LoggerService.LogInfo($"{nameof(AddressablesService)}::{nameof(LoadAddressablesScene)} - {sceneInfo.name}");
-			await Addressables.LoadSceneAsync(sceneInfo.name, LoadSceneMode.Additive).Task;
+			await Addressables.LoadSceneAsync(sceneInfo.key, loadSceneMode).Task;
 		}
 	}
 }

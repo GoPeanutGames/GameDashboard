@@ -1,44 +1,46 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using PeanutDashboard.Dashboard.Events;
 using PeanutDashboard.Init;
+using PeanutDashboard.Shared;
+using PeanutDashboard.Shared.Events;
+using PeanutDashboard.Shared.Logging;
+using PeanutDashboard.Shared.User;
 using PeanutDashboard.Shared.User.Events;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace PeanutDashboard.Dashboard
 {
 	public class DashboardController : MonoBehaviour
 	{
-		private void Start()
+		private void OnEnable()
 		{
 			UserEvents.Instance.UserLoggedIn += OnUserLoggedIn;
+			SceneLoaderEvents.Instance.LoadAndOpenScene += OnStartGame;
 		}
 
-		public void OpenGameButtonClick(SceneInfo sceneInfo)
+		private void Start()
 		{
-			StartCoroutine(DownloadAndStartGame(sceneInfo));
+			if (UserService.Instance.IsLoggedIn()){
+				OnUserLoggedIn(true);
+			}
 		}
 
-		private IEnumerator DownloadAndStartGame(SceneInfo sceneInfo)
+		private void OnStartGame(SceneInfo sceneInfo)
 		{
-			AsyncOperationHandle<IList<IResourceLocation>> loadResourceLocationsAsync = Addressables.LoadResourceLocationsAsync(sceneInfo.label, Addressables.MergeMode.Union);
-			yield return loadResourceLocationsAsync;
-			IList<IResourceLocation> resourceLocations = loadResourceLocationsAsync.Result;
-			AsyncOperationHandle downloadDependenciesAsync = Addressables.DownloadDependenciesAsync(resourceLocations);
-			yield return downloadDependenciesAsync;
-			Addressables.LoadSceneAsync(sceneInfo.name);
+			LoggerService.LogInfo($"{nameof(DashboardController)}::{nameof(OnStartGame)} - {sceneInfo.key}");
+			SceneLoaderService.Instance.LoadAndOpenScene(sceneInfo);
 		}
 
 		private void OnUserLoggedIn(bool loggedIn)
 		{
+			LoggerService.LogInfo($"{nameof(DashboardController)}::{nameof(OnUserLoggedIn)} - {loggedIn}");
 			DashboardUIEvents.Instance.RaiseShowLogInUIEvent(loggedIn);
 		}
 
-		private void OnDestroy()
+		private void OnDisable()
 		{
+			SceneLoaderEvents.Instance.LoadAndOpenScene -= OnStartGame;
 			UserEvents.Instance.UserLoggedIn -= OnUserLoggedIn;
 		}
 	}
