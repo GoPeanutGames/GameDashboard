@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.AddressableAssets.Settings.GroupSchemas;
+using UnityEditor.Build;
 using UnityEngine;
 
 namespace PeanutDashboard.Editor
@@ -9,7 +11,7 @@ namespace PeanutDashboard.Editor
 	[CustomEditor(typeof(ServerBuilder))]
 	public class ServerBuilder: UnityEditor.Editor
 	{
-		private static readonly string ServerEntryPointScene = "EntryPoint";
+		// private static readonly string ServerEntryPointScene = "EntryPoint";
 
 		[MenuItem("PeanutDashboard/Build Server")]
 		public static void BuildForServer()
@@ -23,9 +25,9 @@ namespace PeanutDashboard.Editor
 			
 				return;
 			}
-
+			
 			List<string> scenesInBuild = new List<string>();
-			scenesInBuild.Add($"Assets/01_Scenes/Server/{ServerEntryPointScene}.unity");
+			// scenesInBuild.Add($"Assets/01_Scenes/Server/{ServerEntryPointScene}.unity");
 			foreach (GameSceneConfig gameSceneConfig in ProjectDatabase.Instance.serverGameSceneConfigs){
 				scenesInBuild.Add(gameSceneConfig.scenePath);
 				BundledAssetGroupSchema schema = gameSceneConfig.group.GetSchema<BundledAssetGroupSchema>();
@@ -34,6 +36,8 @@ namespace PeanutDashboard.Editor
 				schema.BuildPath.SetVariableById(gameSceneConfig.group.Settings, buildInfo.Id);
 				schema.LoadPath.SetVariableById(gameSceneConfig.group.Settings, loadInfo.Id);
 			}
+			AddressableAssetSettings.BuildPlayerContent();
+			PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Server, "SERVER");
 			string folderName = "Server";
 			BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions()
 			{
