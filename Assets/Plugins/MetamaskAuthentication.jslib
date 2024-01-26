@@ -5,7 +5,8 @@ mergeInto(LibraryManager.library, {
 
     Login: async function (isDev, obj) {
         let chainId = await window.ethereum.request({ method: "eth_chainId" });
-        if (chainId !== 80001) {
+        let selectedChainId = isDev ? "0x13881" : "0x89";
+        if (chainId !== selectedChainId) {
             await window.ethereum.request({
                 method: "wallet_addEthereumChain",
                 params: [

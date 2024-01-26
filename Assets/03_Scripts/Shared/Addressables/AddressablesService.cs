@@ -23,18 +23,17 @@ namespace PeanutDashboard.Shared
 		public async Task DownloadAddressablesForScene(SceneInfo sceneInfo)
 		{
 			LoggerService.LogInfo($"{nameof(AddressablesService)}::{nameof(DownloadAddressablesForScene)}");
-			IList<IResourceLocation> resourceLocations = await Addressables.LoadResourceLocationsAsync(sceneInfo.label, Addressables.MergeMode.Union).Task;
-			AsyncOperationHandle downloadDependenciesAsync = Addressables.DownloadDependenciesAsync(resourceLocations);
-			long totalBytes = downloadDependenciesAsync.GetDownloadStatus().TotalBytes;
-			if (totalBytes > 0){
-				float sizeInKb = totalBytes / 1024f;
-				LoggerService.LogInfo($"{nameof(AddressablesService)}::{nameof(DownloadAddressablesForScene)} - Downloading {sceneInfo.name} - size is {sizeInKb:F2} Kb");
-				do{
-					AddressablesEvents.Instance.RaiseDownloadPercentageUpdatedEvent(downloadDependenciesAsync.GetDownloadStatus().DownloadedBytes / (float)totalBytes);
-				} while (!downloadDependenciesAsync.IsDone);
-			}
-			else{
-				LoggerService.LogWarning($"{nameof(AddressablesService)}::{nameof(DownloadAddressablesForScene)} - Download size is 0 for {sceneInfo.name}");
+			long getDownloadSize = await Addressables.GetDownloadSizeAsync(sceneInfo.label).Task;
+			if (getDownloadSize > 0){
+				IList<IResourceLocation> resourceLocations = await Addressables.LoadResourceLocationsAsync(sceneInfo.label).Task;
+				AsyncOperationHandle downloadDependenciesAsync = Addressables.DownloadDependenciesAsync(resourceLocations);
+				while (!downloadDependenciesAsync.IsDone){
+					LoggerService.LogInfo($"{nameof(AddressablesService)}::{nameof(DownloadAddressablesForScene)} - {downloadDependenciesAsync.PercentComplete}");
+					LoggerService.LogInfo($"{nameof(AddressablesService)}::{nameof(DownloadAddressablesForScene)} - bytes: {downloadDependenciesAsync.GetDownloadStatus().DownloadedBytes}");
+					AddressablesEvents.Instance.RaiseDownloadPercentageUpdatedEvent(downloadDependenciesAsync.PercentComplete);
+					await Task.Yield();
+				}
+				Addressables.Release(downloadDependenciesAsync);
 			}
 		}
 

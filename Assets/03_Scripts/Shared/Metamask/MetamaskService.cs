@@ -30,6 +30,7 @@ namespace PeanutDashboard.Shared.Metamask
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(LoginMetamask)}");
 			if (IsMobile()){
+				LoadingEvents.Instance.RaiseUpdateLoadingEvent("Connecting to metamask app...");
 				MetaMaskUnity.Instance.Initialize();
 				MetaMaskUnity.Instance.Wallet.WalletConnectedHandler += MetamaskMobileConnected;
 				MetaMaskUnity.Instance.Wallet.WalletAuthorizedHandler += MetamaskMobileAuthorized;
@@ -64,6 +65,7 @@ namespace PeanutDashboard.Shared.Metamask
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(MetamaskMobileAuthorized)} - {e}");
 			MetaMaskUnity.Instance.Wallet.WalletAuthorizedHandler -= MetamaskMobileAuthorized;
 			if (MetaMaskUnity.Instance.Wallet.ChainId != ChainId){
+				LoadingEvents.Instance.RaiseUpdateLoadingEvent("Switching chain...");
 				MetaMaskUnity.Instance.Wallet.ChainIdChangedHandler += OnChainSwitched;
 				MetaMaskUnity.Instance.Wallet.AccountChangedHandler += OnAccountChangeHandler;
 				SwitchChain(ChainData);
@@ -105,6 +107,7 @@ namespace PeanutDashboard.Shared.Metamask
 		private static async void RequestMobileSignature(string schema, string address)
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(RequestMobileSignature)}");
+			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Requesting signature...");
 			MetaMaskEthereumRequest signatureRequest = new()
 			{
 				Method = "eth_signTypedData_v4",

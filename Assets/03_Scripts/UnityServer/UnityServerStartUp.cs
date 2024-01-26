@@ -1,13 +1,15 @@
 using System;
+using PeanutDashboard.Shared.Logging;
+#if SERVER
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PeanutDashboard.Shared.Logging;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using Unity.Services.Matchmaker.Models;
 using Unity.Services.Multiplay;
+#endif
 using UnityEngine;
 
 namespace PeanutDashboard.UnityServer
@@ -18,11 +20,13 @@ namespace PeanutDashboard.UnityServer
 		
 		private const string InternalServerIP = "0.0.0.0";
 		private ushort _serverPort = 7777;
-		private IMultiplayService _multiplayService;
 		private const int MultiplayServiceTimeout = 20000;
 		private string _allocationId;
+#if SERVER
+		private IMultiplayService _multiplayService;
 		private MultiplayEventCallbacks _serverCallbacks;
 		private IServerEvents _serverEvents;
+#endif
 
 		private async void Start()
 		{
@@ -46,7 +50,8 @@ namespace PeanutDashboard.UnityServer
 			ClientInstance?.Invoke();
 #endif
 		}
-
+		
+#if SERVER
 		private void StartServer()
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - IP: {InternalServerIP} at port: {_serverPort}");
@@ -157,5 +162,6 @@ namespace PeanutDashboard.UnityServer
 			_serverCallbacks.Allocate -= OnMultiplayAllocation;
 			_serverEvents?.UnsubscribeAsync();
 		}
+#endif
 	}
 }

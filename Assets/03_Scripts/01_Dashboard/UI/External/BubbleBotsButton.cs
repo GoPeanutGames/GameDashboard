@@ -5,6 +5,8 @@ namespace PeanutDashboard.Dashboard.UI.External
 {
 	public class BubbleBotsButton : MonoBehaviour
 	{
+		[Header("Debug Dynamic")]
+		[SerializeField]
 		private Button _button;
 
 		private void Awake()
