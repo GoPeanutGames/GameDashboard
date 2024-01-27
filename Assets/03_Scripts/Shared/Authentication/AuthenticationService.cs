@@ -12,12 +12,18 @@ namespace PeanutDashboard.Shared.Metamask
 		private static string _walletAddress;
 		private static string _signature;
 
+		public static void Initialise()
+		{
+			MetamaskService.Initialise();
+		}
+		
 		public static void StartMetamaskLogin()
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(StartMetamaskLogin)}");
 			LoadingEvents.Instance.RaiseShowLoadingEvent("Connecting to metamask...");
 #if !UNITY_EDITOR
 			AuthenticationEvents.Instance.UserMetamaskConnected += OnUserMetamaskConnected;
+			AuthenticationEvents.Instance.MetamaskConnectionFail += OnMetamaskConnectionFail;
 			MetamaskService.LoginMetamask();
 #elif UNITY_EDITOR
 			_signature = "0x821ee840b49c4294850eb51319b9ddb85504190ee38f4dec00f81b13b64fbd6a388d75df615de9aaac22adbc6b565134eaefa25e3b09223313932323e48c4aba1b";
@@ -25,7 +31,7 @@ namespace PeanutDashboard.Shared.Metamask
 			CheckWeb3Login();
 #endif
 		}
-
+		
 		public static void DisconnectMetamask()
 		{
 			UserService.Instance.UserLoggedOut();
@@ -38,23 +44,42 @@ namespace PeanutDashboard.Shared.Metamask
 			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Connecting to server...");
 			_walletAddress = walletAddress;
 			AuthenticationEvents.Instance.UserMetamaskConnected -= OnUserMetamaskConnected;
+			AuthenticationEvents.Instance.MetamaskConnectionFail -= OnMetamaskConnectionFail;
 			ServerService.GetDataFromServer(AuthenticationApi.GetLoginSchema, OnGetSchemaFromServer, walletAddress);
+		}
+
+		private static void OnMetamaskConnectionFail(string error)
+		{
+			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnMetamaskConnectionFail)} - reason: {error}");
+			LoadingEvents.Instance.RaiseHideLoadingEvent();
+			AuthenticationEvents.Instance.UserMetamaskConnected -= OnUserMetamaskConnected;
+			AuthenticationEvents.Instance.MetamaskConnectionFail -= OnMetamaskConnectionFail;
 		}
 
 		private static void OnGetSchemaFromServer(string schema)
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnGetSchemaFromServer)}");
 			AuthenticationEvents.Instance.UserSignatureReceived += OnMetamaskSignatureReceived;
+			AuthenticationEvents.Instance.MetamaskSignatureFail += OnMetamaskSignatureFail;
+			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Requesting signature...");
 			MetamaskService.RequestMetamaskSignature(schema, _walletAddress);
 		}
 
 		private static void OnMetamaskSignatureReceived(string signature)
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnMetamaskSignatureReceived)}");
-			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Requesting signature...");
 			_signature = signature;
 			AuthenticationEvents.Instance.UserSignatureReceived -= OnMetamaskSignatureReceived;
+			AuthenticationEvents.Instance.MetamaskSignatureFail -= OnMetamaskSignatureFail;
 			CheckWeb3Login();
+		}
+		
+		private static void OnMetamaskSignatureFail(string error)
+		{
+			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnMetamaskSignatureFail)} - reason: {error}");
+			LoadingEvents.Instance.RaiseHideLoadingEvent();
+			AuthenticationEvents.Instance.UserSignatureReceived -= OnMetamaskSignatureReceived;
+			AuthenticationEvents.Instance.MetamaskSignatureFail -= OnMetamaskSignatureFail;
 		}
 
 		private static void CheckWeb3Login()

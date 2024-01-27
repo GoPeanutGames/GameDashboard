@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
 using PeanutDashboard.Dashboard.Events;
 using PeanutDashboard.Init;
 using PeanutDashboard.Shared;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
+using PeanutDashboard.Shared.Metamask;
 using PeanutDashboard.Shared.User;
 using PeanutDashboard.Shared.User.Events;
 using UnityEngine;
@@ -21,6 +20,7 @@ namespace PeanutDashboard.Dashboard
 
 		private void Start()
 		{
+			AuthenticationService.Initialise();
 			if (UserService.Instance.IsLoggedIn()){
 				OnUserLoggedIn(true);
 			}
