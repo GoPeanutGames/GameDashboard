@@ -20,8 +20,10 @@ namespace PeanutDashboard.Editor
 		[MenuItem("PeanutDashboard/Build Client Production")]
 		public static void BuildForClientProd()
 		{
-			ProjectDatabase.Instance.gameConfig.ConfigureForProd();
-			BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
+				ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+				BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+			}
 		}
 		
 		private static void BuildForClient(string addressableProfileId)

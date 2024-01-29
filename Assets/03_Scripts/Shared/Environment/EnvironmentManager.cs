@@ -11,45 +11,46 @@ namespace PeanutDashboard.Shared.Environment
 		[SerializeField]
 		private GameConfig _currentGameConfig;
 		
-		[Header("Debug Dynamic")]
-		[SerializeField]
-		private EnvironmentModel _currentEnvironment;
-
 		protected override void Awake()
 		{
 			base.Awake();
-			_currentEnvironment = _currentGameConfig.currentEnvironmentModel;
-			LoggerService.LogInfo($"{nameof(EnvironmentManager)}::{nameof(Awake)} - Logs: {_currentEnvironment.allowLogs}");
+			Debug.Log($"{nameof(EnvironmentManager)}::{nameof(Awake)} - Peanut Dashboard version: {Application.version}");
+			LoggerService.LogInfo($"{nameof(EnvironmentManager)}::{nameof(Awake)} - Logs: {_currentGameConfig.currentEnvironmentModel.allowLogs}");
 		}
 
+		public GameConfig GetGameConfig()
+		{
+			return _currentGameConfig;
+		}
+		
 		public string GetServerUrl()
 		{
-			return _currentEnvironment.serverUrl;
+			return _currentGameConfig.currentEnvironmentModel.serverUrl;
 		}
 
 		public string GetUnityEnvironmentName()
 		{
-			return _currentEnvironment.unityEnvironmentName;
+			return _currentGameConfig.currentEnvironmentModel.unityEnvironmentName;
 		}
 
 		public string GetCurrentPublicKey()
 		{
-			return string.Join("\n", _currentEnvironment.publicKey);
+			return string.Join("\n", _currentGameConfig.currentEnvironmentModel.publicKey);
 		}
 
 		public bool IsRSAActive()
 		{
-			return _currentEnvironment.useRSA;
+			return _currentGameConfig.currentEnvironmentModel.useRSA;
 		}
 
 		public bool IsLoggingEnabled()
 		{
-			return _currentEnvironment.allowLogs;
+			return _currentGameConfig.currentEnvironmentModel.allowLogs;
 		}
 
 		public bool IsDev()
 		{
-			return _currentEnvironment.isDev;
+			return _currentGameConfig.currentEnvironmentModel.isDev;
 		}
 	}
 }

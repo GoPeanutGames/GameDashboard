@@ -2,6 +2,7 @@ using PeanutDashboard.Dashboard.Events;
 using PeanutDashboard.Init;
 using PeanutDashboard.Shared;
 using PeanutDashboard.Shared.Config;
+using PeanutDashboard.Shared.Environment;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.Metamask;
@@ -13,10 +14,6 @@ namespace PeanutDashboard.Dashboard
 {
 	public class DashboardController : MonoBehaviour
 	{
-		[Header("Set In Inspector")]
-		[SerializeField]
-		private GameConfig _gameConfig;
-		
 		private void OnEnable()
 		{
 			UserEvents.Instance.UserLoggedIn += OnUserLoggedIn;
@@ -25,8 +22,8 @@ namespace PeanutDashboard.Dashboard
 
 		private void Start()
 		{
-			
-			AuthenticationService.Initialise(_gameConfig.currentMetaMaskConfig, _gameConfig.currentEnvironmentModel.unityEnvironmentName);
+			GameConfig gameConfig = EnvironmentManager.Instance.GetGameConfig();
+			AuthenticationService.Initialise(gameConfig.currentMetaMaskConfig, gameConfig.currentEnvironmentModel.unityEnvironmentName);
 			if (UserService.Instance.IsLoggedIn()){
 				OnUserLoggedIn(true);
 			}
