@@ -13,8 +13,21 @@ namespace PeanutDashboard.Editor
 	{
 		// private static readonly string ServerEntryPointScene = "EntryPoint";
 
-		[MenuItem("PeanutDashboard/Build Server")]
-		public static void BuildForServer()
+		[MenuItem("PeanutDashboard/Build Server Development")]
+		public static void BuildForServerDev()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
+			BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		[MenuItem("PeanutDashboard/Build Server Production")]
+		public static void BuildForServerProd()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+			BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		private static void BuildForServer(string addressableProfileId)
 		{
 			// Get main folder path.
 			string parentFolderPath = EditorUtility.SaveFolderPanel("Choose the main folder", "", "");
@@ -31,6 +44,7 @@ namespace PeanutDashboard.Editor
 			foreach (GameSceneConfig gameSceneConfig in ProjectDatabase.Instance.serverGameSceneConfigs){
 				scenesInBuild.Add(gameSceneConfig.scenePath);
 				BundledAssetGroupSchema schema = gameSceneConfig.group.GetSchema<BundledAssetGroupSchema>();
+				gameSceneConfig.group.Settings.activeProfileId = addressableProfileId;
 				var buildInfo = gameSceneConfig.group.Settings.profileSettings.GetProfileDataByName("Local.BuildPath");
 				var loadInfo = gameSceneConfig.group.Settings.profileSettings.GetProfileDataByName("Local.LoadPath");
 				schema.BuildPath.SetVariableById(gameSceneConfig.group.Settings, buildInfo.Id);

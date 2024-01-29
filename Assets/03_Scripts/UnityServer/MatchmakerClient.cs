@@ -25,20 +25,10 @@ namespace PeanutDashboard.UnityServer
 		private async void SignIn()
 		{
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(SignIn)}");
-			await ClientSignIn();
 			await AuthenticationService.Instance.SignInAnonymouslyAsync();
 			StartClient();
 		}
-
-		private async Task ClientSignIn()
-		{
-			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(ClientSignIn)}");
-			InitializationOptions options = new InitializationOptions();
-			options.SetEnvironmentName("development");
-			await UnityServices.InitializeAsync(options);
-			LoggerService.LogInfo($"Signed in Anonymously as {PlayerID()}");
-		}
-
+		
 		private string PlayerID()
 		{
 			return AuthenticationService.Instance.PlayerId;

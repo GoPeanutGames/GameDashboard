@@ -10,8 +10,21 @@ namespace PeanutDashboard.Editor
 	[CustomEditor(typeof(ClientBuilder))]
 	public class ClientBuilder: UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Build Client")]
-		public static void BuildForClient()
+		[MenuItem("PeanutDashboard/Build Client Development")]
+		public static void BuildForClientDev()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
+			BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		[MenuItem("PeanutDashboard/Build Client Production")]
+		public static void BuildForClientProd()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+			BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		private static void BuildForClient(string addressableProfileId)
 		{
 			// Get main folder path.
 			string parentFolderPath = EditorUtility.SaveFolderPanel("Choose the main folder", "", "");
@@ -25,6 +38,7 @@ namespace PeanutDashboard.Editor
 			
 			foreach (AddressableAssetGroup group in ProjectDatabase.Instance.addressableGroups){
 				BundledAssetGroupSchema schema = group.GetSchema<BundledAssetGroupSchema>();
+				group.Settings.activeProfileId = addressableProfileId;
 				var buildInfo = group.Settings.profileSettings.GetProfileDataByName("Remote.BuildPath");
 				var loadInfo = group.Settings.profileSettings.GetProfileDataByName("Remote.LoadPath");
 				schema.BuildPath.SetVariableById(group.Settings, buildInfo.Id);

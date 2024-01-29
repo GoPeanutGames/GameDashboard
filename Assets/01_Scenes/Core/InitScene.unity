@@ -845,6 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc5f2bf35574ff0a02e1863cf12a0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentGameConfig: {fileID: 11400000, guid: ae1719d8962c6e94ca76b8823d2fe2cb, type: 2}
   _currentEnvironment: {fileID: 11400000, guid: 6745b3d5dc1e4fa4d8a35cea99230494, type: 2}
 --- !u!4 &1001337179
 Transform:

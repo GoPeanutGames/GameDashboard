@@ -30,11 +30,11 @@ namespace PeanutDashboard.Shared.Metamask
 
 		private static bool _metamaskInitialised = false;
 
-		public static void Initialise()
+		public static void Initialise(MetaMaskConfig metaMaskConfig)
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(Initialise)}");
 			if (!_metamaskInitialised){
-				MetaMaskUnity.Instance.Initialize();
+				MetaMaskUnity.Instance.Initialize(metaMaskConfig);
 				_metamaskInitialised = true;
 			}
 		}

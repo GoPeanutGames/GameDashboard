@@ -1,4 +1,5 @@
 using System;
+using PeanutDashboard.Shared.Config;
 using PeanutDashboard.Shared.Logging;
 #if SERVER
 using System.Threading.Tasks;
@@ -17,6 +18,10 @@ namespace PeanutDashboard.UnityServer
 	public class UnityServerStartUp : MonoBehaviour
 	{
 		public static event Action ClientInstance;
+		
+		[Header("Set in Inspector")]
+		[SerializeField]
+		private GameConfig _gameConfig;
 		
 		private const string InternalServerIP = "0.0.0.0";
 		private ushort _serverPort = 7777;
@@ -63,7 +68,7 @@ namespace PeanutDashboard.UnityServer
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)}");
 			InitializationOptions options = new InitializationOptions();
-			options.SetEnvironmentName("development");
+			options.SetEnvironmentName(_gameConfig.currentEnvironmentModel.unityEnvironmentName);
 			await UnityServices.InitializeAsync(options);
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - unity services state: {UnityServices.State}");
 			try{

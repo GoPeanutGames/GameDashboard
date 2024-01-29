@@ -149,30 +149,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6745b3d5dc1e4fa4d8a35cea99230494
-    m_Address: Assets/05_Scriptables/01_Dashboard/Environments/DevEnv.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 430c5be40a5b4704d963940dc15a186e
-    m_Address: Assets/05_Scriptables/01_Dashboard/Environments/ProdEnv.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8ad1fb4333105ce4c85a05256edb6ab6
-    m_Address: Assets/05_Scriptables/01_Dashboard/MetamaskConfig/Dev.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 19f270dd658539145a4cdf3bcfef5238
-    m_Address: Assets/05_Scriptables/01_Dashboard/MetamaskConfig/Prod.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 328aac24009fb0e4aaab937f16d3fea2
     m_Address: Assets/02_Art/01_Dashboard/Fonts/Inter/Italic/Inter-BlackItalic.ttf
     m_ReadOnly: 0

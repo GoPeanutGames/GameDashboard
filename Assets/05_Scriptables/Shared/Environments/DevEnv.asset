@@ -17,6 +17,7 @@ MonoBehaviour:
   useRSA: 0
   serverUrl: https://api-bb.peanuthub.dev
   unityEnvironmentName: development
+  unityAddressablesProfileId: b7c626f2370ae8545af3fdde005daa62
   publicKey:
   - -----BEGIN RSA PUBLIC KEY-----
   - MIIBCgKCAQEA15Pmyp5Z4u/kKUvRdeiajT2IQIusKAWqn131ZWkzQQbQzHs8Sls4
@@ -26,4 +27,3 @@ MonoBehaviour:
   - Wk8N65jBy9XVT6sTCUPKq0E8OW1utjPweMjt1fFKTt24yIXT5eMBslfd4OGamYAP
   - ubdkkuF348HsabuRZs3FdC93cJErpbFETwIDAQAB
   - -----END RSA PUBLIC KEY-----
-  metaMaskConfig: {fileID: 11400000, guid: 8ad1fb4333105ce4c85a05256edb6ab6, type: 2}

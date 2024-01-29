@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 870b57ebf20bae54ba420f1bdd20f759, type: 2}
   - {fileID: 11400000, guid: 0fbdbc0219e602b4bad2e2615c911f55, type: 2}
   - {fileID: 11400000, guid: 6a30a4bbc82f65349b0b27d8d41adaa8, type: 2}
+  gameConfig: {fileID: 11400000, guid: ae1719d8962c6e94ca76b8823d2fe2cb, type: 2}

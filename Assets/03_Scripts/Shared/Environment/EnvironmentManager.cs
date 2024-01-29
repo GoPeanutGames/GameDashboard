@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Shared.Logging;
+﻿using PeanutDashboard.Shared.Config;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils;
 using UnityEngine;
 
@@ -6,12 +7,19 @@ namespace PeanutDashboard.Shared.Environment
 {
 	public class EnvironmentManager : MonoSingleton<EnvironmentManager>
 	{
+		[Header("Set in Inspector")]
+		[SerializeField]
+		private GameConfig _currentGameConfig;
+		
+		[Header("Debug Dynamic")]
 		[SerializeField]
 		private EnvironmentModel _currentEnvironment;
 
-		private void Start()
+		protected override void Awake()
 		{
-			LoggerService.LogInfo($"{nameof(EnvironmentManager)}::{nameof(Start)} - Logs: {_currentEnvironment.allowLogs}");
+			base.Awake();
+			_currentEnvironment = _currentGameConfig.currentEnvironmentModel;
+			LoggerService.LogInfo($"{nameof(EnvironmentManager)}::{nameof(Awake)} - Logs: {_currentEnvironment.allowLogs}");
 		}
 
 		public string GetServerUrl()

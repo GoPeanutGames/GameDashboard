@@ -1,8 +1,12 @@
+using System.Threading.Tasks;
+using MetaMask.Unity;
 using PeanutDashboard.Server;
 using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.User;
+using Unity.Services.Core;
+using Unity.Services.Core.Environments;
 using UnityEngine;
 
 namespace PeanutDashboard.Shared.Metamask
@@ -11,10 +15,12 @@ namespace PeanutDashboard.Shared.Metamask
 	{
 		private static string _walletAddress;
 		private static string _signature;
+		private static string _env;
 
-		public static void Initialise()
+		public static void Initialise(MetaMaskConfig metaMaskConfig, string unityEnv)
 		{
-			MetamaskService.Initialise();
+			_env = unityEnv;
+			MetamaskService.Initialise(metaMaskConfig);
 		}
 		
 		public static void StartMetamaskLogin()
@@ -101,11 +107,22 @@ namespace PeanutDashboard.Shared.Metamask
 			CheckWeb3LoginResponse response = JsonUtility.FromJson<CheckWeb3LoginResponse>(result);
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(CheckWeb3LoginCallback)} - Web3 Login check: {response.status}");
 			if (response.status){
+				SignInToUnity();
 				UserService.Instance.UserLogInComplete(_walletAddress, _signature);
 			}
 			_walletAddress = "";
 			_signature = "";
 			LoadingEvents.Instance.RaiseHideLoadingEvent();
+		}
+		
+		private static async Task SignInToUnity()
+		{
+			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(SignInToUnity)}");
+			InitializationOptions options = new ();
+			options.SetEnvironmentName(_env);
+			UnityServices.ExternalUserId = _walletAddress;
+			await UnityServices.InitializeAsync(options);
+			LoggerService.LogInfo($"Signed in Anonymously as {Unity.Services.Authentication.AuthenticationService.Instance.PlayerId}");
 		}
 	}
 }

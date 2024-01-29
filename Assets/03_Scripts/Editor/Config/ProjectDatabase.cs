@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using PeanutDashboard.Shared.Config;
 using PeanutDashboard.Utils.Misc;
 using UnityEditor;
 using UnityEditor.AddressableAssets.Settings;
@@ -34,6 +35,7 @@ namespace PeanutDashboard.Editor
 
 		public List<GameSceneConfig> serverGameSceneConfigs;
 		public List<AddressableAssetGroup> addressableGroups;
+		public GameConfig gameConfig;
 		
 		public static ProjectDatabase Instance {
 			get {
