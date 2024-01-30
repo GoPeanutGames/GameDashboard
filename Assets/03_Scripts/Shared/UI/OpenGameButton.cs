@@ -33,7 +33,7 @@ namespace PeanutDashboard.Shared.UI
 			Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}");
 			if (UserService.Instance.IsLoggedIn()){
 				GameNetworkSyncService.AssignCurrentGameInfo(_gameInfo);
-				SceneLoaderEvents.Instance.RaiseLoadAndOpenSceneEvent(_gameInfo.gameStartScene);
+				SceneLoaderEvents.Instance.RaiseLoadAndOpenSceneEvent(_gameInfo.gameMainScene);
 			}
 		}
 

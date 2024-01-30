@@ -9,18 +9,16 @@ using UnityEngine;
 namespace PeanutDashboard.Editor
 {
 	[CustomEditor(typeof(ServerBuilder))]
-	public class ServerBuilder: UnityEditor.Editor
+	public class ServerBuilder : UnityEditor.Editor
 	{
-		// private static readonly string ServerEntryPointScene = "EntryPoint";
-
-		[MenuItem("PeanutDashboard/Build Server Development")]
+		[MenuItem("PeanutDashboard/Build/Build Server Development")]
 		public static void BuildForServerDev()
 		{
 			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
 			BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
-		
-		[MenuItem("PeanutDashboard/Build Server Production")]
+
+		[MenuItem("PeanutDashboard/Build/Build Server Production")]
 		public static void BuildForServerProd()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
@@ -28,21 +26,21 @@ namespace PeanutDashboard.Editor
 				BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 			}
 		}
-		
+
 		private static void BuildForServer(string addressableProfileId)
 		{
 			// Get main folder path.
 			string parentFolderPath = EditorUtility.SaveFolderPanel("Choose the main folder", "", "");
-			
-			if (string.IsNullOrWhiteSpace(parentFolderPath)) {
+
+			if (string.IsNullOrWhiteSpace(parentFolderPath)){
 				Debug.Log(
 					$"{nameof(ServerBuilder)}::{nameof(BuildForServer)}:: parent folder not selected, returning!");
-			
+
 				return;
 			}
-			
+
 			List<string> scenesInBuild = new List<string>();
-			// scenesInBuild.Add($"Assets/01_Scenes/Server/{ServerEntryPointScene}.unity");
+			scenesInBuild.Add($"Assets/01_Scenes/Server/EntryPointScene.unity");
 			foreach (GameSceneConfig gameSceneConfig in ProjectDatabase.Instance.serverGameSceneConfigs){
 				scenesInBuild.Add(gameSceneConfig.scenePath);
 				BundledAssetGroupSchema schema = gameSceneConfig.group.GetSchema<BundledAssetGroupSchema>();

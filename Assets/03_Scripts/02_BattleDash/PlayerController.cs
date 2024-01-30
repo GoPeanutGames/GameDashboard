@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using PeanutDashboard.UnityServer.Events;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        ServerSyncEvents.SpawnPlayerPrefab += SpawnPlayer;
     }
 
-    // Update is called once per frame
-    void Update()
+    private async void SpawnPlayer(string prefabKey)
     {
-        
+        AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(prefabKey, this.transform);
+        GameObject playerInstance = await handle.Task;
+        Addressables.Release(handle);
+        playerInstance.GetComponent<NetworkObject>().Spawn();
+    }
+
+    private void OnDisable()
+    {
+        ServerSyncEvents.SpawnPlayerPrefab -= SpawnPlayer;
     }
 }

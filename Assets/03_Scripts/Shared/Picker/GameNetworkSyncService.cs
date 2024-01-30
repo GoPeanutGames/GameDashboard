@@ -11,11 +11,21 @@ namespace PeanutDashboard.Shared.Picker
 			_currentGameInfo = currentGameInfo;
 		}
 
-		public static SceneInfo GetCurrentGameNetworkScene()
+		public static string GetCurrentMatchmakerLabel()
 		{
-			return _currentGameInfo.networkStartScene;
+			return _currentGameInfo.matchmakerGameLabel;
 		}
 
+		public static SceneInfo GetGameMainScene()
+		{
+			return _currentGameInfo.gameMainScene;
+		}
+
+		public static SceneInfo GetGamePlayScene()
+		{
+			return _currentGameInfo.gamePlayScene;
+		}
+		
 		public static SceneInfo GetNetworkEntryPoint()
 		{
 			return _currentGameInfo.networkEntryPointScene;
