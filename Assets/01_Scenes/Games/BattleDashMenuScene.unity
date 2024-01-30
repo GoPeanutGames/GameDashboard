@@ -456,10 +456,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 576017697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0653d9e4c9a2441b3407784e405a47, type: 3}
+  m_Script: {fileID: 11500000, guid: c29470f4d0fd43619d617c75879b45a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameScene: {fileID: 11400000, guid: d9a1de59bb827bd479f6ce798fd6a330, type: 2}
   _button: {fileID: 0}
 --- !u!1 &656775400
 GameObject:
@@ -942,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0653d9e4c9a2441b3407784e405a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameScene: {fileID: 11400000, guid: 4e7d8cacf2c6ea6488c9ba6e5d0b2122, type: 2}
+  _sceneInfo: {fileID: 11400000, guid: 4e7d8cacf2c6ea6488c9ba6e5d0b2122, type: 2}
   _button: {fileID: 0}
 --- !u!1 &2114039468
 GameObject:

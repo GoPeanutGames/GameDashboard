@@ -1,5 +1,6 @@
 using System;
 using PeanutDashboard.Shared.Config;
+using PeanutDashboard.Shared.Environment;
 using PeanutDashboard.Shared.Logging;
 #if SERVER
 using System.Threading.Tasks;
@@ -19,10 +20,7 @@ namespace PeanutDashboard.UnityServer
 	{
 		public static event Action ClientInstance;
 		
-		[Header("Set in Inspector")]
-		[SerializeField]
 		private GameConfig _gameConfig;
-		
 		private const string InternalServerIP = "0.0.0.0";
 		private ushort _serverPort = 7777;
 		private const int MultiplayServiceTimeout = 20000;
@@ -36,6 +34,7 @@ namespace PeanutDashboard.UnityServer
 		private async void Start()
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(Start)}");
+			_gameConfig = EnvironmentManager.Instance.GetGameConfig();
 			bool server = false;
 			string[] args = System.Environment.GetCommandLineArgs();
 			for (int i = 0; i < args.Length; i++){
