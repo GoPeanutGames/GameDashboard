@@ -29,12 +29,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 53e69f1651ac60e469c0b04042b2661b
-    m_Address: BattleDashPlayer
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BattleDash
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

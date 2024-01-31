@@ -33,6 +33,7 @@ namespace PeanutDashboard.Editor
 				schema.BuildPath.SetVariableById(gameSceneConfig.group.Settings, buildInfo.Id);
 				schema.LoadPath.SetVariableById(gameSceneConfig.group.Settings, loadInfo.Id);
 			}
+			EditorUserBuildSettings.SwitchActiveBuildTarget(NamedBuildTarget.Server, BuildTarget.StandaloneLinux64);
 			PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Server, "SERVER");
 		}
 	}

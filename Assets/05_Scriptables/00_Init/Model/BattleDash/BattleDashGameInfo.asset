@@ -17,5 +17,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9a1de59bb827bd479f6ce798fd6a330, type: 2}
   gameMainScene: {fileID: 11400000, guid: 4b0f896a5b3cda1468326daad997f381, type: 2}
   gamePlayScene: {fileID: 11400000, guid: d9a1de59bb827bd479f6ce798fd6a330, type: 2}
-  networkEntryPointScene: {fileID: 11400000, guid: 6a79341e552891e4abca2ffbf51cb143, type: 2}
+  networkEntryPointScene: {fileID: 11400000, guid: d9a1de59bb827bd479f6ce798fd6a330, type: 2}
   matchmakerGameLabel: BattleDash

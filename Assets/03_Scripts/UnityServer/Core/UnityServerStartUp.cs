@@ -3,6 +3,7 @@ using PeanutDashboard.Shared.Config;
 using PeanutDashboard.Shared.Environment;
 using PeanutDashboard.Shared.Logging;
 #if SERVER
+using System.Collections;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Unity.Netcode;
@@ -19,6 +20,7 @@ namespace PeanutDashboard.UnityServer.Core
 	public class UnityServerStartUp : MonoBehaviour
 	{
 		public static event Action ClientInstance;
+		public static event Action ServerInstance; 
 		
 		private GameConfig _gameConfig;
 		private const string InternalServerIP = "0.0.0.0";
@@ -29,6 +31,7 @@ namespace PeanutDashboard.UnityServer.Core
 		private IMultiplayService _multiplayService;
 		private MultiplayEventCallbacks _serverCallbacks;
 		private IServerEvents _serverEvents;
+		private IServerQueryHandler _serverQueryHandler;
 #endif
 
 		private async void Start()
@@ -47,6 +50,7 @@ namespace PeanutDashboard.UnityServer.Core
 			}
 #if SERVER
 			if (server){
+				ServerInstance?.Invoke();
 				StartServer();
 				await StartServerServices();
 			}
@@ -67,12 +71,14 @@ namespace PeanutDashboard.UnityServer.Core
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)}");
 			InitializationOptions options = new InitializationOptions();
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - config: {_gameConfig.currentEnvironmentModel.unityEnvironmentName}");
 			options.SetEnvironmentName(_gameConfig.currentEnvironmentModel.unityEnvironmentName);
 			await UnityServices.InitializeAsync(options);
+			await Task.Delay(200);
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - unity services state: {UnityServices.State}");
 			try{
 				_multiplayService = MultiplayService.Instance;
-				await _multiplayService.StartServerQueryHandlerAsync(ConnectionApprovalHandler.MaxPlayers, "n/a", "n/a", "0", "n/a");
+				_serverQueryHandler = await _multiplayService.StartServerQueryHandlerAsync(ConnectionApprovalHandler.MaxPlayers, "n/a", "n/a", "0", "n/a");
 			}
 			catch (Exception e){
 				LoggerService.LogWarning($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - Something went wrong trying to set up the SQP service:\n{e}");
@@ -88,6 +94,13 @@ namespace PeanutDashboard.UnityServer.Core
 			}
 			catch (Exception e){
 				LoggerService.LogWarning($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - Something went wrong trying to set up the allocation service:\n{e}");
+			}
+		}
+
+		private void Update()
+		{
+			if (_serverQueryHandler != null){
+				_serverQueryHandler.UpdateServerCheck();
 			}
 		}
 
@@ -111,6 +124,7 @@ namespace PeanutDashboard.UnityServer.Core
 			_allocationId = null;
 			_serverCallbacks = new MultiplayEventCallbacks();
 			_serverCallbacks.Allocate += OnMultiplayAllocation;
+			_serverCallbacks.Deallocate += Dispose;
 			_serverEvents = await _multiplayService.SubscribeToServerEventsAsync(_serverCallbacks);
 			_allocationId = await AwaitAllocationID();
 			MatchmakingResults mmPayload = await GetMatchmakerAllocationPayloadAsync();
@@ -161,8 +175,9 @@ namespace PeanutDashboard.UnityServer.Core
 			return null;
 		}
 
-		private void Dispose()
+		private void Dispose(MultiplayDeallocation deallocation)
 		{
+			_allocationId = null;
 			_serverCallbacks.Allocate -= OnMultiplayAllocation;
 			_serverEvents?.UnsubscribeAsync();
 		}

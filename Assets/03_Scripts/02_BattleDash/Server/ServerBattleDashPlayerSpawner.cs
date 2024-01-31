@@ -1,37 +1,76 @@
-﻿using PeanutDashboard.UnityServer.Events;
+﻿using System.Collections;
+using PeanutDashboard.UnityServer.Core;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PeanutDashboard._02_BattleDash.Server
 {
-	public class ServerBattleDashPlayerSpawner : MonoBehaviour
+	public class ServerBattleDashPlayerSpawner : NetworkBehaviour
 	{
+
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
-		private string _playerPrefabKey;
+		private GameObject _prefabToSpawn;
+		
+		private bool _clientReady;
+		private bool _isServer;
 
 		private void Awake()
 		{
-			if (!NetworkManager.Singleton.IsServer){
-				Destroy(this.gameObject);
+			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(Awake)}");
+			UnityServerStartUp.ServerInstance += SetupForServer;
+		}
+
+		private void SetupForServer()
+		{
+			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(SetupForServer)}");
+			NetworkManager.OnClientConnectedCallback += ClientConnected;
+			_isServer = true;
+		}
+
+		private void ClientConnected(ulong id)
+		{
+			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(ClientConnected)}");
+			StartCoroutine(WaitUntilClientReadyToStart());
+		}
+
+		private IEnumerator WaitUntilClientReadyToStart()
+		{
+			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(WaitUntilClientReadyToStart)}");
+			while (!_clientReady){
+				PingClientReady_ClientRpc();
+				yield return new WaitForSeconds(0.2f);
 			}
 		}
 
-		private void OnEnable()
+		[ClientRpc]
+		private void PingClientReady_ClientRpc()
 		{
-			ServerSyncEvents.StartGameEvent += SpawnPlayer;
+			Debug.Log($"[CLIENT-RPC]{nameof(ServerBattleDashPlayerSpawner)}::{nameof(PingClientReady_ClientRpc)}");
+			ClientRespondedReadyServer_ServerRpc();
 		}
 
-		private void SpawnPlayer()
+		[ServerRpc(RequireOwnership = false)]
+		private void ClientRespondedReadyServer_ServerRpc()
 		{
-			ServerSyncEvents.RaiseSpawnPlayerPrefabEvent(_playerPrefabKey);
+			Debug.Log($"[SERVER-RPC]{nameof(ServerBattleDashPlayerSpawner)}::{nameof(ClientRespondedReadyServer_ServerRpc)}");
+			_clientReady = true;
+			SpawnPlayerVisual();
+		}
+
+		private void SpawnPlayerVisual()
+		{
+			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(SpawnPlayerVisual)}");
+			GameObject instantiatedPlayer = Instantiate(_prefabToSpawn);
+			instantiatedPlayer.GetComponent<NetworkObject>().Spawn();
 		}
 
 		private void OnDisable()
 		{
-			ServerSyncEvents.StartGameEvent -= SpawnPlayer;
+			if (_isServer && NetworkManager.Singleton != null){
+				NetworkManager.Singleton.OnClientConnectedCallback -= ClientConnected;
+			}
 		}
 	}
 }
