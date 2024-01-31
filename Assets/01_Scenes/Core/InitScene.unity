@@ -278,7 +278,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.7
+  m_PixelsPerUnitMultiplier: 0.65
 --- !u!222 &509262338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -325,7 +325,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420029}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -333,14 +332,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &519420029
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -845,7 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc5f2bf35574ff0a02e1863cf12a0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentEnvironment: {fileID: 11400000, guid: 6745b3d5dc1e4fa4d8a35cea99230494, type: 2}
+  _currentGameConfig: {fileID: 11400000, guid: ae1719d8962c6e94ca76b8823d2fe2cb, type: 2}
 --- !u!4 &1001337179
 Transform:
   m_ObjectHideFlags: 0

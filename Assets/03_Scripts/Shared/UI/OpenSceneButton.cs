@@ -1,4 +1,3 @@
-using PeanutDashboard.Dashboard.Events;
 using PeanutDashboard.Init;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.User;
@@ -7,11 +6,12 @@ using UnityEngine.UI;
 
 namespace PeanutDashboard.Shared.UI
 {
+    [RequireComponent(typeof(Button))]
     public class OpenSceneButton : MonoBehaviour
     {
         [Header("Set In Inspector")]
         [SerializeField]
-        private SceneInfo _gameScene;
+        private SceneInfo _sceneInfo;
 
         [Header("Debug Dynamic")]
         [SerializeField]
@@ -30,15 +30,8 @@ namespace PeanutDashboard.Shared.UI
         private void OnPlayButtonClick()
         {
             Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}");
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}- {UserService.Instance}");
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}- {UserService.Instance.IsLoggedIn()}");
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}- {SceneLoaderEvents.Instance}");
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}- {_gameScene}");
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}- {_gameScene.key}");
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}- {_gameScene.label}");
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}- {_gameScene.name}");
             if (UserService.Instance.IsLoggedIn()){
-                SceneLoaderEvents.Instance.RaiseLoadAndOpenSceneEvent(_gameScene);
+                SceneLoaderEvents.Instance.RaiseLoadAndOpenSceneEvent(_sceneInfo);
             }
         }
 

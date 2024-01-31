@@ -8,6 +8,8 @@ namespace PeanutDashboard.Shared.Events
 	{
 		private UnityAction<string> _userMetamaskConnected;
 		private UnityAction<string> _userSignatureReceived;
+		private UnityAction<string> _metamaskConnectionFail;
+		private UnityAction<string> _metamaskSignatureFail;
 
 		public event UnityAction<string> UserMetamaskConnected
 		{
@@ -19,6 +21,18 @@ namespace PeanutDashboard.Shared.Events
 		{
 			add => _userSignatureReceived += value;
 			remove => _userSignatureReceived -= value;
+		}
+
+		public event UnityAction<string> MetamaskConnectionFail
+		{
+			add => _metamaskConnectionFail += value;
+			remove => _metamaskConnectionFail -= value;
+		}
+		
+		public event UnityAction<string> MetamaskSignatureFail
+		{
+			add => _metamaskSignatureFail += value;
+			remove => _metamaskSignatureFail -= value;
 		}
 
 		public void RaiseUserMetamaskConnectedEvent(string address)
@@ -37,6 +51,24 @@ namespace PeanutDashboard.Shared.Events
 				return;
 			}
 			_userSignatureReceived.Invoke(address);
+		}
+		
+		public void RaiseMetamaskConnectionFailEvent(string error)
+		{
+			if (_metamaskConnectionFail == null){
+				LoggerService.LogWarning($"{nameof(AuthenticationEvents)}::{nameof(RaiseMetamaskConnectionFailEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_metamaskConnectionFail.Invoke(error);
+		}
+		
+		public void RaiseMetamaskSignatureFailEvent(string error)
+		{
+			if (_metamaskSignatureFail == null){
+				LoggerService.LogWarning($"{nameof(AuthenticationEvents)}::{nameof(RaiseMetamaskSignatureFailEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_metamaskSignatureFail.Invoke(error);
 		}
 	}
 }

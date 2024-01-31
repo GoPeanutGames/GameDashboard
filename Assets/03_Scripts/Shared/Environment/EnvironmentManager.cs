@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Shared.Logging;
+﻿using PeanutDashboard.Shared.Config;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils;
 using UnityEngine;
 
@@ -6,42 +7,50 @@ namespace PeanutDashboard.Shared.Environment
 {
 	public class EnvironmentManager : MonoSingleton<EnvironmentManager>
 	{
+		[Header("Set in Inspector")]
 		[SerializeField]
-		private EnvironmentModel _currentEnvironment;
-
-		private void Start()
+		private GameConfig _currentGameConfig;
+		
+		protected override void Awake()
 		{
-			LoggerService.LogInfo($"{nameof(EnvironmentManager)}::{nameof(Start)} - Logs: {_currentEnvironment.allowLogs}");
+			base.Awake();
+			Debug.Log($"{nameof(EnvironmentManager)}::{nameof(Awake)} - Peanut Dashboard version: {Application.version}");
+			LoggerService.LogInfo($"{nameof(EnvironmentManager)}::{nameof(Awake)} - Logs: {_currentGameConfig.currentEnvironmentModel.allowLogs}");
 		}
 
+		public GameConfig GetGameConfig()
+		{
+			return _currentGameConfig;
+		}
+		
 		public string GetServerUrl()
 		{
-			return _currentEnvironment.serverUrl;
+			return _currentGameConfig.currentEnvironmentModel.serverUrl;
 		}
 
 		public string GetUnityEnvironmentName()
 		{
-			return _currentEnvironment.unityEnvironmentName;
+			return _currentGameConfig.currentEnvironmentModel.unityEnvironmentName;
 		}
 
 		public string GetCurrentPublicKey()
 		{
-			return string.Join("\n", _currentEnvironment.publicKey);
+			return string.Join("\n", _currentGameConfig.currentEnvironmentModel.publicKey);
 		}
 
 		public bool IsRSAActive()
 		{
-			return _currentEnvironment.useRSA;
+			return _currentGameConfig.currentEnvironmentModel.useRSA;
 		}
 
 		public bool IsLoggingEnabled()
 		{
-			return _currentEnvironment.allowLogs;
+			return _currentGameConfig.currentEnvironmentModel.allowLogs;
 		}
 
 		public bool IsDev()
 		{
-			return _currentEnvironment.isDev;
+			return _currentGameConfig.currentEnvironmentModel.isDev;
 		}
 	}
 }

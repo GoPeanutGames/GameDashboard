@@ -125,26 +125,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bb66f3aa58afcc642b801a09e01eb728
-    m_Address: Assets/02_Art/01_Dashboard/Desktop/Sidebar/Bubble Bots Icon Left side.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 73d864e21b889ac41a2b3b5216ea275e
-    m_Address: Assets/02_Art/01_Dashboard/Desktop/Sidebar/PG Logo - White.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 99ac1702c604b5d448a41f024d0dea44
-    m_Address: Assets/02_Art/01_Dashboard/Shared/Bubbles.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f4ed5ae34de17b14bb7bfe9622e3ea47
-    m_Address: Assets/02_Art/01_Dashboard/Shared/Gems.png
+  - m_GUID: 68fcf58872199f64d8cc0d885234e513
+    m_Address: Assets/02_Art/01_Dashboard/Mobile/Airdrop New.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
@@ -163,30 +145,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e3a764fead002e747b9a23f064b7534c
     m_Address: Assets/02_Art/01_Dashboard/Desktop/Latest News.png
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6745b3d5dc1e4fa4d8a35cea99230494
-    m_Address: Assets/05_Scriptables/01_Dashboard/Environments/DevEnv.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 430c5be40a5b4704d963940dc15a186e
-    m_Address: Assets/05_Scriptables/01_Dashboard/Environments/ProdEnv.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8ad1fb4333105ce4c85a05256edb6ab6
-    m_Address: Assets/05_Scriptables/01_Dashboard/MetamaskConfig/Dev.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Dashboard
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 19f270dd658539145a4cdf3bcfef5238
-    m_Address: Assets/05_Scriptables/01_Dashboard/MetamaskConfig/Prod.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
@@ -428,8 +386,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2f52a4628bf961c4c8f1448c7bc6be0e
-    m_Address: Assets/02_Art/01_Dashboard/Shared/Game 04.png
+  - m_GUID: 59b5fc8777c48e346b34c610c7943697
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Games/BubbleBotsGameThumb.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard
@@ -442,6 +400,54 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ce9385d1688e934ba7bdda470d739be
     m_Address: Assets/02_Art/01_Dashboard/Shared/Airdrop Logo.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 174577df12bcc7340b8b0058f50973a0
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Buttons/Download button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ae7f79209e24de4f905c0a39c3dd685
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Icon Splash Section.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43f9b585e5f97d6418feadd768330f85
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Circular Loading.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55baac2392a83b74a907851a5b51ca9f
+    m_Address: Assets/07_Animation/01_Dashboard/Loading/LoadingAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e79266b043b53b347b8f7218848c5a0b
+    m_Address: Assets/07_Animation/01_Dashboard/Loading/Loop.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e808da931f166ba4da3cd9f5e8048a12
+    m_Address: Assets/02_Art/01_Dashboard/Mobile/Connect Wallet New.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88101ecd8abc1bd49ac56eb45739f614
+    m_Address: Assets/02_Art/01_Dashboard/Mobile/Disconnect Wallet New.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97d6ed599bd910c41b4c9cd1e8b82cde
+    m_Address: EntryPointScene
     m_ReadOnly: 0
     m_SerializedLabels:
     - Dashboard

@@ -1,12 +1,14 @@
-using System;
-using System.Collections;
 using PeanutDashboard.Dashboard.Events;
 using PeanutDashboard.Init;
 using PeanutDashboard.Shared;
+using PeanutDashboard.Shared.Config;
+using PeanutDashboard.Shared.Environment;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
+using PeanutDashboard.Shared.Metamask;
 using PeanutDashboard.Shared.User;
 using PeanutDashboard.Shared.User.Events;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace PeanutDashboard.Dashboard
@@ -17,10 +19,21 @@ namespace PeanutDashboard.Dashboard
 		{
 			UserEvents.Instance.UserLoggedIn += OnUserLoggedIn;
 			SceneLoaderEvents.Instance.LoadAndOpenScene += OnStartGame;
+			CheckAndRemoveServerConnection();
+		}
+
+		private void CheckAndRemoveServerConnection()
+		{
+			if (NetworkManager.Singleton != null){
+				NetworkManager.Singleton.Shutdown();
+				Destroy(NetworkManager.Singleton.gameObject);
+			}
 		}
 
 		private void Start()
 		{
+			GameConfig gameConfig = EnvironmentManager.Instance.GetGameConfig();
+			AuthenticationService.Initialise(gameConfig.currentMetaMaskConfig, gameConfig.currentEnvironmentModel.unityEnvironmentName);
 			if (UserService.Instance.IsLoggedIn()){
 				OnUserLoggedIn(true);
 			}

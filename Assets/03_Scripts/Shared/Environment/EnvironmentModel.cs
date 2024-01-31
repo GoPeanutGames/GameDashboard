@@ -15,6 +15,7 @@ namespace PeanutDashboard.Shared.Environment
 		public bool useRSA;
 		public string serverUrl;
 		public string unityEnvironmentName;
+		public string unityAddressablesProfileId;
 		public List<string> publicKey;
 	}
 }
