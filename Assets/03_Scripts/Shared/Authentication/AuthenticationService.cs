@@ -122,6 +122,7 @@ namespace PeanutDashboard.Shared.Metamask
 			options.SetEnvironmentName(_env);
 			UnityServices.ExternalUserId = _walletAddress;
 			await UnityServices.InitializeAsync(options);
+			await Unity.Services.Authentication.AuthenticationService.Instance.SignInAnonymouslyAsync();
 			LoggerService.LogInfo($"Signed in Anonymously as {Unity.Services.Authentication.AuthenticationService.Instance.PlayerId}");
 		}
 	}

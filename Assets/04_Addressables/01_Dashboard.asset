@@ -446,6 +446,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97d6ed599bd910c41b4c9cd1e8b82cde
+    m_Address: EntryPointScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

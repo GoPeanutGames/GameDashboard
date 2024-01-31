@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerController : MonoBehaviour
+
+
+public class PlayerController : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // private void OnEnable()
+    // {
+    //     ServerSyncEvents.SpawnPlayerPrefab += SpawnPlayer;
+    // }
+    //
+    // private async void SpawnPlayer(string guid)
+    // {
+    //     AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(guid);
+    //     GameObject prefab = await handle.Task;
+    //     Addressables.Release(handle);
+    //     GameObject playerInstance = Instantiate(prefab);
+    //     playerInstance.GetComponent<NetworkObject>().Spawn();
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     ServerSyncEvents.SpawnPlayerPrefab -= SpawnPlayer;
+    // }
 }
