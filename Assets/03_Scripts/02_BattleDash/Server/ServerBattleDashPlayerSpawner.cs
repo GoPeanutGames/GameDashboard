@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.UnityServer.Core;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
@@ -16,9 +17,9 @@ namespace PeanutDashboard._02_BattleDash.Server
 		private bool _clientReady;
 		private bool _isServer;
 
-		private void Awake()
+		private void OnEnable()
 		{
-			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(Awake)}");
+			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(OnEnable)}");
 			UnityServerStartUp.ServerInstance += SetupForServer;
 		}
 
@@ -63,7 +64,7 @@ namespace PeanutDashboard._02_BattleDash.Server
 		{
 			Debug.Log($"{nameof(ServerBattleDashPlayerSpawner)}::{nameof(SpawnPlayerVisual)}");
 			GameObject instantiatedPlayer = Instantiate(_prefabToSpawn);
-			instantiatedPlayer.GetComponent<NetworkObject>().Spawn();
+			ServerSpawnEvents.RaiseSpawnedPlayerVisualEvent(instantiatedPlayer);
 		}
 
 		private void OnDisable()

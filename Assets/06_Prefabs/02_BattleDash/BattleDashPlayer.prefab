@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3479805756275657003}
   - component: {fileID: -6382062903636496853}
   - component: {fileID: -3649044437905992765}
+  - component: {fileID: 5099057127969180146}
+  - component: {fileID: 5451656371777892263}
   m_Layer: 0
   m_Name: BattleDashPlayer
   m_TagString: Untagged
@@ -98,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1122044781
+  GlobalObjectIdHash: 3524240355
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -136,3 +138,27 @@ MonoBehaviour:
   InLocalSpace: 1
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &5099057127969180146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170105706355484748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ec6ded19c44686aed0003b12728873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5451656371777892263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170105706355484748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51aff49328b64569aa3d691f9fb1d8d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
