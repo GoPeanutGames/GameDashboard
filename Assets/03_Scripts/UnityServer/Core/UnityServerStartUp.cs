@@ -6,6 +6,7 @@ using PeanutDashboard.Shared.Logging;
 using System.Collections;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using PeanutDashboard.UnityServer.Events;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Services.Core;
@@ -65,6 +66,7 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - IP: {InternalServerIP} at port: {_serverPort}");
 			NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(InternalServerIP, _serverPort);
 			NetworkManager.Singleton.StartServer();
+			ServerEvents.ShutDownServer += ShutdownServer;
 		}
 
 		async Task StartServerServices()
@@ -124,7 +126,6 @@ namespace PeanutDashboard.UnityServer.Core
 			_allocationId = null;
 			_serverCallbacks = new MultiplayEventCallbacks();
 			_serverCallbacks.Allocate += OnMultiplayAllocation;
-			_serverCallbacks.Deallocate += Dispose;
 			_serverEvents = await _multiplayService.SubscribeToServerEventsAsync(_serverCallbacks);
 			_allocationId = await AwaitAllocationID();
 			MatchmakingResults mmPayload = await GetMatchmakerAllocationPayloadAsync();
@@ -162,7 +163,7 @@ namespace PeanutDashboard.UnityServer.Core
 
 		private async Task<MatchmakingResults> GetMatchmakerAllocationPayloadAsync()
 		{
-			LoggerService.LogWarning($"{nameof(UnityServerStartUp)}::{nameof(GetMatchmakerAllocationPayloadAsync)}");
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(GetMatchmakerAllocationPayloadAsync)}");
 			try{
 				MatchmakingResults payloadAllocation = await MultiplayService.Instance.GetPayloadAllocationFromJsonAs<MatchmakingResults>();
 				string modelAsJson = JsonConvert.SerializeObject(payloadAllocation, Formatting.Indented);
@@ -175,12 +176,12 @@ namespace PeanutDashboard.UnityServer.Core
 			return null;
 		}
 
-		private void Dispose(MultiplayDeallocation deallocation)
+		private void ShutdownServer()
 		{
-			_allocationId = null;
-			_serverCallbacks.Allocate -= OnMultiplayAllocation;
-			_serverEvents?.UnsubscribeAsync();
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(ShutdownServer)}");
+			Application.Quit(1);
 		}
+
 #endif
 	}
 }
