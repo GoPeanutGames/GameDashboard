@@ -1,8 +1,8 @@
-﻿using PeanutDashboard.Shared.Logging;
-using PeanutDashboard.Utils.Misc;
+﻿using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;
 #if SERVER
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard._02_BattleDash.Events;
 #endif
 
@@ -15,14 +15,10 @@ namespace PeanutDashboard._02_BattleDash.Player
 		private Animator _animator;
 
 #if SERVER
-		[Header(InspectorNames.DebugDynamic)]
-		[SerializeField]
 		private Vector2 _movement = Vector2.zero;
 
-		[SerializeField]
 		private Vector2 _currentMovement = Vector2.zero;
 
-		[SerializeField]
 		private float _currentSpeed;
 
 		private const float Speed = 4;

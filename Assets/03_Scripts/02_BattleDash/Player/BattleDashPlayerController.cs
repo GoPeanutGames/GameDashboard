@@ -66,7 +66,7 @@ namespace PeanutDashboard._02_BattleDash.Player
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerKeyDown_ServerRpc)}- press: {keyCode}");
 			ServerPlayerInputEvents.RaisePlayerInputKeyDownEvent(keyCode);
 		}
-		
+
 		[ServerRpc]
 		private void SendPlayerKeyUp_ServerRpc(KeyCode keyCode)
 		{
