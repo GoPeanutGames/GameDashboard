@@ -3,7 +3,7 @@ using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace PeanutDashboard._02_BattleDash.Player
+namespace PeanutDashboard._02_BattleDash.Player.Client
 {
 	public class BattleDashPlayerGunAim: MonoBehaviour
 	{
