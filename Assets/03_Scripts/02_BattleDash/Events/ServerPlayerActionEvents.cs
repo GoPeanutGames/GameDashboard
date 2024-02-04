@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace PeanutDashboard._02_BattleDash.Events
 {
-	public static class ClientActionEvents
+	public static class ServerPlayerActionEvents
 	{
 		private static UnityAction<Vector2> _updatePlayerAim;
 		private static UnityAction<Vector2> _updatePlayerBulletSpawnPoint;
@@ -24,7 +24,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		public static void RaiseUpdatePlayerAimEvent(Vector2 worldPosition)
 		{
 			if (_updatePlayerAim == null){
-				LoggerService.LogWarning($"{nameof(ClientActionEvents)}::{nameof(RaiseUpdatePlayerAimEvent)} raised, but nothing picked it up");
+				LoggerService.LogWarning($"{nameof(ServerPlayerActionEvents)}::{nameof(RaiseUpdatePlayerAimEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_updatePlayerAim.Invoke(worldPosition);
@@ -33,7 +33,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		public static void RaiseUpdatePlayerBulletSpawnPointEvent(Vector2 worldPosition)
 		{
 			if (_updatePlayerBulletSpawnPoint == null){
-				LoggerService.LogWarning($"{nameof(ClientActionEvents)}::{nameof(RaiseUpdatePlayerBulletSpawnPointEvent)} raised, but nothing picked it up");
+				LoggerService.LogWarning($"{nameof(ServerPlayerActionEvents)}::{nameof(RaiseUpdatePlayerBulletSpawnPointEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_updatePlayerBulletSpawnPoint.Invoke(worldPosition);

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 723a78fb53a39a34bada53cdbe6ca8be
+guid: 478cf046391f66d4896b628d9dafa514
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bullets Sprite Sheet_0
+      name: IceBulletSprites_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
-        width: 960
-        height: 320
+        y: 800
+        width: 1200
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e9aa6baa9779c14e85c30fc42fea745
-      internalID: 891635462
+      spriteID: 6a15d57d48954cb43a33513cfb9767f2
+      internalID: -478520462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullets Sprite Sheet_1
+      name: IceBulletSprites_1
       rect:
         serializedVersion: 2
-        x: 960
-        y: 640
-        width: 960
-        height: 320
+        x: 1200
+        y: 800
+        width: 1200
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 480f967587eebc64da2dcaefde228fe4
-      internalID: -442303664
+      spriteID: 3d5a043a5f74222458c7e9074437bbf6
+      internalID: 1967839511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullets Sprite Sheet_2
+      name: IceBulletSprites_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
-        width: 960
-        height: 320
+        y: 400
+        width: 1200
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc354b2767e6d2948997a872b723cc08
-      internalID: 1569176692
+      spriteID: 4e4dad3328cabf7428a33bfff340057a
+      internalID: 2131312339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullets Sprite Sheet_3
+      name: IceBulletSprites_3
       rect:
         serializedVersion: 2
-        x: 960
-        y: 320
-        width: 960
-        height: 320
+        x: 1200
+        y: 400
+        width: 1200
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0993066924b9aa345bdc640da372a3e5
-      internalID: 2104425833
+      spriteID: 1ab91d30a973c8942bddcb9349eb49fe
+      internalID: 19389873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullets Sprite Sheet_4
+      name: IceBulletSprites_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 960
-        height: 320
+        width: 1200
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73d800589a2272543b2516d47efbe943
-      internalID: 1146654802
+      spriteID: cafbc07bade06bf40af5f9f466d5d364
+      internalID: 1609425744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bullets Sprite Sheet_5
+      name: IceBulletSprites_5
       rect:
         serializedVersion: 2
-        x: 960
+        x: 1200
         y: 0
-        width: 960
-        height: 320
+        width: 1200
+        height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a2b3d56600abf84489f52fb435c7574
-      internalID: 924625116
+      spriteID: 2c01a25b93ff4654b8895be4eb5a3fc4
+      internalID: 1912654242
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bullets Sprite Sheet_0: 891635462
-      Bullets Sprite Sheet_1: -442303664
-      Bullets Sprite Sheet_2: 1569176692
-      Bullets Sprite Sheet_3: 2104425833
-      Bullets Sprite Sheet_4: 1146654802
-      Bullets Sprite Sheet_5: 924625116
+      IceBulletSprites_0: -478520462
+      IceBulletSprites_1: 1967839511
+      IceBulletSprites_2: 2131312339
+      IceBulletSprites_3: 19389873
+      IceBulletSprites_4: 1609425744
+      IceBulletSprites_5: 1912654242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

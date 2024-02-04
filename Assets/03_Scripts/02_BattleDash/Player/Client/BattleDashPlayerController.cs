@@ -1,9 +1,10 @@
+using System;
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace PeanutDashboard._02_BattleDash.Player
+namespace PeanutDashboard._02_BattleDash.Player.Client
 {
 	public class BattleDashPlayerController : NetworkBehaviour
 	{

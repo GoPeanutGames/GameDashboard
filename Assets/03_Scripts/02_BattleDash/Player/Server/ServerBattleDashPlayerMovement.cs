@@ -6,9 +6,9 @@ using PeanutDashboard.Shared.Logging;
 using PeanutDashboard._02_BattleDash.Events;
 #endif
 
-namespace PeanutDashboard._02_BattleDash.Player
+namespace PeanutDashboard._02_BattleDash.Player.Server
 {
-	public class BattleDashPlayerMovement : NetworkBehaviour
+	public class ServerBattleDashPlayerMovement : NetworkBehaviour
 	{
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
@@ -83,7 +83,7 @@ namespace PeanutDashboard._02_BattleDash.Player
 
 		private void OnPlayerInputKeyDown(KeyCode keyCode)
 		{
-			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPlayerInputKeyDown)}- press: {keyCode}");
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerInputKeyDown)}- press: {keyCode}");
 			_directionChangeTimer = 0;
 			switch (keyCode){
 				case KeyCode.A:
@@ -103,12 +103,12 @@ namespace PeanutDashboard._02_BattleDash.Player
 					_movement.y = -1;
 					break;
 			}
-			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPlayerInputKeyDown)}- current movement: {_movement}");
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerInputKeyDown)}- current movement: {_movement}");
 		}
 
 		private void OnPlayerInputKeyUp(KeyCode keyCode)
 		{
-			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPlayerInputKeyUp)}- press: {keyCode}");
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerInputKeyUp)}- press: {keyCode}");
 			_directionChangeTimer = 0;
 			switch (keyCode){
 				case KeyCode.A:
@@ -128,7 +128,7 @@ namespace PeanutDashboard._02_BattleDash.Player
 					_movement.y = _isWPressed ? 1 : 0;
 					break;
 			}
-			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPlayerInputKeyUp)}- current movement: {_movement}");
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerInputKeyUp)}- current movement: {_movement}");
 		}
 
 		private void OnDisable()

@@ -1,6 +1,5 @@
 ﻿using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Utils.Misc;
-using Unity.Netcode;
 using UnityEngine;
 
 namespace PeanutDashboard._02_BattleDash.Player.Client
@@ -17,17 +16,17 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		
 		private void OnEnable()
 		{
-			ClientActionEvents.OnUpdatePlayerAim += OnPlayerAimUpdated;
+			ClientActionEvents.OnUpdatePlayerTarget += OnPlayerTargetUpdated;
 		}
 
-		private void OnPlayerAimUpdated(Vector2 target)
+		private void OnPlayerTargetUpdated(Vector2 target)
 		{
 			_targetPosition = target;
 		}
 
 		private void OnDisable()
 		{
-			ClientActionEvents.OnUpdatePlayerAim -= OnPlayerAimUpdated;
+			ClientActionEvents.OnUpdatePlayerTarget -= OnPlayerTargetUpdated;
 		}
 		
 		private void Update()
