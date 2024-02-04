@@ -20,12 +20,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		private Vector2 _currentMovement = Vector2.zero;
 
 		private float _currentSpeed;
-
-		private const float Speed = 4;
-		private const float AccelTime = 0.2f;
-		private const float DecTime = 0.1f;
-		private const float DirectionChangeTime = 0.1f;
-
+		
 		private float _directionChangeTimer = 0f;
 		private float _accelTimer = 0f;
 		private float _decTimer = 0f;
@@ -51,22 +46,22 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		private void ServerUpdate()
 		{
 			_directionChangeTimer += NetworkManager.ServerTime.FixedDeltaTime;
-			if (_directionChangeTimer < DirectionChangeTime){
-				_currentMovement = Vector2.Lerp(_currentMovement, _movement, _directionChangeTimer / DirectionChangeTime);
+			if (_directionChangeTimer < BattleDashConfig.MovementDirectionChangeTime){
+				_currentMovement = Vector2.Lerp(_currentMovement, _movement, _directionChangeTimer / BattleDashConfig.MovementDirectionChangeTime);
 			}
 
 			if (_movement.magnitude > 0){
 				_accelTimer += NetworkManager.ServerTime.FixedDeltaTime;
 				_decTimer = 0f;
-				if (_accelTimer < AccelTime){
-					_currentSpeed = Mathf.Lerp(_currentSpeed, Speed, _accelTimer / AccelTime);
+				if (_accelTimer < BattleDashConfig.MovementAccelTime){
+					_currentSpeed = Mathf.Lerp(_currentSpeed, BattleDashConfig.MovementSpeed, _accelTimer / BattleDashConfig.MovementAccelTime);
 				}
 			}
 			else{
 				_accelTimer = 0f;
 				_decTimer += NetworkManager.ServerTime.FixedDeltaTime;
-				if (_decTimer < DecTime){
-					_currentSpeed = Mathf.Lerp(_currentSpeed, 0, _decTimer / DecTime);
+				if (_decTimer < BattleDashConfig.MovementDecTime){
+					_currentSpeed = Mathf.Lerp(_currentSpeed, 0, _decTimer / BattleDashConfig.MovementDecTime);
 				}
 			}
 			Vector2 velocity = _currentSpeed * _currentMovement;

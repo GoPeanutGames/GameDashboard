@@ -1,4 +1,3 @@
-using System;
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
 using Unity.Netcode;
@@ -15,7 +14,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 
 		private void ServerSpawnedVisual(GameObject visual)
 		{
-			Debug.Log($"{nameof(BattleDashPlayerController)}::{nameof(ServerSpawnedVisual)}");
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(ServerSpawnedVisual)}");
 			visual.GetComponent<NetworkObject>().Spawn();
 			visual.GetComponent<NetworkObject>().TrySetParent(this.transform);
 			visual.transform.localPosition = Vector3.zero;

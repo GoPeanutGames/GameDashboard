@@ -18,8 +18,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 
 		private Vector2 _bulletSpawnPoint;
 		private Vector2 _currentTarget;
-		private const float ShootingCooldown = 0.5f;
-		private float _shootTimer = 0.5f;
+		private float _shootTimer = BattleDashConfig.ShootingCooldown;
 
 		private void OnEnable()
 		{
@@ -41,7 +40,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		{
 			_shootTimer -= NetworkManager.ServerTime.FixedDeltaTime;
 			if (_shootTimer <= 0){
-				_shootTimer = ShootingCooldown;
+				_shootTimer = BattleDashConfig.ShootingCooldown;
 				_animator.SetTrigger("Shoot");
 				GameObject bullet = Instantiate(_bulletPrefab, _bulletSpawnPoint, Quaternion.identity);
 				bullet.GetComponent<NetworkObject>().Spawn();
