@@ -6,7 +6,7 @@ namespace PeanutDashboard.Editor
 {
 	[CreateAssetMenu(
 		fileName = nameof(GameSceneConfig) + ExtensionNames.DotAsset,
-		menuName = PeanutDashboardMenuNames.Configs + nameof(GameSceneConfig)
+		menuName = PeanutDashboardMenuNames.DashboardConfigs + nameof(GameSceneConfig)
 	)]
 	public class GameSceneConfig: ScriptableObject
 	{

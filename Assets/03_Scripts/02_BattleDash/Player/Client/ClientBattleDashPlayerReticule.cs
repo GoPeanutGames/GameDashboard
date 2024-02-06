@@ -1,4 +1,6 @@
-﻿using PeanutDashboard._02_BattleDash.Events;
+﻿#if !SERVER
+using PeanutDashboard._02_BattleDash.Events;
+#endif
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
@@ -10,11 +12,13 @@ namespace PeanutDashboard._02_BattleDash.Player
 		[SerializeField]
 		public RectTransform _reticule;
 
+#if !SERVER
 		private void Update()
 		{
 			_reticule.anchoredPosition = Input.mousePosition - new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
 			Vector2 target = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			ClientActionEvents.RaiseUpdatePlayerAimEvent(target);
 		}
+#endif
 	}
 }

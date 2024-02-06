@@ -6,7 +6,7 @@ namespace PeanutDashboard.Shared.Environment
 {
 	[CreateAssetMenu(
 		fileName = nameof(EnvironmentModel) + ExtensionNames.DotAsset,
-		menuName = PeanutDashboardMenuNames.Models + nameof(EnvironmentModel)
+		menuName = PeanutDashboardMenuNames.DashboardModels + nameof(EnvironmentModel)
 	)]
 	public class EnvironmentModel : ScriptableObject
 	{

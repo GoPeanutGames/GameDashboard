@@ -5,7 +5,7 @@ namespace PeanutDashboard.Init
 {
 	[CreateAssetMenu(
 		fileName = nameof(SceneInfo) + ExtensionNames.DotAsset,
-		menuName = PeanutDashboardMenuNames.Models + nameof(SceneInfo)
+		menuName = PeanutDashboardMenuNames.DashboardModels + nameof(SceneInfo)
 	)]
 	public class SceneInfo : ScriptableObject
 	{
