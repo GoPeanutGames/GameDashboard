@@ -34,7 +34,6 @@ namespace PeanutDashboard._02_BattleDash.Areas
 		{
 			_spawnedBackground.transform.Translate(Vector3.left * (_areaType.GetSpeed() * NetworkManager.ServerTime.FixedDeltaTime));
 		}
-
 #endif
 	}
 }
