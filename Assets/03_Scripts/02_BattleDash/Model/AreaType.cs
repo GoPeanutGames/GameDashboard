@@ -2,7 +2,8 @@
 using UnityEngine;
 
 namespace PeanutDashboard._02_BattleDash.Model
-{[CreateAssetMenu(
+{
+	[CreateAssetMenu(
 		fileName = nameof(AreaType) + ExtensionNames.DotAsset,
 		menuName = PeanutDashboardMenuNames.BattleDashModels + nameof(AreaType)
 	)]

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8785847627795048882}
   - component: {fileID: 6294928283138456844}
   m_Layer: 0
-  m_Name: Background_PartOuterSpaceLeft
+  m_Name: Background_Stage-01-01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 7826289173869508927}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 81, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 104, y: 0, z: 0}
+  m_LocalScale: {x: 5.25, y: 5.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

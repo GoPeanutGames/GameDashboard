@@ -24,10 +24,12 @@ namespace PeanutDashboard._02_BattleDash.Areas
 #if SERVER
 		public void InitialiseForStart()
 		{
+			Debug.Log($"{nameof(ServerAreaController)}::{nameof(InitialiseForStart)}");
 			_spawnedBackground = Instantiate(_prefabBackground);
 			_spawnedBackground.GetComponent<NetworkObject>().Spawn();
 			_spawnedBackground.GetComponent<NetworkObject>().TrySetParent(this.transform);
 			_spawnedBackground.transform.localPosition = _startPositionAtStart;
+			GetComponent<ServerAreaMonsterSpawner>().Initialise(_spawnedBackground);
 		}
 
 		private void Update()

@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25d7f132bfac4cfb8dc8474b9172b0d2, type: 3}
-  m_Name: PartOuterSpaceLeft
+  m_Script: {fileID: 11500000, guid: 5be4e47ad27b41a3b068e8b316e434d4, type: 3}
+  m_Name: PlayerFaction
   m_EditorClassIdentifier: 
-  _speed: 2

@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 5451656371777892263}
   - component: {fileID: 3612098902216495870}
   - component: {fileID: 6013786947898776047}
+  - component: {fileID: 7639180992697809558}
   m_Layer: 0
   m_Name: BattleDashPlayer
   m_TagString: Untagged
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3524240355
+  GlobalObjectIdHash: 1122044781
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -162,6 +163,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 2945700262663982696}
   _bulletPrefab: {fileID: 5578602561854724698, guid: c3ab0a531b0e78e4f85301166e508b20, type: 3}
+--- !u!114 &7639180992697809558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170105706355484748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda1459e3e544392afd285796dcb3e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factionType: {fileID: 11400000, guid: 04450ef5614dc4c45aa14f59bc11b8ed, type: 2}
+  _animator: {fileID: 2945700262663982696}
+  _health: 3
 --- !u!1 &182127616314959519
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182127616314959519}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.0014499278, w: -0.999999}
+  m_LocalRotation: {x: 0, y: 0, z: 0.00050807383, w: -0.9999999}
   m_LocalPosition: {x: 4.44, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -312,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052438087989418586}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.21943012, w: 0.9756282}
+  m_LocalRotation: {x: 0, y: 0, z: 0.15062882, w: 0.9885904}
   m_LocalPosition: {x: 5.5101995, y: 0.030098915, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -377,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 2723130815897045023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.5989483, w: 0.8007877}
-  m_LocalPosition: {x: -1.6646619, y: -0.021533813, z: 0}
+  m_LocalPosition: {x: -1.6646619, y: -0.02153381, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -410,7 +426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3184710260326093623}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.8438031, w: 0.5366528}
+  m_LocalRotation: {x: 0, y: 0, z: 0.8245663, w: 0.56576544}
   m_LocalPosition: {x: 0.87402046, y: 1.3770891, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -715,10 +731,10 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 0.22597645, w: 0.97413284}
     - {x: -0, y: -0, z: 0.11070697, w: 0.9938531}
     m_StoredLocalRotations:
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0.9006174, w: 0.4346128}
+    - {x: 0, y: 0, z: 0.88845265, w: 0.45896825}
+    - {x: 0, y: 0, z: 0.16914763, w: 0.98559076}
+    - {x: 0, y: 0, z: 0.00050807383, w: -0.9999999}
   m_Iterations: 10
   m_Tolerance: 0.01
   m_Velocity: 0.5
@@ -777,7 +793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8644569189741270722}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.93018097, w: 0.36710137}
+  m_LocalRotation: {x: 0, y: 0, z: 0.92038405, w: 0.39101562}
   m_LocalPosition: {x: 2.7709734, y: -0.061052084, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1010,11 +1026,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList:
   - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 2081823275
+    DestinationState: 20298039
+    TransitionDuration: 0.25
+    TriggerNameHash: 20298039
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
     Layer: 1
     OriginatingState: -367768302
     DestinationState: -1316629574
     TransitionDuration: 0
     TriggerNameHash: -1316629574
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 2
+    OriginatingState: -499022955
+    DestinationState: 1654612129
+    TransitionDuration: 0
+    TriggerNameHash: 1654612129
     TransitionIndex: 0
   m_Animator: {fileID: 2945700262663982696}
 --- !u!114 &4753121604133346240

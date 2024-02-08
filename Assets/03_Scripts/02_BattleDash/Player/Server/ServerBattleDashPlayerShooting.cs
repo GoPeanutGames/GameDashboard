@@ -44,7 +44,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 				_animator.SetTrigger("Shoot");
 				GameObject bullet = Instantiate(_bulletPrefab, _bulletSpawnPoint, Quaternion.identity);
 				bullet.GetComponent<NetworkObject>().Spawn();
-				bullet.GetComponent<BattleDashBullet>().Initialise(_currentTarget);
+				bullet.GetComponent<ServerBattleDashBullet>().Initialise(_currentTarget);
 			}
 		}
 		
