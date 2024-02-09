@@ -11,8 +11,6 @@ namespace PeanutDashboard.Init
 	public class GameInfo: ScriptableObject
 	{
 		public List<SceneInfo> gameScenes;
-		public SceneInfo gameMainScene;
-		public SceneInfo gamePlayScene;
 		public SceneInfo networkEntryPointScene;
 		public string matchmakerGameLabel;
 	}

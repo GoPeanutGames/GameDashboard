@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: BattleDashGameInfo
   m_EditorClassIdentifier: 
   gameScenes:
-  - {fileID: 11400000, guid: 4b0f896a5b3cda1468326daad997f381, type: 2}
   - {fileID: 11400000, guid: d9a1de59bb827bd479f6ce798fd6a330, type: 2}
-  gameMainScene: {fileID: 11400000, guid: 4b0f896a5b3cda1468326daad997f381, type: 2}
-  gamePlayScene: {fileID: 11400000, guid: d9a1de59bb827bd479f6ce798fd6a330, type: 2}
   networkEntryPointScene: {fileID: 11400000, guid: d9a1de59bb827bd479f6ce798fd6a330, type: 2}
   matchmakerGameLabel: BattleDash
