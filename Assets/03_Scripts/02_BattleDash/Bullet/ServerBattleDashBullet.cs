@@ -79,9 +79,8 @@ public class ServerBattleDashBullet : NetworkBehaviour, IFactionable
 #endif
     public void Delete()
     {
-        if (NetworkManager.IsClient){
-            return;
-        }
+#if SERVER
         this.GetComponent<NetworkObject>().Despawn();
+#endif
     }
 }

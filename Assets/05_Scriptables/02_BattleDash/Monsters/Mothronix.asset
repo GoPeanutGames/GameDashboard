@@ -15,3 +15,4 @@ MonoBehaviour:
   monsterPrefab: {fileID: 4039522817795246047, guid: 26999d570453cc34bbf1237b750f4578, type: 3}
   monsterSpeed: 6
   monsterHp: 2
+  damageDealt: 1

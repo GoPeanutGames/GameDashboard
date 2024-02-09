@@ -128,7 +128,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 1200
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -147,9 +147,9 @@ TextureImporter:
       name: Explosion Sprites_1
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 400
         y: 1200
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -170,7 +170,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 800
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -189,9 +189,9 @@ TextureImporter:
       name: Explosion Sprites_3
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 400
         y: 800
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -212,7 +212,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 400
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -231,9 +231,9 @@ TextureImporter:
       name: Explosion Sprites_5
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 400
         y: 400
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -254,7 +254,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -273,9 +273,9 @@ TextureImporter:
       name: Explosion Sprites_7
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 400
         y: 0
-        width: 1200
+        width: 400
         height: 400
       alignment: 0
       pivot: {x: 0, y: 0}

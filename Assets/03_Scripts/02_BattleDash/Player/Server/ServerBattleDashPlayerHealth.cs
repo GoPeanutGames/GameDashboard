@@ -27,13 +27,16 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		
 		public void TakeDamage(int amount)
 		{
+#if SERVER
 			Debug.Log($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(TakeDamage)}");
 			_health -= amount;
 			_networkAnimator.SetTrigger(Hit);
 			if (_health <= 0){
+				Debug.Log($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(TakeDamage)} - die");
 				_networkAnimator.SetTrigger(Die);
 				//TODO: animation event when die is done to stop the game (pause) and show game over overlay
 			}
+#endif
 		}
 
 	}

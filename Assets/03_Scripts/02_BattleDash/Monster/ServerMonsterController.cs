@@ -24,37 +24,32 @@ namespace PeanutDashboard._02_BattleDash.Monster
 		private NetworkAnimator _networkAnimator;
 		
 		[SerializeField]
-		private bool _destroyed;
+		private Collider2D _collider2D;
 		
 		[SerializeField]
-		private bool _dying;
+		private bool _destroyed;
 		
 		[SerializeField]
 		private int _hp;
 
-		[SerializeField]
-		private float _downDirectionChange;
-
 		private static readonly int Hit = Animator.StringToHash("Hit");
+		private static readonly int Die = Animator.StringToHash("Die");
 		
 #if SERVER
 		private void Awake()
 		{
 			Debug.Log($"{nameof(ServerMonsterController)}::{nameof(Awake)}");
 			_networkAnimator = GetComponent<NetworkAnimator>();
+			_collider2D = GetComponent<Collider2D>();
 			_hp = _monsterType.monsterHp;
-			_downDirectionChange = 0;
 		}
 
 		private void Update()
 		{
-			this.transform.position += Vector3.left * (_monsterType.monsterSpeed * NetworkManager.ServerTime.FixedDeltaTime) + Vector3.down * (_downDirectionChange * NetworkManager.ServerTime.FixedDeltaTime);
+			this.transform.position += Vector3.left * (_monsterType.monsterSpeed * NetworkManager.ServerTime.FixedDeltaTime);
 			if (!_destroyed && this.transform.position.x < -60){
 				_destroyed = true;
 				this.GetComponent<NetworkObject>().Despawn();
-			}
-			if (_dying){
-				_downDirectionChange += 9.81f * NetworkManager.ServerTime.FixedDeltaTime;
 			}
 		}
 
@@ -89,16 +84,18 @@ namespace PeanutDashboard._02_BattleDash.Monster
 			_hp -= amount;
 			_networkAnimator.SetTrigger(Hit);
 			if (_hp <= 0){
-				_dying = true;
-				Invoke(nameof(Die), 3f);
+				_destroyed = true;
+				_collider2D.enabled = false;
+				_networkAnimator.SetTrigger(Die);
 			}
 		}
 
-		private void Die()
+		public void Remove()
 		{
-			Debug.Log($"{nameof(ServerMonsterController)}::{nameof(Die)}");
-			_destroyed = true;
+#if SERVER
+			Debug.Log($"{nameof(ServerMonsterController)}::{nameof(Remove)}");
 			this.GetComponent<NetworkObject>().Despawn();
+#endif
 		}
 	}
 }
