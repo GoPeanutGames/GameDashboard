@@ -7,11 +7,18 @@ namespace PeanutDashboard._02_BattleDash.Events
 	public static class ServerSpawnEvents
 	{
 		private static UnityAction<GameObject> _spawnedPlayerVisual;
+		private static UnityAction _playerReadyBeginGame;
 
 		public static event UnityAction<GameObject> SpawnedPlayerVisual
 		{
 			add => _spawnedPlayerVisual += value;
 			remove => _spawnedPlayerVisual -= value;
+		}
+		
+		public static event UnityAction PlayerReadyBeginGame
+		{
+			add => _playerReadyBeginGame += value;
+			remove => _playerReadyBeginGame -= value;
 		}
 
 		public static void RaiseSpawnedPlayerVisualEvent(GameObject visual)
@@ -21,6 +28,15 @@ namespace PeanutDashboard._02_BattleDash.Events
 				return;
 			}
 			_spawnedPlayerVisual.Invoke(visual);
+		}
+
+		public static void RaisePlayerReadyBeginGameEvent()
+		{
+			if (_playerReadyBeginGame == null){
+				LoggerService.LogWarning($"{nameof(ServerSpawnEvents)}::{nameof(RaisePlayerReadyBeginGameEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_playerReadyBeginGame.Invoke();
 		}
 	}
 }

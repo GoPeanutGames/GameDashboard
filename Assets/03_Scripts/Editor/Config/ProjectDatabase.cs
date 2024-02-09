@@ -10,7 +10,7 @@ namespace PeanutDashboard.Editor
 {
 	[CreateAssetMenu(
 		fileName = nameof(ProjectDatabase) + ExtensionNames.DotAsset,
-		menuName = PeanutDashboardMenuNames.Configs + nameof(ProjectDatabase)
+		menuName = PeanutDashboardMenuNames.DashboardConfigs + nameof(ProjectDatabase)
 	)]
 	public class ProjectDatabase: ScriptableObject
 	{

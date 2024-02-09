@@ -7,7 +7,7 @@ namespace PeanutDashboard.Shared.Config
 {
 	[CreateAssetMenu(
 		fileName = nameof(GameConfig) + ExtensionNames.DotAsset,
-		menuName = PeanutDashboardMenuNames.Configs + nameof(GameConfig)
+		menuName = PeanutDashboardMenuNames.DashboardConfigs + nameof(GameConfig)
 	)]
 	public class GameConfig: ScriptableObject
 	{

@@ -29,6 +29,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e2d033b134a20344b665dddd4563966
+    m_Address: Assets/02_Art/02_BattleDash/Blummer/Blummer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfbd2a5d9dd048c43a2389dddc457d0e
+    m_Address: Assets/07_Animation/02_BattleDash/Blummer/BlummerAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68167f29123d9f249a1dfb321559a208
+    m_Address: Assets/07_Animation/02_BattleDash/Blummer/Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
