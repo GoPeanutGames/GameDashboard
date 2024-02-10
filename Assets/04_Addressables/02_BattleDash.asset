@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 4a51ec975cdf9f04a9d7c33bcb139dca
   m_SerializeEntries:
-  - m_GUID: 4a98796fda6c6f54b8d4e6a0bc60ef81
-    m_Address: BattleDashMenuScene
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BattleDash
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a4736b3086fa95e4e9155ad5e4d49b37
     m_Address: BattleDashGameScene
     m_ReadOnly: 0
