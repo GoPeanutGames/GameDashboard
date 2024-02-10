@@ -63,6 +63,10 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 				if (_decTimer < BattleDashConfig.MovementDecTime){
 					_currentSpeed = Mathf.Lerp(_currentSpeed, 0, _decTimer / BattleDashConfig.MovementDecTime);
 				}
+				else
+				{
+					_currentSpeed = 0;
+				}
 			}
 			Vector2 velocity = _currentSpeed * _currentMovement;
 			this.transform.Translate(velocity * NetworkManager.ServerTime.FixedDeltaTime);

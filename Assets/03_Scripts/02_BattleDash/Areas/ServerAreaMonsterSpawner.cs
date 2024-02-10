@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using PeanutDashboard._02_BattleDash.Config;
 using PeanutDashboard._02_BattleDash.Data;
+using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard._02_BattleDash.Model;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
@@ -15,27 +16,19 @@ namespace PeanutDashboard._02_BattleDash.Areas
 		private AreaMonsterSpawnDefinition _spawnDefinition;
 
 		private List<MonsterSpawnPattern> _currentPatterns;
-		
-		private Vector3 _endPos;
-		private float _startingDistance;
-		private GameObject _background;
-		
 #if SERVER
-		public void Initialise(GameObject background)
+		public void Initialise()
 		{
 			Debug.Log($"{nameof(ServerAreaMonsterSpawner)}::{nameof(Initialise)}");
-			_background = background;
 			_currentPatterns = new List<MonsterSpawnPattern>();
 			_spawnDefinition.ResetArea();
-			Vector3 localPosition = _background.transform.localPosition;
-			_endPos = -localPosition;
-			_startingDistance = Vector3.Distance(localPosition, _endPos);
+			ServerAreaEvents.AreaDistancePassedPercUpdated += OnAreaDistancePercUpdated;
 		}
 
-		private void Update()
+		private void OnAreaDistancePercUpdated(float perc)
 		{
 			CheckForSpawnInCurrentPatterns();
-			CheckForNewPatterns();
+			CheckForNewPatterns(perc);
 		}
 
 		private void SpawnMonster(MonsterSpawnLocation spawnLocation, MonsterType type)
@@ -63,18 +56,21 @@ namespace PeanutDashboard._02_BattleDash.Areas
 			_currentPatterns.RemoveAll((pattern) => pattern.amount == 0);
 		}
 
-		private void CheckForNewPatterns()
+		private void CheckForNewPatterns(float perc)
 		{
-			float currentDistance = Vector3.Distance(_background.transform.localPosition, _endPos);
-			float percentage = 1 - currentDistance / _startingDistance;
 			foreach (AreaMonsterSpawn spawnDefinitionAreaMonsterSpawn in _spawnDefinition.areaMonsterSpawns){
-				if (spawnDefinitionAreaMonsterSpawn.areaPercentage <= percentage && !spawnDefinitionAreaMonsterSpawn.spawned){
+				if (spawnDefinitionAreaMonsterSpawn.areaPercentage <= perc && !spawnDefinitionAreaMonsterSpawn.spawned){
 					Debug.Log($"{nameof(ServerAreaMonsterSpawner)}::{nameof(CheckForNewPatterns)} - adding pattern at perc: {spawnDefinitionAreaMonsterSpawn.areaPercentage}");
 					spawnDefinitionAreaMonsterSpawn.spawned = true;
 					_currentPatterns.AddRange(spawnDefinitionAreaMonsterSpawn.GetPatterns());
 					return;
 				}
 			}
+		}
+
+		public override void OnDestroy()
+		{
+			ServerAreaEvents.AreaDistancePassedPercUpdated -= OnAreaDistancePercUpdated;
 		}
 #endif
 	}

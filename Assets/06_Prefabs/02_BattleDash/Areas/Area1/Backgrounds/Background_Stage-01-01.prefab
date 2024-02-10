@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1305260212606178715}
   - component: {fileID: 8785847627795048882}
   - component: {fileID: 6294928283138456844}
+  - component: {fileID: 5186235525315470539}
   m_Layer: 0
   m_Name: Background_Stage-01-01
   m_TagString: Untagged
@@ -133,6 +134,21 @@ MonoBehaviour:
   UseQuaternionSynchronization: 0
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
-  InLocalSpace: 0
+  InLocalSpace: 1
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &5186235525315470539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7826289173869508927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff3412e400b4d5bb54a42aca8d857c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _doorPrefab: {fileID: 2997868422171544633, guid: 7e2a251d31789d5428b612f325cf7b43, type: 3}
+  _doorSpawnLocation: {x: 29, y: 0, z: 0}
+  _doorScale: {x: 1, y: 1, z: 1}
