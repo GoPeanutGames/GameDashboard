@@ -47,7 +47,7 @@ public class ServerBattleDashBullet : NetworkBehaviour, IFactionable
             return;
         }
         _lifetime -= NetworkManager.ServerTime.FixedDeltaTime;
-        this.transform.Translate(_directionNormalised * (BattleDashConfig.BulletSpeed * NetworkManager.ServerTime.FixedDeltaTime));
+        this.transform.Translate(_directionNormalised * (BattleDashConfig.BulletSpeed * NetworkManager.ServerTime.FixedDeltaTime), Space.World);
         if (_lifetime < 0){
             this.GetComponent<NetworkObject>().Despawn();
             _destroyed = true;

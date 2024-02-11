@@ -1,4 +1,6 @@
-﻿using PeanutDashboard.Utils.Misc;
+﻿using System;
+using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;
 #if SERVER
@@ -8,11 +10,11 @@ using PeanutDashboard._02_BattleDash.Events;
 
 namespace PeanutDashboard._02_BattleDash.Player.Server
 {
-	public class ServerBattleDashPlayerMovement : NetworkBehaviour
-	{
-		[Header(InspectorNames.SetInInspector)]
-		[SerializeField]
-		private Animator _animator;
+    public class ServerBattleDashPlayerMovement : NetworkBehaviour
+    {
+        [Header(InspectorNames.SetInInspector)]
+        [SerializeField]
+        private Animator _animator;
 
 #if SERVER
 		private Vector2 _movement = Vector2.zero;
@@ -38,23 +40,23 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 
 		private void Update()
 		{
-			if (IsServer){
-				ServerUpdate();
-			}
+			ServerUpdate();
 		}
 
 		private void ServerUpdate()
 		{
 			_directionChangeTimer += NetworkManager.ServerTime.FixedDeltaTime;
 			if (_directionChangeTimer < BattleDashConfig.MovementDirectionChangeTime){
-				_currentMovement = Vector2.Lerp(_currentMovement, _movement, _directionChangeTimer / BattleDashConfig.MovementDirectionChangeTime);
+				_currentMovement =
+ Vector2.Lerp(_currentMovement, _movement, _directionChangeTimer / BattleDashConfig.MovementDirectionChangeTime);
 			}
 
 			if (_movement.magnitude > 0){
 				_accelTimer += NetworkManager.ServerTime.FixedDeltaTime;
 				_decTimer = 0f;
 				if (_accelTimer < BattleDashConfig.MovementAccelTime){
-					_currentSpeed = Mathf.Lerp(_currentSpeed, BattleDashConfig.MovementSpeed, _accelTimer / BattleDashConfig.MovementAccelTime);
+					_currentSpeed =
+ Mathf.Lerp(_currentSpeed, BattleDashConfig.MovementSpeed, _accelTimer / BattleDashConfig.MovementAccelTime);
 				}
 			}
 			else{
@@ -70,6 +72,10 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			}
 			Vector2 velocity = _currentSpeed * _currentMovement;
 			this.transform.Translate(velocity * NetworkManager.ServerTime.FixedDeltaTime);
+			this.transform.position = new Vector3(
+				Mathf.Clamp(this.transform.position.x, -42, -20),
+				Mathf.Clamp(this.transform.position.y, -22, 20), 
+				0);
 			UpdateAnimator();
 		}
 
@@ -135,6 +141,11 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			ServerPlayerInputEvents.PlayerInputKeyDown -= OnPlayerInputKeyDown;
 			ServerPlayerInputEvents.PlayerInputKeyUp -= OnPlayerInputKeyUp;
 		}
+#else
+	    private void Update()
+	    {
+		    ClientActionEvents.RaiseUpdatePlayerVisualPositionEvent(this.transform.position);
+	    }
 #endif
-	}
+    }
 }
