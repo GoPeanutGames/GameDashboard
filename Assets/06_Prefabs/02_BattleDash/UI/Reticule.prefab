@@ -89,3 +89,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reticule: {fileID: 2974900960579717780}
+  _offset: {x: 8, y: 0, z: 0}
+  _currentVisualPosition: {x: 0, y: 0, z: 0}

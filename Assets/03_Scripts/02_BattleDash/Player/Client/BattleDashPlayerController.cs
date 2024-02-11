@@ -17,7 +17,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(ServerSpawnedVisual)}");
 			visual.GetComponent<NetworkObject>().Spawn();
 			visual.GetComponent<NetworkObject>().TrySetParent(this.transform);
-			visual.transform.localPosition = Vector3.zero;
+			visual.transform.localPosition = new Vector3(-20,0,0);
 		}
 
 		private void Update()

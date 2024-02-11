@@ -7,6 +7,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 	public static class ClientActionEvents
 	{
 		private static UnityAction<Vector2> _updatePlayerAim;
+		private static UnityAction<Vector3> _updatePlayerVisualPosition;
 		private static UnityAction<Vector2> _updatePlayerBulletSpawnPoint;
 
 		public static event UnityAction<Vector2> OnUpdatePlayerTarget
@@ -19,6 +20,12 @@ namespace PeanutDashboard._02_BattleDash.Events
 		{
 			add => _updatePlayerBulletSpawnPoint += value;
 			remove => _updatePlayerBulletSpawnPoint -= value;
+		}
+		
+		public static event UnityAction<Vector3> OnUpdatePlayerVisualPosition
+		{
+			add => _updatePlayerVisualPosition += value;
+			remove => _updatePlayerVisualPosition -= value;
 		}
 		
 		public static void RaiseUpdatePlayerAimEvent(Vector2 worldPosition)
@@ -37,6 +44,15 @@ namespace PeanutDashboard._02_BattleDash.Events
 				return;
 			}
 			_updatePlayerBulletSpawnPoint.Invoke(worldPosition);
+		}
+		
+		public static void RaiseUpdatePlayerVisualPositionEvent(Vector3 visualPosition)
+		{
+			if (_updatePlayerVisualPosition == null){
+				LoggerService.LogWarning($"{nameof(ClientActionEvents)}::{nameof(RaiseUpdatePlayerVisualPositionEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_updatePlayerVisualPosition.Invoke(visualPosition);
 		}
 	}
 }
