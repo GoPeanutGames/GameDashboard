@@ -1,5 +1,6 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
+using PeanutDashboard.Utils.WebGL;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -10,6 +11,12 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void OnEnable()
 		{
 			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
+#if !SERVER
+			if (WebGLUtils.IsMobile)
+			{
+				Screen.orientation = ScreenOrientation.LandscapeLeft;
+			}
+#endif
 		}
 
 		private void ServerSpawnedVisual(GameObject visual)
@@ -23,11 +30,32 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void Update()
 		{
 			if (IsClient){
-				CheckForInput();
+				if (WebGLUtils.IsMobile)
+				{
+					CheckForMobileInput();
+				}
+				else
+				{
+					CheckForDesktopInput();
+				}
 			}
 		}
 
-		private void CheckForInput()
+		private void CheckForMobileInput()
+		{
+			if (Input.touchCount > 0)
+			{
+				for (int i = 0; i < Input.touchCount; i++)
+				{
+					Touch touch = Input.GetTouch(0);
+					//TODO: check if touch position is on the left or right
+					//TODO: if left -> movement
+					//TODO: if right -> move reticule / target
+				}
+			}
+		}
+
+		private void CheckForDesktopInput()
 		{
 			if (Input.GetKeyDown(KeyCode.A)){
 				SendPlayerKeyDown_ServerRpc(KeyCode.A);
@@ -57,6 +85,12 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 
 		private void OnDisable()
 		{
+#if !SERVER
+			if (WebGLUtils.IsMobile)
+			{
+				Screen.orientation = ScreenOrientation.Portrait;
+			}
+#endif
 			ServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
 		}
 
