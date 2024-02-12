@@ -13,48 +13,159 @@ MonoBehaviour:
   m_Name: Stage-01-02_MonsterSpawn
   m_EditorClassIdentifier: 
   areaMonsterSpawns:
-  - areaPercentage: 0.05
+  - areaPercentage: 0.1
     spawned: 0
     _monsterSpawnPatterns:
-    - monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
       monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
-      amount: 3
-      timeBetweenSpawns: 3
+      amount: 1
+      timeBetweenSpawns: 0
       timeElapsed: 0
       timeToBeginSpawn: 0
   - areaPercentage: 0.15
     spawned: 0
     _monsterSpawnPatterns:
-    - monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
       monsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
-      amount: 3
-      timeBetweenSpawns: 2
+      amount: 1
+      timeBetweenSpawns: 0
       timeElapsed: 0
       timeToBeginSpawn: 0
-    - monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+  - areaPercentage: 0.2
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
       monsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
       amount: 2
-      timeBetweenSpawns: 2
+      timeBetweenSpawns: 1
       timeElapsed: 0
-      timeToBeginSpawn: 3
-  - areaPercentage: 0.3
+      timeToBeginSpawn: 0
+  - areaPercentage: 0.2
     spawned: 0
     _monsterSpawnPatterns:
     - monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
       monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
       amount: 3
-      timeBetweenSpawns: 2
+      timeBetweenSpawns: 1.5
       timeElapsed: 0
       timeToBeginSpawn: 0
-    - monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      amount: 2
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 2
+  - areaPercentage: 0.25
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
+      amount: 2
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+  - areaPercentage: 0.3
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      amount: 2
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+  - areaPercentage: 0.5
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      amount: 3
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
       monsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
       amount: 3
-      timeBetweenSpawns: 2
+      timeBetweenSpawns: 1.5
       timeElapsed: 0
-      timeToBeginSpawn: 0
-    - monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+      timeToBeginSpawn: 1.5
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
+      amount: 2
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 3
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      amount: 3
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 6
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
       monsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
       amount: 3
-      timeBetweenSpawns: 2
+      timeBetweenSpawns: 1.5
       timeElapsed: 0
-      timeToBeginSpawn: 5
+      timeToBeginSpawn: 7.5
+  - areaPercentage: 0.7
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      amount: 3
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+  - areaPercentage: 0.75
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
+      amount: 3
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+  - areaPercentage: 0.8
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      amount: 3
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+  - areaPercentage: 0.9
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      amount: 2
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      amount: 2
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+  - areaPercentage: 0.95
+    spawned: 0
+    _monsterSpawnPatterns:
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      amount: 1
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      amount: 1
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+      monsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
+      amount: 1
+      timeBetweenSpawns: 1.5
+      timeElapsed: 0
+      timeToBeginSpawn: 0
