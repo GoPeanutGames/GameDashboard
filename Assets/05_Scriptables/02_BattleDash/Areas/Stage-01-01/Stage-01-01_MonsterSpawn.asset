@@ -16,7 +16,7 @@ MonoBehaviour:
   - areaPercentage: 0.05
     spawned: 0
     _monsterSpawnPatterns:
-    - monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+    - monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
       monsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
       amount: 3
       timeBetweenSpawns: 3
