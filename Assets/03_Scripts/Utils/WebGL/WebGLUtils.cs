@@ -5,9 +5,9 @@ namespace PeanutDashboard.Utils.WebGL
     public static class WebGLUtils
     {
         [DllImport("__Internal")]
-        private static extern bool isMobile();
+        private static extern bool IsMobile();
 
 
-        public static bool IsMobile => isMobile();
+        public static bool IsWebMobile => IsMobile();
     }
 }

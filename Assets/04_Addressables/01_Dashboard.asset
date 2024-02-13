@@ -452,6 +452,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99ac1702c604b5d448a41f024d0dea44
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Res/Bubbles.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4ed5ae34de17b14bb7bfe9622e3ea47
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Res/Gems.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

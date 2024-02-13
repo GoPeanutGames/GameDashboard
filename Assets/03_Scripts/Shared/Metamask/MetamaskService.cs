@@ -40,7 +40,7 @@ namespace PeanutDashboard.Shared.Metamask
 		public static void LoginMetamask()
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(LoginMetamask)}");
-			if (WebGLUtils.IsMobile){
+			if (WebGLUtils.IsWebMobile){
 				LoadingEvents.Instance.RaiseUpdateLoadingEvent("Connecting to metamask app...");
 				MetaMaskUnity.Instance.Wallet.EthereumRequestFailedHandler += MobileConnectMetamaskFailHandler;
 				MetaMaskUnity.Instance.Wallet.WalletConnectedHandler += MetamaskMobileConnected;
@@ -70,7 +70,7 @@ namespace PeanutDashboard.Shared.Metamask
 		
 		public static void LogOutMetamask()
 		{
-			if (WebGLUtils.IsMobile){
+			if (WebGLUtils.IsWebMobile){
 				MetaMaskUnity.Instance.Wallet.WalletConnectedHandler = null;
 				MetaMaskUnity.Instance.Wallet.WalletAuthorizedHandler = null;
 				MetaMaskUnity.Instance.Wallet.ChainIdChangedHandler = null;
@@ -151,7 +151,7 @@ namespace PeanutDashboard.Shared.Metamask
 		public static void RequestMetamaskSignature(string schema, string address)
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(RequestMetamaskSignature)}");
-			if (WebGLUtils.IsMobile){
+			if (WebGLUtils.IsWebMobile){
 				RequestMobileSignature(schema, address);
 			}
 			else{

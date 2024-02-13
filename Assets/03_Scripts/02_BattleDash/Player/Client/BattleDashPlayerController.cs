@@ -1,6 +1,8 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
+#if !SERVER && !UNITY_EDITOR
 using PeanutDashboard.Utils.WebGL;
+#endif
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,11 +10,19 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 {
 	public class BattleDashPlayerController : NetworkBehaviour
 	{
+		private readonly NetworkVariable<Vector2> _mobileTouchMove = new NetworkVariable<Vector2>(Vector2.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+		
+		private bool _isMobile;
+		
 		private void OnEnable()
 		{
 			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
-#if !SERVER
-			if (WebGLUtils.IsMobile)
+#if SERVER
+			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchChanged;
+#endif
+#if !SERVER && !UNITY_EDITOR
+			_isMobile = WebGLUtils.IsWebMobile;
+			if (_isMobile)
 			{
 				Screen.orientation = ScreenOrientation.LandscapeLeft;
 			}
@@ -29,8 +39,8 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 
 		private void Update()
 		{
-			if (IsClient){
-				if (WebGLUtils.IsMobile)
+#if !SERVER
+				if (_isMobile)
 				{
 					CheckForMobileInput();
 				}
@@ -38,21 +48,35 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 				{
 					CheckForDesktopInput();
 				}
-			}
+#endif
 		}
 
 		private void CheckForMobileInput()
 		{
-			if (Input.touchCount > 0)
-			{
+			bool moveChanged = false;
+			if (Input.touchCount > 0){
 				for (int i = 0; i < Input.touchCount; i++)
 				{
 					Touch touch = Input.GetTouch(0);
-					//TODO: check if touch position is on the left or right
-					//TODO: if left -> movement
-					//TODO: if right -> move reticule / target
+					if (touch.position.x <= Screen.width / 3){
+						Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+						touchPosition.z = 0;
+						_mobileTouchMove.Value = touchPosition;
+						moveChanged = true;
+					}
+					else{
+						//TODO: send mobile reticule event
+					}
 				}
 			}
+			if (!moveChanged){
+				_mobileTouchMove.Value = Vector2.zero;
+			}
+		}
+
+		private void ServerOnMobileTouchChanged(Vector2 prevMobileTouch, Vector2 newMobileTouch)
+		{
+			ServerPlayerInputEvents.RaisePlayerMobileTouchPositionEvent(newMobileTouch);
 		}
 
 		private void CheckForDesktopInput()
@@ -85,8 +109,11 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 
 		private void OnDisable()
 		{
-#if !SERVER
-			if (WebGLUtils.IsMobile)
+#if SERVER
+			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchChanged;
+#endif
+#if !SERVER && !UNITY_EDITOR
+			if (_isMobile)
 			{
 				Screen.orientation = ScreenOrientation.Portrait;
 			}
