@@ -1,5 +1,6 @@
 ﻿#if !SERVER
 using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard.Utils.WebGL;
 #endif
 using System;
 using PeanutDashboard.Utils.Misc;
@@ -39,6 +40,16 @@ namespace PeanutDashboard._02_BattleDash.Player
 
 		private void Update()
 		{
+			if (WebGLUtils.IsWebMobile){
+				UpdateMobile();
+			}
+			else{
+				UpdateDesktop();
+			}
+		}
+
+		private void UpdateDesktop()
+		{
 			float minReticuleX = Camera.main.WorldToScreenPoint(_currentVisualPosition + _offset).x - Screen.width / 2f;
 			_reticule.anchoredPosition = Input.mousePosition - new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
 			_reticule.anchoredPosition = new Vector2(
@@ -46,6 +57,11 @@ namespace PeanutDashboard._02_BattleDash.Player
 				_reticule.anchoredPosition.y);
 			Vector2 target = (Vector2)Camera.main.ScreenToWorldPoint(_reticule.anchoredPosition + new Vector2(Screen.width / 2f,Screen.height / 2f));
 			ClientActionEvents.RaiseUpdatePlayerAimEvent(target);
+		}
+
+		private void UpdateMobile()
+		{
+			
 		}
 #endif
 	}

@@ -90,7 +90,10 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		{
 			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerMobileTouchPosition)}- press: {worldTouchPos}");
 			Vector2 direction = worldTouchPos - this.transform.position.ToVector2();
-			_movement = new Vector2(Mathf.Clamp(direction.normalized.x * 2f, 0, 1), Mathf.Clamp(direction.normalized.y * 2f, 0, 1));
+			_movement = new Vector2(Mathf.Clamp(direction.normalized.x * 2f, -1, 1), Mathf.Clamp(direction.normalized.y * 2f, -1, 1));
+			if (_currentMovement != _movement){
+				_directionChangeTimer = 0;
+			}
 			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerMobileTouchPosition)}- current movement: {_movement}");
 		}
 

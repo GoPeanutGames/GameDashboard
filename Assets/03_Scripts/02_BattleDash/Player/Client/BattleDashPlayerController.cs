@@ -1,6 +1,6 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
-#if !SERVER && !UNITY_EDITOR
+#if !SERVER
 using PeanutDashboard.Utils.WebGL;
 #endif
 using Unity.Netcode;
@@ -12,17 +12,14 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 	{
 		private readonly NetworkVariable<Vector2> _mobileTouchMove = new NetworkVariable<Vector2>(Vector2.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 		
-		private bool _isMobile;
-		
 		private void OnEnable()
 		{
 			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
 #if SERVER
 			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchChanged;
 #endif
-#if !SERVER && !UNITY_EDITOR
-			_isMobile = WebGLUtils.IsWebMobile;
-			if (_isMobile)
+#if !SERVER
+			if (WebGLUtils.IsWebMobile)
 			{
 				Screen.orientation = ScreenOrientation.LandscapeLeft;
 			}
@@ -40,14 +37,14 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void Update()
 		{
 #if !SERVER
-				if (_isMobile)
-				{
-					CheckForMobileInput();
-				}
-				else
-				{
-					CheckForDesktopInput();
-				}
+			if (WebGLUtils.IsWebMobile)
+			{
+				CheckForMobileInput();
+			}
+			else
+			{
+				CheckForDesktopInput();
+			}
 #endif
 		}
 
@@ -58,7 +55,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 				for (int i = 0; i < Input.touchCount; i++)
 				{
 					Touch touch = Input.GetTouch(0);
-					if (touch.position.x <= Screen.width / 3){
+					if (touch.position.x <= Screen.width / 3f){
 						Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 						touchPosition.z = 0;
 						_mobileTouchMove.Value = touchPosition;
@@ -112,8 +109,8 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 #if SERVER
 			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchChanged;
 #endif
-#if !SERVER && !UNITY_EDITOR
-			if (_isMobile)
+#if !SERVER
+			if (WebGLUtils.IsWebMobile)
 			{
 				Screen.orientation = ScreenOrientation.Portrait;
 			}
