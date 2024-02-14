@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.Picker;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
-using Unity.Services.Core;
-using Unity.Services.Core.Environments;
 using Unity.Services.Matchmaker;
 using Unity.Services.Matchmaker.Models;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace PeanutDashboard.UnityServer.Core
 	public class MatchmakerClient : MonoBehaviour
 	{
 		private string _ticketId;
+		private bool _gotAssignment;
 
 		private void OnEnable()
 		{
@@ -53,41 +53,52 @@ namespace PeanutDashboard.UnityServer.Core
 			CreateTicketResponse ticketResponse = await MatchmakerService.Instance.CreateTicketAsync(players, options);
 			_ticketId = ticketResponse.Id;
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(CreateATicket)} - created ticket with id: {_ticketId}");
-			PollTicketStatus();
+			StartCoroutine(PollTicketStatus());
+
 		}
 
-		private async void PollTicketStatus()
+		private IEnumerator PollTicketStatus()
 		{
-			MultiplayAssignment multiplayAssignment = null;
-			bool gotAssignment = false;
+			_gotAssignment = false;
 			do{
-				await Task.Delay(TimeSpan.FromSeconds(1));
-				TicketStatusResponse ticketStatus = await MatchmakerService.Instance.GetTicketAsync(_ticketId);
-				if (ticketStatus == null){
-					continue;
-				}
-				if (ticketStatus.Type == typeof(MultiplayAssignment)){
-					multiplayAssignment = ticketStatus.Value as MultiplayAssignment;
-				}
-				switch (multiplayAssignment.Status){
-					case MultiplayAssignment.StatusOptions.Found:
-						gotAssignment = true;
-						TicketAssigned(multiplayAssignment);
-						break;
-					case MultiplayAssignment.StatusOptions.InProgress:
-						break;
-					case MultiplayAssignment.StatusOptions.Failed:
-						gotAssignment = true;
-						LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Error: {multiplayAssignment.Message}");
-						break;
-					case MultiplayAssignment.StatusOptions.Timeout:
-						gotAssignment = true;
-						LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Ticket timed out.");
-						break;
-					default:
-						throw new InvalidOperationException();
-				}
-			} while (!gotAssignment);
+				yield return new WaitForSeconds(1);
+				Debug.Log($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - wait 1 sec");
+				GetTicketStatus();
+			} while (!_gotAssignment);
+		}
+
+		private async void GetTicketStatus()
+		{
+			Debug.Log($"{nameof(MatchmakerClient)}::{nameof(GetTicketStatus)}");
+			MultiplayAssignment multiplayAssignment = null;
+			TicketStatusResponse ticketStatus = await MatchmakerService.Instance.GetTicketAsync(_ticketId);
+			if (ticketStatus == null){
+				Debug.Log($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - ticket status = null");
+				return;
+			}
+			if (ticketStatus.Type == typeof(MultiplayAssignment)){
+				Debug.Log($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - ticket type = multiplay assignment");
+				multiplayAssignment = ticketStatus.Value as MultiplayAssignment;
+			}
+			switch (multiplayAssignment.Status){
+				case MultiplayAssignment.StatusOptions.Found:
+					_gotAssignment = true;
+					TicketAssigned(multiplayAssignment);
+					break;
+				case MultiplayAssignment.StatusOptions.InProgress:
+					Debug.Log($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - In progress");
+					break;
+				case MultiplayAssignment.StatusOptions.Failed:
+					_gotAssignment = true;
+					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Error: {multiplayAssignment.Message}");
+					break;
+				case MultiplayAssignment.StatusOptions.Timeout:
+					_gotAssignment = true;
+					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Ticket timed out.");
+					break;
+				default:
+					throw new InvalidOperationException();
+			}
 		}
 
 		private void TicketAssigned(MultiplayAssignment multiplayAssignment)

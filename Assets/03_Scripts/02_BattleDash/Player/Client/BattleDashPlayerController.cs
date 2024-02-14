@@ -1,5 +1,8 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
+#if !SERVER
+using PeanutDashboard.Utils.WebGL;
+#endif
 using Unity.Netcode;
 using UnityEngine;
 
@@ -7,9 +10,19 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 {
 	public class BattleDashPlayerController : NetworkBehaviour
 	{
+		private readonly NetworkVariable<Vector2> _mobileTouchMove = new NetworkVariable<Vector2>(Vector2.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
 		private void OnEnable()
 		{
 			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
+#if SERVER
+			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchMoveChanged;
+#endif
+#if !SERVER
+			if (WebGLUtils.IsWebMobile){
+				Screen.orientation = ScreenOrientation.LandscapeLeft;
+			}
+#endif
 		}
 
 		private void ServerSpawnedVisual(GameObject visual)
@@ -17,17 +30,52 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(ServerSpawnedVisual)}");
 			visual.GetComponent<NetworkObject>().Spawn();
 			visual.GetComponent<NetworkObject>().TrySetParent(this.transform);
-			visual.transform.localPosition = new Vector3(-20,0,0);
+			visual.transform.localPosition = new Vector3(-20, 0, 0);
 		}
 
 		private void Update()
 		{
-			if (IsClient){
-				CheckForInput();
+#if !SERVER
+			if (WebGLUtils.IsWebMobile){
+				CheckForMobileInput();
+			}
+			else{
+				CheckForDesktopInput();
+			}
+#endif
+		}
+
+		private void CheckForMobileInput()
+		{
+			bool moveChanged = false;
+			if (Input.touchCount > 0){
+				for (int i = 0; i < Input.touchCount; i++){
+					Touch touch = Input.GetTouch(i);
+					if (touch.position.x <= Screen.width / 3f){
+						Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+						touchPosition.z = 0;
+						_mobileTouchMove.Value = touchPosition;
+						if (touch.phase == TouchPhase.Ended){
+							_mobileTouchMove.Value = Vector2.zero;
+						}
+						moveChanged = true;
+					}
+					else{
+						ClientActionEvents.RaiseMobilePlayerTouchShootPositionEvent(touch.position);
+					}
+				}
+			}
+			if (!moveChanged){
+				_mobileTouchMove.Value = Vector2.zero;
 			}
 		}
 
-		private void CheckForInput()
+		private void ServerOnMobileTouchMoveChanged(Vector2 prevMobileTouch, Vector2 newMobileTouch)
+		{
+			ServerPlayerInputEvents.RaisePlayerMobileTouchPositionEvent(newMobileTouch);
+		}
+
+		private void CheckForDesktopInput()
 		{
 			if (Input.GetKeyDown(KeyCode.A)){
 				SendPlayerKeyDown_ServerRpc(KeyCode.A);
@@ -57,6 +105,14 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 
 		private void OnDisable()
 		{
+#if SERVER
+			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchMoveChanged;
+#endif
+#if !SERVER
+			if (WebGLUtils.IsWebMobile){
+				Screen.orientation = ScreenOrientation.Portrait;
+			}
+#endif
 			ServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
 		}
 

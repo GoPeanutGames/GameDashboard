@@ -1,8 +1,4 @@
 mergeInto(LibraryManager.library, {
-    IsMobile: function(){
-        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    },
-
     Login: async function (isDev, cbSuccess, cbFail) {
         let chainId = await window.ethereum.request({ method: "eth_chainId" });
         let selectedChainId = isDev ? "0x13881" : "0x89";

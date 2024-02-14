@@ -748,7 +748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 199.9194, y: 0}
+  m_AnchoredPosition: {x: 199.91934, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &97037021
@@ -4790,7 +4790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 3.1216092
+  m_AspectRatio: 3.1216094
 --- !u!114 &592431753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5924,7 +5924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 191.9194, y: 0}
+  m_AnchoredPosition: {x: 191.91934, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779448881
@@ -8488,8 +8488,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1162162992}
-  - component: {fileID: 1162162993}
   - component: {fileID: 1162162994}
+  - component: {fileID: 1162162993}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -8526,7 +8526,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162162991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 724d85f6126a4d27b109df0cce9e6a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameInfo: {fileID: 11400000, guid: d4692a79751fb7344ab3ebec6667f211, type: 2}
+  _button: {fileID: 0}
+--- !u!114 &1162162994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162162991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb8402eadbb4ec0b1ab88b6cd2e428c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -8561,20 +8575,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1162162994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162162991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 724d85f6126a4d27b109df0cce9e6a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameInfo: {fileID: 11400000, guid: d4692a79751fb7344ab3ebec6667f211, type: 2}
-  _button: {fileID: 0}
 --- !u!1 &1188452037
 GameObject:
   m_ObjectHideFlags: 0
@@ -11400,8 +11400,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1514113492}
-  - component: {fileID: 1514113493}
   - component: {fileID: 1514113494}
+  - component: {fileID: 1514113493}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -11438,7 +11438,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1514113491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 724d85f6126a4d27b109df0cce9e6a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameInfo: {fileID: 11400000, guid: d4692a79751fb7344ab3ebec6667f211, type: 2}
+  _button: {fileID: 0}
+--- !u!114 &1514113494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514113491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb8402eadbb4ec0b1ab88b6cd2e428c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -11473,20 +11487,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1514113494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514113491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 724d85f6126a4d27b109df0cce9e6a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameInfo: {fileID: 11400000, guid: d4692a79751fb7344ab3ebec6667f211, type: 2}
-  _button: {fileID: 0}
 --- !u!1 &1561240677
 GameObject:
   m_ObjectHideFlags: 0
@@ -12863,7 +12863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.7085458
+  m_AspectRatio: 1.7085454
 --- !u!114 &1744661985
 MonoBehaviour:
   m_ObjectHideFlags: 0

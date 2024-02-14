@@ -41,6 +41,402 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d294794a7885f93438f0aac67e3104fc
+    m_Address: Assets/02_Art/02_BattleDash/Areas/Area_Stage01-01.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef53ef90134aeab47a4c7a9b005a4e86
+    m_Address: Assets/02_Art/02_BattleDash/Areas/Area_stage01-02.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a5ccc131698c5840b8a94b0e61d91f9
+    m_Address: Assets/02_Art/02_BattleDash/Areas/Area_stage01-03.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8baf955bbc9fb1847a6bc20b947f31c7
+    m_Address: Assets/02_Art/02_BattleDash/Areas/door.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0150fc972c8a53347b3bef7ea1a0e9f2
+    m_Address: Assets/02_Art/02_BattleDash/Blummer/Collision Spritesheet.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 478cf046391f66d4896b628d9dafa514
+    m_Address: Assets/02_Art/02_BattleDash/Blummer/IceBulletSprites.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61ab82df210dc80409516f85879224b1
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/Mothronix/Glowing Eyes_01.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77633b880926ac04abeeccc61959521b
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/Mothronix/Glowing Eyes_02.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 00a01014b54394b44853b26061bf7d1c
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/Mothronix/Glowing Eyes_03.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6069932375fa4e8458deacdf1aa93f53
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/Mothronix/Glowing Eyes_04.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dffe28f211bd41408268449b2a34cf7
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/Mothronix/Glowing Eyes_05.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9bad8659cb1c3f4faff2bab6f9cfb10
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/Mothronix/Monster 01 Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c115928eae255e488c1d7be91c2414d
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/Explosion/Explosion Sprites.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff4265d1246f9554891e4a045af69737
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/SkyBomber/Monster 02 Sprite.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c91ce199ef6af3b4e8e4ace91ee1ec12
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/SkyBomber/Orange Eyes.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3a5b4056f34a1c4d95d1c310dc73694
+    m_Address: Assets/02_Art/02_BattleDash/Monsters/SkyBomber/Yellow Eyes.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e66ab0112b7591b479b85a1d407bc850
+    m_Address: Assets/02_Art/02_BattleDash/UI/crosshair.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78c01044f4f6ef146aa9a27800490146
+    m_Address: Assets/05_Scriptables/02_BattleDash/Areas/Stage-01-01/Stage-01-01_MonsterSpawn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b949a4a7b5b28ac44a030eb033e9355f
+    m_Address: Assets/05_Scriptables/02_BattleDash/Areas/Stage-01-01/Stage-01-01_Movement.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 488d65bc7e7908545bd77f1b07c1b30b
+    m_Address: Assets/05_Scriptables/02_BattleDash/Areas/Stage-01-02/Stage-01-02_MonsterSpawn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8486cb50dc1d5e40836359d69fab811
+    m_Address: Assets/05_Scriptables/02_BattleDash/Areas/Stage-01-02/Stage-01-02_Movement.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce809756b0573b2408dda534558a797e
+    m_Address: Assets/05_Scriptables/02_BattleDash/Areas/Stage-01-03/Stage-01-03_MonsterSpawn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 877e07a838fb3ab4da51498a6c72b837
+    m_Address: Assets/05_Scriptables/02_BattleDash/Areas/Stage-01-03/Stage-01-03_Movement.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04450ef5614dc4c45aa14f59bc11b8ed
+    m_Address: Assets/05_Scriptables/02_BattleDash/Factions/PlayerFaction.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 215c8f7390d5eaa42818f761f81c4921
+    m_Address: Assets/05_Scriptables/02_BattleDash/Factions/MonsterFaction.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c247f701a4eed9a41858da0f34792b65
+    m_Address: Assets/05_Scriptables/02_BattleDash/Monsters/Mothronix.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c87c48017556abc4e8ab6a72247d35e2
+    m_Address: Assets/05_Scriptables/02_BattleDash/Monsters/SkyBomber.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0b537a19af75744491e58917374bd14
+    m_Address: Assets/05_Scriptables/02_BattleDash/SpawnLocations/MonsterSpawnLocationBottom.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28bf0ecfbcbcbc34999829f7cb219e2d
+    m_Address: Assets/05_Scriptables/02_BattleDash/SpawnLocations/MonsterSpawnLocationTop.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c905f086fc1d06440bbc8be180ba6ef7
+    m_Address: Assets/05_Scriptables/02_BattleDash/SpawnLocations/MonsterSpawnLocationMid.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d40e25d72d321949b08b98cf941edb8
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/Area1/Backgrounds/Background_Stage-01-01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f2fd295c04019b49a32b6de6c5a6ff5
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/Area1/Backgrounds/Background_Stage-01-02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ba73a68b7d9f064293e339ab434b4db
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/Area1/Backgrounds/Background_Stage-01-03.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 854d4a164b6d5a141bbf92ed21128141
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/Area1/Area_Stage-01-01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21d7b5c4fe00d7549820b4f09800b3ca
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/Area1/Area_Stage-01-02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e47a6cfb52e802045a7d9c4067ecb0b4
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/Area1/Area_Stage-01-03.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 389a141b22aca9a47a10af97bafed164
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/AreaSpawner.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e2a251d31789d5428b612f325cf7b43
+    m_Address: Assets/06_Prefabs/02_BattleDash/Areas/Door.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26999d570453cc34bbf1237b750f4578
+    m_Address: Assets/06_Prefabs/02_BattleDash/Monsters/Mothronix.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26446e9c9143f094ea11b7d1c79935ff
+    m_Address: Assets/06_Prefabs/02_BattleDash/Monsters/SkyBomber.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53e69f1651ac60e469c0b04042b2661b
+    m_Address: Assets/06_Prefabs/02_BattleDash/Player/BattleDashPlayer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3ab0a531b0e78e4f85301166e508b20
+    m_Address: Assets/06_Prefabs/02_BattleDash/Player/BlummerBullet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5d68eee1a9e15a488702a2dcefeddf1
+    m_Address: Assets/06_Prefabs/02_BattleDash/Player/PlayerSpawner.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a963392f223a66a45aaa3cb00e2777b3
+    m_Address: Assets/06_Prefabs/02_BattleDash/UI/Reticule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9d66f2babdf6164b8cb48e1c53396f3
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/Mothronix/Death.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6297747a83b6a64a8996cc787d92c92
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/Mothronix/Hit.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9eec4f4d85b576443bd4fdd24c7fb150
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/Mothronix/IdleAntenna.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c89404b565712ef47ad874062dfe0acb
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/Mothronix/IdleArms.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97f5ae6f4107c5640bbd34707f2358c1
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/Mothronix/IdleBody.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1478a589df7c0974094a46348678a226
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/Mothronix/IdleWings.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9db4d1d040fdbb45b18eb4797d922c8
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/Mothronix/MothronixAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6bc97f7434334904a9f822c42b785bce
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Blummer/Die.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a8c2407eae24a54ab0fe1bef202cfa8
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Blummer/Hit.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b28578f6ef74584493d721935210b54
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Blummer/MoveDown.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08e6100ea1a850d45b90618f99ee5899
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Blummer/MoveLeft.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7329faaf727bd5f488da35d8f438562a
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Blummer/MoveRight.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3341cb244b6bf1c49a544c694d8dcbc8
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Blummer/MoveUp.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2d59463c9dceb24599045974f68d0a2
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Blummer/Shoot.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d573a0c95cf0c76449cd06ccecc23135
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Bullet/BulletAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e523fbd6a1b8bb84ab328632221095c5
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Bullet/Explosion.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: afd23c2c51266b744a0048c54c8ed50e
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Bullet/Loop.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e946d3f74d55d8429f4f6929e6f34f1
+    m_Address: Assets/07_Animation/02_BattleDash/Player/Bullet/Spawn.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d80ad6a11216c7042835ae09ffa8eacb
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/SkyBomber/Death.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc72b34ccdadf0b4791a013fdd41985d
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/SkyBomber/Hit.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10453809d180ac94b9a9b0679ba41292
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/SkyBomber/Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b8908ec61b49e245a36dbea1ff3010d
+    m_Address: Assets/07_Animation/02_BattleDash/Monsters/SkyBomber/SkyBomberAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

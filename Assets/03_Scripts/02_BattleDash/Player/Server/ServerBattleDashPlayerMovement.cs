@@ -1,5 +1,5 @@
-﻿using System;
-using PeanutDashboard._02_BattleDash.Events;
+﻿using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard.Utils.Math;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;
@@ -10,11 +10,11 @@ using PeanutDashboard._02_BattleDash.Events;
 
 namespace PeanutDashboard._02_BattleDash.Player.Server
 {
-    public class ServerBattleDashPlayerMovement : NetworkBehaviour
-    {
-        [Header(InspectorNames.SetInInspector)]
-        [SerializeField]
-        private Animator _animator;
+	public class ServerBattleDashPlayerMovement : NetworkBehaviour
+	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private Animator _animator;
 
 #if SERVER
 		private Vector2 _movement = Vector2.zero;
@@ -22,7 +22,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		private Vector2 _currentMovement = Vector2.zero;
 
 		private float _currentSpeed;
-		
+
 		private float _directionChangeTimer = 0f;
 		private float _accelTimer = 0f;
 		private float _decTimer = 0f;
@@ -36,6 +36,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		{
 			ServerPlayerInputEvents.PlayerInputKeyDown += OnPlayerInputKeyDown;
 			ServerPlayerInputEvents.PlayerInputKeyUp += OnPlayerInputKeyUp;
+			ServerPlayerInputEvents.PlayerMobileTouchPosition += OnPlayerMobileTouchPosition;
 		}
 
 		private void Update()
@@ -48,7 +49,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			_directionChangeTimer += NetworkManager.ServerTime.FixedDeltaTime;
 			if (_directionChangeTimer < BattleDashConfig.MovementDirectionChangeTime){
 				_currentMovement =
- Vector2.Lerp(_currentMovement, _movement, _directionChangeTimer / BattleDashConfig.MovementDirectionChangeTime);
+					Vector2.Lerp(_currentMovement, _movement, _directionChangeTimer / BattleDashConfig.MovementDirectionChangeTime);
 			}
 
 			if (_movement.magnitude > 0){
@@ -56,7 +57,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 				_decTimer = 0f;
 				if (_accelTimer < BattleDashConfig.MovementAccelTime){
 					_currentSpeed =
- Mathf.Lerp(_currentSpeed, BattleDashConfig.MovementSpeed, _accelTimer / BattleDashConfig.MovementAccelTime);
+						Mathf.Lerp(_currentSpeed, BattleDashConfig.MovementSpeed, _accelTimer / BattleDashConfig.MovementAccelTime);
 				}
 			}
 			else{
@@ -65,8 +66,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 				if (_decTimer < BattleDashConfig.MovementDecTime){
 					_currentSpeed = Mathf.Lerp(_currentSpeed, 0, _decTimer / BattleDashConfig.MovementDecTime);
 				}
-				else
-				{
+				else{
 					_currentSpeed = 0;
 				}
 			}
@@ -74,7 +74,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			this.transform.Translate(velocity * NetworkManager.ServerTime.FixedDeltaTime);
 			this.transform.position = new Vector3(
 				Mathf.Clamp(this.transform.position.x, -42, -20),
-				Mathf.Clamp(this.transform.position.y, -22, 20), 
+				Mathf.Clamp(this.transform.position.y, -22, 20),
 				0);
 			UpdateAnimator();
 		}
@@ -84,6 +84,20 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			_animator.SetBool("Moving", _movement != Vector2.zero);
 			_animator.SetFloat("MovementX", _currentMovement.x);
 			_animator.SetFloat("MovementY", _currentMovement.y);
+		}
+
+		private void OnPlayerMobileTouchPosition(Vector2 worldTouchPos)
+		{
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerMobileTouchPosition)}- press: {worldTouchPos}");
+			Vector2 direction = worldTouchPos - this.transform.position.ToVector2();
+			_movement = new Vector2(Mathf.Clamp(direction.normalized.x * 2f, -1, 1), Mathf.Clamp(direction.normalized.y * 2f, -1, 1));
+			if (_currentMovement != _movement){
+				_directionChangeTimer = 0;
+			}
+			if (worldTouchPos == Vector2.zero){
+				_movement = Vector2.zero;
+			}
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerMobileTouchPosition)}- current movement: {_movement}");
 		}
 
 		private void OnPlayerInputKeyDown(KeyCode keyCode)
@@ -140,6 +154,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		{
 			ServerPlayerInputEvents.PlayerInputKeyDown -= OnPlayerInputKeyDown;
 			ServerPlayerInputEvents.PlayerInputKeyUp -= OnPlayerInputKeyUp;
+			ServerPlayerInputEvents.PlayerMobileTouchPosition -= OnPlayerMobileTouchPosition;
 		}
 #else
 	    private void Update()
@@ -147,5 +162,5 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		    ClientActionEvents.RaiseUpdatePlayerVisualPositionEvent(this.transform.position);
 	    }
 #endif
-    }
+	}
 }
