@@ -9,6 +9,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		private static UnityAction<Vector2> _updatePlayerAim;
 		private static UnityAction<Vector3> _updatePlayerVisualPosition;
 		private static UnityAction<Vector2> _updatePlayerBulletSpawnPoint;
+		private static UnityAction<Vector2> _mobilePlayerTouchShootPosition;
 
 		public static event UnityAction<Vector2> OnUpdatePlayerTarget
 		{
@@ -26,6 +27,12 @@ namespace PeanutDashboard._02_BattleDash.Events
 		{
 			add => _updatePlayerVisualPosition += value;
 			remove => _updatePlayerVisualPosition -= value;
+		}
+		
+		public static event UnityAction<Vector2> OnMobilePlayerTouchShootPosition
+		{
+			add => _mobilePlayerTouchShootPosition += value;
+			remove => _mobilePlayerTouchShootPosition -= value;
 		}
 		
 		public static void RaiseUpdatePlayerAimEvent(Vector2 worldPosition)
@@ -53,6 +60,15 @@ namespace PeanutDashboard._02_BattleDash.Events
 				return;
 			}
 			_updatePlayerVisualPosition.Invoke(visualPosition);
+		}
+		
+		public static void RaiseMobilePlayerTouchShootPositionEvent(Vector2 screenTouchPosition)
+		{
+			if (_mobilePlayerTouchShootPosition == null){
+				LoggerService.LogWarning($"{nameof(ClientActionEvents)}::{nameof(RaiseMobilePlayerTouchShootPositionEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_mobilePlayerTouchShootPosition.Invoke(screenTouchPosition);
 		}
 	}
 }

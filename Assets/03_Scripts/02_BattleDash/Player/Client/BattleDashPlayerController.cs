@@ -11,16 +11,15 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 	public class BattleDashPlayerController : NetworkBehaviour
 	{
 		private readonly NetworkVariable<Vector2> _mobileTouchMove = new NetworkVariable<Vector2>(Vector2.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-		
+
 		private void OnEnable()
 		{
 			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
 #if SERVER
-			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchChanged;
+			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchMoveChanged;
 #endif
 #if !SERVER
-			if (WebGLUtils.IsWebMobile)
-			{
+			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.LandscapeLeft;
 			}
 #endif
@@ -31,18 +30,16 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(ServerSpawnedVisual)}");
 			visual.GetComponent<NetworkObject>().Spawn();
 			visual.GetComponent<NetworkObject>().TrySetParent(this.transform);
-			visual.transform.localPosition = new Vector3(-20,0,0);
+			visual.transform.localPosition = new Vector3(-20, 0, 0);
 		}
 
 		private void Update()
 		{
 #if !SERVER
-			if (WebGLUtils.IsWebMobile)
-			{
+			if (WebGLUtils.IsWebMobile){
 				CheckForMobileInput();
 			}
-			else
-			{
+			else{
 				CheckForDesktopInput();
 			}
 #endif
@@ -52,17 +49,19 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		{
 			bool moveChanged = false;
 			if (Input.touchCount > 0){
-				for (int i = 0; i < Input.touchCount; i++)
-				{
-					Touch touch = Input.GetTouch(0);
+				for (int i = 0; i < Input.touchCount; i++){
+					Touch touch = Input.GetTouch(i);
 					if (touch.position.x <= Screen.width / 3f){
 						Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 						touchPosition.z = 0;
 						_mobileTouchMove.Value = touchPosition;
+						if (touch.phase == TouchPhase.Ended){
+							_mobileTouchMove.Value = Vector2.zero;
+						}
 						moveChanged = true;
 					}
 					else{
-						//TODO: send mobile reticule event
+						ClientActionEvents.RaiseMobilePlayerTouchShootPositionEvent(touch.position);
 					}
 				}
 			}
@@ -71,7 +70,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			}
 		}
 
-		private void ServerOnMobileTouchChanged(Vector2 prevMobileTouch, Vector2 newMobileTouch)
+		private void ServerOnMobileTouchMoveChanged(Vector2 prevMobileTouch, Vector2 newMobileTouch)
 		{
 			ServerPlayerInputEvents.RaisePlayerMobileTouchPositionEvent(newMobileTouch);
 		}
@@ -107,11 +106,10 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void OnDisable()
 		{
 #if SERVER
-			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchChanged;
+			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchMoveChanged;
 #endif
 #if !SERVER
-			if (WebGLUtils.IsWebMobile)
-			{
+			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.Portrait;
 			}
 #endif

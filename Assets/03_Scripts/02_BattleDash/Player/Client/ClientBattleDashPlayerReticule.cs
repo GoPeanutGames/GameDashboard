@@ -3,6 +3,7 @@ using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Utils.WebGL;
 #endif
 using System;
+using PeanutDashboard.Utils.Math;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
@@ -26,11 +27,13 @@ namespace PeanutDashboard._02_BattleDash.Player
 		private void OnEnable()
 		{
 			ClientActionEvents.OnUpdatePlayerVisualPosition += OnUpdatePlayerVisualPosition;
+			ClientActionEvents.OnMobilePlayerTouchShootPosition += OnMobileShootPositionChanged;
 		}
 
 		private void OnDisable()
 		{
 			ClientActionEvents.OnUpdatePlayerVisualPosition -= OnUpdatePlayerVisualPosition;
+			ClientActionEvents.OnMobilePlayerTouchShootPosition -= OnMobileShootPositionChanged;
 		}
 
 		private void OnUpdatePlayerVisualPosition(Vector3 visualPosition)
@@ -38,30 +41,37 @@ namespace PeanutDashboard._02_BattleDash.Player
 			_currentVisualPosition = visualPosition;
 		}
 
+		private void OnMobileShootPositionChanged(Vector2 position)
+		{
+			UpdateMobile(position);
+		}
+		
 		private void Update()
 		{
-			if (WebGLUtils.IsWebMobile){
-				UpdateMobile();
-			}
-			else{
+			if (!WebGLUtils.IsWebMobile){
 				UpdateDesktop();
 			}
 		}
 
 		private void UpdateDesktop()
 		{
-			float minReticuleX = Camera.main.WorldToScreenPoint(_currentVisualPosition + _offset).x - Screen.width / 2f;
 			_reticule.anchoredPosition = Input.mousePosition - new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
-			_reticule.anchoredPosition = new Vector2(
-				Mathf.Clamp(_reticule.anchoredPosition.x, minReticuleX, 10000f),
-				_reticule.anchoredPosition.y);
-			Vector2 target = (Vector2)Camera.main.ScreenToWorldPoint(_reticule.anchoredPosition + new Vector2(Screen.width / 2f,Screen.height / 2f));
-			ClientActionEvents.RaiseUpdatePlayerAimEvent(target);
+            ProcessReticule();
 		}
 
-		private void UpdateMobile()
+		private void UpdateMobile(Vector2 touchPosition)
 		{
-			
+			_reticule.anchoredPosition =  touchPosition.ToVector3() - new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
+            ProcessReticule();
+		}
+
+		private void ProcessReticule()
+		{
+			float minReticuleX = Camera.main.WorldToScreenPoint(_currentVisualPosition + _offset).x - Screen.width / 2f;
+			_reticule.anchoredPosition = new Vector2(
+				Mathf.Clamp(_reticule.anchoredPosition.x, minReticuleX, 10000f), _reticule.anchoredPosition.y);
+			Vector2 target = (Vector2)Camera.main.ScreenToWorldPoint(_reticule.anchoredPosition + new Vector2(Screen.width / 2f,Screen.height / 2f));
+			ClientActionEvents.RaiseUpdatePlayerAimEvent(target);
 		}
 #endif
 	}

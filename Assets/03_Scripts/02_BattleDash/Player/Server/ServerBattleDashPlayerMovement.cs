@@ -94,6 +94,9 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			if (_currentMovement != _movement){
 				_directionChangeTimer = 0;
 			}
+			if (worldTouchPos == Vector2.zero){
+				_movement = Vector2.zero;
+			}
 			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerMovement)}::{nameof(OnPlayerMobileTouchPosition)}- current movement: {_movement}");
 		}
 

@@ -9,6 +9,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		private static UnityAction<KeyCode> _playerInputKeyDown;
 		private static UnityAction<KeyCode> _playerInputKeyUp;
 		private static UnityAction<Vector2> _playerMobileTouchPosition;
+		private static UnityAction<Vector2> _playerMobileShootPosition;
 		
 		public static event UnityAction<KeyCode> PlayerInputKeyDown
 		{
@@ -26,6 +27,12 @@ namespace PeanutDashboard._02_BattleDash.Events
 		{
 			add => _playerMobileTouchPosition += value;
 			remove => _playerMobileTouchPosition -= value;
+		}
+		
+		public static event UnityAction<Vector2> PlayerMobileShootPosition
+		{
+			add => _playerMobileShootPosition += value;
+			remove => _playerMobileShootPosition -= value;
 		}
 		
 		public static void RaisePlayerInputKeyDownEvent(KeyCode keyCode)
@@ -53,6 +60,15 @@ namespace PeanutDashboard._02_BattleDash.Events
 				return;
 			}
 			_playerMobileTouchPosition.Invoke(mobPosition);
+		}
+		
+		public static void RaisePlayerMobileShootPositionEvent(Vector2 mobPosition)
+		{
+			if (_playerMobileShootPosition == null){
+				LoggerService.LogWarning($"{nameof(ServerPlayerInputEvents)}::{nameof(RaisePlayerMobileShootPositionEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_playerMobileShootPosition.Invoke(mobPosition);
 		}
 	}
 }
