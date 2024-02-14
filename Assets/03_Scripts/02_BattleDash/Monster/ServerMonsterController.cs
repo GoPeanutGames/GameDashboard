@@ -1,6 +1,7 @@
 ﻿using System;
 using PeanutDashboard._02_BattleDash.Interaction;
 using PeanutDashboard._02_BattleDash.Model;
+using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using Unity.Netcode.Components;
@@ -46,6 +47,9 @@ namespace PeanutDashboard._02_BattleDash.Monster
 
 		private void Update()
 		{
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			this.transform.position += Vector3.left * (_monsterType.monsterSpeed * NetworkManager.ServerTime.FixedDeltaTime);
 			if (!_destroyed && this.transform.position.x < -60){
 				_destroyed = true;

@@ -1,6 +1,7 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
 #if !SERVER
+using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Utils.WebGL;
 #endif
 using Unity.Netcode;
@@ -14,17 +15,36 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 
 		private void OnEnable()
 		{
-			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
 #if SERVER
+			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
 			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchMoveChanged;
 #endif
 #if !SERVER
 			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.LandscapeLeft;
 			}
+			ClientUIEvents.OnShowTooltips += OnShowTooltips;
+			ClientUIEvents.OnHideTooltips += OnUnpauseGame;
 #endif
 		}
 
+		private void OnShowTooltips(bool _)
+		{
+			OnPauseGame();
+		}
+		
+		private void OnPauseGame()
+		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPauseGame)}");
+			SendPlayerPaused_ServerRpc();
+		}
+
+		private void OnUnpauseGame()
+		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnUnpauseGame)}");
+			SendPlayerUnPaused_ServerRpc();
+		}
+		
 		private void ServerSpawnedVisual(GameObject visual)
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(ServerSpawnedVisual)}");
@@ -33,17 +53,20 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			visual.transform.localPosition = new Vector3(-20, 0, 0);
 		}
 
+#if !SERVER
 		private void Update()
 		{
-#if !SERVER
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			if (WebGLUtils.IsWebMobile){
 				CheckForMobileInput();
 			}
 			else{
 				CheckForDesktopInput();
 			}
-#endif
 		}
+#endif
 
 		private void CheckForMobileInput()
 		{
@@ -107,13 +130,14 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		{
 #if SERVER
 			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchMoveChanged;
+			ServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
 #endif
 #if !SERVER
 			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.Portrait;
 			}
+			ClientUIEvents.OnShowTooltips -= OnShowTooltips;
 #endif
-			ServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
 		}
 
 		[ServerRpc]
@@ -128,6 +152,20 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		{
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerKeyUp_ServerRpc)}- press: {keyCode}");
 			ServerPlayerInputEvents.RaisePlayerInputKeyUpEvent(keyCode);
+		}
+
+		[ServerRpc]
+		private void SendPlayerPaused_ServerRpc()
+		{
+			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerPaused_ServerRpc)}");
+			ServerGameStateEvents.RaisePauseTriggeredEvent();
+		}
+
+		[ServerRpc]
+		private void SendPlayerUnPaused_ServerRpc()
+		{
+			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerUnPaused_ServerRpc)}");
+			ServerGameStateEvents.RaiseUnPauseTriggeredEvent();
 		}
 	}
 }

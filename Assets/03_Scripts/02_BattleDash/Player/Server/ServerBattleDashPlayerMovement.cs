@@ -1,11 +1,12 @@
 ﻿using PeanutDashboard._02_BattleDash.Events;
-using PeanutDashboard.Utils.Math;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;
 #if SERVER
+using PeanutDashboard.Utils.Math;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard._02_BattleDash.State;
 #endif
 
 namespace PeanutDashboard._02_BattleDash.Player.Server
@@ -46,6 +47,9 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 
 		private void ServerUpdate()
 		{
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			_directionChangeTimer += NetworkManager.ServerTime.FixedDeltaTime;
 			if (_directionChangeTimer < BattleDashConfig.MovementDirectionChangeTime){
 				_currentMovement =

@@ -38,6 +38,5 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			}
 #endif
 		}
-
 	}
 }

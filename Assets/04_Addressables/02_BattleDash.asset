@@ -437,6 +437,90 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e95ab9d8b2c96854bb177f8a5835cb9f
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Home button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 515a6dd16f79b854789a283625b796ca
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Mute Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29248e60d547d2c47a9e2cf8d7677068
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Tooltip button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e14fd2e9186b58d488d800ab377d09ee
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Unmute Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 143c642e573643347b290f11dbdcd8df
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/Avatar Badge Blummer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05731ec5d141347419edb6b99a025645
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/HP Bar 100a.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83893b537f594a441b5c718629811faa
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/HP Bar Background.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12402150dbf3ee048a07cba5b2ad8fa0
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/HP Bars.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45f1b11f563d07b43b39b5b3d9058ce1
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/Points Panel.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 371d86faee6384e4bb4da501c5404843
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/Profile Badge.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adbb51efcf08fa64ea3ea1e9e4450926
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/How to Play mobile.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c96c1517c8870a6498da1cd3989d6c4c
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/How to Play.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 865020f18623ce9409f27a8a0d634434
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Start Now.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea81eac72a623984395840b7950aa234
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/X close button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

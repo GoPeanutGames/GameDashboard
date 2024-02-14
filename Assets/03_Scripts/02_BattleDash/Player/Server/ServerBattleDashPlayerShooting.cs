@@ -1,4 +1,5 @@
 ﻿using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;
@@ -38,6 +39,9 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		
 		private void Update()
 		{
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			_shootTimer -= NetworkManager.ServerTime.FixedDeltaTime;
 			if (_shootTimer <= 0){
 				_shootTimer = BattleDashConfig.ShootingCooldown;
