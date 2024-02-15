@@ -10,6 +10,9 @@ namespace PeanutDashboard._02_BattleDash.UI.Win
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
 		private GameObject _wonUI;
+		
+		[SerializeField]
+		private AudioClip _audioClip;
 
 		private void OnEnable()
 		{
@@ -24,6 +27,7 @@ namespace PeanutDashboard._02_BattleDash.UI.Win
 		private void OnShowGameOver()
 		{
 			_wonUI.Activate();
+			BattleDashAudioEvents.RaisePlaySfxEvent(_audioClip,1);
 		}
 	}
 }

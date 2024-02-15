@@ -2,6 +2,7 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard._02_BattleDash.Interaction;
 using PeanutDashboard._02_BattleDash.Model;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using Unity.Netcode.Components;
@@ -46,6 +47,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		[ClientRpc]
 		private void SendClientPlayerDied_ClientRpc()
 		{
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(SendClientPlayerDied_ClientRpc)}");
 			_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
 			BattleDashClientUIEvents.RaiseShowGameOverEvent();
 		}

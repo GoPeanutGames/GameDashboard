@@ -1070,6 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wonUI: {fileID: 1138682150}
+  _audioClip: {fileID: 8300000, guid: c4f388c9e7400844bbcf7ff5ad07b49c, type: 3}
 --- !u!1 &319168776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,6 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOverUI: {fileID: 1469738005}
+  _audioClip: {fileID: 8300000, guid: 9f6fe70282d713a45975c00aa15bd83f, type: 3}
 --- !u!1 &1037131390
 GameObject:
   m_ObjectHideFlags: 0

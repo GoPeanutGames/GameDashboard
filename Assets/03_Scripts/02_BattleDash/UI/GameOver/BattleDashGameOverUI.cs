@@ -11,6 +11,9 @@ namespace PeanutDashboard._02_BattleDash.UI.GameOver
 		[SerializeField]
 		private GameObject _gameOverUI;
 
+		[SerializeField]
+		private AudioClip _audioClip;
+
 		private void OnEnable()
 		{
 			BattleDashClientUIEvents.OnShowGameOver += OnShowGameOver;
@@ -24,6 +27,7 @@ namespace PeanutDashboard._02_BattleDash.UI.GameOver
 		private void OnShowGameOver()
 		{
 			_gameOverUI.Activate();
+			BattleDashAudioEvents.RaisePlaySfxEvent(_audioClip,1);
 		}
 	}
 }

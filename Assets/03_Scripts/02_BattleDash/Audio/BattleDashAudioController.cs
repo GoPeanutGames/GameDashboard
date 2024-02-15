@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard.Shared.Logging;
 using UnityEngine;
 
 namespace PeanutDashboard._02_BattleDash.Audio
@@ -58,6 +59,7 @@ namespace PeanutDashboard._02_BattleDash.Audio
 
 		private void OnPlaySfx(AudioClip audioClip, float volume)
 		{
+			LoggerService.LogInfo($"{nameof(BattleDashAudioController)}::{nameof(OnPlaySfx)} - {audioClip.name}");
 			_sfxSource.PlayOneShot(audioClip, volume);
 		}
 		
