@@ -23,6 +23,7 @@ namespace PeanutDashboard.UnityServer.Core
 	{
 		private string _ticketId;
 		private bool _gotAssignment;
+		private bool _lobbyAssigned;
 
 		private void OnEnable()
 		{
@@ -60,17 +61,18 @@ namespace PeanutDashboard.UnityServer.Core
 			_ticketId = ticketResponse.Id;
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(CreateATicket)} - created ticket with id: {_ticketId}");
 			StartCoroutine(PollTicketStatus());
-
 		}
 
 		private IEnumerator PollTicketStatus()
 		{
+			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - start - {_gotAssignment}");
 			_gotAssignment = false;
 			do{
 				yield return new WaitForSeconds(1);
-				Debug.Log($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - wait 1 sec");
+				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - wait 1 sec");
 				GetTicketStatus();
 			} while (!_gotAssignment);
+			yield return null;
 		}
 
 		private async void GetTicketStatus()
@@ -112,14 +114,13 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(TicketAssigned)} - Ticket assigned: {multiplayAssignment.Ip}:{multiplayAssignment.Port}");
 			StartCoroutine(PingForLobby());
 		}
-
-		bool lobbyAssigned = false;
+		
 		private IEnumerator PingForLobby()
 		{
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PingForLobby)}");
-			while (!lobbyAssigned){
+			while (!_lobbyAssigned){
 				PollLobbies();
-				yield return new WaitForSeconds(0.2f);
+				yield return new WaitForSeconds(1.5f);
 			}
 		}
 
@@ -153,8 +154,13 @@ namespace PeanutDashboard.UnityServer.Core
 				NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
 				NetworkManager.Singleton.StartClient();
 				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollLobbies)} - client started");
-				lobbyAssigned = true;
+				_lobbyAssigned = true;
 			}
+		}
+
+		private void OnDestroy()
+		{
+			StopAllCoroutines();
 		}
 	}
 }

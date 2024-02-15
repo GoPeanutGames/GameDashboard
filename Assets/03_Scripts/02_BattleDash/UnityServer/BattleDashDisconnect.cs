@@ -1,5 +1,5 @@
 ﻿using PeanutDashboard.Init;
-using PeanutDashboard.Shared.Events;
+using PeanutDashboard.Shared;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;
@@ -11,22 +11,27 @@ namespace PeanutDashboard._02_BattleDash.UnityServer
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
 		private SceneInfo _sceneInfo;
+		
 #if !SERVER
 		private void OnEnable()
 		{
-			NetworkManager.Singleton.OnClientStopped += OnClientDisconnected;
+			NetworkManager.Singleton.OnClientStopped += OnClientStopped;
 		}
 
 		private void OnDisable()
 		{
-			NetworkManager.Singleton.OnClientStopped -= OnClientDisconnected;
+			if (NetworkManager.Singleton != null){
+				NetworkManager.Singleton.OnClientStopped -= OnClientStopped;
+			}
 		}
 
-		private void OnClientDisconnected(bool id)
+		private void OnClientStopped(bool stopped)
 		{
-			Debug.Log($"{nameof(BattleDashDisconnect)}::{nameof(OnClientDisconnected)}");
-			//TODO: this is called, but scene is not loaded
-			SceneLoaderEvents.Instance.RaiseLoadAndOpenSceneEvent(_sceneInfo);
+			Debug.Log($"{nameof(BattleDashDisconnect)}::{nameof(OnClientStopped)}");
+			NetworkManager.Singleton.Shutdown();
+			Destroy(NetworkManager.Singleton.gameObject);
+			Time.timeScale = 1;
+			SceneLoaderService.Instance.LoadAndOpenScene(_sceneInfo);
 		}
 #endif
 	}
