@@ -5,7 +5,6 @@ using UnityEngine;
 #if SERVER
 using PeanutDashboard.Utils.Math;
 using PeanutDashboard.Shared.Logging;
-using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard._02_BattleDash.State;
 #endif
 

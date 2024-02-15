@@ -15,6 +15,9 @@ namespace PeanutDashboard._02_BattleDash.Spawner
 		[SerializeField]
 		private GameObject _prefabToSpawn;
 		
+		[SerializeField]
+		private AudioClip _audioClip;
+		
 		private bool _clientReady;
 		private bool _isServer;
 
@@ -59,6 +62,7 @@ namespace PeanutDashboard._02_BattleDash.Spawner
 			LoggerService.LogInfo($"[CLIENT-RPC]{nameof(ServerBattleDashPlayerSpawner)}::{nameof(ShowPlayerTooltips_ClientRpc)}");
 			BattleDashClientUIEvents.RaiseShowTooltipsEvent(true);
 			BattleDashLoadingEvents.RaiseCloseLoadingEvent();
+			BattleDashAudioEvents.RaisePlayMusicEvent(_audioClip);
 		}
 
 		[ServerRpc(RequireOwnership = false)]

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4037184596
+  GlobalObjectIdHash: 2253340504
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -66,3 +66,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabToSpawn: {fileID: 170105706355484748, guid: 53e69f1651ac60e469c0b04042b2661b, type: 3}
+  _audioClip: {fileID: 8300000, guid: db67e4559580542478c19bd2588f4ca1, type: 3}

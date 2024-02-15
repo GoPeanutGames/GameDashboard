@@ -100,15 +100,17 @@ namespace PeanutDashboard.UnityServer.Core
 					break;
 				case MultiplayAssignment.StatusOptions.Failed:
 					_gotAssignment = true;
-					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Servers full, retrying in 5 seconds");
+					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Servers full, retrying in 20 seconds");
+                    MatchmakerService.Instance.DeleteTicketAsync(_ticketId);
 					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Error: {multiplayAssignment.Message}");
-					Invoke(nameof(CreateATicket), 5);
+					Invoke(nameof(CreateATicket), 20);
 					break;
 				case MultiplayAssignment.StatusOptions.Timeout:
 					_gotAssignment = true;
-					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Timeout, retrying in 5 seconds");
+					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Timeout, retrying in 20 seconds");
+                    MatchmakerService.Instance.DeleteTicketAsync(_ticketId);
 					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Ticket timed out.");
-					Invoke(nameof(CreateATicket), 5);
+					Invoke(nameof(CreateATicket), 20);
 					break;
 				default:
 					throw new InvalidOperationException();

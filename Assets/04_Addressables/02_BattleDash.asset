@@ -557,6 +557,36 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72434d8c23dcb3549937eec491530267
+    m_Address: Assets/02_Art/02_BattleDash/Music/Blummer Dies.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e911b42917180b43833e60e2f128392
+    m_Address: Assets/02_Art/02_BattleDash/Music/Blummer Shots 3.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88b4fb52f0ba253448d0d80a78ab373b
+    m_Address: Assets/02_Art/02_BattleDash/Music/Menu pressed - Popup Appearing.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d721ca713b18dc34e8762b895e648a81
+    m_Address: Assets/02_Art/02_BattleDash/Music/Someone Dies.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db67e4559580542478c19bd2588f4ca1
+    m_Address: Assets/02_Art/02_BattleDash/Music/Stage 01 - BGM.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
