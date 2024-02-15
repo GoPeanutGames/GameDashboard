@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.Picker;
+using PeanutDashboard.UnityServer.Config;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
@@ -36,7 +37,7 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(SignIn)}");
 			StartClient();
 		}
-		
+
 		private string PlayerID()
 		{
 			return AuthenticationService.Instance.PlayerId;
@@ -56,7 +57,12 @@ namespace PeanutDashboard.UnityServer.Core
 		private async void CreateATicket()
 		{
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(CreateATicket)}");
-			CreateTicketOptions options = new CreateTicketOptions(GameNetworkSyncService.GetCurrentMatchmakerLabel());
+			CreateTicketOptions options = new CreateTicketOptions(
+				GameNetworkSyncService.GetCurrentMatchmakerLabel(),
+				new Dictionary<string, object>()
+				{
+					{ "Region", ServerRegionConfig.region }
+				});
 			List<Player> players = new List<Player>() { new Player(PlayerID()) };
 			CreateTicketResponse ticketResponse = await MatchmakerService.Instance.CreateTicketAsync(players, options);
 			_ticketId = ticketResponse.Id;
@@ -121,7 +127,7 @@ namespace PeanutDashboard.UnityServer.Core
 			BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Server found, connecting");
 			StartCoroutine(PingForLobby());
 		}
-		
+
 		private IEnumerator PingForLobby()
 		{
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PingForLobby)}");
