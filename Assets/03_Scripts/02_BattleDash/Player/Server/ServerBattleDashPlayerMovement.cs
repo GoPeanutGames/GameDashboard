@@ -77,7 +77,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			Vector2 velocity = _currentSpeed * _currentMovement;
 			this.transform.Translate(velocity * NetworkManager.ServerTime.FixedDeltaTime);
 			this.transform.position = new Vector3(
-				Mathf.Clamp(this.transform.position.x, -42, -20),
+				Mathf.Clamp(this.transform.position.x, -42, 5),
 				Mathf.Clamp(this.transform.position.y, -22, 20),
 				0);
 			UpdateAnimator();

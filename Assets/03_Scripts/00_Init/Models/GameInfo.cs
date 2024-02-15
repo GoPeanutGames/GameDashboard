@@ -13,5 +13,6 @@ namespace PeanutDashboard.Init
 		public List<SceneInfo> gameScenes;
 		public SceneInfo networkEntryPointScene;
 		public string matchmakerGameLabel;
+		public string gameName;
 	}
 }

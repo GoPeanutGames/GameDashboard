@@ -58,6 +58,7 @@ namespace PeanutDashboard._02_BattleDash.Spawner
 		{
 			LoggerService.LogInfo($"[CLIENT-RPC]{nameof(ServerBattleDashPlayerSpawner)}::{nameof(ShowPlayerTooltips_ClientRpc)}");
 			BattleDashClientUIEvents.RaiseShowTooltipsEvent(true);
+			BattleDashLoadingEvents.RaiseCloseLoadingEvent();
 		}
 
 		[ServerRpc(RequireOwnership = false)]
