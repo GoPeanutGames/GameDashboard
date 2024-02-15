@@ -41,6 +41,7 @@ namespace PeanutDashboard.UnityServer.Core
 		private MultiplayEventCallbacks _serverCallbacks;
 		private IServerEvents _serverEvents;
 		private IServerQueryHandler _serverQueryHandler;
+		private float _timeout = 60f;
 #endif
 
 		private async void Start()
@@ -145,6 +146,13 @@ namespace PeanutDashboard.UnityServer.Core
 		{
 			if (_serverQueryHandler != null){
 				_serverQueryHandler.UpdateServerCheck();
+			}
+			_timeout -= Time.unscaledDeltaTime;
+			if (_timeout<=0){
+				_timeout = 60f;
+				if (NetworkManager.Singleton.ConnectedClients.Count == 0){
+					ShutdownServer();
+				}
 			}
 		}
 
