@@ -28,7 +28,7 @@ namespace PeanutDashboard._02_BattleDash.UI
 
 		private void OnCloseTooltipsButtonClick()
 		{
-			ClientUIEvents.RaiseShowTooltipsEvent(false);
+			BattleDashClientUIEvents.RaiseShowTooltipsEvent(false);
 		}
 	}
 }

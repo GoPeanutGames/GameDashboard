@@ -26,14 +26,14 @@ namespace PeanutDashboard._02_BattleDash.UI
 #if !SERVER
 		private void OnEnable()
 		{
-			ClientUIEvents.OnShowTooltips += OnShowTooltips;
-			ClientUIEvents.OnHideTooltips += OnHideTooltips;
+			BattleDashClientUIEvents.OnShowTooltips += OnShowTooltips;
+			BattleDashClientUIEvents.OnHideTooltips += OnHideTooltips;
 		}
 
 		private void OnDisable()
 		{
-			ClientUIEvents.OnShowTooltips -= OnShowTooltips;
-			ClientUIEvents.OnHideTooltips -= OnHideTooltips;
+			BattleDashClientUIEvents.OnShowTooltips -= OnShowTooltips;
+			BattleDashClientUIEvents.OnHideTooltips -= OnHideTooltips;
 		}
 
 		private void OnShowTooltips(bool first)

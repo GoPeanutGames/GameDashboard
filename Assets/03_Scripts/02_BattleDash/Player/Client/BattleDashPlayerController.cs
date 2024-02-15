@@ -23,13 +23,23 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.LandscapeLeft;
 			}
-			ClientUIEvents.OnShowTooltips += OnShowTooltips;
-			ClientUIEvents.OnHideTooltips += OnUnpauseGame;
+			BattleDashClientUIEvents.OnShowTooltips += OnShowTooltips;
+			BattleDashClientUIEvents.OnOpenEndGamePopup += OnPauseGame;
+			BattleDashClientUIEvents.OnHideTooltips += OnUnpauseGame;
+			BattleDashClientUIEvents.OnCloseEndGamePopup += OnUnpauseGame;
+			ClientActionEvents.OnPlayerRequestDisconnect += OnRequestDisconnect;
 #endif
+		}
+
+		private void OnRequestDisconnect()
+		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnRequestDisconnect)}");
+			SendRequestDisconnect_ServerRpc();
 		}
 
 		private void OnShowTooltips(bool _)
 		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnShowTooltips)}");
 			OnPauseGame();
 		}
 		
@@ -136,7 +146,11 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.Portrait;
 			}
-			ClientUIEvents.OnShowTooltips -= OnShowTooltips;
+			BattleDashClientUIEvents.OnShowTooltips -= OnShowTooltips;
+			BattleDashClientUIEvents.OnOpenEndGamePopup -= OnPauseGame;
+			BattleDashClientUIEvents.OnHideTooltips -= OnUnpauseGame;
+			BattleDashClientUIEvents.OnCloseEndGamePopup -= OnUnpauseGame;
+			ClientActionEvents.OnPlayerRequestDisconnect -= OnRequestDisconnect;
 #endif
 		}
 
@@ -166,6 +180,13 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		{
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerUnPaused_ServerRpc)}");
 			ServerGameStateEvents.RaiseUnPauseTriggeredEvent();
+		}
+		
+		[ServerRpc]
+		private void SendRequestDisconnect_ServerRpc()
+		{
+			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendRequestDisconnect_ServerRpc)}");
+			NetworkManager.Shutdown();
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using PeanutDashboard._02_BattleDash.Events;
+﻿using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +29,7 @@ namespace PeanutDashboard._02_BattleDash.UI
 
 		private void OnCloseTooltipsButtonClick()
 		{
-			ClientUIEvents.RaiseHideTooltipsEvent();
+			BattleDashClientUIEvents.RaiseHideTooltipsEvent();
 		}
 	}
 }

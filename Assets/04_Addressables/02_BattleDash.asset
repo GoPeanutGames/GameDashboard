@@ -521,6 +521,42 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d62f030eecc7248479e310d7fdd29fe3
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/Dashboard General Popup.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89de5aeecb578424d9fd4ca23a312590
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/No Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eec678a2ee95b314bb4acefa12eda00e
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/Yes Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad36d97aef986e24c82ed078d89331de
+    m_Address: Assets/02_Art/02_BattleDash/Fonts/Generic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f8a144511fb3924daeb48728d7fecc7
+    m_Address: Assets/02_Art/02_BattleDash/Fonts/Generic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 930e95fee5646704c8834f3e2a3d0420
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/overlayblack.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

@@ -6,10 +6,16 @@ using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.Picker;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
 using Unity.Services.Matchmaker;
 using Unity.Services.Matchmaker.Models;
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
 using UnityEngine;
 using AuthenticationService = Unity.Services.Authentication.AuthenticationService;
+using Player = Unity.Services.Matchmaker.Models.Player;
 
 namespace PeanutDashboard.UnityServer.Core
 {
@@ -101,11 +107,54 @@ namespace PeanutDashboard.UnityServer.Core
 			}
 		}
 
-		private void TicketAssigned(MultiplayAssignment multiplayAssignment)
+		private async Task TicketAssigned(MultiplayAssignment multiplayAssignment)
 		{
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(TicketAssigned)} - Ticket assigned: {multiplayAssignment.Ip}:{multiplayAssignment.Port}");
-			NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(multiplayAssignment.Ip, (ushort)multiplayAssignment.Port);
-			NetworkManager.Singleton.StartClient();
+			StartCoroutine(PingForLobby());
+		}
+
+		bool lobbyAssigned = false;
+		private IEnumerator PingForLobby()
+		{
+			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PingForLobby)}");
+			while (!lobbyAssigned){
+				PollLobbies();
+				yield return new WaitForSeconds(0.2f);
+			}
+		}
+
+		private async Task PollLobbies()
+		{
+			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollLobbies)}");
+			var options = new QueryLobbiesOptions();
+			options.Count = 25;
+			options.Filters = new List<QueryFilter>()
+			{
+				new QueryFilter(
+					field: QueryFilter.FieldOptions.AvailableSlots,
+					op: QueryFilter.OpOptions.GT,
+					value: "0"
+				),
+				new QueryFilter(
+					field: QueryFilter.FieldOptions.IsLocked,
+					op: QueryFilter.OpOptions.EQ,
+					value: "0"
+				)
+			};
+			var lobbies = await Lobbies.Instance.QueryLobbiesAsync(options);
+			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollLobbies)} - lobbies: {lobbies.Results.Count}");
+			if (lobbies.Results.Count > 0){
+				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollLobbies)} - entering lobby");
+				Lobby lobby = lobbies.Results[0];
+				var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id);
+				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollLobbies)} - entering lobby - {lobby.Id}");
+				string joinCode = joiningLobby.Data["joinCode"].Value;
+				JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+				NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
+				NetworkManager.Singleton.StartClient();
+				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollLobbies)} - client started");
+				lobbyAssigned = true;
+			}
 		}
 	}
 }
