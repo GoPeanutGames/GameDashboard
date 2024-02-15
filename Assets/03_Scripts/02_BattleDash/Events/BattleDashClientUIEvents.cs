@@ -9,6 +9,8 @@ namespace PeanutDashboard._02_BattleDash.Events
 		private static UnityAction _hideTooltips;
 		private static UnityAction _openEndGamePopup;
 		private static UnityAction _closeEndGamePopup;
+		private static UnityAction _showGameOver;
+		private static UnityAction _showWon;
 
 		public static event UnityAction<bool> OnShowTooltips
 		{
@@ -32,6 +34,18 @@ namespace PeanutDashboard._02_BattleDash.Events
 		{
 			add => _closeEndGamePopup += value;
 			remove => _closeEndGamePopup -= value;
+		}
+		
+		public static event UnityAction OnShowGameOver
+		{
+			add => _showGameOver += value;
+			remove => _showGameOver -= value;
+		}
+		
+		public static event UnityAction OnShowWon
+		{
+			add => _showWon += value;
+			remove => _showWon -= value;
 		}
 		
 		public static void RaiseShowTooltipsEvent(bool first)
@@ -68,6 +82,24 @@ namespace PeanutDashboard._02_BattleDash.Events
 				return;
 			}
 			_closeEndGamePopup.Invoke();
+		}
+		
+		public static void RaiseShowGameOverEvent()
+		{
+			if (_showGameOver == null){
+				LoggerService.LogWarning($"{nameof(BattleDashClientUIEvents)}::{nameof(RaiseShowGameOverEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_showGameOver.Invoke();
+		}
+		
+		public static void RaiseShowWonEvent()
+		{
+			if (_showWon == null){
+				LoggerService.LogWarning($"{nameof(BattleDashClientUIEvents)}::{nameof(RaiseShowWonEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_showWon.Invoke();
 		}
 	}
 }

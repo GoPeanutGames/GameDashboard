@@ -1,5 +1,7 @@
-﻿using PeanutDashboard._02_BattleDash.Events;
+﻿#if SERVER
+using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard._02_BattleDash.State;
+#endif
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using UnityEngine;

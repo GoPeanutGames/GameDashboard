@@ -70,7 +70,7 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - start - {_gotAssignment}");
 			_gotAssignment = false;
 			do{
-				yield return new WaitForSeconds(1);
+				yield return new WaitForSeconds(1.2f);
 				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - wait 1 sec");
 				GetTicketStatus();
 			} while (!_gotAssignment);
@@ -100,17 +100,15 @@ namespace PeanutDashboard.UnityServer.Core
 					break;
 				case MultiplayAssignment.StatusOptions.Failed:
 					_gotAssignment = true;
-					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Servers full, retrying in 20 seconds");
-                    MatchmakerService.Instance.DeleteTicketAsync(_ticketId);
+					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Servers full, retrying in 30 seconds");
 					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Error: {multiplayAssignment.Message}");
-					Invoke(nameof(CreateATicket), 20);
+					Invoke(nameof(CreateATicket), 30);
 					break;
 				case MultiplayAssignment.StatusOptions.Timeout:
 					_gotAssignment = true;
-					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Timeout, retrying in 20 seconds");
-                    MatchmakerService.Instance.DeleteTicketAsync(_ticketId);
+					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Timeout, retrying in 30 seconds");
 					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Ticket timed out.");
-					Invoke(nameof(CreateATicket), 20);
+					Invoke(nameof(CreateATicket), 30);
 					break;
 				default:
 					throw new InvalidOperationException();

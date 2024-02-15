@@ -16,14 +16,16 @@ namespace PeanutDashboard._02_BattleDash.Audio
 
 		private void OnEnable()
 		{
-			BattleDashAudioEvents.OnPlayMusic += OnPlayMusic;
+			BattleDashAudioEvents.OnFadeInMusic += OnFadeInMusic;
+			BattleDashAudioEvents.OnFadeOutMusic += OnFadeOutMusic;
 			BattleDashAudioEvents.OnPlaySfx += OnPlaySfx;
 			BattleDashAudioEvents.OnTriggerMuteUnMute += OnTriggerMuteUnMute;
 		}
 
 		private void OnDisable()
 		{
-			BattleDashAudioEvents.OnPlayMusic -= OnPlayMusic;
+			BattleDashAudioEvents.OnFadeInMusic -= OnFadeInMusic;
+			BattleDashAudioEvents.OnFadeOutMusic -= OnFadeOutMusic;
 			BattleDashAudioEvents.OnPlaySfx -= OnPlaySfx;
 			BattleDashAudioEvents.OnTriggerMuteUnMute -= OnTriggerMuteUnMute;
 		}
@@ -35,13 +37,23 @@ namespace PeanutDashboard._02_BattleDash.Audio
 			_sfxSource.mute = muted;
 		}
 
-		private void OnPlayMusic(AudioClip audioClip)
+		private void OnFadeInMusic(AudioClip audioClip)
 		{
-			_musicSource.loop = true;
-			_musicSource.clip = audioClip;
-			_musicSource.volume = 0;
-			_musicSource.Play();
-			FadeInMusic();
+			if (audioClip != _musicSource.clip){
+				_musicSource.loop = true;
+				_musicSource.clip = audioClip;
+				_musicSource.volume = 0;
+				_musicSource.Play();
+				FadeInMusic();
+			}
+			else{
+				FadeInMusic();
+			}
+		}
+
+		private void OnFadeOutMusic(AudioClip audioClip)
+		{
+			FadeOutMusic();
 		}
 
 		private void OnPlaySfx(AudioClip audioClip, float volume)
@@ -63,7 +75,7 @@ namespace PeanutDashboard._02_BattleDash.Audio
 			float currentTime = 0;
 			float start = audioSource.volume;
 			while (currentTime < duration) {
-				currentTime += Time.deltaTime;
+				currentTime += Time.unscaledDeltaTime;
 				audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
 				yield return null;
 			}

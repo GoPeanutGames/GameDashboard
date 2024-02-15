@@ -151,6 +151,7 @@ namespace PeanutDashboard.UnityServer.Core
 			if (_timeout<=0){
 				_timeout = 60f;
 				if (NetworkManager.Singleton.ConnectedClients.Count == 0){
+					LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(Update)} - no player for 60 sec, shutting down");
 					ShutdownServer();
 				}
 			}

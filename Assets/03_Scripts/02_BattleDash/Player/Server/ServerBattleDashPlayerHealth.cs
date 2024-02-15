@@ -1,4 +1,5 @@
 ﻿using System;
+using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard._02_BattleDash.Interaction;
 using PeanutDashboard._02_BattleDash.Model;
 using PeanutDashboard.Utils.Misc;
@@ -17,6 +18,9 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		private FactionType _factionType;
 
 		[SerializeField]
+		private Animator _animator;
+		
+		[SerializeField]
 		private NetworkAnimator _networkAnimator;
 		
 		[SerializeField]
@@ -34,9 +38,16 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			if (_health <= 0){
 				Debug.Log($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(TakeDamage)} - die");
 				_networkAnimator.SetTrigger(Die);
-				//TODO: animation event when die is done to stop the game (pause) and show game over overlay
+				SendClientPlayerDied_ClientRpc();
 			}
 #endif
+		}
+
+		[ClientRpc]
+		private void SendClientPlayerDied_ClientRpc()
+		{
+			_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+			BattleDashClientUIEvents.RaiseShowGameOverEvent();
 		}
 	}
 }

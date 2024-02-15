@@ -599,6 +599,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf698a98b42c82d4f9a57332bde3cf40
+    m_Address: Assets/02_Art/02_BattleDash/Areas/Beginning Spaceship.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

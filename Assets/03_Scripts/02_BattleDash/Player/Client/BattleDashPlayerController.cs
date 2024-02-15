@@ -1,5 +1,6 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
+using PeanutDashboard.Utils.Misc;
 #if !SERVER
 using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Utils.WebGL;
@@ -11,6 +12,10 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 {
 	public class BattleDashPlayerController : NetworkBehaviour
 	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private AudioClip _audioClip;
+		
 		private readonly NetworkVariable<Vector2> _mobileTouchMove = new NetworkVariable<Vector2>(Vector2.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
 		private void OnEnable()
@@ -25,6 +30,8 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			}
 			BattleDashClientUIEvents.OnShowTooltips += OnShowTooltips;
 			BattleDashClientUIEvents.OnOpenEndGamePopup += OnPauseGame;
+			BattleDashClientUIEvents.OnShowGameOver += OnPauseGame;
+			BattleDashClientUIEvents.OnShowWon += OnPauseGame;
 			BattleDashClientUIEvents.OnHideTooltips += OnUnpauseGame;
 			BattleDashClientUIEvents.OnCloseEndGamePopup += OnUnpauseGame;
 			ClientActionEvents.OnPlayerRequestDisconnect += OnRequestDisconnect;
@@ -46,12 +53,14 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void OnPauseGame()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPauseGame)}");
+			BattleDashAudioEvents.RaiseFadeOutMusicEvent(_audioClip);
 			SendPlayerPaused_ServerRpc();
 		}
 
 		private void OnUnpauseGame()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnUnpauseGame)}");
+			BattleDashAudioEvents.RaiseFadeInMusicEvent(_audioClip);
 			SendPlayerUnPaused_ServerRpc();
 		}
 		
@@ -148,6 +157,8 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			}
 			BattleDashClientUIEvents.OnShowTooltips -= OnShowTooltips;
 			BattleDashClientUIEvents.OnOpenEndGamePopup -= OnPauseGame;
+			BattleDashClientUIEvents.OnShowGameOver -= OnPauseGame;
+			BattleDashClientUIEvents.OnShowWon -= OnPauseGame;
 			BattleDashClientUIEvents.OnHideTooltips -= OnUnpauseGame;
 			BattleDashClientUIEvents.OnCloseEndGamePopup -= OnUnpauseGame;
 			ClientActionEvents.OnPlayerRequestDisconnect -= OnRequestDisconnect;

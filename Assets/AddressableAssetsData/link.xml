@@ -30,8 +30,10 @@
     <type fullname="PeanutDashboard._02_BattleDash.UI.EndGame.BattleDashExitButton" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.UI.EndGame.BattleDashGoHomePopup" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.UI.EndGame.BattleDashHomeButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.GameOver.BattleDashGameOverUI" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.UI.Loading.BattleDashLoadingUI" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.UI.OpenTooltipsButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.Win.BattleDashWinUI" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.UnityServer.BattleDashDisconnect" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.DashboardController" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Auth.AvatarGroupDisplay" preserve="all" />

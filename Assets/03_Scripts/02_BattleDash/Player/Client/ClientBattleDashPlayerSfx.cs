@@ -15,7 +15,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		
 		public void PlayShootSfx()
 		{
-			BattleDashAudioEvents.RaisePlaySfxEvent(_sfxClip, 0.5f);
+			BattleDashAudioEvents.RaisePlaySfxEvent(_sfxClip, 0.6f);
 		}
 		
 		public void PlayDeathSfx()
