@@ -497,14 +497,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: adbb51efcf08fa64ea3ea1e9e4450926
-    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/How to Play mobile.png
+  - m_GUID: c3f1cb53024d93847a2545b2b8118d2e
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Hand Holding Phone with Texts.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c96c1517c8870a6498da1cd3989d6c4c
-    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/How to Play.png
+  - m_GUID: dbe2f099b57a4254e9c89168054d3662
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Deskstop Tooltip Only.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - BattleDash
@@ -583,6 +583,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: db67e4559580542478c19bd2588f4ca1
     m_Address: Assets/02_Art/02_BattleDash/Music/Stage 01 - BGM.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65886caf35e136543be1726f52eedd2d
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/X close button _hov.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc76c890b4539d849b74fcdaed5ada8d
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Start Now _hov.png
     m_ReadOnly: 0
     m_SerializedLabels:
     - BattleDash
