@@ -44,7 +44,7 @@ namespace PeanutDashboard._02_BattleDash.Areas
 			LoggerService.LogInfo($"{nameof(ServerBattleDashAreaSpawner)}::{nameof(SpawnArea)}");
 			int randomIndex = 0;//Random.Range(0, _areaPrefabs.Count);
 			LoggerService.LogInfo($"{nameof(ServerBattleDashAreaSpawner)}::{nameof(SpawnArea)} - index: {randomIndex}");
-			if (_areaPrefabs.Count == 2){//TODO: should be 0 
+			if (_areaPrefabs.Count == 0){ 
 				SendClientWon_ClientRpc();
 			}
 			GameObject prefab = _areaPrefabs[randomIndex];
