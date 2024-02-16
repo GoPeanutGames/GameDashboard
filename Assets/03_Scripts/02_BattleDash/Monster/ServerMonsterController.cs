@@ -100,7 +100,7 @@ namespace PeanutDashboard._02_BattleDash.Monster
 
 		public void TriggerDeathSfx()
 		{
-			BattleDashAudioEvents.RaisePlaySfxEvent(_dieSfxClip, 1);
+			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_dieSfxClip, 1);
 		}
 
 		public void Remove()

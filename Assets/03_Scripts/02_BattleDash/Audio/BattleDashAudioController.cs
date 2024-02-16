@@ -14,21 +14,23 @@ namespace PeanutDashboard._02_BattleDash.Audio
 		
 		[SerializeField]
 		private AudioSource _sfxSource;
+		
+#if !SERVER
 
 		private void OnEnable()
 		{
-			BattleDashAudioEvents.OnFadeInMusic += OnFadeInMusic;
-			BattleDashAudioEvents.OnFadeOutMusic += OnFadeOutMusic;
-			BattleDashAudioEvents.OnPlaySfx += OnPlaySfx;
-			BattleDashAudioEvents.OnTriggerMuteUnMute += OnTriggerMuteUnMute;
+			ClientBattleDashAudioEvents.OnFadeInMusic += OnFadeInMusic;
+			ClientBattleDashAudioEvents.OnFadeOutMusic += OnFadeOutMusic;
+			ClientBattleDashAudioEvents.OnPlaySfx += OnPlaySfx;
+			ClientBattleDashAudioEvents.OnTriggerMuteUnMute += OnTriggerMuteUnMute;
 		}
 
 		private void OnDisable()
 		{
-			BattleDashAudioEvents.OnFadeInMusic -= OnFadeInMusic;
-			BattleDashAudioEvents.OnFadeOutMusic -= OnFadeOutMusic;
-			BattleDashAudioEvents.OnPlaySfx -= OnPlaySfx;
-			BattleDashAudioEvents.OnTriggerMuteUnMute -= OnTriggerMuteUnMute;
+			ClientBattleDashAudioEvents.OnFadeInMusic -= OnFadeInMusic;
+			ClientBattleDashAudioEvents.OnFadeOutMusic -= OnFadeOutMusic;
+			ClientBattleDashAudioEvents.OnPlaySfx -= OnPlaySfx;
+			ClientBattleDashAudioEvents.OnTriggerMuteUnMute -= OnTriggerMuteUnMute;
 		}
 
 		private void OnTriggerMuteUnMute()
@@ -52,9 +54,9 @@ namespace PeanutDashboard._02_BattleDash.Audio
 			}
 		}
 
-		private void OnFadeOutMusic(AudioClip audioClip)
+		private void OnFadeOutMusic(float duration)
 		{
-			FadeOutMusic();
+			FadeOutMusic(duration);
 		}
 
 		private void OnPlaySfx(AudioClip audioClip, float volume)
@@ -68,9 +70,9 @@ namespace PeanutDashboard._02_BattleDash.Audio
 			StartCoroutine(StartFade(_musicSource, 1, 1f));
 		}
 
-		private void FadeOutMusic() {
+		private void FadeOutMusic(float duration) {
 			StopAllCoroutines();
-			StartCoroutine(StartFade(_musicSource, 1, 0f));
+			StartCoroutine(StartFade(_musicSource, duration, 0f));
 		}
 
 		private static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume) {
@@ -83,5 +85,6 @@ namespace PeanutDashboard._02_BattleDash.Audio
 			}
 			yield break;
 		}
+#endif
 	}
 }

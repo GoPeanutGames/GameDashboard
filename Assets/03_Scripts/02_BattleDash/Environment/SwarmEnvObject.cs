@@ -43,7 +43,7 @@ namespace PeanutDashboard._02_BattleDash.Environment
 			this.transform.Translate(Vector3.left * (_currentSpeed * Time.deltaTime));
 			if (!_clipPlayed && this.transform.position.x < 0){
 				_clipPlayed = true;
-				BattleDashAudioEvents.RaisePlaySfxEvent(_clip,1f);
+				ClientBattleDashAudioEvents.RaisePlaySfxEvent(_clip,1f);
 			}
 		}
 #endif

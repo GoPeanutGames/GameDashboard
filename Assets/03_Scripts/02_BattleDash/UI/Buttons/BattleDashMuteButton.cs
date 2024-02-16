@@ -45,7 +45,7 @@ namespace PeanutDashboard._02_BattleDash.UI.Buttons
 		private void OnMuteButtonClick()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashMuteButton)}::{nameof(OnMuteButtonClick)}");
-			BattleDashAudioEvents.RaiseTriggerMuteUnMuteEvent();
+			ClientBattleDashAudioEvents.RaiseTriggerMuteUnMuteEvent();
 			_image.sprite = BattleDashAudioController.muted ? _muteSprite : _unMuteSprite;
 		}
 	}

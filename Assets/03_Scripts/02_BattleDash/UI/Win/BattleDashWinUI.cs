@@ -1,4 +1,5 @@
-﻿using PeanutDashboard._02_BattleDash.Events;
+﻿using System.Collections;
+using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Utils;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace PeanutDashboard._02_BattleDash.UI.Win
 		
 		[SerializeField]
 		private AudioClip _audioClip;
-
+#if !SERVER
 		private void OnEnable()
 		{
 			BattleDashClientUIEvents.OnShowWon += OnShowGameOver;
@@ -26,8 +27,16 @@ namespace PeanutDashboard._02_BattleDash.UI.Win
 
 		private void OnShowGameOver()
 		{
-			_wonUI.Activate();
-			BattleDashAudioEvents.RaisePlaySfxEvent(_audioClip,1);
+			ClientBattleDashAudioEvents.RaiseFadeOutMusicEvent(3f);
+			StartCoroutine(ShowWonUI());
 		}
+
+		private IEnumerator ShowWonUI()
+		{
+			yield return new WaitForSecondsRealtime(3.1f);
+			_wonUI.Activate();
+			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_audioClip,1);
+		}
+#endif
 	}
 }

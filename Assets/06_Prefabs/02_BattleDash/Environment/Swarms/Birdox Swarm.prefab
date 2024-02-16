@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 90cf067f9ec0f4243a1f1302ed39d504, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minSpeed: 15
   _maxSpeed: 30
-  _minScale: 1
-  _maxScale: 3
+  _minScale: 2
+  _maxScale: 4.5
   _clip: {fileID: 8300000, guid: 2262c3dd1a2a7e946861adb5cfc62510, type: 3}
   _currentSpeed: 0
   _clipPlayed: 0

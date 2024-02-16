@@ -42,7 +42,7 @@ namespace PeanutDashboard._02_BattleDash.UI.EndGame
 		private IEnumerator PlaySfx()
 		{
 			yield return new WaitForSecondsRealtime(0.3f);
-			BattleDashAudioEvents.RaisePlaySfxEvent(_audioClip, 1);
+			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_audioClip, 1);
 		}
 	}
 }

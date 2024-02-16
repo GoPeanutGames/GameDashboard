@@ -60,7 +60,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		private void SendClientPlayerDamaged_ClientRpc()
 		{
 			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(SendClientPlayerDamaged_ClientRpc)}");
-			BattleDashAudioEvents.RaisePlaySfxEvent(_damagedClip, 1f);
+			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_damagedClip, 1f);
 		}
 	}
 }

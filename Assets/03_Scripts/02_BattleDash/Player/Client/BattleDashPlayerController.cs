@@ -53,14 +53,14 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void OnPauseGame()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPauseGame)}");
-			BattleDashAudioEvents.RaiseFadeOutMusicEvent(_audioClip);
+			ClientBattleDashAudioEvents.RaiseFadeOutMusicEvent(1f);
 			SendPlayerPaused_ServerRpc();
 		}
 
 		private void OnUnpauseGame()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnUnpauseGame)}");
-			BattleDashAudioEvents.RaiseFadeInMusicEvent(_audioClip);
+			ClientBattleDashAudioEvents.RaiseFadeInMusicEvent(_audioClip);
 			SendPlayerUnPaused_ServerRpc();
 		}
 		

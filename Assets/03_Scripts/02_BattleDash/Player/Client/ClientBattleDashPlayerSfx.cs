@@ -15,12 +15,12 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		
 		public void PlayShootSfx()
 		{
-			BattleDashAudioEvents.RaisePlaySfxEvent(_sfxClip, 0.7f);
+			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_sfxClip, 0.7f);
 		}
 		
 		public void PlayDeathSfx()
 		{
-			BattleDashAudioEvents.RaisePlaySfxEvent(_deathClip, 1);
+			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_deathClip, 1);
 		}
 	}
 }
