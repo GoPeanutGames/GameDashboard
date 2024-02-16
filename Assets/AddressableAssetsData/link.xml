@@ -10,6 +10,7 @@
     <type fullname="PeanutDashboard._02_BattleDash.Config.AreaMonsterSpawnDefinition" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Config.MonsterSpawnLocation" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Environment.GenericEnvObject" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.Environment.SwarmEnvObject" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Model.AreaType" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Model.FactionType" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Model.MonsterType" preserve="all" />

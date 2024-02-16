@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4221485071837600400}
   - component: {fileID: -217432302357571571}
   - component: {fileID: -9107702021108894522}
+  - component: {fileID: -3924835023439373207}
   m_Layer: 0
   m_Name: Area_Stage-01-01
   m_TagString: Untagged
@@ -111,6 +112,25 @@ MonoBehaviour:
   - {fileID: 860670016355383633, guid: d7ee48d33b27a084dbccd1834c3b4b6a, type: 3}
   _minMaxX: {x: 60, y: 80}
   _minMaxY: {x: -28, y: 28}
-  _minTimeToSpawn: 2
-  _maxTimeToSpawn: 4
+  _minTimeToSpawn: 0.5
+  _maxTimeToSpawn: 2
+  _currentTimer: 0
+--- !u!114 &-3924835023439373207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5387249929993243281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1df09b420414a0b861e4fafb9b8e7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _envObjectPrefabs:
+  - {fileID: 1351315040040849365, guid: 8bcadf68ebe208244a1c535e84759341, type: 3}
+  _minMaxX: {x: 60, y: 80}
+  _minMaxY: {x: -28, y: 28}
+  _minTimeToSpawn: 3
+  _maxTimeToSpawn: 6
   _currentTimer: 0

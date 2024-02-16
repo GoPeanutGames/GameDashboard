@@ -25,6 +25,9 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 		private NetworkAnimator _networkAnimator;
 		
 		[SerializeField]
+		private AudioClip _damagedClip;
+		
+		[SerializeField]
 		private int _health;
 		
 		private static readonly int Hit = Animator.StringToHash("Hit");
@@ -36,6 +39,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			Debug.Log($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(TakeDamage)}");
 			_health -= amount;
 			_networkAnimator.SetTrigger(Hit);
+			SendClientPlayerDamaged_ClientRpc();
 			if (_health <= 0){
 				Debug.Log($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(TakeDamage)} - die");
 				_networkAnimator.SetTrigger(Die);
@@ -50,6 +54,13 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(SendClientPlayerDied_ClientRpc)}");
 			_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
 			BattleDashClientUIEvents.RaiseShowGameOverEvent();
+		}
+		
+		[ClientRpc]
+		private void SendClientPlayerDamaged_ClientRpc()
+		{
+			LoggerService.LogInfo($"{nameof(ServerBattleDashPlayerHealth)}::{nameof(SendClientPlayerDamaged_ClientRpc)}");
+			BattleDashAudioEvents.RaisePlaySfxEvent(_damagedClip, 1f);
 		}
 	}
 }
