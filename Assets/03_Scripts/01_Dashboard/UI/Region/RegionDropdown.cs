@@ -1,4 +1,5 @@
 ﻿using System;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.UnityServer.Config;
 using PeanutDashboard.Utils.Misc;
 using TMPro;
@@ -11,7 +12,12 @@ namespace PeanutDashboard.Dashboard.UI.Region
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private TMP_Dropdown _dropdown;
-		
+
+		private void Awake()
+		{
+			_dropdown = GetComponent<TMP_Dropdown>();
+		}
+
 		private void OnEnable()
 		{
 			_dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
@@ -24,7 +30,8 @@ namespace PeanutDashboard.Dashboard.UI.Region
 
 		private void OnDropdownValueChanged(int index)
 		{
-			string value = _dropdown.options[0].text;
+			LoggerService.LogInfo($"{nameof(RegionDropdown)}::{nameof(OnDropdownValueChanged)} - {_dropdown.options[index].text}");
+			string value = _dropdown.options[index].text;
 			ServerRegionConfig.region = value;
 		}
 	}

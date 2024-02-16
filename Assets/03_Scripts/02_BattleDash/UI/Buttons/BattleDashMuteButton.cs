@@ -1,5 +1,6 @@
 ﻿using PeanutDashboard._02_BattleDash.Audio;
 using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,6 +44,7 @@ namespace PeanutDashboard._02_BattleDash.UI.Buttons
 
 		private void OnMuteButtonClick()
 		{
+			LoggerService.LogInfo($"{nameof(BattleDashMuteButton)}::{nameof(OnMuteButtonClick)}");
 			BattleDashAudioEvents.RaiseTriggerMuteUnMuteEvent();
 			_image.sprite = BattleDashAudioController.muted ? _muteSprite : _unMuteSprite;
 		}

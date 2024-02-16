@@ -363,7 +363,6 @@ GameObject:
   m_Component:
   - component: {fileID: 111940331}
   - component: {fileID: 111940330}
-  - component: {fileID: 111940329}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -371,14 +370,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &111940329
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111940328}
-  m_Enabled: 1
 --- !u!20 &111940330
 Camera:
   m_ObjectHideFlags: 0
@@ -511,7 +502,7 @@ MonoBehaviour:
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: eff65168282953c4fbd50178015a3eab, type: 2}
-    TickRate: 30
+    TickRate: 20
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 1
     ConnectionData: 

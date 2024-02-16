@@ -50,7 +50,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -73,6 +73,8 @@ MonoBehaviour:
   _startingDistance: 0
   _doorSpawned: 0
   _newAreaSpawned: 0
+  _destroyed: 0
+  _timeToStart: 1
 --- !u!114 &-217432302357571571
 MonoBehaviour:
   m_ObjectHideFlags: 0

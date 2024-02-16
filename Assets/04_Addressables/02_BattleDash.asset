@@ -617,6 +617,48 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1d952f79fb150c4e8154ae92f014260
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_01.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e46661a6b8215324b998430e28874d6b
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_02.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 157a1f98b32d8b34a93017c168905d19
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_03.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aca0d5de6c0c2b14b8ac20b91e559476
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_04.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32273147bea8c564c86075e7f41c02b2
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_05.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4dd0e34aa1d2f94b98b981d45fb17a0
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_06.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a26b8fe869cdc341ad5b66d9c66aac6
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_07.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

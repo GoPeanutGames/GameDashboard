@@ -49,7 +49,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -66,4 +66,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabToSpawn: {fileID: 170105706355484748, guid: 53e69f1651ac60e469c0b04042b2661b, type: 3}
-  _audioClip: {fileID: 8300000, guid: db67e4559580542478c19bd2588f4ca1, type: 3}
