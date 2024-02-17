@@ -17,7 +17,7 @@ namespace PeanutDashboard.Editor
 		[MenuItem("PeanutDashboard/Config/Config Server Production")]
 		public static void ConfigForServerProd()
 		{
-			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Config", "Cancel")){
 				ProjectDatabase.Instance.gameConfig.ConfigureForProd();
 				ConfigForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 			}
