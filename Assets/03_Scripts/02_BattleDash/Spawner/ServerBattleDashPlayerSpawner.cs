@@ -53,6 +53,14 @@ namespace PeanutDashboard._02_BattleDash.Spawner
 			ClientRespondedReadyServer_ServerRpc();
 		}
 
+		[ClientRpc]
+		private void ShowPlayerTooltips_ClientRpc()
+		{
+			LoggerService.LogInfo($"[CLIENT-RPC]{nameof(ServerBattleDashPlayerSpawner)}::{nameof(ShowPlayerTooltips_ClientRpc)}");
+			BattleDashClientUIEvents.RaiseShowTooltipsEvent(true);
+			BattleDashLoadingEvents.RaiseCloseLoadingEvent();
+		}
+
 		[ServerRpc(RequireOwnership = false)]
 		private void ClientRespondedReadyServer_ServerRpc()
 		{
@@ -63,6 +71,7 @@ namespace PeanutDashboard._02_BattleDash.Spawner
 			_clientReady = true;
 			ServerSpawnEvents.RaisePlayerReadyBeginGameEvent();
 			SpawnPlayerVisual();
+			ShowPlayerTooltips_ClientRpc();
 		}
 
 		private void SpawnPlayerVisual()

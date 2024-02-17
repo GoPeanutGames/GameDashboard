@@ -103,7 +103,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SyncPositionX: 1
   SyncPositionY: 1
-  SyncPositionZ: 1
+  SyncPositionZ: 0
   SyncRotAngleX: 0
   SyncRotAngleY: 0
   SyncRotAngleZ: 0
@@ -152,3 +152,4 @@ MonoBehaviour:
   _doorPrefab: {fileID: 2997868422171544633, guid: 7e2a251d31789d5428b612f325cf7b43, type: 3}
   _doorSpawnLocation: {x: 29, y: 0, z: 0}
   _doorScale: {x: 1.5, y: 1.5, z: 1}
+  _spawnedDoor: {fileID: 0}

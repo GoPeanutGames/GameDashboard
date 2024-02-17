@@ -34,6 +34,7 @@ namespace PeanutDashboard.Shared.UI
 			if (UserService.Instance.IsLoggedIn()){
 				GameNetworkSyncService.AssignCurrentGameInfo(_gameInfo);
 				SceneLoaderEvents.Instance.RaiseLoadAndOpenSceneEvent(GameNetworkSyncService.GetNetworkEntryPoint());
+				LoadingEvents.RaiseShowLoadingEvent($"Loading {_gameInfo.gameName}");
 			}
 		}
 

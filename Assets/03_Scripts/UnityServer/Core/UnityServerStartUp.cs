@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using PeanutDashboard.Shared.Config;
 using PeanutDashboard.Shared.Environment;
 using PeanutDashboard.Shared.Logging;
+using Unity.Networking.Transport.Relay;
+using Unity.Services.Lobbies.Models;
 #if SERVER
 using System.Collections;
 using System.Threading.Tasks;
@@ -9,10 +12,14 @@ using Newtonsoft.Json;
 using PeanutDashboard.UnityServer.Events;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
+using Unity.Services.Lobbies;
 using Unity.Services.Matchmaker.Models;
 using Unity.Services.Multiplay;
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
 #endif
 using UnityEngine;
 
@@ -28,11 +35,13 @@ namespace PeanutDashboard.UnityServer.Core
 		private ushort _serverPort = 7777;
 		private const int MultiplayServiceTimeout = 20000;
 		private string _allocationId;
+		private string _lobbyId;
 #if SERVER
 		private IMultiplayService _multiplayService;
 		private MultiplayEventCallbacks _serverCallbacks;
 		private IServerEvents _serverEvents;
 		private IServerQueryHandler _serverQueryHandler;
+		private float _timeout = 60f;
 #endif
 
 		private async void Start()
@@ -52,7 +61,7 @@ namespace PeanutDashboard.UnityServer.Core
 #if SERVER
 			if (server){
 				ServerInstance?.Invoke();
-				StartServer();
+				await StartServer();
 				await StartServerServices();
 			}
 #else
@@ -61,23 +70,57 @@ namespace PeanutDashboard.UnityServer.Core
 		}
 		
 #if SERVER
-		private void StartServer()
+		private async Task StartServer()
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - IP: {InternalServerIP} at port: {_serverPort}");
-			NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(InternalServerIP, _serverPort);
+			InitializationOptions options = new InitializationOptions();
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - config: {_gameConfig.currentEnvironmentModel.unityEnvironmentName}");
+			options.SetEnvironmentName(_gameConfig.currentEnvironmentModel.unityEnvironmentName);
+			await UnityServices.InitializeAsync(options);
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - unity services state: {UnityServices.State}");
+			await AuthenticationService.Instance.SignInAnonymouslyAsync();
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - unity services sign in: {AuthenticationService.Instance.IsSignedIn}");
+			Allocation allocation = await RelayService.Instance.CreateAllocationAsync((int)ConnectionApprovalHandler.MaxPlayers);
+			NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
+			string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - unity services relay join - {joinCode}");
+
+			try{
+				LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - creating lobby");
+				CreateLobbyOptions createLobbyOptions = new CreateLobbyOptions();
+				createLobbyOptions.IsPrivate = false;
+				createLobbyOptions.Data = new Dictionary<string, DataObject>()
+				{
+					{
+						"joinCode", new DataObject(
+							DataObject.VisibilityOptions.Member, joinCode)
+					}
+				};
+				Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("n/a", 2, createLobbyOptions);
+				LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - lobby created");
+				_lobbyId = lobby.Id;
+				LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - lobby created - {lobby.Id}");
+				StartCoroutine(HeartbeatLobbyCoroutine(15));
+			}
+			catch (LobbyServiceException e){
+				Debug.LogError($"{nameof(UnityServerStartUp)}::{nameof(StartServer)}:: {e}");
+			}
 			NetworkManager.Singleton.StartServer();
 			ServerEvents.ShutDownServer += ShutdownServer;
+		}
+
+		private IEnumerator HeartbeatLobbyCoroutine(float waitTimeSeconds)
+		{
+			var delay = new WaitForSeconds(waitTimeSeconds);
+			while (true){
+				Lobbies.Instance.SendHeartbeatPingAsync(_lobbyId);
+				yield return delay;
+			}
 		}
 
 		async Task StartServerServices()
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)}");
-			InitializationOptions options = new InitializationOptions();
-			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - config: {_gameConfig.currentEnvironmentModel.unityEnvironmentName}");
-			options.SetEnvironmentName(_gameConfig.currentEnvironmentModel.unityEnvironmentName);
-			await UnityServices.InitializeAsync(options);
-			await Task.Delay(200);
-			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - unity services state: {UnityServices.State}");
 			try{
 				_multiplayService = MultiplayService.Instance;
 				_serverQueryHandler = await _multiplayService.StartServerQueryHandlerAsync(ConnectionApprovalHandler.MaxPlayers, "n/a", "n/a", "0", "n/a");
@@ -103,6 +146,14 @@ namespace PeanutDashboard.UnityServer.Core
 		{
 			if (_serverQueryHandler != null){
 				_serverQueryHandler.UpdateServerCheck();
+			}
+			_timeout -= Time.unscaledDeltaTime;
+			if (_timeout<=0){
+				_timeout = 60f;
+				if (NetworkManager.Singleton.ConnectedClients.Count == 0){
+					LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(Update)} - no player for 60 sec, shutting down");
+					ShutdownServer();
+				}
 			}
 		}
 

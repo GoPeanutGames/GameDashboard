@@ -437,6 +437,228 @@ MonoBehaviour:
     m_SerializedLabels:
     - BattleDash
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e95ab9d8b2c96854bb177f8a5835cb9f
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Home button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 515a6dd16f79b854789a283625b796ca
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Mute Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29248e60d547d2c47a9e2cf8d7677068
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Tooltip button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e14fd2e9186b58d488d800ab377d09ee
+    m_Address: Assets/02_Art/02_BattleDash/UI/Menu/Unmute Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 143c642e573643347b290f11dbdcd8df
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/Avatar Badge Blummer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 05731ec5d141347419edb6b99a025645
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/HP Bar 100a.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83893b537f594a441b5c718629811faa
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/HP Bar Background.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12402150dbf3ee048a07cba5b2ad8fa0
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/HP Bars.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45f1b11f563d07b43b39b5b3d9058ce1
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/Points Panel.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 371d86faee6384e4bb4da501c5404843
+    m_Address: Assets/02_Art/02_BattleDash/UI/Player/Profile Badge.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3f1cb53024d93847a2545b2b8118d2e
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Hand Holding Phone with Texts.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbe2f099b57a4254e9c89168054d3662
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Deskstop Tooltip Only.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 865020f18623ce9409f27a8a0d634434
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Start Now.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea81eac72a623984395840b7950aa234
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/X close button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d62f030eecc7248479e310d7fdd29fe3
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/Dashboard General Popup.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89de5aeecb578424d9fd4ca23a312590
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/No Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eec678a2ee95b314bb4acefa12eda00e
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/Yes Button.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad36d97aef986e24c82ed078d89331de
+    m_Address: Assets/02_Art/02_BattleDash/Fonts/Generic.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f8a144511fb3924daeb48728d7fecc7
+    m_Address: Assets/02_Art/02_BattleDash/Fonts/Generic SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 930e95fee5646704c8834f3e2a3d0420
+    m_Address: Assets/02_Art/02_BattleDash/UI/EndGame/overlayblack.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72434d8c23dcb3549937eec491530267
+    m_Address: Assets/02_Art/02_BattleDash/Music/Blummer Dies.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e911b42917180b43833e60e2f128392
+    m_Address: Assets/02_Art/02_BattleDash/Music/Blummer Shots 3.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88b4fb52f0ba253448d0d80a78ab373b
+    m_Address: Assets/02_Art/02_BattleDash/Music/Menu pressed - Popup Appearing.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d721ca713b18dc34e8762b895e648a81
+    m_Address: Assets/02_Art/02_BattleDash/Music/Someone Dies.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db67e4559580542478c19bd2588f4ca1
+    m_Address: Assets/02_Art/02_BattleDash/Music/Stage 01 - BGM.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65886caf35e136543be1726f52eedd2d
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/X close button _hov.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc76c890b4539d849b74fcdaed5ada8d
+    m_Address: Assets/02_Art/02_BattleDash/UI/Tutorial/Start Now _hov.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf698a98b42c82d4f9a57332bde3cf40
+    m_Address: Assets/02_Art/02_BattleDash/Areas/Beginning Spaceship.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f6fe70282d713a45975c00aa15bd83f
+    m_Address: Assets/08_Music/02_BattleDash/Game Over (Lost).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4f388c9e7400844bbcf7ff5ad07b49c
+    m_Address: Assets/08_Music/02_BattleDash/Victory.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1d952f79fb150c4e8154ae92f014260
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_01.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e46661a6b8215324b998430e28874d6b
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_02.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 157a1f98b32d8b34a93017c168905d19
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_03.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aca0d5de6c0c2b14b8ac20b91e559476
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_04.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32273147bea8c564c86075e7f41c02b2
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_05.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4dd0e34aa1d2f94b98b981d45fb17a0
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_06.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a26b8fe869cdc341ad5b66d9c66aac6
+    m_Address: Assets/02_Art/02_BattleDash/Environment/Asteroids/Asteroid_07.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BattleDash
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:

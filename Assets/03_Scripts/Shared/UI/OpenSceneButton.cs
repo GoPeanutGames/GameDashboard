@@ -24,12 +24,12 @@ namespace PeanutDashboard.Shared.UI
 
         private void OnEnable()
         {
-            _button.onClick.AddListener(OnPlayButtonClick);
+            _button.onClick.AddListener(OnButtonClick);
         }
 
-        private void OnPlayButtonClick()
+        private void OnButtonClick()
         {
-            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnPlayButtonClick)}");
+            Debug.Log($"{nameof(OpenSceneButton)}::{nameof(OnButtonClick)}");
             if (UserService.Instance.IsLoggedIn()){
                 SceneLoaderEvents.Instance.RaiseLoadAndOpenSceneEvent(_sceneInfo);
             }
@@ -37,7 +37,7 @@ namespace PeanutDashboard.Shared.UI
 
         private void OnDisable()
         {
-            _button.onClick.RemoveListener(OnPlayButtonClick);
+            _button.onClick.RemoveListener(OnButtonClick);
         }
     }
 }

@@ -1,6 +1,8 @@
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
+using PeanutDashboard.Utils.Misc;
 #if !SERVER
+using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Utils.WebGL;
 #endif
 using Unity.Netcode;
@@ -10,21 +12,58 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 {
 	public class BattleDashPlayerController : NetworkBehaviour
 	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private AudioClip _audioClip;
+		
 		private readonly NetworkVariable<Vector2> _mobileTouchMove = new NetworkVariable<Vector2>(Vector2.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
 		private void OnEnable()
 		{
-			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
 #if SERVER
+			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
 			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchMoveChanged;
 #endif
 #if !SERVER
 			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.LandscapeLeft;
 			}
+			BattleDashClientUIEvents.OnShowTooltips += OnShowTooltips;
+			BattleDashClientUIEvents.OnOpenEndGamePopup += OnPauseGame;
+			BattleDashClientUIEvents.OnShowGameOver += OnPauseGame;
+			BattleDashClientUIEvents.OnShowWon += OnPauseGame;
+			BattleDashClientUIEvents.OnHideTooltips += OnUnpauseGame;
+			BattleDashClientUIEvents.OnCloseEndGamePopup += OnUnpauseGame;
+			ClientActionEvents.OnPlayerRequestDisconnect += OnRequestDisconnect;
 #endif
 		}
 
+		private void OnRequestDisconnect()
+		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnRequestDisconnect)}");
+			SendRequestDisconnect_ServerRpc();
+		}
+
+		private void OnShowTooltips(bool _)
+		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnShowTooltips)}");
+			OnPauseGame();
+		}
+		
+		private void OnPauseGame()
+		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPauseGame)}");
+			ClientBattleDashAudioEvents.RaiseFadeOutMusicEvent(1f);
+			SendPlayerPaused_ServerRpc();
+		}
+
+		private void OnUnpauseGame()
+		{
+			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnUnpauseGame)}");
+			ClientBattleDashAudioEvents.RaiseFadeInMusicEvent(_audioClip);
+			SendPlayerUnPaused_ServerRpc();
+		}
+		
 		private void ServerSpawnedVisual(GameObject visual)
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(ServerSpawnedVisual)}");
@@ -33,17 +72,20 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			visual.transform.localPosition = new Vector3(-20, 0, 0);
 		}
 
+#if !SERVER
 		private void Update()
 		{
-#if !SERVER
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			if (WebGLUtils.IsWebMobile){
 				CheckForMobileInput();
 			}
 			else{
 				CheckForDesktopInput();
 			}
-#endif
 		}
+#endif
 
 		private void CheckForMobileInput()
 		{
@@ -107,13 +149,20 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		{
 #if SERVER
 			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchMoveChanged;
+			ServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
 #endif
 #if !SERVER
 			if (WebGLUtils.IsWebMobile){
 				Screen.orientation = ScreenOrientation.Portrait;
 			}
+			BattleDashClientUIEvents.OnShowTooltips -= OnShowTooltips;
+			BattleDashClientUIEvents.OnOpenEndGamePopup -= OnPauseGame;
+			BattleDashClientUIEvents.OnShowGameOver -= OnPauseGame;
+			BattleDashClientUIEvents.OnShowWon -= OnPauseGame;
+			BattleDashClientUIEvents.OnHideTooltips -= OnUnpauseGame;
+			BattleDashClientUIEvents.OnCloseEndGamePopup -= OnUnpauseGame;
+			ClientActionEvents.OnPlayerRequestDisconnect -= OnRequestDisconnect;
 #endif
-			ServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
 		}
 
 		[ServerRpc]
@@ -128,6 +177,27 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		{
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerKeyUp_ServerRpc)}- press: {keyCode}");
 			ServerPlayerInputEvents.RaisePlayerInputKeyUpEvent(keyCode);
+		}
+
+		[ServerRpc]
+		private void SendPlayerPaused_ServerRpc()
+		{
+			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerPaused_ServerRpc)}");
+			ServerGameStateEvents.RaisePauseTriggeredEvent();
+		}
+
+		[ServerRpc]
+		private void SendPlayerUnPaused_ServerRpc()
+		{
+			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerUnPaused_ServerRpc)}");
+			ServerGameStateEvents.RaiseUnPauseTriggeredEvent();
+		}
+		
+		[ServerRpc]
+		private void SendRequestDisconnect_ServerRpc()
+		{
+			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendRequestDisconnect_ServerRpc)}");
+			NetworkManager.Shutdown();
 		}
 	}
 }

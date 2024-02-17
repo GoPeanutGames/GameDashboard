@@ -1,9 +1,10 @@
 ﻿#if !SERVER
 using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Utils.WebGL;
-#endif
 using System;
+using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Utils.Math;
+#endif
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
@@ -48,6 +49,9 @@ namespace PeanutDashboard._02_BattleDash.Player
 		
 		private void Update()
 		{
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			if (!WebGLUtils.IsWebMobile){
 				UpdateDesktop();
 			}

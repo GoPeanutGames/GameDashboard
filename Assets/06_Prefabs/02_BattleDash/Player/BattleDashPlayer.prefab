@@ -85,11 +85,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3524240355
+  GlobalObjectIdHash: 1122044781
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SyncPositionX: 1
   SyncPositionY: 1
-  SyncPositionZ: 1
+  SyncPositionZ: 0
   SyncRotAngleX: 0
   SyncRotAngleY: 0
   SyncRotAngleZ: 0
@@ -177,7 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factionType: {fileID: 11400000, guid: 04450ef5614dc4c45aa14f59bc11b8ed, type: 2}
+  _animator: {fileID: 2945700262663982696}
   _networkAnimator: {fileID: 6221633230311402463}
+  _damagedClip: {fileID: 8300000, guid: 442e0b6f00b427a4db49a74727dd890a, type: 3}
   _health: 3
 --- !u!70 &3118439702953932764
 CapsuleCollider2D:
@@ -914,6 +916,7 @@ GameObject:
   - component: {fileID: 2945700262663982696}
   - component: {fileID: 6221633230311402463}
   - component: {fileID: 4753121604133346240}
+  - component: {fileID: 8237312965770868666}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1069,6 +1072,13 @@ MonoBehaviour:
     TriggerNameHash: 20298039
     TransitionIndex: 1
   - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 229373857
+    DestinationState: 20298039
+    TransitionDuration: 0.25
+    TriggerNameHash: 20298039
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
     Layer: 1
     OriginatingState: -367768302
     DestinationState: -1316629574
@@ -1101,3 +1111,17 @@ MonoBehaviour:
   m_SolverEditorData:
   - color: {r: 0, g: 1, b: 0, a: 1}
     showGizmo: 1
+--- !u!114 &8237312965770868666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167207644380409689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1c87e384304bbdb43576b7e5c6747d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxClip: {fileID: 8300000, guid: 1e911b42917180b43833e60e2f128392, type: 3}
+  _deathClip: {fileID: 8300000, guid: 72434d8c23dcb3549937eec491530267, type: 3}

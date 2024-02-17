@@ -1,4 +1,7 @@
-﻿using PeanutDashboard._02_BattleDash.Events;
+﻿#if SERVER
+using PeanutDashboard._02_BattleDash.Events;
+using PeanutDashboard._02_BattleDash.State;
+#endif
 using PeanutDashboard._02_BattleDash.Model;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
@@ -52,6 +55,9 @@ namespace PeanutDashboard._02_BattleDash.Areas
 
 		private void Update()
 		{
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			_timeToStart -= NetworkManager.ServerTime.FixedDeltaTime;
 			if (_destroyed || _timeToStart >= 0)
 			{

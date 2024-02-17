@@ -26,7 +26,7 @@ namespace PeanutDashboard.Shared.Metamask
 		public static void StartMetamaskLogin()
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(StartMetamaskLogin)}");
-			LoadingEvents.Instance.RaiseShowLoadingEvent("Connecting to metamask...");
+			LoadingEvents.RaiseShowLoadingEvent("Connecting to metamask...");
 #if !UNITY_EDITOR
 			AuthenticationEvents.Instance.UserMetamaskConnected += OnUserMetamaskConnected;
 			AuthenticationEvents.Instance.MetamaskConnectionFail += OnMetamaskConnectionFail;
@@ -47,7 +47,7 @@ namespace PeanutDashboard.Shared.Metamask
 		private static void OnUserMetamaskConnected(string walletAddress)
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnUserMetamaskConnected)}");
-			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Connecting to server...");
+			LoadingEvents.RaiseUpdateLoadingEvent("Connecting to server...");
 			_walletAddress = walletAddress;
 			AuthenticationEvents.Instance.UserMetamaskConnected -= OnUserMetamaskConnected;
 			AuthenticationEvents.Instance.MetamaskConnectionFail -= OnMetamaskConnectionFail;
@@ -57,7 +57,7 @@ namespace PeanutDashboard.Shared.Metamask
 		private static void OnMetamaskConnectionFail(string error)
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnMetamaskConnectionFail)} - reason: {error}");
-			LoadingEvents.Instance.RaiseHideLoadingEvent();
+			LoadingEvents.RaiseHideLoadingEvent();
 			AuthenticationEvents.Instance.UserMetamaskConnected -= OnUserMetamaskConnected;
 			AuthenticationEvents.Instance.MetamaskConnectionFail -= OnMetamaskConnectionFail;
 		}
@@ -67,7 +67,7 @@ namespace PeanutDashboard.Shared.Metamask
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnGetSchemaFromServer)}");
 			AuthenticationEvents.Instance.UserSignatureReceived += OnMetamaskSignatureReceived;
 			AuthenticationEvents.Instance.MetamaskSignatureFail += OnMetamaskSignatureFail;
-			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Requesting signature...");
+			LoadingEvents.RaiseUpdateLoadingEvent("Requesting signature...");
 			MetamaskService.RequestMetamaskSignature(schema, _walletAddress);
 		}
 
@@ -83,7 +83,7 @@ namespace PeanutDashboard.Shared.Metamask
 		private static void OnMetamaskSignatureFail(string error)
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(OnMetamaskSignatureFail)} - reason: {error}");
-			LoadingEvents.Instance.RaiseHideLoadingEvent();
+			LoadingEvents.RaiseHideLoadingEvent();
 			AuthenticationEvents.Instance.UserSignatureReceived -= OnMetamaskSignatureReceived;
 			AuthenticationEvents.Instance.MetamaskSignatureFail -= OnMetamaskSignatureFail;
 		}
@@ -91,7 +91,7 @@ namespace PeanutDashboard.Shared.Metamask
 		private static void CheckWeb3Login()
 		{
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(CheckWeb3Login)}");
-			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Verifying...");
+			LoadingEvents.RaiseUpdateLoadingEvent("Verifying...");
 			CheckWeb3LoginRequest request = new CheckWeb3LoginRequest()
 			{
 				address = _walletAddress,
@@ -112,7 +112,7 @@ namespace PeanutDashboard.Shared.Metamask
 			}
 			_walletAddress = "";
 			_signature = "";
-			LoadingEvents.Instance.RaiseHideLoadingEvent();
+			LoadingEvents.RaiseHideLoadingEvent();
 		}
 		
 		private static async Task SignInToUnity()

@@ -15,5 +15,5 @@ MonoBehaviour:
   _speed: 2
   _startPosition: {x: 104, y: -14, z: 0}
   _spawnPosition: {x: 212, y: -14, z: 0}
-  _destroyPosition: {x: -212, y: 14, z: 0}
+  _destroyPosition: {x: -232, y: 14, z: 0}
   _endMonsterSpawnPosition: {x: -100, y: 14, z: 0}

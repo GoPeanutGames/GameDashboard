@@ -1,6 +1,8 @@
 ﻿using System;
+using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard._02_BattleDash.Interaction;
 using PeanutDashboard._02_BattleDash.Model;
+using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Utils.Misc;
 using Unity.Netcode;
 using Unity.Netcode.Components;
@@ -18,6 +20,9 @@ namespace PeanutDashboard._02_BattleDash.Monster
 		
 		[SerializeField]
 		private MonsterType _monsterType;
+		
+		[SerializeField]
+		private AudioClip _dieSfxClip;
 
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
@@ -46,6 +51,9 @@ namespace PeanutDashboard._02_BattleDash.Monster
 
 		private void Update()
 		{
+			if (ServerBattleDashGameState.isPaused){
+				return;
+			}
 			this.transform.position += Vector3.left * (_monsterType.monsterSpeed * NetworkManager.ServerTime.FixedDeltaTime);
 			if (!_destroyed && this.transform.position.x < -60){
 				_destroyed = true;
@@ -88,6 +96,11 @@ namespace PeanutDashboard._02_BattleDash.Monster
 				_collider2D.enabled = false;
 				_networkAnimator.SetTrigger(Die);
 			}
+		}
+
+		public void TriggerDeathSfx()
+		{
+			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_dieSfxClip, 1);
 		}
 
 		public void Remove()

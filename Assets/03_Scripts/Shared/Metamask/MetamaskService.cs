@@ -41,7 +41,7 @@ namespace PeanutDashboard.Shared.Metamask
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(LoginMetamask)}");
 			if (WebGLUtils.IsWebMobile){
-				LoadingEvents.Instance.RaiseUpdateLoadingEvent("Connecting to metamask app...");
+				LoadingEvents.RaiseUpdateLoadingEvent("Connecting to metamask app...");
 				MetaMaskUnity.Instance.Wallet.EthereumRequestFailedHandler += MobileConnectMetamaskFailHandler;
 				MetaMaskUnity.Instance.Wallet.WalletConnectedHandler += MetamaskMobileConnected;
 				MetaMaskUnity.Instance.Wallet.WalletDisconnectedHandler += MobileWalletDisconnected;
@@ -65,7 +65,7 @@ namespace PeanutDashboard.Shared.Metamask
 			LoggerService.LogError($"{nameof(MetamaskService)}::{nameof(LoginMetamask)} - Fail: {failedEventArgs.Error.Error.Message}");
 			MetaMaskUnity.Instance.Wallet.EthereumRequestFailedHandler -= MobileConnectMetamaskFailHandler;
 			LogOutMetamask();
-			LoadingEvents.Instance.RaiseHideLoadingEvent();
+			LoadingEvents.RaiseHideLoadingEvent();
 		}
 		
 		public static void LogOutMetamask()
@@ -95,7 +95,7 @@ namespace PeanutDashboard.Shared.Metamask
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(MetamaskMobileAuthorized)} - {e}");
 			MetaMaskUnity.Instance.Wallet.WalletAuthorizedHandler -= MetamaskMobileAuthorized;
 			if (MetaMaskUnity.Instance.Wallet.ChainId != ChainId){
-				LoadingEvents.Instance.RaiseUpdateLoadingEvent("Switching chain...");
+				LoadingEvents.RaiseUpdateLoadingEvent("Switching chain...");
 				MetaMaskUnity.Instance.Wallet.ChainIdChangedHandler += OnChainSwitched;
 				MetaMaskUnity.Instance.Wallet.AccountChangedHandler += OnAccountChangeHandler;
 				SwitchChain(ChainData);
@@ -137,7 +137,7 @@ namespace PeanutDashboard.Shared.Metamask
 		private static async void RequestMobileSignature(string schema, string address)
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(RequestMobileSignature)}");
-			LoadingEvents.Instance.RaiseUpdateLoadingEvent("Requesting signature...");
+			LoadingEvents.RaiseUpdateLoadingEvent("Requesting signature...");
 			MetaMaskEthereumRequest signatureRequest = new()
 			{
 				Method = "eth_signTypedData_v4",

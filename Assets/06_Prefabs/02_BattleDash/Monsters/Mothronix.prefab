@@ -607,11 +607,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1942531002
+  GlobalObjectIdHash: 1545546411
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SyncPositionX: 1
   SyncPositionY: 1
-  SyncPositionZ: 1
+  SyncPositionZ: 0
   SyncRotAngleX: 0
   SyncRotAngleY: 0
   SyncRotAngleZ: 0
@@ -687,7 +687,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factionType: {fileID: 11400000, guid: 215c8f7390d5eaa42818f761f81c4921, type: 2}
   _monsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+  _dieSfxClip: {fileID: 8300000, guid: d721ca713b18dc34e8762b895e648a81, type: 3}
   _networkAnimator: {fileID: 0}
+  _collider2D: {fileID: 0}
   _destroyed: 0
   _hp: 0
 --- !u!61 &7012414294015086114

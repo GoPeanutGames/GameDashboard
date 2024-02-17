@@ -1,5 +1,6 @@
 #if SERVER
 using PeanutDashboard._02_BattleDash;
+using PeanutDashboard._02_BattleDash.State;
 using PeanutDashboard.Shared.Logging;
 using Unity.Netcode.Components;
 #endif
@@ -43,7 +44,7 @@ public class ServerBattleDashBullet : NetworkBehaviour, IFactionable
 
     private void Update()
     {
-        if (!_initialised || _destroyed){
+        if (!_initialised || _destroyed || ServerBattleDashGameState.isPaused){
             return;
         }
         _lifetime -= NetworkManager.ServerTime.FixedDeltaTime;

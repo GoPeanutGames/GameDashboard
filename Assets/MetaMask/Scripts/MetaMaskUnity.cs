@@ -163,7 +163,7 @@ namespace MetaMask.Unity
             }
             else if (instance != this)
             {
-                Debug.LogError("There are more than 1 instances of " + nameof(MetaMaskUnity) + " inside the scene, there should be only one.");
+                Debug.LogWarning("There are more than 1 instances of " + nameof(MetaMaskUnity) + " inside the scene, there should be only one.");
                 Destroy(gameObject);
             }
             if (this.initializeOnAwake)

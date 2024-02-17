@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-#if SERVER
 using PeanutDashboard._02_BattleDash.Events;
+#if SERVER
 using PeanutDashboard.Shared.Logging;
 #endif
 using PeanutDashboard.Utils.Misc;
@@ -44,6 +44,9 @@ namespace PeanutDashboard._02_BattleDash.Areas
 			LoggerService.LogInfo($"{nameof(ServerBattleDashAreaSpawner)}::{nameof(SpawnArea)}");
 			int randomIndex = 0;//Random.Range(0, _areaPrefabs.Count);
 			LoggerService.LogInfo($"{nameof(ServerBattleDashAreaSpawner)}::{nameof(SpawnArea)} - index: {randomIndex}");
+			if (_areaPrefabs.Count == 0){ 
+				SendClientWon_ClientRpc();
+			}
 			GameObject prefab = _areaPrefabs[randomIndex];
 			_areaPrefabs.RemoveAt(randomIndex);
 			// if (!first)
@@ -62,5 +65,11 @@ namespace PeanutDashboard._02_BattleDash.Areas
 			ServerAreaEvents.AreaSpawnNextArea -= OnSpawnNextArea;
 		}
 #endif
+
+		[ClientRpc]
+		private void SendClientWon_ClientRpc()
+		{
+			BattleDashClientUIEvents.RaiseShowWonEvent();
+		}
 	}
 }

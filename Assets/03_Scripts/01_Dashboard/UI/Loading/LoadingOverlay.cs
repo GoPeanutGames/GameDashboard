@@ -22,9 +22,9 @@ namespace PeanutDashboard.Dashboard.UI.Loading
 
 		private void OnEnable()
 		{
-			LoadingEvents.Instance.ShowLoading += ShowLoading;
-			LoadingEvents.Instance.UpdateLoading += UpdateLoading;
-			LoadingEvents.Instance.HideLoading += HideLoading;
+			LoadingEvents.ShowLoading += ShowLoading;
+			LoadingEvents.UpdateLoading += UpdateLoading;
+			LoadingEvents.HideLoading += HideLoading;
 		}
 
 		private void ShowLoading(string text)
@@ -48,9 +48,9 @@ namespace PeanutDashboard.Dashboard.UI.Loading
 
 		private void OnDisable()
 		{
-			LoadingEvents.Instance.ShowLoading -= ShowLoading;
-			LoadingEvents.Instance.UpdateLoading -= UpdateLoading;
-			LoadingEvents.Instance.HideLoading -= HideLoading;
+			LoadingEvents.ShowLoading -= ShowLoading;
+			LoadingEvents.UpdateLoading -= UpdateLoading;
+			LoadingEvents.HideLoading -= HideLoading;
 		}
 	}
 }

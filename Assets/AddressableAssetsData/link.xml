@@ -1,12 +1,16 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="MovePlayerUpDown" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.Areas.ClientAreaEnvSpawner" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Areas.ServerAreaController" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Areas.ServerAreaMonsterSpawner" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Areas.ServerBackgroundController" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Areas.ServerBattleDashAreaSpawner" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.Audio.BattleDashAudioController" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Config.AreaMonsterSpawnDefinition" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Config.MonsterSpawnLocation" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.Environment.GenericEnvObject" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.Environment.SwarmEnvObject" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Model.AreaType" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Model.FactionType" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Model.MonsterType" preserve="all" />
@@ -15,11 +19,25 @@
     <type fullname="PeanutDashboard._02_BattleDash.Player.Client.BattleDashPlayerController" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Player.Client.BattleDashPlayerGunAim" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Player.Client.ClientBattleDashBulletSpawnPoint" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.Player.Client.ClientBattleDashPlayerSfx" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Player.Client.ClientBattleDashPlayerShooting" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Player.Server.ServerBattleDashPlayerHealth" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Player.Server.ServerBattleDashPlayerMovement" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Player.Server.ServerBattleDashPlayerShooting" preserve="all" />
     <type fullname="PeanutDashboard._02_BattleDash.Spawner.ServerBattleDashPlayerSpawner" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.State.ServerBattleDashGameState" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.BattleDashTooltipUI" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.Buttons.BattleDashMuteButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.CloseTooltipButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.EndGame.BattleDashCloseEndGamePopupButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.EndGame.BattleDashExitButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.EndGame.BattleDashGoHomePopup" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.EndGame.BattleDashHomeButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.GameOver.BattleDashGameOverUI" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.Loading.BattleDashLoadingUI" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.OpenTooltipsButton" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UI.Win.BattleDashWinUI" preserve="all" />
+    <type fullname="PeanutDashboard._02_BattleDash.UnityServer.BattleDashDisconnect" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.DashboardController" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Auth.AvatarGroupDisplay" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Auth.UIChangeWithLogIn" preserve="all" />
@@ -28,6 +46,7 @@
     <type fullname="PeanutDashboard.Dashboard.UI.Loading.LoadingOverlay" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Metamask.ConnectMetamaskButton" preserve="all" />
     <type fullname="PeanutDashboard.Dashboard.UI.Metamask.DisconnectMetamaskButton" preserve="all" />
+    <type fullname="PeanutDashboard.Dashboard.UI.Region.RegionDropdown" preserve="all" />
     <type fullname="PeanutDashboard.Init.GameInfo" preserve="all" />
     <type fullname="PeanutDashboard.Init.SceneInfo" preserve="all" />
     <type fullname="PeanutDashboard.Shared.Config.GameConfig" preserve="all" />
@@ -93,6 +112,7 @@
   </assembly>
   <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+    <type fullname="TMPro.TMP_Dropdown" preserve="all" />
     <type fullname="TMPro.TMP_FontAsset" preserve="all" />
     <type fullname="TMPro.FaceInfo_Legacy" preserve="nothing" serialized="true" />
     <type fullname="TMPro.FontAssetCreationSettings" preserve="nothing" serialized="true" />
@@ -103,7 +123,13 @@
     <type fullname="TMPro.TMP_GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_GlyphValueRecord" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_Dropdown/DropdownEvent" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_Dropdown/OptionData" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_Dropdown/OptionDataList" preserve="nothing" serialized="true" />
     <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEditor.Audio.AudioMixerSnapshotController" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.AnimationClip" preserve="all" />
@@ -111,16 +137,22 @@
     <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Audio.AudioMixer" preserve="all" />
+    <type fullname="UnityEngine.Audio.AudioMixerGroup" preserve="all" />
+    <type fullname="UnityEngine.AudioClip" preserve="all" />
     <type fullname="UnityEngine.AudioListener" preserve="all" />
+    <type fullname="UnityEngine.AudioSource" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Camera" preserve="all" />
     <type fullname="UnityEngine.GameObject" preserve="all" />
     <type fullname="UnityEngine.LightmapSettings" preserve="all" />
     <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.MonoBehaviour" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
     <type fullname="UnityEngine.RectTransform" preserve="all" />
     <type fullname="UnityEngine.RenderSettings" preserve="all" />
+    <type fullname="UnityEngine.RenderTexture" preserve="all" />
     <type fullname="UnityEngine.Shader" preserve="all" />
     <type fullname="UnityEngine.Sprite" preserve="all" />
     <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
@@ -149,16 +181,23 @@
     <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.Image" preserve="all" />
     <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />
+    <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.RawImage" preserve="all" />
+    <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
+    <type fullname="UnityEngine.UI.Toggle" preserve="all" />
     <type fullname="UnityEngine.UI.VerticalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.AnimationTriggers" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.Button/ButtonClickedEvent" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.ColorBlock" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.Navigation" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ScrollRect/ScrollRectEvent" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Toggle/ToggleEvent" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasGroup" preserve="all" />
     <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.TextCoreFontEngineModule">

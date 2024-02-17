@@ -464,6 +464,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Dashboard
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a5fb7c7896460c46adbedfa64fb40b7
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Icons/GPS icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 00c03c83d01b7a442a8c8c7d2af23ce0
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Buttons/Dropdown BG.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53077bf9feb023448a41bcb35462fb0e
+    m_Address: Assets/02_Art/01_Dashboard/Shared/Buttons/Dropdown Heading.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Dashboard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
