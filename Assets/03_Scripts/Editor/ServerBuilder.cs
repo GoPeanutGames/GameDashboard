@@ -14,7 +14,7 @@ namespace PeanutDashboard.Editor
 		[MenuItem("PeanutDashboard/Build/Build Server Development")]
 		public static void BuildForServerDev()
 		{
-			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
 			BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
@@ -22,7 +22,7 @@ namespace PeanutDashboard.Editor
 		public static void BuildForServerProd()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
-				ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdTesting();
 				BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 			}
 		}

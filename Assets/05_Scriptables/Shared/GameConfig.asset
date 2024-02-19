@@ -16,5 +16,7 @@ MonoBehaviour:
   currentMetaMaskConfig: {fileID: 11400000, guid: 8ad1fb4333105ce4c85a05256edb6ab6, type: 2}
   devMetamaskConfig: {fileID: 11400000, guid: 8ad1fb4333105ce4c85a05256edb6ab6, type: 2}
   prodMetamaskConfig: {fileID: 11400000, guid: 19f270dd658539145a4cdf3bcfef5238, type: 2}
-  devEnvironmentModel: {fileID: 11400000, guid: 6745b3d5dc1e4fa4d8a35cea99230494, type: 2}
-  prodEnvironmentModel: {fileID: 11400000, guid: 430c5be40a5b4704d963940dc15a186e, type: 2}
+  devTestingEnvironmentModel: {fileID: 11400000, guid: 6745b3d5dc1e4fa4d8a35cea99230494, type: 2}
+  devReleaseEnvironmentModel: {fileID: 0}
+  prodTestingEnvironmentModel: {fileID: 11400000, guid: 430c5be40a5b4704d963940dc15a186e, type: 2}
+  prodReleaseEnvironmentModel: {fileID: 0}

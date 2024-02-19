@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6dbadab36a54a478e7254b765fc23ab, type: 3}
-  m_Name: DevEnv
+  m_Name: DevEnvRelease
   m_EditorClassIdentifier: 
   isDev: 1
   allowLogs: 1
   useRSA: 0
   serverUrl: https://api-bb.peanuthub.dev
   unityEnvironmentName: development
-  unityAddressablesProfileId: b7c626f2370ae8545af3fdde005daa62
+  unityAddressablesProfileId: 4e70bd28c30f57b49a6616014db5409c
   publicKey:
   - -----BEGIN RSA PUBLIC KEY-----
   - MIIBCgKCAQEA15Pmyp5Z4u/kKUvRdeiajT2IQIusKAWqn131ZWkzQQbQzHs8Sls4

@@ -16,18 +16,32 @@ namespace PeanutDashboard.Shared.Config
 
 		public MetaMaskConfig devMetamaskConfig;
 		public MetaMaskConfig prodMetamaskConfig;
-		public EnvironmentModel devEnvironmentModel;
-		public EnvironmentModel prodEnvironmentModel;
+		public EnvironmentModel devTestingEnvironmentModel;
+		public EnvironmentModel devReleaseEnvironmentModel;
+		public EnvironmentModel prodTestingEnvironmentModel;
+		public EnvironmentModel prodReleaseEnvironmentModel;
 
-		public void ConfigureForDev()
+		public void ConfigureForDevTesting()
 		{
-			currentEnvironmentModel = devEnvironmentModel;
+			currentEnvironmentModel = devTestingEnvironmentModel;
+			currentMetaMaskConfig = devMetamaskConfig;
+		}
+		
+		public void ConfigureForDevRelease()
+		{
+			currentEnvironmentModel = devReleaseEnvironmentModel;
 			currentMetaMaskConfig = devMetamaskConfig;
 		}
 
-		public void ConfigureForProd()
+		public void ConfigureForProdTesting()
 		{
-			currentEnvironmentModel = prodEnvironmentModel;
+			currentEnvironmentModel = prodTestingEnvironmentModel;
+			currentMetaMaskConfig = prodMetamaskConfig;
+		}
+
+		public void ConfigureForProdRelease()
+		{
+			currentEnvironmentModel = prodReleaseEnvironmentModel;
 			currentMetaMaskConfig = prodMetamaskConfig;
 		}
 	}
