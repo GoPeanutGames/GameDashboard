@@ -3,10 +3,10 @@ using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PeanutDashboard._02_BattleDash.UI.EndGame
+namespace PeanutDashboard._02_BattleDash.UI
 {
 	[RequireComponent(typeof(Button))]
-	public class BattleDashExitButton: MonoBehaviour
+	public class BattleDashCloseTooltipButton: MonoBehaviour
 	{
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
@@ -19,17 +19,17 @@ namespace PeanutDashboard._02_BattleDash.UI.EndGame
 
 		private void OnEnable()
 		{
-			_button.onClick.AddListener(OnExitGameButtonClick);
+			_button.onClick.AddListener(OnCloseTooltipsButtonClick);
 		}
 
 		private void OnDisable()
 		{
-			_button.onClick.RemoveListener(OnExitGameButtonClick);
+			_button.onClick.RemoveListener(OnCloseTooltipsButtonClick);
 		}
 
-		private void OnExitGameButtonClick()
+		private void OnCloseTooltipsButtonClick()
 		{
-			BattleDashClientActionEvents.RaisePlayerRequestDisconnectEvent();
+			BattleDashClientUIEvents.RaiseHideTooltipsEvent();
 		}
 	}
 }

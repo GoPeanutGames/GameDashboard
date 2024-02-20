@@ -27,7 +27,7 @@ namespace PeanutDashboard._02_BattleDash.UI.Win
 
 		private void OnShowGameOver()
 		{
-			ClientBattleDashAudioEvents.RaiseFadeOutMusicEvent(3f);
+			BattleDashClientAudioEvents.RaiseFadeOutMusicEvent(3f);
 			StartCoroutine(ShowWonUI());
 		}
 
@@ -35,7 +35,7 @@ namespace PeanutDashboard._02_BattleDash.UI.Win
 		{
 			yield return new WaitForSecondsRealtime(3.1f);
 			_wonUI.Activate();
-			ClientBattleDashAudioEvents.RaisePlaySfxEvent(_audioClip,1);
+			BattleDashClientAudioEvents.RaisePlaySfxEvent(_audioClip,1);
 		}
 #endif
 	}

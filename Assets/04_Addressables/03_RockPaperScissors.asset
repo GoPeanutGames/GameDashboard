@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 03_RockPaperScissors
+  m_EditorClassIdentifier: 
+  m_GroupName: 03_RockPaperScissors
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9b5aa719a61ca184b9fca7a18026211b
+  m_SerializeEntries:
+  - m_GUID: 0d96e876f6f11ae41bd504cbb96aa166
+    m_Address: Game2Scene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Game2
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 56e5493152d8289449ae9500af673e22, type: 2}
+    - {fileID: 11400000, guid: 9cc48eba7dea5c0478ce4cd5596030a3, type: 2}

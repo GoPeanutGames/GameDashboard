@@ -4,10 +4,9 @@ using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PeanutDashboard._02_BattleDash.UI.EndGame
+namespace PeanutDashboard._02_BattleDash.UI
 {
-	[RequireComponent(typeof(Button))]
-	public class BattleDashHomeButton: MonoBehaviour
+	public class BattleDashOpenTooltipsButton: MonoBehaviour
 	{
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
@@ -25,17 +24,17 @@ namespace PeanutDashboard._02_BattleDash.UI.EndGame
 
 		private void OnEnable()
 		{
-			_button.onClick.AddListener(OnHomeButtonClick);
+			_button.onClick.AddListener(OnCloseTooltipsButtonClick);
 		}
 
 		private void OnDisable()
 		{
-			_button.onClick.RemoveListener(OnHomeButtonClick);
+			_button.onClick.RemoveListener(OnCloseTooltipsButtonClick);
 		}
 
-		private void OnHomeButtonClick()
+		private void OnCloseTooltipsButtonClick()
 		{
-			BattleDashClientUIEvents.RaiseOpenEndGamePopupEvent();
+			BattleDashClientUIEvents.RaiseShowTooltipsEvent(false);
 			StartCoroutine(PlaySfx());
 		}
 
