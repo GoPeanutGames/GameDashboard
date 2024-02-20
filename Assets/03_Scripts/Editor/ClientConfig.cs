@@ -8,18 +8,34 @@ namespace PeanutDashboard.Editor
 	[CustomEditor(typeof(ClientConfig))]
 	public class ClientConfig : UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Config/Config Client Development")]
-		public static void ConfigForClientDev()
+		[MenuItem("PeanutDashboard/Config/Client/Development Testing")]
+		public static void ConfigForClientDevTest()
 		{
-			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
+			ConfigForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		[MenuItem("PeanutDashboard/Config/Client/Development Release")]
+		public static void ConfigForClientDevRelease()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevRelease();
 			ConfigForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
-		[MenuItem("PeanutDashboard/Config/Config Client Production")]
-		public static void ConfigForClientProd()
+		[MenuItem("PeanutDashboard/Config/Client/Production Testing")]
+		public static void ConfigForClientProdTest()
 		{
-			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
-				ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for production?", "Config", "Cancel")){
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdTesting();
+				ConfigForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+			}
+		}
+		
+		[MenuItem("PeanutDashboard/Config/Client/Production Release")]
+		public static void ConfigForClientProdRelease()
+		{
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for production?", "Config", "Cancel")){
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdRelease();
 				ConfigForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 			}
 		}

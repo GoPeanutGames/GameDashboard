@@ -7,18 +7,34 @@ namespace PeanutDashboard.Editor
 	[CustomEditor(typeof(ServerConfig))]
 	public class ServerConfig : UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Config/Config Server Development")]
-		public static void ConfigForServerDev()
+		[MenuItem("PeanutDashboard/Config/Server/Development Testing")]
+		public static void ConfigForServerDevTest()
 		{
-			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
+			ConfigForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		[MenuItem("PeanutDashboard/Config/Server/Development Release")]
+		public static void ConfigForServerDevRelease()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevRelease();
 			ConfigForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
-		[MenuItem("PeanutDashboard/Config/Config Server Production")]
-		public static void ConfigForServerProd()
+		[MenuItem("PeanutDashboard/Config/Server/Production Testing")]
+		public static void ConfigForServerProdTest()
 		{
-			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Config", "Cancel")){
-				ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for production?", "Config", "Cancel")){
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdTesting();
+				ConfigForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+			}
+		}
+		
+		[MenuItem("PeanutDashboard/Config/Server/Production Release")]
+		public static void ConfigForServerProdRelease()
+		{
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for production?", "Config", "Cancel")){
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdRelease();
 				ConfigForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 			}
 		}

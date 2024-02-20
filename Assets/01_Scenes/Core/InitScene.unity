@@ -515,6 +515,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeOnMobile: 0
   sortOrder: 1000
+  minSize: 0
+  containers: []
 --- !u!1 &685263363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeOnMobile: 1
   sortOrder: 1000
+  minSize: 0
+  containers: []
 --- !u!114 &1603821064
 MonoBehaviour:
   m_ObjectHideFlags: 0

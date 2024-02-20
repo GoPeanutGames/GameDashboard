@@ -11,18 +11,34 @@ namespace PeanutDashboard.Editor
 	[CustomEditor(typeof(ServerBuilder))]
 	public class ServerBuilder : UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Build/Build Server Development")]
-		public static void BuildForServerDev()
+		[MenuItem("PeanutDashboard/Build/Server/Development Testing")]
+		public static void BuildForServerDevTest()
 		{
-			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
+			BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		[MenuItem("PeanutDashboard/Build/Server/Development Release")]
+		public static void BuildForServerDevRelease()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevRelease();
 			BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
-		[MenuItem("PeanutDashboard/Build/Build Server Production")]
-		public static void BuildForServerProd()
+		[MenuItem("PeanutDashboard/Build/Server/Production Testing")]
+		public static void BuildForServerProdTest()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
-				ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdTesting();
+				BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+			}
+		}
+
+		[MenuItem("PeanutDashboard/Build/Server/Production Release")]
+		public static void BuildForServerProdRelease()
+		{
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdRelease();
 				BuildForServer(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 			}
 		}

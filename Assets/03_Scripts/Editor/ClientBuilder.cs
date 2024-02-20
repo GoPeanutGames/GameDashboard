@@ -10,18 +10,34 @@ namespace PeanutDashboard.Editor
 	[CustomEditor(typeof(ClientBuilder))]
 	public class ClientBuilder : UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Build/Build Client Development")]
-		public static void BuildForClientDev()
+		[MenuItem("PeanutDashboard/Build/Client/Development Testing")]
+		public static void BuildForClientDevTesting()
 		{
-			ProjectDatabase.Instance.gameConfig.ConfigureForDev();
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
+			BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+		}
+		
+		[MenuItem("PeanutDashboard/Build/Client/Development Release")]
+		public static void BuildForClientDevRelease()
+		{
+			ProjectDatabase.Instance.gameConfig.ConfigureForDevRelease();
 			BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
-		[MenuItem("PeanutDashboard/Build/Build Client Production")]
-		public static void BuildForClientProd()
+		[MenuItem("PeanutDashboard/Build/Client/Production Testing")]
+		public static void BuildForClientProdTest()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
-				ProjectDatabase.Instance.gameConfig.ConfigureForProd();
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdTesting();
+				BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
+			}
+		}
+
+		[MenuItem("PeanutDashboard/Build/Client/Production Release")]
+		public static void BuildForClientProdRelease()
+		{
+			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
+				ProjectDatabase.Instance.gameConfig.ConfigureForProdRelease();
 				BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 			}
 		}
