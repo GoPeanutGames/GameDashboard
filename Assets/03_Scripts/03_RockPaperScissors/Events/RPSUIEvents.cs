@@ -8,6 +8,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
         private static UnityAction _showChooseOpponentScreen;
         private static UnityAction _showChooseModeScreen;
         private static UnityAction _showGameChooseOptionScreen;
+        private static UnityAction _playButtonClick;
         
         public static event UnityAction OnShowChooseOpponentScreen
         {
@@ -25,6 +26,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
         {
             add => _showGameChooseOptionScreen += value;
             remove => _showGameChooseOptionScreen -= value;
+        }
+        
+        public static event UnityAction OnPlayButtonClick
+        {
+            add => _playButtonClick += value;
+            remove => _playButtonClick -= value;
         }
 
         public static void RaiseShowChooseOpponentScreenEvent()
@@ -52,6 +59,15 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
                 return;
             }
             _showGameChooseOptionScreen.Invoke();
+        }
+        
+        public static void RaisePlayButtonClickEvent()
+        {
+            if (_playButtonClick == null){
+                LoggerService.LogWarning($"{nameof(RPSUIEvents)}::{nameof(RaisePlayButtonClickEvent)} raised, but nothing picked it up");
+                return;
+            }
+            _playButtonClick.Invoke();
         }
     }
 }
