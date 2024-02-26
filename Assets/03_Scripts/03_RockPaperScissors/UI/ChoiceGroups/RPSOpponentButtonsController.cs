@@ -43,11 +43,15 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		private void OnPlayerButtonClick()
 		{
 			LoggerService.LogInfo($"{nameof(RPSOpponentButtonsController)}::{nameof(OnPlayerButtonClick)}");
+			RPSCurrentClientState.rpsOpponentType = RPSOpponentType.Player;
+            RPSUIEvents.RaiseGameShowChooseOptionScreenEvent();
 		}
 
 		private void OnPCButtonClick()
 		{
 			LoggerService.LogInfo($"{nameof(RPSOpponentButtonsController)}::{nameof(OnPCButtonClick)}");
+			RPSCurrentClientState.rpsOpponentType = RPSOpponentType.PC;
+            RPSUIEvents.RaiseGameShowChooseOptionScreenEvent();
 		}
 	}
 }
