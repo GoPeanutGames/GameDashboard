@@ -36,6 +36,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         {
             _chooseModeScreen.Deactivate();
             _chooseOpponentScreen.Deactivate();
+            _gameChooseOptionsScreen.Deactivate();
         }
 
         private void OnShowChooseModeScreen()

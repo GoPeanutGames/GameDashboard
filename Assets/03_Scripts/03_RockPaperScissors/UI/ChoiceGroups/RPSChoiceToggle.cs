@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils.Misc;
+﻿using PeanutDashboard._03_RockPaperScissors.Events;
+using PeanutDashboard.Utils.Misc;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,11 +41,19 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		private void OnEnable()
 		{
 			_toggle.onValueChanged.AddListener(OnToggleValueChanged);
+			RPSClientGameEvents.OnDisablePlayerChoices += OnDisableToggle;
 		}
 
 		private void OnDisable()
 		{
 			_toggle.onValueChanged.RemoveListener(OnToggleValueChanged);
+			RPSClientGameEvents.OnDisablePlayerChoices -= OnDisableToggle;
+		}
+
+		private void OnDisableToggle()
+		{
+			_toggle.interactable = false;
+			_text.color = new Color(1,1,1,0.5f);
 		}
 
 		private void OnToggleValueChanged(bool value)

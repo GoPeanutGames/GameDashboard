@@ -22,17 +22,25 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		private void OnEnable()
 		{
 			_button.onClick.AddListener(OnPlayButtonClick);
+			RPSClientGameEvents.OnDisablePlayerChoices += OnDisablePlayButton;
 		}
 
 		private void OnDisable()
 		{
 			_button.onClick.RemoveListener(OnPlayButtonClick);
+			RPSClientGameEvents.OnDisablePlayerChoices -= OnDisablePlayButton;
+		}
+
+		private void OnDisablePlayButton()
+		{
+			_button.interactable = false;
 		}
 
 		private void OnPlayButtonClick()
 		{
 			LoggerService.LogInfo($"{nameof(RPSPlayButton)}::{nameof(OnPlayButtonClick)}");
 			RPSUIEvents.RaisePlayButtonClickEvent();
+			RPSClientGameEvents.RaisePlayChoiceSelectedEvent();
 		}
 	}
 }
