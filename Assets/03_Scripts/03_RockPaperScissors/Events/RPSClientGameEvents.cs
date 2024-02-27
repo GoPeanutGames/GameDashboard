@@ -7,8 +7,14 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 	{
 		private static UnityAction _playChoiceSelected;
 		private static UnityAction _disablePlayerChoices;
+		private static UnityAction _enablePlayerChoices;
 		private static UnityAction _selectedChoiceAnimationDone;
 		private static UnityAction _showBattle;
+		private static UnityAction _battleBgCloseAnimationDone;
+		private static UnityAction _startBattleAnimation;
+		private static UnityAction _battleAnimationDone;
+		private static UnityAction _startBattleBgOpenAnimation;
+		private static UnityAction _battleBgOpenAnimationDone;
         
 		public static event UnityAction OnPlayChoiceSelected
 		{
@@ -22,6 +28,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 			remove => _disablePlayerChoices -= value;
 		}
 		
+		public static event UnityAction OnEnablePlayerChoices
+		{
+			add => _enablePlayerChoices += value;
+			remove => _enablePlayerChoices -= value;
+		}
+		
 		public static event UnityAction OnSelectedChoiceAnimationDone
 		{
 			add => _selectedChoiceAnimationDone += value;
@@ -32,6 +44,36 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		{
 			add => _showBattle += value;
 			remove => _showBattle -= value;
+		}
+		
+		public static event UnityAction OnBattleBgCloseAnimationDone
+		{
+			add => _battleBgCloseAnimationDone += value;
+			remove => _battleBgCloseAnimationDone -= value;
+		}
+		
+		public static event UnityAction OnStartBattleAnimation
+		{
+			add => _startBattleAnimation += value;
+			remove => _startBattleAnimation -= value;
+		}
+
+		public static event UnityAction OnBattleAnimationDone
+		{
+			add => _battleAnimationDone += value;
+			remove => _battleAnimationDone -= value;
+		}
+		
+		public static event UnityAction OnStartBattleBgOpenAnimation
+		{
+			add => _startBattleBgOpenAnimation += value;
+			remove => _startBattleBgOpenAnimation -= value;
+		}
+		
+		public static event UnityAction OnBattleBgOpenAnimationDone
+		{
+			add => _battleBgOpenAnimationDone += value;
+			remove => _battleBgOpenAnimationDone -= value;
 		}
 
 		public static void RaisePlayChoiceSelectedEvent()
@@ -51,6 +93,15 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 			}
 			_disablePlayerChoices.Invoke();
 		}
+		
+		public static void RaiseEnablePlayerChoicesEvent()
+		{
+			if (_enablePlayerChoices == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseEnablePlayerChoicesEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_enablePlayerChoices.Invoke();
+		}
 
 		public static void RaiseSelectedChoiceAnimationDoneEvent()
 		{
@@ -68,6 +119,51 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 				return;
 			}
 			_showBattle.Invoke();
+		}
+
+		public static void RaiseBattleBgCloseAnimationDoneEvent()
+		{
+			if (_battleBgCloseAnimationDone == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseBattleBgCloseAnimationDoneEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_battleBgCloseAnimationDone.Invoke();
+		}
+
+		public static void RaiseStartBattleAnimationEvent()
+		{
+			if (_startBattleAnimation == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseStartBattleAnimationEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_startBattleAnimation.Invoke();
+		}
+		
+		public static void RaiseBattleAnimationDoneEvent()
+		{
+			if (_battleAnimationDone == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseBattleAnimationDoneEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_battleAnimationDone.Invoke();
+		}
+		
+		public static void RaiseStartBattleBgOpenAnimationEvent()
+		{
+			if (_startBattleBgOpenAnimation == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseStartBattleBgOpenAnimationEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_startBattleBgOpenAnimation.Invoke();
+		}
+		
+		public static void RaiseBattleBgOpenAnimationDoneEvent()
+		{
+			if (_battleBgOpenAnimationDone == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseBattleBgOpenAnimationDoneEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_battleBgOpenAnimationDone.Invoke();
 		}
 	}
 }

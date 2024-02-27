@@ -13,10 +13,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		private static UnityAction<string> _updateEnemyScoreText;
 		private static UnityAction<Sprite> _updateYourChoiceImage;
 		private static UnityAction<Sprite> _updateEnemyChoiceImage;
+		private static UnityAction<Sprite> _updateUpperIndicator;
 		private static UnityAction _hideYourScore;
 		private static UnityAction _hideEnemyScore;
 		private static UnityAction _showYourScore;
 		private static UnityAction _showEnemyScore;
+		private static UnityAction _hideIndicator;
 
 		public static event UnityAction<string> OnUpdateUpperSmallText
 		{
@@ -60,6 +62,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 			remove => _updateEnemyChoiceImage -= value;
 		}
 		
+		public static event UnityAction<Sprite> OnUpdateUpperIndicator
+		{
+			add => _updateUpperIndicator += value;
+			remove => _updateUpperIndicator -= value;
+		}
+		
 		public static event UnityAction OnHideYourScore
 		{
 			add => _hideYourScore += value;
@@ -82,6 +90,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		{
 			add => _showEnemyScore += value;
 			remove => _showEnemyScore -= value;
+		}
+		
+		public static event UnityAction OnHideIndicator
+		{
+			add => _hideIndicator += value;
+			remove => _hideIndicator -= value;
 		}
 
 		public static void RaiseUpdateUpperSmallTextEvent(string text)
@@ -147,6 +161,15 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 			_updateEnemyChoiceImage.Invoke(image);
 		}
 		
+		public static void RaiseUpdateUpperIndicatorEvent(Sprite image)
+		{
+			if (_updateUpperIndicator == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseUpdateUpperIndicatorEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_updateUpperIndicator.Invoke(image);
+		}
+		
 		public static void RaiseHideYourScoreEvent()
 		{
 			if (_hideYourScore == null){
@@ -181,6 +204,15 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 				return;
 			}
 			_showEnemyScore.Invoke();
+		}
+		
+		public static void RaiseHideIndicatorEvent()
+		{
+			if (_hideIndicator == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseHideIndicatorEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_hideIndicator.Invoke();
 		}
 	}
 }

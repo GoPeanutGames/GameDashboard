@@ -180,6 +180,41 @@ MonoBehaviour:
   _deSelectedSprite: {fileID: 21300000, guid: f67f1f1ca96716447af53b2c5c7b0474, type: 3}
   _selectedTextFont: {fileID: 11400000, guid: 03db160f9227ba946bc7b369fb4469eb, type: 2}
   _normalTextFont: {fileID: 11400000, guid: bc910da6219613e4baed9752371dc120, type: 2}
+--- !u!1 &34993727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34993728}
+  m_Layer: 5
+  m_Name: BotsBattling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &34993728
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34993727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 310983271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &68843069
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310983271}
+  - component: {fileID: 310983272}
   m_Layer: 5
   m_Name: GameBattleUI
   m_TagString: Untagged
@@ -855,6 +891,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2138434626}
+  - {fileID: 34993728}
   m_Father: {fileID: 1334370544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -862,6 +899,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &310983272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310983270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fda3248c7ca4e5cb0135b8c5abd6be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &317576402
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +922,7 @@ GameObject:
   - component: {fileID: 317576403}
   - component: {fileID: 317576405}
   - component: {fileID: 317576404}
+  - component: {fileID: 317576406}
   m_Layer: 5
   m_Name: Heart
   m_TagString: Untagged
@@ -937,6 +987,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317576402}
   m_CullTransparentMesh: 1
+--- !u!95 &317576406
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317576402}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a2a803bb4b84c941ae80760567c3e09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &326616979
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +1017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 326616980}
+  - component: {fileID: 326616981}
   m_Layer: 5
   m_Name: HeartWrapper
   m_TagString: Untagged
@@ -975,6 +1047,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &326616981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326616979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7caba53b5f84a1998a778b80bf0d188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heartAnimators:
+  - {fileID: 1304783539}
+  - {fileID: 1831959741}
+  - {fileID: 593128760}
+  _heartUserType: 1
+  _heartToBurst: 0
 --- !u!1 &338200406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1726,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1352825852}
   - {fileID: 476898354}
   - {fileID: 1499690659}
   m_Father: {fileID: 1877883252}
@@ -1976,6 +2067,7 @@ GameObject:
   - component: {fileID: 593128757}
   - component: {fileID: 593128759}
   - component: {fileID: 593128758}
+  - component: {fileID: 593128760}
   m_Layer: 5
   m_Name: Heart3
   m_TagString: Untagged
@@ -2040,6 +2132,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593128756}
   m_CullTransparentMesh: 1
+--- !u!95 &593128760
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593128756}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a2a803bb4b84c941ae80760567c3e09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &673796739
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,6 +2901,7 @@ GameObject:
   - component: {fileID: 854012785}
   - component: {fileID: 854012787}
   - component: {fileID: 854012786}
+  - component: {fileID: 854012788}
   m_Layer: 5
   m_Name: Heart3
   m_TagString: Untagged
@@ -2852,6 +2966,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854012784}
   m_CullTransparentMesh: 1
+--- !u!95 &854012788
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854012784}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a2a803bb4b84c941ae80760567c3e09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &881336362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,6 +3535,7 @@ GameObject:
   - component: {fileID: 1014015108}
   - component: {fileID: 1014015110}
   - component: {fileID: 1014015109}
+  - component: {fileID: 1014015111}
   m_Layer: 5
   m_Name: Heart2
   m_TagString: Untagged
@@ -3464,6 +3600,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014015107}
   m_CullTransparentMesh: 1
+--- !u!95 &1014015111
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014015107}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a2a803bb4b84c941ae80760567c3e09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1149308358
 GameObject:
   m_ObjectHideFlags: 0
@@ -3866,6 +4023,7 @@ GameObject:
   - component: {fileID: 1304783536}
   - component: {fileID: 1304783538}
   - component: {fileID: 1304783537}
+  - component: {fileID: 1304783539}
   m_Layer: 5
   m_Name: Heart
   m_TagString: Untagged
@@ -3930,6 +4088,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304783535}
   m_CullTransparentMesh: 1
+--- !u!95 &1304783539
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304783535}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a2a803bb4b84c941ae80760567c3e09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1331144817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4264,6 +4443,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1352825851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1352825852}
+  - component: {fileID: 1352825854}
+  - component: {fileID: 1352825853}
+  m_Layer: 5
+  m_Name: ResultIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1352825852
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352825851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 485530936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.147, y: 0.166}
+  m_AnchorMax: {x: 0.84, y: 0.896}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
+  m_SizeDelta: {x: -0.000015258789, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1352825853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352825851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 377b08c168147fd4ba46e993b2e11362, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1352825854
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352825851}
+  m_CullTransparentMesh: 1
 --- !u!1 &1428332755
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,6 +5546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1829857169}
+  - component: {fileID: 1829857170}
   m_Layer: 5
   m_Name: HeartWrapper
   m_TagString: Untagged
@@ -5321,6 +5576,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1829857170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829857168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7caba53b5f84a1998a778b80bf0d188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heartAnimators:
+  - {fileID: 317576406}
+  - {fileID: 1014015111}
+  - {fileID: 854012788}
+  _heartUserType: 0
+  _heartToBurst: 0
 --- !u!1 &1831959737
 GameObject:
   m_ObjectHideFlags: 0
@@ -5332,6 +5605,7 @@ GameObject:
   - component: {fileID: 1831959738}
   - component: {fileID: 1831959740}
   - component: {fileID: 1831959739}
+  - component: {fileID: 1831959741}
   m_Layer: 5
   m_Name: Heart2
   m_TagString: Untagged
@@ -5396,6 +5670,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831959737}
   m_CullTransparentMesh: 1
+--- !u!95 &1831959741
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831959737}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a2a803bb4b84c941ae80760567c3e09, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1863374877
 GameObject:
   m_ObjectHideFlags: 0
@@ -5584,6 +5879,7 @@ MonoBehaviour:
   _enemyScoreText: {fileID: 1757284835}
   _playerChoiceImage: {fileID: 1428332757}
   _enemyChoiceImage: {fileID: 734477735}
+  _centralIndicator: {fileID: 1352825853}
 --- !u!1 &1989971517
 GameObject:
   m_ObjectHideFlags: 0
@@ -6286,6 +6582,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2138434626}
   - component: {fileID: 2138434627}
+  - component: {fileID: 2138434628}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -6335,6 +6632,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2138434628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138434625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7ee478e2c34a729bb3462969eaa073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

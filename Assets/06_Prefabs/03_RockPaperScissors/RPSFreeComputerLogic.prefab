@@ -51,3 +51,5 @@ MonoBehaviour:
   _paperSprite: {fileID: 21300000, guid: cc579f9f743d12a459ef89a22c11a93e, type: 3}
   _scissorsSprite: {fileID: 21300000, guid: f67f1f1ca96716447af53b2c5c7b0474, type: 3}
   _questionMarkSprite: {fileID: 21300000, guid: 48aea9e574fd086408d6d840124272b4, type: 3}
+  _winIndicator: {fileID: 21300000, guid: d08796072c8998d47a5ae1f7cca652c2, type: 3}
+  _loseIndicator: {fileID: 21300000, guid: 377b08c168147fd4ba46e993b2e11362, type: 3}

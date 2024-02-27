@@ -1,4 +1,5 @@
 ﻿using PeanutDashboard._03_RockPaperScissors.Events;
+using PeanutDashboard.Shared.Logging;
 using UnityEngine;
 
 namespace PeanutDashboard._03_RockPaperScissors.UI
@@ -8,11 +9,13 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 	{
 		public void OnAnimationDone()
 		{
+			LoggerService.LogInfo($"{nameof(BigChoiceAnimationController)}::{nameof(OnAnimationDone)}");
 			Invoke(nameof(InvokeEvent), 0.2f);
 		}
 
 		public void InvokeEvent()
 		{
+			LoggerService.LogInfo($"{nameof(BigChoiceAnimationController)}::{nameof(InvokeEvent)}");
 			RPSClientGameEvents.RaiseSelectedChoiceAnimationDoneEvent();
 		}
 	}

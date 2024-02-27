@@ -27,6 +27,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUIEvents.OnShowChooseModeScreen += OnShowChooseModeScreen;
             RPSUIEvents.OnShowGameChooseOptionScreen += OnShowGameChooseOptionScreen;
             RPSClientGameEvents.OnShowBattle += OnShowBattle;
+            RPSClientGameEvents.OnBattleBgOpenAnimationDone += OnHideBattleBgDone;
         }
 
         private void OnDisable()
@@ -35,6 +36,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUIEvents.OnShowChooseModeScreen -= OnShowChooseModeScreen;
             RPSUIEvents.OnShowGameChooseOptionScreen -= OnShowGameChooseOptionScreen;
             RPSClientGameEvents.OnShowBattle -= OnShowBattle;
+            RPSClientGameEvents.OnBattleBgOpenAnimationDone -= OnHideBattleBgDone;
         }
 
         private void DisableAllScreens()
@@ -71,6 +73,12 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowBattle)}");
             _gameBattleScreen.Activate();
+        }
+        
+        private void OnHideBattleBgDone()
+        {
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnHideBattleBgDone)}");
+            _gameBattleScreen.Deactivate();
         }
     }
 }

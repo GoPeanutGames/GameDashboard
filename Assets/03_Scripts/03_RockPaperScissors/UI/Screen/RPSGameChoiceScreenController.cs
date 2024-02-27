@@ -1,4 +1,5 @@
 ﻿using PeanutDashboard._03_RockPaperScissors.Events;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 
 		private void OnPlayButtonClick()
 		{
+			LoggerService.LogInfo($"{nameof(RPSGameChoiceScreenController)}::{nameof(OnPlayButtonClick)}");
 			_backButton.gameObject.Deactivate();
 		}
 	}

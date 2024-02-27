@@ -11,7 +11,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 	{
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
-		private int _round = 0;
+		private int _round = 1;
 		
 		[SerializeField]
 		private int _scorePlayer = 0;
@@ -30,38 +30,41 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		
 		[SerializeField]
 		private Sprite _questionMarkSprite;
+		
+		[SerializeField]
+		private Sprite _winIndicator;
+		
+		[SerializeField]
+		private Sprite _loseIndicator;
         
 		
 		private void OnEnable()
 		{
 			RPSClientGameEvents.OnPlayChoiceSelected += OnPlayChoiceSelectedEvent;
 			RPSClientGameEvents.OnSelectedChoiceAnimationDone += OnSelectedChoiceAnimationDone;
+			RPSClientGameEvents.OnBattleBgCloseAnimationDone += OnBattleBgCloseAnimationDone;
+			RPSClientGameEvents.OnBattleAnimationDone += OnBattleAnimationDone;
+			RPSClientGameEvents.OnBattleBgOpenAnimationDone += StartNextRound;
 		}
 
 		private void OnDisable()
 		{
 			RPSClientGameEvents.OnPlayChoiceSelected -= OnPlayChoiceSelectedEvent;
 			RPSClientGameEvents.OnSelectedChoiceAnimationDone -= OnSelectedChoiceAnimationDone;
+			RPSClientGameEvents.OnBattleBgCloseAnimationDone -= OnBattleBgCloseAnimationDone;
+			RPSClientGameEvents.OnBattleAnimationDone -= OnBattleAnimationDone;
+			RPSClientGameEvents.OnBattleBgOpenAnimationDone -= StartNextRound;
 		}
 
 		private void OnPlayChoiceSelectedEvent()
 		{
 			LoggerService.LogInfo($"{nameof(RPSGameLogicFreeComputerController)}::{nameof(OnPlayChoiceSelectedEvent)}");
 			RPSClientGameEvents.RaiseDisablePlayerChoicesEvent();
-			_round++;
 			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
 			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent(_round.ToString());
 			RPSUpperUIEvents.RaiseUpdateEnemyNameTextEvent("AI");
 			RPSUpperUIEvents.RaiseUpdateYourScoreTextEvent(_scorePlayer.ToString());
 			RPSUpperUIEvents.RaiseUpdateEnemyScoreTextEvent(_scoreEnemy.ToString());
-			//TODO: flow:
-			//TODO: - disable play button & toggles
-			//TODO: - update upper UI
-			//TODO: - show choice animation small to big ->
-			//TODO: - on choice animation done -> wait 0.2sec and trigger game screen
-			//TODO: - show game battle (bots), when their animation is done, show win / lose and burst appropriate bubble
-			//TODO: - hide game battle, enable play button & toggles
-			//TODO: - enable timer
 		}
 
 		private void OnSelectedChoiceAnimationDone()
@@ -73,7 +76,6 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			RPSUpperUIEvents.RaiseUpdateYourChoiceImageEvent(GetSpriteForChoice(RPSCurrentClientState.rpsChoiceType));
 			RPSUpperUIEvents.RaiseUpdateEnemyChoiceImageEvent(_questionMarkSprite);
 			RPSClientGameEvents.RaiseShowBattleEvent();
-			//TODO; someone that listens to this event will spawn bots - for now, it can be without with just a timeout
 		}
 
 		private Sprite GetSpriteForChoice(RPSChoiceType choiceType)
@@ -87,6 +89,101 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 					return _scissorsSprite;
 			}
 			return null;
+		}
+
+		private void OnBattleBgCloseAnimationDone()
+		{
+			RPSCurrentEnemyState.rpsChoiceType = (RPSChoiceType)Random.Range(0, 3);
+			RPSClientGameEvents.RaiseStartBattleAnimationEvent();
+		}
+
+		private void OnBattleAnimationDone()
+		{
+			RPSUpperUIEvents.RaiseUpdateEnemyChoiceImageEvent(GetSpriteForChoice(RPSCurrentEnemyState.rpsChoiceType));
+			switch (RPSCurrentEnemyState.rpsChoiceType){
+				case RPSChoiceType.Paper:
+					switch (RPSCurrentClientState.rpsChoiceType){
+						case RPSChoiceType.Paper:
+							Draw();
+							break;
+						case RPSChoiceType.Rock:
+							Lost();
+							break;
+						default:
+							Won();
+							break;
+					}
+					break;
+				case RPSChoiceType.Rock:
+					switch (RPSCurrentClientState.rpsChoiceType){
+						case RPSChoiceType.Paper:
+							Won();
+							break;
+						case RPSChoiceType.Rock:
+							Draw();
+							break;
+						default:
+							Lost();
+							break;
+					}
+					break;
+				case RPSChoiceType.Scissors:
+					switch (RPSCurrentClientState.rpsChoiceType){
+						case RPSChoiceType.Paper:
+							Lost();
+							break;
+						case RPSChoiceType.Rock:
+							Won();
+							break;
+						default:
+							Draw();
+							break;
+					}
+					break;
+			}
+			//TODO: enable timer - for timeout - automatic lose
+			//TODO: win / lose conditions -> win / lose popup -> send to start
+		}
+
+		private void Won()
+		{
+			RPSUpperUIEvents.RaiseUpdateUpperIndicatorEvent(_winIndicator);
+			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent("WIN");
+			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("");
+			_scorePlayer++;
+			_round++;
+			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Opponent);
+            RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
+		}
+
+		private void Lost()
+		{
+			RPSUpperUIEvents.RaiseUpdateUpperIndicatorEvent(_loseIndicator);
+			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent("LOSE");
+			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("");
+			_scoreEnemy++;
+			_round++;
+			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Player);
+            RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
+		}
+
+		private void Draw()
+		{
+			_round++;
+            RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
+		}
+
+		private void StartNextRound()
+		{
+			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
+			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent(_round.ToString());
+			RPSUpperUIEvents.RaiseUpdateEnemyNameTextEvent("AI");
+			RPSUpperUIEvents.RaiseUpdateYourScoreTextEvent(_scorePlayer.ToString());
+			RPSUpperUIEvents.RaiseUpdateEnemyScoreTextEvent(_scoreEnemy.ToString());
+			RPSUpperUIEvents.RaiseShowEnemyScoreEvent();
+			RPSUpperUIEvents.RaiseShowYourScoreEvent();
+			RPSUpperUIEvents.RaiseHideIndicatorEvent();
+			RPSClientGameEvents.RaiseEnablePlayerChoicesEvent();
 		}
 	}
 }
