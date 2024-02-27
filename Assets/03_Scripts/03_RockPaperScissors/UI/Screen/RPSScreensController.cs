@@ -63,6 +63,8 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowGameChooseOptionScreen)}");
             DisableAllScreens();
             _gameChooseOptionsScreen.Activate();
+            RPSUpperUIEvents.RaiseShowYourScoreEvent();
+            RPSUpperUIEvents.RaiseShowEnemyScoreEvent();
         }
 
         private void OnShowBattle()

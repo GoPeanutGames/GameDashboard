@@ -1,4 +1,5 @@
 ﻿using PeanutDashboard.Shared.Logging;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace PeanutDashboard._03_RockPaperScissors.Events
@@ -10,6 +11,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		private static UnityAction<string> _updateEnemyNameText;
 		private static UnityAction<string> _updateYourScoreText;
 		private static UnityAction<string> _updateEnemyScoreText;
+		private static UnityAction<Sprite> _updateYourChoiceImage;
+		private static UnityAction<Sprite> _updateEnemyChoiceImage;
+		private static UnityAction _hideYourScore;
+		private static UnityAction _hideEnemyScore;
+		private static UnityAction _showYourScore;
+		private static UnityAction _showEnemyScore;
 
 		public static event UnityAction<string> OnUpdateUpperSmallText
 		{
@@ -39,6 +46,42 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		{
 			add => _updateEnemyScoreText += value;
 			remove => _updateEnemyScoreText -= value;
+		}
+		
+		public static event UnityAction<Sprite> OnUpdateYourChoiceImage
+		{
+			add => _updateYourChoiceImage += value;
+			remove => _updateYourChoiceImage -= value;
+		}
+		
+		public static event UnityAction<Sprite> OnUpdateEnemyChoiceImage
+		{
+			add => _updateEnemyChoiceImage += value;
+			remove => _updateEnemyChoiceImage -= value;
+		}
+		
+		public static event UnityAction OnHideYourScore
+		{
+			add => _hideYourScore += value;
+			remove => _hideYourScore -= value;
+		}
+		
+		public static event UnityAction OnHideEnemyScore
+		{
+			add => _hideEnemyScore += value;
+			remove => _hideEnemyScore -= value;
+		}
+		
+		public static event UnityAction OnShowYourScore
+		{
+			add => _showYourScore += value;
+			remove => _showYourScore -= value;
+		}
+		
+		public static event UnityAction OnShowEnemyScore
+		{
+			add => _showEnemyScore += value;
+			remove => _showEnemyScore -= value;
 		}
 
 		public static void RaiseUpdateUpperSmallTextEvent(string text)
@@ -84,6 +127,60 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 				return;
 			}
 			_updateEnemyScoreText.Invoke(text);
+		}
+		
+		public static void RaiseUpdateYourChoiceImageEvent(Sprite image)
+		{
+			if (_updateYourChoiceImage == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseUpdateYourChoiceImageEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_updateYourChoiceImage.Invoke(image);
+		}
+		
+		public static void RaiseUpdateEnemyChoiceImageEvent(Sprite image)
+		{
+			if (_updateEnemyChoiceImage == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseUpdateEnemyChoiceImageEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_updateEnemyChoiceImage.Invoke(image);
+		}
+		
+		public static void RaiseHideYourScoreEvent()
+		{
+			if (_hideYourScore == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseHideYourScoreEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_hideYourScore.Invoke();
+		}
+		
+		public static void RaiseHideEnemyScoreEvent()
+		{
+			if (_hideEnemyScore == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseHideEnemyScoreEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_hideEnemyScore.Invoke();
+		}
+		
+		public static void RaiseShowYourScoreEvent()
+		{
+			if (_showYourScore == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseShowYourScoreEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_showYourScore.Invoke();
+		}
+		
+		public static void RaiseShowEnemyScoreEvent()
+		{
+			if (_showEnemyScore == null){
+				LoggerService.LogWarning($"{nameof(RPSUpperUIEvents)}::{nameof(RaiseShowEnemyScoreEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_showEnemyScore.Invoke();
 		}
 	}
 }

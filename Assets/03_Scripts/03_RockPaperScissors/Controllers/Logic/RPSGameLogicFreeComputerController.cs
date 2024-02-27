@@ -1,4 +1,6 @@
 ﻿using PeanutDashboard._03_RockPaperScissors.Events;
+using PeanutDashboard._03_RockPaperScissors.Model;
+using PeanutDashboard._03_RockPaperScissors.State;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
@@ -16,6 +18,18 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		
 		[SerializeField]
 		private int _scoreEnemy = 0;
+		
+		[SerializeField]
+		private Sprite _rockSprite;
+		
+		[SerializeField]
+		private Sprite _paperSprite;
+		
+		[SerializeField]
+		private Sprite _scissorsSprite;
+		
+		[SerializeField]
+		private Sprite _questionMarkSprite;
         
 		
 		private void OnEnable()
@@ -52,10 +66,27 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 
 		private void OnSelectedChoiceAnimationDone()
 		{
-			//TODO: update top UI to show your choice
-			//TODO: update top UI to show "..."
+			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("");
+			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent("...");
+			RPSUpperUIEvents.RaiseHideYourScoreEvent();
+			RPSUpperUIEvents.RaiseHideEnemyScoreEvent();
+			RPSUpperUIEvents.RaiseUpdateYourChoiceImageEvent(GetSpriteForChoice(RPSCurrentClientState.rpsChoiceType));
+			RPSUpperUIEvents.RaiseUpdateEnemyChoiceImageEvent(_questionMarkSprite);
 			RPSClientGameEvents.RaiseShowBattleEvent();
 			//TODO; someone that listens to this event will spawn bots - for now, it can be without with just a timeout
+		}
+
+		private Sprite GetSpriteForChoice(RPSChoiceType choiceType)
+		{
+			switch (choiceType){
+				case RPSChoiceType.Paper:
+					return _paperSprite;
+				case RPSChoiceType.Rock:
+					return _rockSprite;
+				case RPSChoiceType.Scissors:
+					return _scissorsSprite;
+			}
+			return null;
 		}
 	}
 }
