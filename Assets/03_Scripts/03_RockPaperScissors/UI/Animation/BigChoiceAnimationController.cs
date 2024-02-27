@@ -8,6 +8,11 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 	{
 		public void OnAnimationDone()
 		{
+			Invoke(nameof(InvokeEvent), 0.2f);
+		}
+
+		public void InvokeEvent()
+		{
 			RPSClientGameEvents.RaiseSelectedChoiceAnimationDoneEvent();
 		}
 	}

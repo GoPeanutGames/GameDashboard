@@ -21,11 +21,13 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void OnEnable()
 		{
 			RPSClientGameEvents.OnPlayChoiceSelected += OnPlayChoiceSelectedEvent;
+			RPSClientGameEvents.OnSelectedChoiceAnimationDone += OnSelectedChoiceAnimationDone;
 		}
 
 		private void OnDisable()
 		{
 			RPSClientGameEvents.OnPlayChoiceSelected -= OnPlayChoiceSelectedEvent;
+			RPSClientGameEvents.OnSelectedChoiceAnimationDone -= OnSelectedChoiceAnimationDone;
 		}
 
 		private void OnPlayChoiceSelectedEvent()
@@ -46,6 +48,14 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			//TODO: - show game battle (bots), when their animation is done, show win / lose and burst appropriate bubble
 			//TODO: - hide game battle, enable play button & toggles
 			//TODO: - enable timer
+		}
+
+		private void OnSelectedChoiceAnimationDone()
+		{
+			//TODO: update top UI to show your choice
+			//TODO: update top UI to show "..."
+			RPSClientGameEvents.RaiseShowBattleEvent();
+			//TODO; someone that listens to this event will spawn bots - for now, it can be without with just a timeout
 		}
 	}
 }

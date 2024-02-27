@@ -8,6 +8,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		private static UnityAction _playChoiceSelected;
 		private static UnityAction _disablePlayerChoices;
 		private static UnityAction _selectedChoiceAnimationDone;
+		private static UnityAction _showBattle;
         
 		public static event UnityAction OnPlayChoiceSelected
 		{
@@ -25,6 +26,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		{
 			add => _selectedChoiceAnimationDone += value;
 			remove => _selectedChoiceAnimationDone -= value;
+		}
+		
+		public static event UnityAction OnShowBattle
+		{
+			add => _showBattle += value;
+			remove => _showBattle -= value;
 		}
 
 		public static void RaisePlayChoiceSelectedEvent()
@@ -52,6 +59,15 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 				return;
 			}
 			_selectedChoiceAnimationDone.Invoke();
+		}
+
+		public static void RaiseShowBattleEvent()
+		{
+			if (_showBattle == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseShowBattleEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_showBattle.Invoke();
 		}
 	}
 }

@@ -18,18 +18,23 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         [SerializeField]
         private GameObject _gameChooseOptionsScreen;
         
+        [SerializeField]
+        private GameObject _gameBattleScreen;
+        
         private void OnEnable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen += OnShowChooseOpponentScreen;
             RPSUIEvents.OnShowChooseModeScreen += OnShowChooseModeScreen;
-            RPSUIEvents.OnShowGameChooseOptionScreen += OnShowGAmeChooseOptionScreen;
+            RPSUIEvents.OnShowGameChooseOptionScreen += OnShowGameChooseOptionScreen;
+            RPSClientGameEvents.OnShowBattle += OnShowBattle;
         }
 
         private void OnDisable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen -= OnShowChooseOpponentScreen;
             RPSUIEvents.OnShowChooseModeScreen -= OnShowChooseModeScreen;
-            RPSUIEvents.OnShowGameChooseOptionScreen -= OnShowGAmeChooseOptionScreen;
+            RPSUIEvents.OnShowGameChooseOptionScreen -= OnShowGameChooseOptionScreen;
+            RPSClientGameEvents.OnShowBattle -= OnShowBattle;
         }
 
         private void DisableAllScreens()
@@ -53,12 +58,17 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             _chooseOpponentScreen.Activate();
         }
 
-        private void OnShowGAmeChooseOptionScreen()
+        private void OnShowGameChooseOptionScreen()
         {
-            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowGAmeChooseOptionScreen)}");
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowGameChooseOptionScreen)}");
             DisableAllScreens();
             _gameChooseOptionsScreen.Activate();
-            
+        }
+
+        private void OnShowBattle()
+        {
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowBattle)}");
+            _gameBattleScreen.Activate();
         }
     }
 }
