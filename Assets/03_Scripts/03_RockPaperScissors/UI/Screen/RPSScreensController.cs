@@ -10,6 +10,9 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
     {
         [Header(InspectorNames.SetInInspector)]
         [SerializeField]
+        private GameObject _startScreen;
+        
+        [SerializeField]
         private GameObject _chooseModeScreen;
         
         [SerializeField]
@@ -21,13 +24,19 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         [SerializeField]
         private GameObject _gameBattleScreen;
         
+        [SerializeField]
+        private GameObject _wonScreen;
+        
         private void OnEnable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen += OnShowChooseOpponentScreen;
             RPSUIEvents.OnShowChooseModeScreen += OnShowChooseModeScreen;
             RPSUIEvents.OnShowGameChooseOptionScreen += OnShowGameChooseOptionScreen;
+            RPSUIEvents.OnShowStartScreen += OnShowStartScreen;
+            RPSUIEvents.OnHideWonScreen += OnHideWonScreen;
             RPSClientGameEvents.OnShowBattle += OnShowBattle;
             RPSClientGameEvents.OnBattleBgOpenAnimationDone += OnHideBattleBgDone;
+            RPSClientGameEvents.OnYouWonGame += OnShowWonScreen;
         }
 
         private void OnDisable()
@@ -35,8 +44,11 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUIEvents.OnShowChooseOpponentScreen -= OnShowChooseOpponentScreen;
             RPSUIEvents.OnShowChooseModeScreen -= OnShowChooseModeScreen;
             RPSUIEvents.OnShowGameChooseOptionScreen -= OnShowGameChooseOptionScreen;
+            RPSUIEvents.OnShowStartScreen -= OnShowStartScreen;
+            RPSUIEvents.OnHideWonScreen -= OnHideWonScreen;
             RPSClientGameEvents.OnShowBattle -= OnShowBattle;
             RPSClientGameEvents.OnBattleBgOpenAnimationDone -= OnHideBattleBgDone;
+            RPSClientGameEvents.OnYouWonGame -= OnShowWonScreen;
         }
 
         private void DisableAllScreens()
@@ -44,8 +56,16 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             _chooseModeScreen.Deactivate();
             _chooseOpponentScreen.Deactivate();
             _gameChooseOptionsScreen.Deactivate();
+            _startScreen.Deactivate();
         }
-
+        
+        private void OnShowStartScreen()
+        {
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowChooseModeScreen)}");
+            DisableAllScreens();
+            _startScreen.Activate();   
+        }
+        
         private void OnShowChooseModeScreen()
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowChooseModeScreen)}");
@@ -67,6 +87,14 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             _gameChooseOptionsScreen.Activate();
             RPSUpperUIEvents.RaiseShowYourScoreEvent();
             RPSUpperUIEvents.RaiseShowEnemyScoreEvent();
+            RPSClientGameEvents.RaiseEnablePlayerChoicesEvent();
+            RPSUpperUIEvents.RaiseHideIndicatorEvent();
+            RPSUpperUIEvents.RaiseShowYourScoreEvent();
+            RPSUpperUIEvents.RaiseShowEnemyScoreEvent();
+            RPSUpperUIEvents.RaiseUpdateYourScoreTextEvent("_");
+            RPSUpperUIEvents.RaiseUpdateEnemyScoreTextEvent("_");
+            RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
+            RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent("-");
         }
 
         private void OnShowBattle()
@@ -79,6 +107,19 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnHideBattleBgDone)}");
             _gameBattleScreen.Deactivate();
+        }
+
+        private void OnShowWonScreen()
+        {
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowWonScreen)}");
+            _gameBattleScreen.Deactivate();
+            _wonScreen.Activate();
+        }
+
+        private void OnHideWonScreen()
+        {
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnHideWonScreen)}");
+            _wonScreen.Deactivate();
         }
     }
 }

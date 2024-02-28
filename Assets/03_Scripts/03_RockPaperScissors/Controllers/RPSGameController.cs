@@ -17,11 +17,15 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void OnEnable()
 		{
 			RPSUIEvents.OnPlayButtonClick += OnPlayButtonClick;
+			RPSClientGameEvents.OnYouWonGame += ResetSpawn;
+			RPSClientGameEvents.OnYouLostGame += ResetSpawn;
 		}
 
 		private void OnDisable()
 		{
 			RPSUIEvents.OnPlayButtonClick -= OnPlayButtonClick;
+			RPSClientGameEvents.OnYouWonGame -= ResetSpawn;
+			RPSClientGameEvents.OnYouLostGame -= ResetSpawn;
 		}
 
 		private void OnPlayButtonClick()
@@ -35,6 +39,11 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		{
 			_spawnedLogicController = true;
 			Instantiate(_freeComputerLogicPrefab);
+		}
+
+		private void ResetSpawn()
+		{
+			_spawnedLogicController = false;
 		}
 	}
 }

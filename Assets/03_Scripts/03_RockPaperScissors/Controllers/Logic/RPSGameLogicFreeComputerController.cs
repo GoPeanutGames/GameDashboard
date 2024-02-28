@@ -142,7 +142,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 					break;
 			}
 			//TODO: enable timer - for timeout - automatic lose
-			//TODO: win / lose conditions -> win / lose popup -> send to start
+			//TODO: win / lose popup -> send to start
 		}
 
 		private void Won()
@@ -153,7 +153,13 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			_scorePlayer++;
 			_round++;
 			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Opponent);
-            RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
+			if (_scorePlayer == 1){
+				RPSClientGameEvents.RaiseYouWonGameEvent();
+				Destroy(this.gameObject);
+			}
+			else{
+				RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
+			}
 		}
 
 		private void Lost()
@@ -164,7 +170,13 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			_scoreEnemy++;
 			_round++;
 			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Player);
-            RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
+			if (_scoreEnemy == 3){
+				RPSClientGameEvents.RaiseYouLostGameEvent();
+				Destroy(this.gameObject);
+			}
+			else{
+				RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
+			}
 		}
 
 		private void Draw()

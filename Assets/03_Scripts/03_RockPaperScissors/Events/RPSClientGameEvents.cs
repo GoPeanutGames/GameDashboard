@@ -15,6 +15,8 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		private static UnityAction _battleAnimationDone;
 		private static UnityAction _startBattleBgOpenAnimation;
 		private static UnityAction _battleBgOpenAnimationDone;
+		private static UnityAction _youWonGame;
+		private static UnityAction _youLostGame;
         
 		public static event UnityAction OnPlayChoiceSelected
 		{
@@ -74,6 +76,18 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		{
 			add => _battleBgOpenAnimationDone += value;
 			remove => _battleBgOpenAnimationDone -= value;
+		}
+		
+		public static event UnityAction OnYouWonGame
+		{
+			add => _youWonGame += value;
+			remove => _youWonGame -= value;
+		}
+		
+		public static event UnityAction OnYouLostGame
+		{
+			add => _youLostGame += value;
+			remove => _youLostGame -= value;
 		}
 
 		public static void RaisePlayChoiceSelectedEvent()
@@ -164,6 +178,24 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 				return;
 			}
 			_battleBgOpenAnimationDone.Invoke();
+		}
+		
+		public static void RaiseYouWonGameEvent()
+		{
+			if (_youWonGame == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseYouWonGameEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_youWonGame.Invoke();
+		}
+		
+		public static void RaiseYouLostGameEvent()
+		{
+			if (_youLostGame == null){
+				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseYouLostGameEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_youLostGame.Invoke();
 		}
 	}
 }

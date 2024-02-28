@@ -5,10 +5,18 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 {
     public static class RPSUIEvents
     {
+        private static UnityAction _showStartScreen;
         private static UnityAction _showChooseOpponentScreen;
         private static UnityAction _showChooseModeScreen;
         private static UnityAction _showGameChooseOptionScreen;
+        private static UnityAction _hideWonScreen;
         private static UnityAction _playButtonClick;
+        
+        public static event UnityAction OnShowStartScreen
+        {
+            add => _showStartScreen += value;
+            remove => _showStartScreen -= value;
+        }
         
         public static event UnityAction OnShowChooseOpponentScreen
         {
@@ -28,10 +36,25 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
             remove => _showGameChooseOptionScreen -= value;
         }
         
+        public static event UnityAction OnHideWonScreen
+        {
+            add => _hideWonScreen += value;
+            remove => _hideWonScreen -= value;
+        }
+        
         public static event UnityAction OnPlayButtonClick
         {
             add => _playButtonClick += value;
             remove => _playButtonClick -= value;
+        }
+
+        public static void RaiseShowStartScreenEvent()
+        {
+            if (_showStartScreen == null){
+                LoggerService.LogWarning($"{nameof(RPSUIEvents)}::{nameof(RaiseShowStartScreenEvent)} raised, but nothing picked it up");
+                return;
+            }
+            _showStartScreen.Invoke();
         }
 
         public static void RaiseShowChooseOpponentScreenEvent()
@@ -59,6 +82,15 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
                 return;
             }
             _showGameChooseOptionScreen.Invoke();
+        }
+
+        public static void RaiseHideWonScreen()
+        {
+            if (_hideWonScreen == null){
+                LoggerService.LogWarning($"{nameof(RPSUIEvents)}::{nameof(RaiseHideWonScreen)} raised, but nothing picked it up");
+                return;
+            }
+            _hideWonScreen.Invoke();
         }
         
         public static void RaisePlayButtonClickEvent()
