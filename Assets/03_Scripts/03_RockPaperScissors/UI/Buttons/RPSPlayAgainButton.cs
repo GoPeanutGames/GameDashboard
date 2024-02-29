@@ -30,7 +30,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		private void OnPlayAgainButtonClick()
 		{
 			RPSUIEvents.RaiseShowStartScreenEvent();
-			RPSUIEvents.RaiseHideWonScreen();
+			RPSUIEvents.RaiseHideResultScreens();
 		}
 	}
 }

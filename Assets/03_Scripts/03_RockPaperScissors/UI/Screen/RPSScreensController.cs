@@ -27,16 +27,20 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         [SerializeField]
         private GameObject _wonScreen;
         
+        [SerializeField]
+        private GameObject _loseScreen;
+        
         private void OnEnable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen += OnShowChooseOpponentScreen;
             RPSUIEvents.OnShowChooseModeScreen += OnShowChooseModeScreen;
             RPSUIEvents.OnShowGameChooseOptionScreen += OnShowGameChooseOptionScreen;
             RPSUIEvents.OnShowStartScreen += OnShowStartScreen;
-            RPSUIEvents.OnHideWonScreen += OnHideWonScreen;
+            RPSUIEvents.OnHideResultScreens += OnHideResultScreens;
             RPSClientGameEvents.OnShowBattle += OnShowBattle;
             RPSClientGameEvents.OnBattleBgOpenAnimationDone += OnHideBattleBgDone;
             RPSClientGameEvents.OnYouWonGame += OnShowWonScreen;
+            RPSClientGameEvents.OnYouLostGame += OnShowLoseScreen;
         }
 
         private void OnDisable()
@@ -45,10 +49,11 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUIEvents.OnShowChooseModeScreen -= OnShowChooseModeScreen;
             RPSUIEvents.OnShowGameChooseOptionScreen -= OnShowGameChooseOptionScreen;
             RPSUIEvents.OnShowStartScreen -= OnShowStartScreen;
-            RPSUIEvents.OnHideWonScreen -= OnHideWonScreen;
+            RPSUIEvents.OnHideResultScreens -= OnHideResultScreens;
             RPSClientGameEvents.OnShowBattle -= OnShowBattle;
             RPSClientGameEvents.OnBattleBgOpenAnimationDone -= OnHideBattleBgDone;
             RPSClientGameEvents.OnYouWonGame -= OnShowWonScreen;
+            RPSClientGameEvents.OnYouLostGame -= OnShowLoseScreen;
         }
 
         private void DisableAllScreens()
@@ -116,10 +121,18 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             _wonScreen.Activate();
         }
 
-        private void OnHideWonScreen()
+        private void OnHideResultScreens()
         {
-            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnHideWonScreen)}");
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnHideResultScreens)}");
             _wonScreen.Deactivate();
+            _loseScreen.Deactivate();
+        }
+
+        private void OnShowLoseScreen()
+        {
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowLoseScreen)}");
+            _gameBattleScreen.Deactivate();
+            _loseScreen.Activate();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
         private static UnityAction _showChooseOpponentScreen;
         private static UnityAction _showChooseModeScreen;
         private static UnityAction _showGameChooseOptionScreen;
-        private static UnityAction _hideWonScreen;
+        private static UnityAction _hideResultScreens;
         private static UnityAction _playButtonClick;
         
         public static event UnityAction OnShowStartScreen
@@ -36,10 +36,10 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
             remove => _showGameChooseOptionScreen -= value;
         }
         
-        public static event UnityAction OnHideWonScreen
+        public static event UnityAction OnHideResultScreens
         {
-            add => _hideWonScreen += value;
-            remove => _hideWonScreen -= value;
+            add => _hideResultScreens += value;
+            remove => _hideResultScreens -= value;
         }
         
         public static event UnityAction OnPlayButtonClick
@@ -84,13 +84,13 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
             _showGameChooseOptionScreen.Invoke();
         }
 
-        public static void RaiseHideWonScreen()
+        public static void RaiseHideResultScreens()
         {
-            if (_hideWonScreen == null){
-                LoggerService.LogWarning($"{nameof(RPSUIEvents)}::{nameof(RaiseHideWonScreen)} raised, but nothing picked it up");
+            if (_hideResultScreens == null){
+                LoggerService.LogWarning($"{nameof(RPSUIEvents)}::{nameof(RaiseHideResultScreens)} raised, but nothing picked it up");
                 return;
             }
-            _hideWonScreen.Invoke();
+            _hideResultScreens.Invoke();
         }
         
         public static void RaisePlayButtonClickEvent()
