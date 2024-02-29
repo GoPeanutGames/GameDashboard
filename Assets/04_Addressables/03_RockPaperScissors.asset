@@ -18,10 +18,373 @@ MonoBehaviour:
   m_GUID: 9b5aa719a61ca184b9fca7a18026211b
   m_SerializeEntries:
   - m_GUID: 0d96e876f6f11ae41bd504cbb96aa166
-    m_Address: Game2Scene
+    m_Address: RockPaperScissorsScene
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Game2
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7929a68ff76d414ea58d09d692443af
+    m_Address: Assets/02_Art/03_RockPaperScissors/Background/Background.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b909abb7752bdb74a9c2aa28d43bbdc8
+    m_Address: Assets/02_Art/03_RockPaperScissors/Background/BG-Won.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8f2a478e281fba46974a72525d0d503
+    m_Address: Assets/02_Art/03_RockPaperScissors/Background/Versus BG Blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6de3a49455e7bb74fa094716a271d29b
+    m_Address: Assets/02_Art/03_RockPaperScissors/Background/Versus BG Red.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b15e95bbf9d9c9147b04b7d27e1c6c29
+    m_Address: Assets/02_Art/03_RockPaperScissors/Buttons/Button Back.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 502fe67aeadf11549bdc45ec4033f6b0
+    m_Address: Assets/02_Art/03_RockPaperScissors/Buttons/Button Start.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92591eebadc63334d821a9698da2783b
+    m_Address: Assets/02_Art/03_RockPaperScissors/Buttons/Collect Button Blank.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94e85b92874129f4d89677749eda7733
+    m_Address: Assets/02_Art/03_RockPaperScissors/Elements/Bottom Board.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3c050d3e8b15284fb30772309a5d3f0
+    m_Address: Assets/02_Art/03_RockPaperScissors/Elements/Logo.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 083d4be337e3d0e4992a092e80624546
+    m_Address: Assets/02_Art/03_RockPaperScissors/Elements/Popup Lose.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec1e17f205f36944b87a5163478f37dc
+    m_Address: Assets/02_Art/03_RockPaperScissors/Elements/Popup Win.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bda6b7571fba21142a6e2599151b8697
+    m_Address: Assets/02_Art/03_RockPaperScissors/Elements/Stars.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3567510601b267846ae28c7dd6a00a8b
+    m_Address: Assets/02_Art/03_RockPaperScissors/Elements/Top Panel Blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d08796072c8998d47a5ae1f7cca652c2
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Green Circle.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e69ef08812877e74caf80a0a898e7b5e
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/HeartSprites.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc579f9f743d12a459ef89a22c11a93e
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Large Paper.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04b185e3bfe5d4749bf49413796cea7a
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Large Rock.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f67f1f1ca96716447af53b2c5c7b0474
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Large Scissors.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 377b08c168147fd4ba46e993b2e11362
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Lose Circle.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48aea9e574fd086408d6d840124272b4
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/RedQuestion.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 702ce133a8bc42a4caea320d10c24ec7
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Small Selected Paper.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd8aa08770ad4604db6629faf572d51d
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Small Selected Rock.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3772569255d614d4fa572d9fa075f98f
+    m_Address: Assets/02_Art/03_RockPaperScissors/RPS/Small Selected Scissors.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1da0e5e23d2e29e4299162535d79ac1a
+    m_Address: Assets/02_Art/03_RockPaperScissors/UI/Icon Betting.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7052354b7507bc142a67955b8a09cde0
+    m_Address: Assets/02_Art/03_RockPaperScissors/UI/Icon Computer.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e965d6725f2eb049b566129d2c8c80f
+    m_Address: Assets/02_Art/03_RockPaperScissors/UI/Icon Free.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b89109b799c64df43a761476160c06d2
+    m_Address: Assets/02_Art/03_RockPaperScissors/UI/Icon Human.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c9857a249c4a6245a1ba5330f1395ef
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/ChooseMode/ChooseModeAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 471ff7f7733a5bb40aa690eeafb7eaf3
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/ChooseMode/EnterMode.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebcb1b89381cc16429ae898a538eea0f
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/ChooseOpponent/ChooseOpponentAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba66147a13a66be45952f09b37af539d
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/ChooseOpponent/EnterOpponent.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6646c8d800b4dc64bbbcff3cfa92788f
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameBattle/Background/BackgroundAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef85b528fce88204792942f87bc81bbd
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameBattle/Background/Close.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7f370c0e0d49d1439bd567742ec06f7
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameBattle/Background/Open.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77e52ed3f0197f640a4744baf45890b8
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Central/BigChoiceAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f2c7b32f2dd97f44be120d53a39e860
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Central/Hidden.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2f9e17ea5771d44cbc604dfaf7210d3
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Central/Show.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 018fbe872e515c449afc5766e3831880
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Heart/Burst.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a2a803bb4b84c941ae80760567c3e09
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Heart/HeartAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e42cbd11327296e42a79047485624b2e
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Heart/Reset.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 670f41561c4a05341be4fa27a932a0fe
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Top/Enter.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 050de6440b054dc47b3ffb2800dee253
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/GameChooseOption/Top/TopAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83e3b63696b5f624cbdaa1d8bca66619
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/ResultUI/Enter.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b61dc04d76d10c64fbfb0bc548c07cac
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/ResultUI/ResultUIAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c6c7fff5e2dfca4b91c0be8c599f5cd
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/StartScreen/Idle.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e16af2347e3f4004385d5bac524805e3
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/StartScreen/Show.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bb9a2cee466f4e4f880112409a8663e
+    m_Address: Assets/07_Animation/03_RockPaperScissors/UI/StartScreen/StartScreenAnimator.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2414371ea817cdb4b9021bbdc87bfc2b
+    m_Address: Assets/06_Prefabs/03_RockPaperScissors/RPSFreeComputerLogic.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0d212e128ef5f04180d8a92db4b9907
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-Black SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c8d5b80a8a2ddd4a9a9cbe07202d537
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-Bold SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a434686f18d77674dbb8a8d4a5a0f815
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-ExtraBold
+      SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6649c1465a768c42b356f7d214db5a4
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-ExtraLight
+      SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee51be423eaa1e34d8058c431bf633d3
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-Light SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc910da6219613e4baed9752371dc120
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-SDF-NoOutline.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 03db160f9227ba946bc7b369fb4469eb
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-SDF-Outline-Yellow.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d17bdbaf666c124c953d8dc9a73daae
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-SDF-UnderlayBlack.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95a2bbe521b2ac94a92d912d6fb407be
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-SemiBold
+      SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ae311e2c4d40534d8b4f51cd9b28cfa
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/akrobat/Akrobat-Thin SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8a9f5a82912a8a4285e498d5b0cce51
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/poetsen-one/PoetsenOne-Regular-noOutline.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7dceb96dba44c243a0a359a0a803f52
+    m_Address: Assets/02_Art/03_RockPaperScissors/Fonts/poetsen-one/PoetsenOne-Regular-OutlineBlack.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}

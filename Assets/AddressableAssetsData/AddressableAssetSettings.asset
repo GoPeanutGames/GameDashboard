@@ -149,7 +149,7 @@ MonoBehaviour:
     - default
     - Dashboard
     - BattleDash
-    - Game2
+    - RockPaperScissors
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 3dfd02e821e3c08439310f5b52e339c0, type: 2}
