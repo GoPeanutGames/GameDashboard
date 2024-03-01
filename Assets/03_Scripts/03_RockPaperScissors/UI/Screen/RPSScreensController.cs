@@ -56,6 +56,11 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSClientGameEvents.OnYouLostGame -= OnShowLoseScreen;
         }
 
+        private void Start()
+        {
+            OnShowStartScreen();
+        }
+
         private void DisableAllScreens()
         {
             _chooseModeScreen.Deactivate();
@@ -66,9 +71,10 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         
         private void OnShowStartScreen()
         {
-            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowChooseModeScreen)}");
+            LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowStartScreen)}");
             DisableAllScreens();
-            _startScreen.Activate();   
+            _startScreen.Activate();
+            RPSBotEvents.RaisePlayStartScreenBotAnimationEvent();
         }
         
         private void OnShowChooseModeScreen()

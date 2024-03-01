@@ -386,6 +386,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - RockPaperScissors
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3610b65a672757f45b9693cde52357f4
+    m_Address: Assets/02_Art/03_RockPaperScissors/Bots/Player 01.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 536175074afc07045b19d3b7aa6aade8
+    m_Address: Assets/02_Art/03_RockPaperScissors/Bots/Player 02.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RockPaperScissors
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d12a340c0a6dfb843bd13442d3298855, type: 2}
   m_SchemaSet:
