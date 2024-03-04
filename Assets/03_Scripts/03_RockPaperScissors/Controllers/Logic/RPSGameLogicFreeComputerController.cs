@@ -142,6 +142,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 					break;
 			}
 			//TODO: enable timer - for timeout - automatic lose
+			//TODO: get the robot animations in battle
 		}
 
 		private void Won()
@@ -169,7 +170,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			_scoreEnemy++;
 			_round++;
 			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Player);
-			if (_scoreEnemy == 1){
+			if (_scoreEnemy == 3){
 				RPSClientGameEvents.RaiseYouLostGameEvent();
 				Destroy(this.gameObject);
 			}

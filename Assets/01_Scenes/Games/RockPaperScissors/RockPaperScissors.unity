@@ -174,12 +174,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedAtStart: 0
-  _toggle: {fileID: 0}
-  _text: {fileID: 0}
-  _selectedSprite: {fileID: 0}
-  _deSelectedSprite: {fileID: 0}
-  _selectedTextFont: {fileID: 0}
-  _normalTextFont: {fileID: 0}
+  _toggle: {fileID: 673796741}
+  _text: {fileID: 1331144819}
+  _selectedSprite: {fileID: 21300000, guid: 3772569255d614d4fa572d9fa075f98f, type: 3}
+  _deSelectedSprite: {fileID: 21300000, guid: f67f1f1ca96716447af53b2c5c7b0474, type: 3}
+  _selectedTextFont: {fileID: 11400000, guid: 03db160f9227ba946bc7b369fb4469eb, type: 2}
+  _normalTextFont: {fileID: 11400000, guid: bc910da6219613e4baed9752371dc120, type: 2}
 --- !u!1 &34993727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,12 +1764,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e5122c672d4888b4b6b59b0746b175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 0}
-  _choiceImage: {fileID: 0}
-  _animator: {fileID: 0}
-  _rockSprite: {fileID: 0}
-  _paperSprite: {fileID: 0}
-  _scissorsSprite: {fileID: 0}
+  _text: {fileID: 2055435788}
+  _choiceImage: {fileID: 567623463}
+  _animator: {fileID: 567623462}
+  _rockSprite: {fileID: 21300000, guid: 04b185e3bfe5d4749bf49413796cea7a, type: 3}
+  _paperSprite: {fileID: 21300000, guid: cc579f9f743d12a459ef89a22c11a93e, type: 3}
+  _scissorsSprite: {fileID: 21300000, guid: f67f1f1ca96716447af53b2c5c7b0474, type: 3}
 --- !u!1 &443456285
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,7 +4135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5e28a37523408f92bc8222c9c971a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _freeComputerLogicPrefab: {fileID: 0}
+  _freeComputerLogicPrefab: {fileID: 1617723494773561283, guid: 2414371ea817cdb4b9021bbdc87bfc2b, type: 3}
   _spawnedLogicController: 0
 --- !u!1 &854012784
 GameObject:
@@ -6310,10 +6310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad263103f1b44a5938a9c9c1893fb83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rockToggle: {fileID: 0}
-  _paperToggle: {fileID: 0}
-  _scissorsToggle: {fileID: 0}
-  _backButton: {fileID: 0}
+  _rockToggle: {fileID: 676348468}
+  _paperToggle: {fileID: 68843071}
+  _scissorsToggle: {fileID: 673796741}
+  _backButton: {fileID: 762008435}
 --- !u!1 &1336186594
 GameObject:
   m_ObjectHideFlags: 0
@@ -7735,7 +7735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ec4d64643cb4b9f90714bb90c9778c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backButton: {fileID: 0}
+  _backButton: {fileID: 762008435}
 --- !u!1 &1716794255
 GameObject:
   m_ObjectHideFlags: 0
@@ -7952,12 +7952,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedAtStart: 0
-  _toggle: {fileID: 0}
-  _text: {fileID: 0}
-  _selectedSprite: {fileID: 0}
-  _deSelectedSprite: {fileID: 0}
-  _selectedTextFont: {fileID: 0}
-  _normalTextFont: {fileID: 0}
+  _toggle: {fileID: 68843071}
+  _text: {fileID: 1996250293}
+  _selectedSprite: {fileID: 21300000, guid: 702ce133a8bc42a4caea320d10c24ec7, type: 3}
+  _deSelectedSprite: {fileID: 21300000, guid: cc579f9f743d12a459ef89a22c11a93e, type: 3}
+  _selectedTextFont: {fileID: 11400000, guid: 03db160f9227ba946bc7b369fb4469eb, type: 2}
+  _normalTextFont: {fileID: 11400000, guid: bc910da6219613e4baed9752371dc120, type: 2}
 --- !u!1 &1734278707
 GameObject:
   m_ObjectHideFlags: 0
@@ -8907,14 +8907,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb84847f45534e318d4ea50a3493a98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _centralUpperText: {fileID: 0}
-  _centralLowerText: {fileID: 0}
-  _enemyNameText: {fileID: 0}
-  _playerScoreText: {fileID: 0}
-  _enemyScoreText: {fileID: 0}
-  _playerChoiceImage: {fileID: 0}
-  _enemyChoiceImage: {fileID: 0}
-  _centralIndicator: {fileID: 0}
+  _centralUpperText: {fileID: 476898355}
+  _centralLowerText: {fileID: 1499690660}
+  _enemyNameText: {fileID: 443456287}
+  _playerScoreText: {fileID: 201631165}
+  _enemyScoreText: {fileID: 1757284835}
+  _playerChoiceImage: {fileID: 1428332757}
+  _enemyChoiceImage: {fileID: 734477735}
+  _centralIndicator: {fileID: 1352825853}
 --- !u!1 &1950985591
 GameObject:
   m_ObjectHideFlags: 0
@@ -10032,9 +10032,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bbb766eaecb471c95e747b16323a70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _humanButton: {fileID: 0}
-  _pcButton: {fileID: 0}
-  _backButton: {fileID: 0}
+  _humanButton: {fileID: 809685490}
+  _pcButton: {fileID: 586017119}
+  _backButton: {fileID: 101724675}
 --- !u!1 &2133615259
 GameObject:
   m_ObjectHideFlags: 0
@@ -10086,12 +10086,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedAtStart: 0
-  _toggle: {fileID: 0}
-  _text: {fileID: 0}
-  _selectedSprite: {fileID: 0}
-  _deSelectedSprite: {fileID: 0}
-  _selectedTextFont: {fileID: 0}
-  _normalTextFont: {fileID: 0}
+  _toggle: {fileID: 676348468}
+  _text: {fileID: 1012762832}
+  _selectedSprite: {fileID: 21300000, guid: bd8aa08770ad4604db6629faf572d51d, type: 3}
+  _deSelectedSprite: {fileID: 21300000, guid: 04b185e3bfe5d4749bf49413796cea7a, type: 3}
+  _selectedTextFont: {fileID: 11400000, guid: 03db160f9227ba946bc7b369fb4469eb, type: 2}
+  _normalTextFont: {fileID: 11400000, guid: bc910da6219613e4baed9752371dc120, type: 2}
 --- !u!1 &2138434625
 GameObject:
   m_ObjectHideFlags: 0
