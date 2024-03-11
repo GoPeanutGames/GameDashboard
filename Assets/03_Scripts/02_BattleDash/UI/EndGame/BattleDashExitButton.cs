@@ -29,7 +29,7 @@ namespace PeanutDashboard._02_BattleDash.UI.EndGame
 
 		private void OnExitGameButtonClick()
 		{
-			ClientActionEvents.RaisePlayerRequestDisconnectEvent();
+			BattleDashClientActionEvents.RaisePlayerRequestDisconnectEvent();
 		}
 	}
 }

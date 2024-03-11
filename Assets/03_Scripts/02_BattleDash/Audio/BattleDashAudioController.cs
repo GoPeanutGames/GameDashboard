@@ -19,18 +19,18 @@ namespace PeanutDashboard._02_BattleDash.Audio
 
 		private void OnEnable()
 		{
-			ClientBattleDashAudioEvents.OnFadeInMusic += OnFadeInMusic;
-			ClientBattleDashAudioEvents.OnFadeOutMusic += OnFadeOutMusic;
-			ClientBattleDashAudioEvents.OnPlaySfx += OnPlaySfx;
-			ClientBattleDashAudioEvents.OnTriggerMuteUnMute += OnTriggerMuteUnMute;
+			BattleDashClientAudioEvents.OnFadeInMusic += OnFadeInMusic;
+			BattleDashClientAudioEvents.OnFadeOutMusic += OnFadeOutMusic;
+			BattleDashClientAudioEvents.OnPlaySfx += OnPlaySfx;
+			BattleDashClientAudioEvents.OnTriggerMuteUnMute += OnTriggerMuteUnMute;
 		}
 
 		private void OnDisable()
 		{
-			ClientBattleDashAudioEvents.OnFadeInMusic -= OnFadeInMusic;
-			ClientBattleDashAudioEvents.OnFadeOutMusic -= OnFadeOutMusic;
-			ClientBattleDashAudioEvents.OnPlaySfx -= OnPlaySfx;
-			ClientBattleDashAudioEvents.OnTriggerMuteUnMute -= OnTriggerMuteUnMute;
+			BattleDashClientAudioEvents.OnFadeInMusic -= OnFadeInMusic;
+			BattleDashClientAudioEvents.OnFadeOutMusic -= OnFadeOutMusic;
+			BattleDashClientAudioEvents.OnPlaySfx -= OnPlaySfx;
+			BattleDashClientAudioEvents.OnTriggerMuteUnMute -= OnTriggerMuteUnMute;
 		}
 
 		private void OnTriggerMuteUnMute()

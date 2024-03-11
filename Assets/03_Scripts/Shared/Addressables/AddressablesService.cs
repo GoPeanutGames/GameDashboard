@@ -13,10 +13,13 @@ namespace PeanutDashboard.Shared
 {
 	public class AddressablesService : Singleton<AddressablesService>
 	{
+		private bool _addressablesInitialised = false;
+		
 		public async void InitialiseAddressables()
 		{
 			LoggerService.LogInfo($"{nameof(AddressablesService)}::{nameof(InitialiseAddressables)}");
 			await Addressables.InitializeAsync().Task;
+			_addressablesInitialised = true;
 			AddressablesEvents.Instance.RaiseAddressablesInitialisedEvent();
 		}
 
@@ -41,6 +44,11 @@ namespace PeanutDashboard.Shared
 		{
 			LoggerService.LogInfo($"{nameof(AddressablesService)}::{nameof(LoadAddressablesScene)} - {sceneInfo.name}");
 			await Addressables.LoadSceneAsync(sceneInfo.key, loadSceneMode).Task;
+		}
+
+		public bool AreAddressablesInitialised()
+		{
+			return _addressablesInitialised;
 		}
 	}
 }

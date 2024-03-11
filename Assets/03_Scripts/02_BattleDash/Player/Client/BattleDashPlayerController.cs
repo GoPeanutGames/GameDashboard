@@ -21,7 +21,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void OnEnable()
 		{
 #if SERVER
-			ServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
+			BattleDashServerSpawnEvents.SpawnedPlayerVisual += ServerSpawnedVisual;
 			_mobileTouchMove.OnValueChanged += ServerOnMobileTouchMoveChanged;
 #endif
 #if !SERVER
@@ -34,7 +34,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			BattleDashClientUIEvents.OnShowWon += OnPauseGame;
 			BattleDashClientUIEvents.OnHideTooltips += OnUnpauseGame;
 			BattleDashClientUIEvents.OnCloseEndGamePopup += OnUnpauseGame;
-			ClientActionEvents.OnPlayerRequestDisconnect += OnRequestDisconnect;
+			BattleDashClientActionEvents.OnPlayerRequestDisconnect += OnRequestDisconnect;
 #endif
 		}
 
@@ -53,14 +53,14 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void OnPauseGame()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnPauseGame)}");
-			ClientBattleDashAudioEvents.RaiseFadeOutMusicEvent(1f);
+			BattleDashClientAudioEvents.RaiseFadeOutMusicEvent(1f);
 			SendPlayerPaused_ServerRpc();
 		}
 
 		private void OnUnpauseGame()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashPlayerController)}::{nameof(OnUnpauseGame)}");
-			ClientBattleDashAudioEvents.RaiseFadeInMusicEvent(_audioClip);
+			BattleDashClientAudioEvents.RaiseFadeInMusicEvent(_audioClip);
 			SendPlayerUnPaused_ServerRpc();
 		}
 		
@@ -75,7 +75,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 #if !SERVER
 		private void Update()
 		{
-			if (ServerBattleDashGameState.isPaused){
+			if (BattleDashServerGameState.isPaused){
 				return;
 			}
 			if (WebGLUtils.IsWebMobile){
@@ -103,7 +103,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 						moveChanged = true;
 					}
 					else{
-						ClientActionEvents.RaiseMobilePlayerTouchShootPositionEvent(touch.position);
+						BattleDashClientActionEvents.RaiseMobilePlayerTouchShootPositionEvent(touch.position);
 					}
 				}
 			}
@@ -114,7 +114,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 
 		private void ServerOnMobileTouchMoveChanged(Vector2 prevMobileTouch, Vector2 newMobileTouch)
 		{
-			ServerPlayerInputEvents.RaisePlayerMobileTouchPositionEvent(newMobileTouch);
+			BattleDashServerPlayerInputEvents.RaisePlayerMobileTouchPositionEvent(newMobileTouch);
 		}
 
 		private void CheckForDesktopInput()
@@ -149,7 +149,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		{
 #if SERVER
 			_mobileTouchMove.OnValueChanged -= ServerOnMobileTouchMoveChanged;
-			ServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
+			BattleDashServerSpawnEvents.SpawnedPlayerVisual -= ServerSpawnedVisual;
 #endif
 #if !SERVER
 			if (WebGLUtils.IsWebMobile){
@@ -161,7 +161,7 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 			BattleDashClientUIEvents.OnShowWon -= OnPauseGame;
 			BattleDashClientUIEvents.OnHideTooltips -= OnUnpauseGame;
 			BattleDashClientUIEvents.OnCloseEndGamePopup -= OnUnpauseGame;
-			ClientActionEvents.OnPlayerRequestDisconnect -= OnRequestDisconnect;
+			BattleDashClientActionEvents.OnPlayerRequestDisconnect -= OnRequestDisconnect;
 #endif
 		}
 
@@ -169,28 +169,28 @@ namespace PeanutDashboard._02_BattleDash.Player.Client
 		private void SendPlayerKeyDown_ServerRpc(KeyCode keyCode)
 		{
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerKeyDown_ServerRpc)}- press: {keyCode}");
-			ServerPlayerInputEvents.RaisePlayerInputKeyDownEvent(keyCode);
+			BattleDashServerPlayerInputEvents.RaisePlayerInputKeyDownEvent(keyCode);
 		}
 
 		[ServerRpc]
 		private void SendPlayerKeyUp_ServerRpc(KeyCode keyCode)
 		{
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerKeyUp_ServerRpc)}- press: {keyCode}");
-			ServerPlayerInputEvents.RaisePlayerInputKeyUpEvent(keyCode);
+			BattleDashServerPlayerInputEvents.RaisePlayerInputKeyUpEvent(keyCode);
 		}
 
 		[ServerRpc]
 		private void SendPlayerPaused_ServerRpc()
 		{
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerPaused_ServerRpc)}");
-			ServerGameStateEvents.RaisePauseTriggeredEvent();
+			BattleDashServerGameStateEvents.RaisePauseTriggeredEvent();
 		}
 
 		[ServerRpc]
 		private void SendPlayerUnPaused_ServerRpc()
 		{
 			LoggerService.LogInfo($"[SERVER-RPC]{nameof(BattleDashPlayerController)}::{nameof(SendPlayerUnPaused_ServerRpc)}");
-			ServerGameStateEvents.RaiseUnPauseTriggeredEvent();
+			BattleDashServerGameStateEvents.RaiseUnPauseTriggeredEvent();
 		}
 		
 		[ServerRpc]
