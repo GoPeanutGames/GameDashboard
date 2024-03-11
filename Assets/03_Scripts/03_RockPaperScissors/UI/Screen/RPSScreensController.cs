@@ -112,6 +112,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowBattle)}");
             _gameBattleScreen.Activate();
+            RPSBotEvents.RaiseHideBotsEvent();
         }
         
         private void OnHideBattleBgDone()

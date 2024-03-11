@@ -1,4 +1,6 @@
 ﻿using PeanutDashboard._03_RockPaperScissors.Events;
+using PeanutDashboard._03_RockPaperScissors.Model;
+using PeanutDashboard._03_RockPaperScissors.State;
 using PeanutDashboard.Shared.Logging;
 using UnityEngine;
 
@@ -19,7 +21,10 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		private void OnStartBattleAnimation()
 		{
 			LoggerService.LogInfo($"{nameof(RPSGameBattleScreenController)}::{nameof(OnStartBattleAnimation)}");
-			//TODO: launch animation
+			RPSBotEvents.RaiseShowBotsEvent();
+			RPSChoiceType playerChoice = RPSCurrentClientState.rpsChoiceType;
+			RPSChoiceType enemyChoice = RPSCurrentEnemyState.rpsChoiceType;
+			//TODO: //TODO: raise events to show proper choice
 			Invoke(nameof(End), 1f);
 		}
 
