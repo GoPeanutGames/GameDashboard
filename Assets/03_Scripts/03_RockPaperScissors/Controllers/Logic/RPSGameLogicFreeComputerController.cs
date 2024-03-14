@@ -36,6 +36,9 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		
 		[SerializeField]
 		private Sprite _loseIndicator;
+
+		[SerializeField]
+		private RPSResultType _result;
         
 		
 		private void OnEnable()
@@ -94,55 +97,70 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void OnBattleBgCloseAnimationDone()
 		{
 			RPSCurrentEnemyState.rpsChoiceType = (RPSChoiceType)Random.Range(0, 3);
-			RPSClientGameEvents.RaiseStartBattleAnimationEvent();
+			CalculateResult();
+			RPSClientGameEvents.RaiseStartBattleAnimationEvent(_result);
 		}
 
-		private void OnBattleAnimationDone()
+		private void CalculateResult()
 		{
-			RPSUpperUIEvents.RaiseUpdateEnemyChoiceImageEvent(GetSpriteForChoice(RPSCurrentEnemyState.rpsChoiceType));
 			switch (RPSCurrentEnemyState.rpsChoiceType){
 				case RPSChoiceType.Paper:
 					switch (RPSCurrentClientState.rpsChoiceType){
 						case RPSChoiceType.Paper:
-							Draw();
+							_result = RPSResultType.Draw;
 							break;
 						case RPSChoiceType.Rock:
-							Lost();
+							_result = RPSResultType.Lose;
 							break;
 						default:
-							Won();
+							_result = RPSResultType.Win;
 							break;
 					}
 					break;
 				case RPSChoiceType.Rock:
 					switch (RPSCurrentClientState.rpsChoiceType){
 						case RPSChoiceType.Paper:
-							Won();
+							_result = RPSResultType.Win;
 							break;
 						case RPSChoiceType.Rock:
-							Draw();
+							_result = RPSResultType.Draw;
 							break;
 						default:
-							Lost();
+							_result = RPSResultType.Lose;
 							break;
 					}
 					break;
 				case RPSChoiceType.Scissors:
 					switch (RPSCurrentClientState.rpsChoiceType){
 						case RPSChoiceType.Paper:
-							Lost();
+							_result = RPSResultType.Lose;
 							break;
 						case RPSChoiceType.Rock:
-							Won();
+							_result = RPSResultType.Win;
 							break;
 						default:
-							Draw();
+							_result = RPSResultType.Draw;
 							break;
 					}
 					break;
 			}
+		}
+		
+		private void OnBattleAnimationDone()
+		{
+			RPSUpperUIEvents.RaiseUpdateEnemyChoiceImageEvent(GetSpriteForChoice(RPSCurrentEnemyState.rpsChoiceType));
+			switch (_result){
+				case RPSResultType.Win:
+					Won();
+					break;
+				case RPSResultType.Lose:
+					Lost();
+					break;
+				case RPSResultType.Draw:
+					Draw();
+					break;
+			}
 			//TODO: enable timer - for timeout - automatic lose
-			//TODO: get the robot animations in battle
 		}
 
 		private void Won()

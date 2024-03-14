@@ -106,19 +106,21 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUpperUIEvents.RaiseUpdateEnemyScoreTextEvent("_");
             RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
             RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent("-");
+            RPSBotEvents.RaiseHideBotsEvent();
         }
 
         private void OnShowBattle()
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowBattle)}");
             _gameBattleScreen.Activate();
-            RPSBotEvents.RaiseHideBotsEvent();
+            RPSBotEvents.RaiseResetBotsEvent();
         }
         
         private void OnHideBattleBgDone()
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnHideBattleBgDone)}");
             _gameBattleScreen.Deactivate();
+            RPSBotEvents.RaiseResetBotsEvent();
         }
 
         private void OnShowWonScreen()
