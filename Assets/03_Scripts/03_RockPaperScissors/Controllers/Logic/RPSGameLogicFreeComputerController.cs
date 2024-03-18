@@ -160,7 +160,6 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 					Draw();
 					break;
 			}
-			//TODO: enable timer - for timeout - automatic lose
 		}
 
 		private void Won()
@@ -205,8 +204,6 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 
 		private void StartNextRound()
 		{
-			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
-			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent(_round.ToString());
 			RPSUpperUIEvents.RaiseUpdateEnemyNameTextEvent("AI");
 			RPSUpperUIEvents.RaiseUpdateYourScoreTextEvent(_scorePlayer.ToString());
 			RPSUpperUIEvents.RaiseUpdateEnemyScoreTextEvent(_scoreEnemy.ToString());
@@ -214,6 +211,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			RPSUpperUIEvents.RaiseShowYourScoreEvent();
 			RPSUpperUIEvents.RaiseHideIndicatorEvent();
 			RPSClientGameEvents.RaiseEnablePlayerChoicesEvent();
+			RPSTimerEvents.RaiseStartTimerEvent(5f);
 		}
 	}
 }
