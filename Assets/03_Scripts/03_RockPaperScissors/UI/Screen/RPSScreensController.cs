@@ -30,6 +30,9 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         [SerializeField]
         private GameObject _loseScreen;
         
+        [SerializeField]
+        private AudioClip _startMusic;
+        
         private void OnEnable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen += OnShowChooseOpponentScreen;
@@ -59,6 +62,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         private void Start()
         {
             OnShowStartScreen();
+            RPSAudioEvents.RaiseFadeInMusicEvent(_startMusic);
         }
 
         private void DisableAllScreens()
