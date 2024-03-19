@@ -16,6 +16,9 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		
 		[SerializeField]
 		private Button _bettingButton;
+		
+		[SerializeField]
+		private AudioClip _clickSfx;
 
 		private void OnEnable()
 		{
@@ -34,6 +37,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 			LoggerService.LogInfo($"{nameof(RPSModeButtonsController)}::{nameof(OnFreeButtonClick)}");
 			RPSCurrentClientState.rpsModeType = RPSModeType.Free;
             RPSUIEvents.RaiseShowChooseOpponentScreenEvent();
+            RPSAudioEvents.RaisePlaySfxEvent(_clickSfx, 1);
 		}
 
 		private void OnBettingButtonClick()
@@ -41,6 +45,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 			LoggerService.LogInfo($"{nameof(RPSModeButtonsController)}::{nameof(OnBettingButtonClick)}");
 			RPSCurrentClientState.rpsModeType = RPSModeType.Betting;
             RPSUIEvents.RaiseShowChooseOpponentScreenEvent();
+            RPSAudioEvents.RaisePlaySfxEvent(_clickSfx, 1);
 		}
 	}
 }

@@ -47,9 +47,6 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 				_musicSource.Play();
 				FadeInMusic();
 			}
-			else{
-				FadeInMusic();
-			}
 		}
 
 		private void OnFadeOutMusic(float duration)

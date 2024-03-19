@@ -33,6 +33,9 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         [SerializeField]
         private AudioClip _startMusic;
         
+        [SerializeField]
+        private AudioClip _chooseModeMusic;
+        
         private void OnEnable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen += OnShowChooseOpponentScreen;
@@ -62,7 +65,6 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         private void Start()
         {
             OnShowStartScreen();
-            RPSAudioEvents.RaiseFadeInMusicEvent(_startMusic);
         }
 
         private void DisableAllScreens()
@@ -79,6 +81,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             DisableAllScreens();
             _startScreen.Activate();
             RPSBotEvents.RaisePlayStartScreenBotAnimationEvent();
+            RPSAudioEvents.RaiseFadeInMusicEvent(_startMusic);
         }
         
         private void OnShowChooseModeScreen()
@@ -86,6 +89,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowChooseModeScreen)}");
             DisableAllScreens();
             _chooseModeScreen.Activate();
+            RPSAudioEvents.RaiseFadeInMusicEvent(_chooseModeMusic);
         }
         
         private void OnShowChooseOpponentScreen()

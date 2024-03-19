@@ -5090,6 +5090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _freeButton: {fileID: 1990608887}
   _bettingButton: {fileID: 1734278711}
+  _clickSfx: {fileID: 8300000, guid: 362c77459c1a2df418e2c7db1b1a5f04, type: 3}
 --- !u!1 &982714859
 GameObject:
   m_ObjectHideFlags: 0
@@ -5920,6 +5921,7 @@ MonoBehaviour:
   _wonScreen: {fileID: 1225611774}
   _loseScreen: {fileID: 421736822}
   _startMusic: {fileID: 8300000, guid: 23b6449872b2c6643b01732be5a8a2cc, type: 3}
+  _chooseModeMusic: {fileID: 8300000, guid: e0a056ebd11d676499667655aefb201b, type: 3}
 --- !u!1 &1170889867
 GameObject:
   m_ObjectHideFlags: 0
@@ -10398,6 +10400,7 @@ MonoBehaviour:
   _humanButton: {fileID: 809685490}
   _pcButton: {fileID: 586017119}
   _backButton: {fileID: 101724675}
+  _clickSfx: {fileID: 8300000, guid: 362c77459c1a2df418e2c7db1b1a5f04, type: 3}
 --- !u!1 &2133615259
 GameObject:
   m_ObjectHideFlags: 0
