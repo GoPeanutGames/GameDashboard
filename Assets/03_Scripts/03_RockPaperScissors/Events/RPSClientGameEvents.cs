@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Shared.Logging;
+﻿using PeanutDashboard._03_RockPaperScissors.Model;
+using PeanutDashboard.Shared.Logging;
 using UnityEngine.Events;
 
 namespace PeanutDashboard._03_RockPaperScissors.Events
@@ -11,7 +12,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		private static UnityAction _selectedChoiceAnimationDone;
 		private static UnityAction _showBattle;
 		private static UnityAction _battleBgCloseAnimationDone;
-		private static UnityAction _startBattleAnimation;
+		private static UnityAction<RPSResultType> _startBattleAnimation;
 		private static UnityAction _battleAnimationDone;
 		private static UnityAction _startBattleBgOpenAnimation;
 		private static UnityAction _battleBgOpenAnimationDone;
@@ -54,7 +55,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 			remove => _battleBgCloseAnimationDone -= value;
 		}
 		
-		public static event UnityAction OnStartBattleAnimation
+		public static event UnityAction<RPSResultType> OnStartBattleAnimation
 		{
 			add => _startBattleAnimation += value;
 			remove => _startBattleAnimation -= value;
@@ -144,13 +145,13 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 			_battleBgCloseAnimationDone.Invoke();
 		}
 
-		public static void RaiseStartBattleAnimationEvent()
+		public static void RaiseStartBattleAnimationEvent(RPSResultType rpsResultType)
 		{
 			if (_startBattleAnimation == null){
 				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseStartBattleAnimationEvent)} raised, but nothing picked it up");
 				return;
 			}
-			_startBattleAnimation.Invoke();
+			_startBattleAnimation.Invoke(rpsResultType);
 		}
 		
 		public static void RaiseBattleAnimationDoneEvent()

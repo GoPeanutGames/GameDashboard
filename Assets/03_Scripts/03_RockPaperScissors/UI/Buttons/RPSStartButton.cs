@@ -8,6 +8,10 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
     [RequireComponent(typeof(Button))]
 	public class RPSStartButton: MonoBehaviour
 	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private AudioClip _startSfx;
+		
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private Button _button;
@@ -29,6 +33,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 
 		private void OnStartButtonClick()
 		{
+			RPSAudioEvents.RaisePlaySfxEvent(_startSfx, 1f);
 			RPSUIEvents.RaiseShowChooseModeScreenEvent();
 		}
 	}

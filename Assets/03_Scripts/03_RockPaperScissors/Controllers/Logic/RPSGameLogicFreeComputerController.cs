@@ -9,6 +9,16 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 {
 	public class RPSGameLogicFreeComputerController : MonoBehaviour
 	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private AudioClip _winRound;
+		
+		[SerializeField]
+		private AudioClip _winGame;
+		
+		[SerializeField]
+		private AudioClip _loseGame;
+		
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private int _round = 1;
@@ -36,6 +46,9 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		
 		[SerializeField]
 		private Sprite _loseIndicator;
+
+		[SerializeField]
+		private RPSResultType _result;
         
 		
 		private void OnEnable()
@@ -59,6 +72,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void OnPlayChoiceSelectedEvent()
 		{
 			LoggerService.LogInfo($"{nameof(RPSGameLogicFreeComputerController)}::{nameof(OnPlayChoiceSelectedEvent)}");
+			RPSAudioEvents.RaiseFadeOutMusicEvent(0.5f);
 			RPSClientGameEvents.RaiseDisablePlayerChoicesEvent();
 			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
 			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent(_round.ToString());
@@ -94,55 +108,69 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void OnBattleBgCloseAnimationDone()
 		{
 			RPSCurrentEnemyState.rpsChoiceType = (RPSChoiceType)Random.Range(0, 3);
-			RPSClientGameEvents.RaiseStartBattleAnimationEvent();
+			CalculateResult();
+			RPSClientGameEvents.RaiseStartBattleAnimationEvent(_result);
 		}
 
-		private void OnBattleAnimationDone()
+		private void CalculateResult()
 		{
-			RPSUpperUIEvents.RaiseUpdateEnemyChoiceImageEvent(GetSpriteForChoice(RPSCurrentEnemyState.rpsChoiceType));
 			switch (RPSCurrentEnemyState.rpsChoiceType){
 				case RPSChoiceType.Paper:
 					switch (RPSCurrentClientState.rpsChoiceType){
 						case RPSChoiceType.Paper:
-							Draw();
+							_result = RPSResultType.Draw;
 							break;
 						case RPSChoiceType.Rock:
-							Lost();
+							_result = RPSResultType.Lose;
 							break;
 						default:
-							Won();
+							_result = RPSResultType.Win;
 							break;
 					}
 					break;
 				case RPSChoiceType.Rock:
 					switch (RPSCurrentClientState.rpsChoiceType){
 						case RPSChoiceType.Paper:
-							Won();
+							_result = RPSResultType.Win;
 							break;
 						case RPSChoiceType.Rock:
-							Draw();
+							_result = RPSResultType.Draw;
 							break;
 						default:
-							Lost();
+							_result = RPSResultType.Lose;
 							break;
 					}
 					break;
 				case RPSChoiceType.Scissors:
 					switch (RPSCurrentClientState.rpsChoiceType){
 						case RPSChoiceType.Paper:
-							Lost();
+							_result = RPSResultType.Lose;
 							break;
 						case RPSChoiceType.Rock:
-							Won();
+							_result = RPSResultType.Win;
 							break;
 						default:
-							Draw();
+							_result = RPSResultType.Draw;
 							break;
 					}
 					break;
 			}
-			//TODO: enable timer - for timeout - automatic lose
-			//TODO: get the robot animations in battle
+		}
+		
+		private void OnBattleAnimationDone()
+		{
+			RPSUpperUIEvents.RaiseUpdateEnemyChoiceImageEvent(GetSpriteForChoice(RPSCurrentEnemyState.rpsChoiceType));
+			switch (_result){
+				case RPSResultType.Win:
+					Won();
+					break;
+				case RPSResultType.Lose:
+					Lost();
+					break;
+				case RPSResultType.Draw:
+					Draw();
+					break;
+			}
 		}
 
 		private void Won()
@@ -154,10 +182,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			_round++;
 			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Opponent);
 			if (_scorePlayer == 3){
+				RPSAudioEvents.RaisePlaySfxEvent(_winGame, 1f);
 				RPSClientGameEvents.RaiseYouWonGameEvent();
 				Destroy(this.gameObject);
 			}
 			else{
+				RPSAudioEvents.RaisePlaySfxEvent(_winRound, 1f);
 				RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
 			}
 		}
@@ -171,6 +201,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			_round++;
 			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Player);
 			if (_scoreEnemy == 3){
+				RPSAudioEvents.RaisePlaySfxEvent(_loseGame, 1f);
 				RPSClientGameEvents.RaiseYouLostGameEvent();
 				Destroy(this.gameObject);
 			}
@@ -187,8 +218,6 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 
 		private void StartNextRound()
 		{
-			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
-			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent(_round.ToString());
 			RPSUpperUIEvents.RaiseUpdateEnemyNameTextEvent("AI");
 			RPSUpperUIEvents.RaiseUpdateYourScoreTextEvent(_scorePlayer.ToString());
 			RPSUpperUIEvents.RaiseUpdateEnemyScoreTextEvent(_scoreEnemy.ToString());
@@ -196,6 +225,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			RPSUpperUIEvents.RaiseShowYourScoreEvent();
 			RPSUpperUIEvents.RaiseHideIndicatorEvent();
 			RPSClientGameEvents.RaiseEnablePlayerChoicesEvent();
+			RPSTimerEvents.RaiseStartTimerEvent(5f);
 		}
 	}
 }

@@ -25,7 +25,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		public static void RaiseBurstHeartEvent(RPSUserType rpsUserType)
 		{
 			if (_burstHeart == null){
-				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseBurstHeartEvent)} raised, but nothing picked it up");
+				LoggerService.LogWarning($"{nameof(RPSLifeGameEvents)}::{nameof(RaiseBurstHeartEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_burstHeart.Invoke(rpsUserType);
@@ -34,7 +34,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
 		public static void RaiseResetHeartsEvent()
 		{
 			if (_resetHearts == null){
-				LoggerService.LogWarning($"{nameof(RPSClientGameEvents)}::{nameof(RaiseResetHeartsEvent)} raised, but nothing picked it up");
+				LoggerService.LogWarning($"{nameof(RPSLifeGameEvents)}::{nameof(RaiseResetHeartsEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_resetHearts.Invoke();

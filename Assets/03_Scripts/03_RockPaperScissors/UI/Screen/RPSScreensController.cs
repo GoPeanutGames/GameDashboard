@@ -30,6 +30,15 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         [SerializeField]
         private GameObject _loseScreen;
         
+        [SerializeField]
+        private AudioClip _startMusic;
+        
+        [SerializeField]
+        private AudioClip _chooseModeMusic;
+        
+        [SerializeField]
+        private AudioClip _battleMusic;
+        
         private void OnEnable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen += OnShowChooseOpponentScreen;
@@ -75,6 +84,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             DisableAllScreens();
             _startScreen.Activate();
             RPSBotEvents.RaisePlayStartScreenBotAnimationEvent();
+            RPSAudioEvents.RaiseFadeInMusicEvent(_startMusic);
         }
         
         private void OnShowChooseModeScreen()
@@ -82,6 +92,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowChooseModeScreen)}");
             DisableAllScreens();
             _chooseModeScreen.Activate();
+            RPSAudioEvents.RaiseFadeInMusicEvent(_chooseModeMusic);
         }
         
         private void OnShowChooseOpponentScreen()
@@ -106,18 +117,22 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUpperUIEvents.RaiseUpdateEnemyScoreTextEvent("_");
             RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
             RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent("-");
+            RPSBotEvents.RaiseHideBotsEvent();
         }
 
         private void OnShowBattle()
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowBattle)}");
             _gameBattleScreen.Activate();
+            RPSBotEvents.RaiseResetBotsEvent();
+            RPSAudioEvents.RaisePlaySfxEvent(_battleMusic, 1f);
         }
         
         private void OnHideBattleBgDone()
         {
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnHideBattleBgDone)}");
             _gameBattleScreen.Deactivate();
+            RPSBotEvents.RaiseResetBotsEvent();
         }
 
         private void OnShowWonScreen()
