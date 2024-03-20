@@ -9,6 +9,16 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 {
 	public class RPSGameLogicFreeComputerController : MonoBehaviour
 	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private AudioClip _winRound;
+		
+		[SerializeField]
+		private AudioClip _winGame;
+		
+		[SerializeField]
+		private AudioClip _loseGame;
+		
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private int _round = 1;
@@ -62,6 +72,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void OnPlayChoiceSelectedEvent()
 		{
 			LoggerService.LogInfo($"{nameof(RPSGameLogicFreeComputerController)}::{nameof(OnPlayChoiceSelectedEvent)}");
+			RPSAudioEvents.RaiseFadeOutMusicEvent(0.5f);
 			RPSClientGameEvents.RaiseDisablePlayerChoicesEvent();
 			RPSUpperUIEvents.RaiseUpdateUpperSmallTextEvent("ROUND");
 			RPSUpperUIEvents.RaiseUpdateUpperBigTextEvent(_round.ToString());
@@ -171,10 +182,12 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			_round++;
 			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Opponent);
 			if (_scorePlayer == 3){
+				RPSAudioEvents.RaisePlaySfxEvent(_winGame, 1f);
 				RPSClientGameEvents.RaiseYouWonGameEvent();
 				Destroy(this.gameObject);
 			}
 			else{
+				RPSAudioEvents.RaisePlaySfxEvent(_winRound, 1f);
 				RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
 			}
 		}
@@ -188,6 +201,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			_round++;
 			RPSLifeGameEvents.RaiseBurstHeartEvent(RPSUserType.Player);
 			if (_scoreEnemy == 3){
+				RPSAudioEvents.RaisePlaySfxEvent(_loseGame, 1f);
 				RPSClientGameEvents.RaiseYouLostGameEvent();
 				Destroy(this.gameObject);
 			}

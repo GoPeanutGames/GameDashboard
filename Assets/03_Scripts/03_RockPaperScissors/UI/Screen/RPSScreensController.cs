@@ -36,6 +36,9 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         [SerializeField]
         private AudioClip _chooseModeMusic;
         
+        [SerializeField]
+        private AudioClip _battleMusic;
+        
         private void OnEnable()
         {
             RPSUIEvents.OnShowChooseOpponentScreen += OnShowChooseOpponentScreen;
@@ -122,6 +125,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             LoggerService.LogInfo($"{nameof(RPSScreensController)}::{nameof(OnShowBattle)}");
             _gameBattleScreen.Activate();
             RPSBotEvents.RaiseResetBotsEvent();
+            RPSAudioEvents.RaisePlaySfxEvent(_battleMusic, 1f);
         }
         
         private void OnHideBattleBgDone()

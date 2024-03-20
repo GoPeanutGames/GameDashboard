@@ -5922,6 +5922,7 @@ MonoBehaviour:
   _loseScreen: {fileID: 421736822}
   _startMusic: {fileID: 8300000, guid: 23b6449872b2c6643b01732be5a8a2cc, type: 3}
   _chooseModeMusic: {fileID: 8300000, guid: e0a056ebd11d676499667655aefb201b, type: 3}
+  _battleMusic: {fileID: 8300000, guid: 4bcc96129dd7ab64c87638b66680b869, type: 3}
 --- !u!1 &1170889867
 GameObject:
   m_ObjectHideFlags: 0
