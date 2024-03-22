@@ -78,7 +78,7 @@ namespace PeanutDashboard.Editor
 			}
 			EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.WebGL, BuildTarget.WebGL);
 			PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.WebGL, "");
-			PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.None;
+			// PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.None;
 			PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Brotli;
 			PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.WebGL, ManagedStrippingLevel.High);
 			UserBuildSettings.codeOptimization = WasmCodeOptimization.DiskSizeLTO;
