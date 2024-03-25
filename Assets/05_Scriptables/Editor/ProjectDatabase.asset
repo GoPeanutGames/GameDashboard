@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverGameSceneConfigs:
   - {fileID: 11400000, guid: 5e9c327e3d3e9e0429e9da768dc5fa39, type: 2}
+  - {fileID: 11400000, guid: 3a098a69ce6bd02488305ab0d493c036, type: 2}
   addressableGroups:
-  - {fileID: 11400000, guid: 870b57ebf20bae54ba420f1bdd20f759, type: 2}
   - {fileID: 11400000, guid: 0fbdbc0219e602b4bad2e2615c911f55, type: 2}
   - {fileID: 11400000, guid: 6a30a4bbc82f65349b0b27d8d41adaa8, type: 2}
   rockPaperScissorsSceneConfig: {fileID: 11400000, guid: 3a098a69ce6bd02488305ab0d493c036, type: 2}

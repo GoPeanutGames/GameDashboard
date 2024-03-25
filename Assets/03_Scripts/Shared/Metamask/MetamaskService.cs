@@ -23,7 +23,7 @@ namespace PeanutDashboard.Shared.Metamask
 		private static extern void RequestSignature(string schema, string address, Action<string> cbSuccess, Action<string> cbFail);
 
 		private static string WalletAddress => MetaMaskUnity.Instance.Wallet.ConnectedAddress.ToLower();
-		private static long ChainId => EnvironmentManager.Instance.IsDev() ? ChainDataReference.MumbaiChainId : ChainDataReference.PolygonChainId;
+		private static long ChainId => EnvironmentManager.Instance.IsDev() ? ChainDataReference.SepoliaChainId : ChainDataReference.BlastChainId;
 		private static Chain ChainData => EnvironmentManager.Instance.IsDev() ? ChainDataReference.MumbaiChain : ChainDataReference.PolygonChain;
 
 		private static bool _metamaskInitialised = false;
