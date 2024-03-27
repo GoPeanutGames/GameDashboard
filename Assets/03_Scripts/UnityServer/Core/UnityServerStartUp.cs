@@ -1,20 +1,19 @@
 using System;
-using System.Collections.Generic;
+using PeanutDashboard.Init;
 using PeanutDashboard.Shared.Config;
 using PeanutDashboard.Shared.Environment;
 using PeanutDashboard.Shared.Logging;
-using Unity.Networking.Transport.Relay;
-using Unity.Services.Lobbies.Models;
+using PeanutDashboard.Shared.Picker;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
+using Unity.Services.Core.Environments;
+using System.Threading.Tasks;
 #if SERVER
 using System.Collections;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PeanutDashboard.UnityServer.Events;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
-using Unity.Services.Core.Environments;
 using Unity.Services.Lobbies;
 using Unity.Services.Matchmaker.Models;
 using Unity.Services.Multiplay;
@@ -29,6 +28,9 @@ namespace PeanutDashboard.UnityServer.Core
 	{
 		public static event Action ClientInstance;
 		public static event Action ServerInstance; 
+		
+		[SerializeField]
+		private GameInfo _currentGameInfo;
 		
 		private GameConfig _gameConfig;
 		private const string InternalServerIP = "0.0.0.0";
@@ -48,6 +50,8 @@ namespace PeanutDashboard.UnityServer.Core
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(Start)}");
 			_gameConfig = EnvironmentManager.Instance.GetGameConfig();
+			GameNetworkSyncService.AssignCurrentGameInfo(_currentGameInfo);
+			await InitialiseAuth();
 			bool server = false;
 			string[] args = System.Environment.GetCommandLineArgs();
 			for (int i = 0; i < args.Length; i++){
@@ -68,18 +72,22 @@ namespace PeanutDashboard.UnityServer.Core
 			ClientInstance?.Invoke();
 #endif
 		}
+
+		private async Task InitialiseAuth()
+		{
+			InitializationOptions options = new InitializationOptions();
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(InitialiseAuth)} - config: {_gameConfig.currentEnvironmentModel.unityEnvironmentName}");
+			options.SetEnvironmentName(_gameConfig.currentEnvironmentModel.unityEnvironmentName);
+			await UnityServices.InitializeAsync(options);
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(InitialiseAuth)} - unity services state: {UnityServices.State}");
+			await AuthenticationService.Instance.SignInAnonymouslyAsync();
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(InitialiseAuth)} - unity services sign in: {AuthenticationService.Instance.IsSignedIn}");
+		}
 		
 #if SERVER
 		private async Task StartServer()
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - IP: {InternalServerIP} at port: {_serverPort}");
-			InitializationOptions options = new InitializationOptions();
-			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - config: {_gameConfig.currentEnvironmentModel.unityEnvironmentName}");
-			options.SetEnvironmentName(_gameConfig.currentEnvironmentModel.unityEnvironmentName);
-			await UnityServices.InitializeAsync(options);
-			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - unity services state: {UnityServices.State}");
-			await AuthenticationService.Instance.SignInAnonymouslyAsync();
-			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - unity services sign in: {AuthenticationService.Instance.IsSignedIn}");
 			Allocation allocation = await RelayService.Instance.CreateAllocationAsync((int)ConnectionApprovalHandler.MaxPlayers);
 			NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
 			string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
