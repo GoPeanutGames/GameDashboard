@@ -1,4 +1,6 @@
 ﻿using PeanutDashboard._03_RockPaperScissors.Events;
+using PeanutDashboard._03_RockPaperScissors.Model;
+using PeanutDashboard._03_RockPaperScissors.State;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
@@ -9,6 +11,9 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
 		private GameObject _freeComputerLogicPrefab;
+		
+		[SerializeField]
+		private GameObject _freePvpLogicPrefab;
 		
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
@@ -38,7 +43,13 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void SpawnLogicController()
 		{
 			_spawnedLogicController = true;
-			Instantiate(_freeComputerLogicPrefab);
+			if (RPSCurrentClientState.rpsModeType == RPSModeType.Free){
+				if (RPSCurrentClientState.rpsOpponentType == RPSOpponentType.PC){
+					Instantiate(_freeComputerLogicPrefab);
+				}else if (RPSCurrentClientState.rpsOpponentType == RPSOpponentType.Player){
+					Instantiate(_freePvpLogicPrefab);
+				}
+			}
 		}
 
 		private void ResetSpawn()

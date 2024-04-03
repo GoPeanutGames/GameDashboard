@@ -8,6 +8,7 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using System.Threading.Tasks;
+using PeanutDashboard.UnityServer.Events;
 #if SERVER
 using System.Collections;
 using Newtonsoft.Json;
@@ -29,9 +30,6 @@ namespace PeanutDashboard.UnityServer.Core
 		public static event Action ClientInstance;
 		public static event Action ServerInstance; 
 		
-		[SerializeField]
-		private GameInfo _currentGameInfo;
-		
 		private GameConfig _gameConfig;
 		private const string InternalServerIP = "0.0.0.0";
 		private ushort _serverPort = 7777;
@@ -46,11 +44,21 @@ namespace PeanutDashboard.UnityServer.Core
 		private float _timeout = 60f;
 #endif
 
-		private async void Start()
+		private void OnEnable()
 		{
-			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(Start)}");
+			ServerEvents.StartServer += OnStartServer;
+		}
+
+		private void OnDisable()
+		{
+			ServerEvents.StartServer -= OnStartServer;
+		}
+
+		private async void OnStartServer(GameInfo gameInfo)
+		{
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(OnStartServer)}");
 			_gameConfig = EnvironmentManager.Instance.GetGameConfig();
-			GameNetworkSyncService.AssignCurrentGameInfo(_currentGameInfo);
+			GameNetworkSyncService.AssignCurrentGameInfo(gameInfo);
 			await InitialiseAuth();
 			bool server = false;
 			string[] args = System.Environment.GetCommandLineArgs();
