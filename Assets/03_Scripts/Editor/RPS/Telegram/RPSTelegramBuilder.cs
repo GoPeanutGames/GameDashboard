@@ -4,29 +4,28 @@ using UnityEditor;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 using UnityEditor.Build;
-using UnityEditor.Compilation;
 using UnityEditor.WebGL;
 using UnityEngine;
 
 namespace PeanutDashboard.Editor
 {
-	public class TelegramBuilder : UnityEditor.Editor
+	public class RPSTelegramBuilder : UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Build/Telegram/RockPaperScissors/Development Testing")]
+		[MenuItem("PeanutDashboard/Build/RockPaperScissors/Telegram/Development Testing")]
 		public static void ConfigForClientTelegramRPSDevTest()
 		{
 			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
 			BuildForClientTelegram(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId, TelegramGame.RockPaperScissors);
 		}
 
-		[MenuItem("PeanutDashboard/Build/Telegram/RockPaperScissors/Development Release")]
+		[MenuItem("PeanutDashboard/Build/RockPaperScissors/Telegram/Development Release")]
 		public static void ConfigForClientTelegramRPSDevRelease()
 		{
 			ProjectDatabase.Instance.gameConfig.ConfigureForDevRelease();
 			BuildForClientTelegram(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId, TelegramGame.RockPaperScissors);
 		}
 
-		[MenuItem("PeanutDashboard/Build/Telegram/RockPaperScissors/Production Testing")]
+		[MenuItem("PeanutDashboard/Build/RockPaperScissors/Telegram/Production Testing")]
 		public static void ConfigForClientTelegramRPSProdTest()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for Telegram production?", "Config", "Cancel")){
@@ -35,7 +34,7 @@ namespace PeanutDashboard.Editor
 			}
 		}
 
-		[MenuItem("PeanutDashboard/Build/Telegram/RockPaperScissors/Production Release")]
+		[MenuItem("PeanutDashboard/Build/RockPaperScissors/Telegram/Production Release")]
 		public static void ConfigForClientTelegramRPSProdRelease()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for Telegram production?", "Config", "Cancel")){
@@ -78,7 +77,6 @@ namespace PeanutDashboard.Editor
 			}
 			EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.WebGL, BuildTarget.WebGL);
 			PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.WebGL, "");
-			// PlayerSettings.WebGL.exceptionSupport = WebGLExceptionSupport.None;
 			PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Brotli;
 			PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.WebGL, ManagedStrippingLevel.High);
 			UserBuildSettings.codeOptimization = WasmCodeOptimization.DiskSizeLTO;

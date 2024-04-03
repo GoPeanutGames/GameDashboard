@@ -5,24 +5,24 @@ using UnityEditor.Build;
 
 namespace PeanutDashboard.Editor
 {
-	[CustomEditor(typeof(TelegramConfig))]
-	public class TelegramConfig : UnityEditor.Editor
+	[CustomEditor(typeof(RPSTelegramConfig))]
+	public class RPSTelegramConfig : UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Config/Telegram/RockPaperScissors/Development Testing")]
+		[MenuItem("PeanutDashboard/Config/RockPaperScissors/Telegram/Development Testing")]
 		public static void ConfigForClientTelegramRPSDevTest()
 		{
 			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
 			ConfigForClientTelegram(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
-		[MenuItem("PeanutDashboard/Config/Telegram/RockPaperScissors/Development Release")]
+		[MenuItem("PeanutDashboard/Config/RockPaperScissors/Telegram/Development Release")]
 		public static void ConfigForClientTelegramRPSDevRelease()
 		{
 			ProjectDatabase.Instance.gameConfig.ConfigureForDevRelease();
 			ConfigForClientTelegram(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
-		[MenuItem("PeanutDashboard/Config/Telegram/RockPaperScissors/Production Testing")]
+		[MenuItem("PeanutDashboard/Config/RockPaperScissors/Telegram/Production Testing")]
 		public static void ConfigForClientTelegramRPSProdTest()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for Telegram production?", "Config", "Cancel")){
@@ -31,7 +31,7 @@ namespace PeanutDashboard.Editor
 			}
 		}
 
-		[MenuItem("PeanutDashboard/Config/Telegram/RockPaperScissors/Production Release")]
+		[MenuItem("PeanutDashboard/Config/RockPaperScissors/Telegram/Production Release")]
 		public static void ConfigForClientTelegramRPSProdRelease()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to config for Telegram production?", "Config", "Cancel")){
