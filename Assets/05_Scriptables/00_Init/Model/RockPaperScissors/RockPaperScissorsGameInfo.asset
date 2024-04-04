@@ -15,5 +15,5 @@ MonoBehaviour:
   gameScenes:
   - {fileID: 11400000, guid: 2ddb8e6a62b069347a226a7ad4b28823, type: 2}
   networkEntryPointScene: {fileID: 11400000, guid: 2ddb8e6a62b069347a226a7ad4b28823, type: 2}
-  matchmakerGameLabel: RockPaperScissors
+  matchmakerGameLabel: RPS
   gameName: Rock Paper Scissors

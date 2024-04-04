@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7115fe7cea80499cb709ac89d6770c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _questionMarkSprite: {fileID: 21300000, guid: 48aea9e574fd086408d6d840124272b4, type: 3}
+  _rockSprite: {fileID: 21300000, guid: 04b185e3bfe5d4749bf49413796cea7a, type: 3}
+  _paperSprite: {fileID: 21300000, guid: cc579f9f743d12a459ef89a22c11a93e, type: 3}
+  _scissorsSprite: {fileID: 21300000, guid: f67f1f1ca96716447af53b2c5c7b0474, type: 3}
+  _round: 1
+  _scorePlayer: 0
+  _scoreEnemy: 0

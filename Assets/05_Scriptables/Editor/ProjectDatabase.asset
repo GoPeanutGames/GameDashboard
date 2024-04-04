@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5e9c327e3d3e9e0429e9da768dc5fa39, type: 2}
   addressableGroups:
   - {fileID: 11400000, guid: 0fbdbc0219e602b4bad2e2615c911f55, type: 2}
-  rockPaperScissorsAddressableGroup: {fileID: 11400000, guid: 6a30a4bbc82f65349b0b27d8d41adaa8, type: 2}
   rockPaperScissorsSceneConfig: {fileID: 11400000, guid: 3a098a69ce6bd02488305ab0d493c036, type: 2}
+  rockPaperScissorsServerSceneConfig: {fileID: 11400000, guid: 39295e39507c8b644bb18bb54f727d59, type: 2}
   gameConfig: {fileID: 11400000, guid: ae1719d8962c6e94ca76b8823d2fe2cb, type: 2}

@@ -133,7 +133,7 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PingForLobby)}");
 			while (!_lobbyAssigned){
 				PollLobbies();
-				yield return new WaitForSeconds(1.5f);
+				yield return new WaitForSeconds(3f);
 			}
 		}
 

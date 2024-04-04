@@ -41,14 +41,12 @@ namespace PeanutDashboard.Editor
 
 		private static void ConfigForServer(string addressableProfileId)
 		{
-			foreach (GameSceneConfig gameSceneConfig in ProjectDatabase.Instance.serverGameSceneConfigs){
-				BundledAssetGroupSchema schema = gameSceneConfig.group.GetSchema<BundledAssetGroupSchema>();
-				gameSceneConfig.group.Settings.activeProfileId = addressableProfileId;
-				var buildInfo = gameSceneConfig.group.Settings.profileSettings.GetProfileDataByName("Local.BuildPath");
-				var loadInfo = gameSceneConfig.group.Settings.profileSettings.GetProfileDataByName("Local.LoadPath");
-				schema.BuildPath.SetVariableById(gameSceneConfig.group.Settings, buildInfo.Id);
-				schema.LoadPath.SetVariableById(gameSceneConfig.group.Settings, loadInfo.Id);
-			}
+			BundledAssetGroupSchema schema = ProjectDatabase.Instance.rockPaperScissorsServerSceneConfig.group.GetSchema<BundledAssetGroupSchema>();
+			ProjectDatabase.Instance.rockPaperScissorsServerSceneConfig.group.Settings.activeProfileId = addressableProfileId;
+			var buildInfo = ProjectDatabase.Instance.rockPaperScissorsServerSceneConfig.group.Settings.profileSettings.GetProfileDataByName("Local.BuildPath");
+			var loadInfo = ProjectDatabase.Instance.rockPaperScissorsServerSceneConfig.group.Settings.profileSettings.GetProfileDataByName("Local.LoadPath");
+			schema.BuildPath.SetVariableById(ProjectDatabase.Instance.rockPaperScissorsServerSceneConfig.group.Settings, buildInfo.Id);
+			schema.LoadPath.SetVariableById(ProjectDatabase.Instance.rockPaperScissorsServerSceneConfig.group.Settings, loadInfo.Id);
 			EditorUserBuildSettings.SwitchActiveBuildTarget(NamedBuildTarget.Server, BuildTarget.StandaloneLinux64);
 			PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Server, "SERVER");
 		}

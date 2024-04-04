@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PeanutDashboard.Init;
 using PeanutDashboard.Shared.Config;
 using PeanutDashboard.Shared.Environment;
@@ -9,6 +10,8 @@ using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using System.Threading.Tasks;
 using PeanutDashboard.UnityServer.Events;
+using Unity.Networking.Transport.Relay;
+using Unity.Services.Lobbies.Models;
 #if SERVER
 using System.Collections;
 using Newtonsoft.Json;
@@ -28,7 +31,9 @@ namespace PeanutDashboard.UnityServer.Core
 	public class UnityServerStartUp : MonoBehaviour
 	{
 		public static event Action ClientInstance;
-		public static event Action ServerInstance; 
+		public static event Action ServerInstance;
+
+		public int maxPlayers;
 		
 		private GameConfig _gameConfig;
 		private const string InternalServerIP = "0.0.0.0";
@@ -112,7 +117,7 @@ namespace PeanutDashboard.UnityServer.Core
 							DataObject.VisibilityOptions.Member, joinCode)
 					}
 				};
-				Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("n/a", 2, createLobbyOptions);
+				Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("n/a", maxPlayers + 1, createLobbyOptions);
 				LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - lobby created");
 				_lobbyId = lobby.Id;
 				LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - lobby created - {lobby.Id}");
