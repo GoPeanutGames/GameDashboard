@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9129547753919211585}
   - component: {fileID: -6047133419763264772}
-  - component: {fileID: -1551855513587875336}
+  - component: {fileID: 8420120480592331800}
   m_Layer: 0
   m_Name: RPSPlayer
   m_TagString: Untagged
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3524583444
+  GlobalObjectIdHash: 1992163050
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &-1551855513587875336
+--- !u!114 &8420120480592331800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

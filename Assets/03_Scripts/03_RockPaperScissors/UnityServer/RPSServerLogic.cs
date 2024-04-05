@@ -2,6 +2,7 @@
 using System.Linq;
 using PeanutDashboard._03_RockPaperScissors.Events;
 using PeanutDashboard._03_RockPaperScissors.Model;
+using UnityEngine;
 
 namespace PeanutDashboard._03_RockPaperScissors.UnityServer
 {
@@ -13,6 +14,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UnityServer
 
 		public static void PlayerMadeChoice(RPSChoiceType choiceType, ulong clientId)
 		{
+			Debug.Log($"{nameof(RPSServerLogic)}::{nameof(PlayerMadeChoice)}");
 			if (!_playerChoiceMap.ContainsKey(clientId)){
 				_playersPlayed++;
 				_playerChoiceMap[clientId] = choiceType;
@@ -25,6 +27,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UnityServer
 
 		private static void ReturnResult()
 		{
+			Debug.Log($"{nameof(RPSServerLogic)}::{nameof(ReturnResult)}");
 			ulong firstClientId = _playerChoiceMap.Keys.ToList()[0];
 			ulong secondClientId = _playerChoiceMap.Keys.ToList()[1];
 			RPSServerEvents.RaiseSendOtherChoiceToPlayerEvent(firstClientId, _playerChoiceMap[secondClientId]);

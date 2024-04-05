@@ -1,4 +1,5 @@
-﻿using PeanutDashboard._03_RockPaperScissors.Events;
+﻿using System;
+using PeanutDashboard._03_RockPaperScissors.Events;
 using PeanutDashboard._03_RockPaperScissors.Model;
 using PeanutDashboard._03_RockPaperScissors.State;
 using PeanutDashboard._03_RockPaperScissors.UnityServer;
@@ -41,8 +42,9 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 
 			SendToClientResult_ClientRpc(otherChoice, clientRpcParams);
 		}
+		
 
-		[ServerRpc]
+		[ServerRpc (RequireOwnership = false)]
 		private void SendStartingValueToServer_ServerRpc(RPSChoiceType choiceType, ulong clientId)
 		{
 			Debug.Log($"[SERVER]{nameof(RPSServerConnectorController)}::{nameof(SendStartingValueToServer_ServerRpc)} - {choiceType}");

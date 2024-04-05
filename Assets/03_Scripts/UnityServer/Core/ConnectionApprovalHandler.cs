@@ -5,7 +5,7 @@ namespace PeanutDashboard.UnityServer.Core
 {
 	public class ConnectionApprovalHandler: MonoBehaviour
 	{
-		public const ushort MaxPlayers = 1;
+		public ushort maxPlayers = 1;
 
 		private void Start()
 		{
@@ -17,7 +17,7 @@ namespace PeanutDashboard.UnityServer.Core
 			response.Approved = true;
 			response.CreatePlayerObject = true;
 			response.PlayerPrefabHash = null;
-			if (NetworkManager.Singleton.ConnectedClients.Count >= MaxPlayers){
+			if (NetworkManager.Singleton.ConnectedClients.Count >= maxPlayers){
 				response.Approved = false;
 				response.Reason = "Server is Full";
 			}

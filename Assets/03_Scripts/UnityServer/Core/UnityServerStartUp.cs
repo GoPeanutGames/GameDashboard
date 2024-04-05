@@ -101,7 +101,7 @@ namespace PeanutDashboard.UnityServer.Core
 		private async Task StartServer()
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - IP: {InternalServerIP} at port: {_serverPort}");
-			Allocation allocation = await RelayService.Instance.CreateAllocationAsync((int)ConnectionApprovalHandler.MaxPlayers);
+			Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxPlayers);
 			NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
 			string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - unity services relay join - {joinCode}");
@@ -144,7 +144,7 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)}");
 			try{
 				_multiplayService = MultiplayService.Instance;
-				_serverQueryHandler = await _multiplayService.StartServerQueryHandlerAsync(ConnectionApprovalHandler.MaxPlayers, "n/a", "n/a", "0", "n/a");
+				_serverQueryHandler = await _multiplayService.StartServerQueryHandlerAsync((ushort)maxPlayers, "n/a", "n/a", "0", "n/a");
 			}
 			catch (Exception e){
 				LoggerService.LogWarning($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - Something went wrong trying to set up the SQP service:\n{e}");
