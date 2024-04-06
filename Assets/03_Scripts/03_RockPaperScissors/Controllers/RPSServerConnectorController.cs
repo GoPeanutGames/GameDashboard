@@ -14,7 +14,9 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private void Start()
 		{
 			Debug.Log($"{nameof(RPSServerConnectorController)}::{nameof(Start)}");
-			SendStartingValueToServer_ServerRpc(RPSCurrentClientState.rpsChoiceType, this.OwnerClientId);
+			if (IsLocalPlayer){
+				SendStartingValueToServer_ServerRpc(RPSCurrentClientState.rpsChoiceType, this.OwnerClientId);
+			}
 		}
 #endif
 
@@ -28,9 +30,33 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		{
 			RPSServerEvents.SendOtherChoiceToPlayer -= ServerReturnedResult;
 		}
+		
+		private void Awake()
+		{
+			RPSServerLogic.ClearEverything();
+		}
+#else
+		private void OnEnable()
+		{
+			RPSServerEvents.SendChoiceToServer += OnSendChoiceToServer;
+		}
+
+		private void OnDisable()
+		{
+			RPSServerEvents.SendChoiceToServer -= OnSendChoiceToServer;
+		}
 #endif
 
-		private void ServerReturnedResult(ulong clientId, RPSChoiceType otherChoice)
+		private void OnSendChoiceToServer()
+		{
+			if (!IsLocalPlayer){
+				return;
+			}
+			Debug.Log($"{nameof(RPSServerConnectorController)}::{nameof(OnSendChoiceToServer)}");
+			SendStartingValueToServer_ServerRpc(RPSCurrentClientState.rpsChoiceType, this.OwnerClientId);
+		}
+
+		private void ServerReturnedResult(ulong clientId, bool wonGame, bool endgame, RPSChoiceType otherChoice)
 		{
 			ClientRpcParams clientRpcParams = new ClientRpcParams
 			{
@@ -40,7 +66,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 				}
 			};
 
-			SendToClientResult_ClientRpc(otherChoice, clientRpcParams);
+			SendToClientResult_ClientRpc(otherChoice, wonGame, endgame, clientRpcParams);
 		}
 		
 
@@ -52,10 +78,10 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		}
 
 		[ClientRpc]
-		private void SendToClientResult_ClientRpc(RPSChoiceType otherChoice, ClientRpcParams clientRpcParams = default)
+		private void SendToClientResult_ClientRpc(RPSChoiceType otherChoice, bool wonGame, bool endgame, ClientRpcParams clientRpcParams = default)
 		{
 			Debug.Log($"[CLIENT]{nameof(RPSServerConnectorController)}::{nameof(SendToClientResult_ClientRpc)} - other: {otherChoice}");
-			RPSServerEvents.RaiseOpponentChoiceEvent(otherChoice);
+			RPSServerEvents.RaiseOpponentChoiceEvent(otherChoice, wonGame, endgame);
 		}
 	}
 }
