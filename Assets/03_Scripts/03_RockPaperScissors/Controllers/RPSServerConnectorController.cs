@@ -1,5 +1,4 @@
-﻿using System;
-using PeanutDashboard._03_RockPaperScissors.Events;
+﻿using PeanutDashboard._03_RockPaperScissors.Events;
 using PeanutDashboard._03_RockPaperScissors.Model;
 using PeanutDashboard._03_RockPaperScissors.State;
 using PeanutDashboard._03_RockPaperScissors.UnityServer;
@@ -31,10 +30,6 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			RPSServerEvents.SendOtherChoiceToPlayer -= ServerReturnedResult;
 		}
 		
-		private void Awake()
-		{
-			RPSServerLogic.ClearEverything();
-		}
 #else
 		private void OnEnable()
 		{

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PeanutDashboard._02_BattleDash.Events;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.Picker;
 using PeanutDashboard.UnityServer.Config;
+using PeanutDashboard.UnityServer.Events;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
@@ -67,7 +67,7 @@ namespace PeanutDashboard.UnityServer.Core
 			CreateTicketResponse ticketResponse = await MatchmakerService.Instance.CreateTicketAsync(players, options);
 			_ticketId = ticketResponse.Id;
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(CreateATicket)} - created ticket with id: {_ticketId}");
-			BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Finding a server");
+			MatchmakingEvents.RaiseUpdateLoadingTextEvent("Finding a server");
 			StartCoroutine(PollTicketStatus());
 		}
 
@@ -106,13 +106,13 @@ namespace PeanutDashboard.UnityServer.Core
 					break;
 				case MultiplayAssignment.StatusOptions.Failed:
 					_gotAssignment = true;
-					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Servers full, retrying in 30 seconds");
+					MatchmakingEvents.RaiseUpdateLoadingTextEvent("Error: Servers full, retrying in 30 seconds");
 					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Error: {multiplayAssignment.Message}");
 					Invoke(nameof(CreateATicket), 30);
 					break;
 				case MultiplayAssignment.StatusOptions.Timeout:
 					_gotAssignment = true;
-					BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Error: Timeout, retrying in 30 seconds");
+					MatchmakingEvents.RaiseUpdateLoadingTextEvent("Error: Timeout, retrying in 30 seconds");
 					LoggerService.LogError($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - Failed to get ticket status. Ticket timed out.");
 					Invoke(nameof(CreateATicket), 30);
 					break;
@@ -124,7 +124,7 @@ namespace PeanutDashboard.UnityServer.Core
 		private async Task TicketAssigned(MultiplayAssignment multiplayAssignment)
 		{
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(TicketAssigned)} - Ticket assigned: {multiplayAssignment.Ip}:{multiplayAssignment.Port}");
-			BattleDashLoadingEvents.RaiseUpdateLoadingTextEvent("Server found, connecting");
+			MatchmakingEvents.RaiseUpdateLoadingTextEvent("Server found, connecting");
 			StartCoroutine(PingForLobby());
 		}
 
@@ -168,6 +168,7 @@ namespace PeanutDashboard.UnityServer.Core
 				NetworkManager.Singleton.StartClient();
 				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollLobbies)} - client started");
 				_lobbyAssigned = true;
+				MatchmakingEvents.RaiseCloseLoadingEvent();
 			}
 		}
 

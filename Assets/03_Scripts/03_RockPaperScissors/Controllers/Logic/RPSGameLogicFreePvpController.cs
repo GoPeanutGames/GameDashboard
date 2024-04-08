@@ -80,6 +80,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			RPSClientGameEvents.OnBattleBgCloseAnimationDone += OnBattleBgCloseAnimationDone;
 			RPSClientGameEvents.OnBattleAnimationDone += OnBattleAnimationDone;
 			RPSClientGameEvents.OnBattleBgOpenAnimationDone += StartNextRound;
+			MatchmakingEvents.OnCloseLoading += MatchmakingDone;
 		}
 
 		private void OnDisable()
@@ -90,8 +91,13 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			RPSClientGameEvents.OnBattleBgCloseAnimationDone -= OnBattleBgCloseAnimationDone;
 			RPSClientGameEvents.OnBattleAnimationDone -= OnBattleAnimationDone;
 			RPSClientGameEvents.OnBattleBgOpenAnimationDone -= StartNextRound;
+			MatchmakingEvents.OnCloseLoading -= MatchmakingDone;
 		}
 
+		private void MatchmakingDone()
+		{
+			RPSUIEvents.RaiseHidePvpLoadUIEvent();
+		}
 
 		private void OnPlayChoiceSelectedEvent()
 		{
@@ -106,6 +112,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 			if (!_firstRoundDone){
 				_firstRoundDone = true;
 				ServerEvents.RaiseSpawnServerEvent();
+				RPSUIEvents.RaiseShowPvpLoadUIEvent();
 			}
 			else{
 				RPSServerEvents.RaiseSendChoiceToServerEvent();

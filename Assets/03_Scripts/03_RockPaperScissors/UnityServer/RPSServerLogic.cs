@@ -19,10 +19,12 @@ namespace PeanutDashboard._03_RockPaperScissors.UnityServer
 		{
 			Debug.Log($"{nameof(RPSServerLogic)}::{nameof(PlayerMadeChoice)}");
 			if (!_playerChoiceMap.ContainsKey(clientId)){
+				Debug.Log($"{nameof(RPSServerLogic)}::{nameof(PlayerMadeChoice)} - doesn't contain key");
 				_playersPlayed++;
 				_playerChoiceMap[clientId] = choiceType;
 				_playerScores.TryAdd(clientId, 0);
 				if (_playersPlayed == 2){
+					Debug.Log($"{nameof(RPSServerLogic)}::{nameof(PlayerMadeChoice)} - return result");
 					_playersPlayed = 0;
 					ReturnResult();
 				}
@@ -90,16 +92,6 @@ namespace PeanutDashboard._03_RockPaperScissors.UnityServer
 					break;
 			}
 			return -1;
-		}
-
-		public static void ClearEverything()
-		{
-			_playerScores.Clear();
-			_playerChoiceMap.Clear();
-			_playersPlayed = 0;
-			_firstClientWon = false;
-			_secondClientWon = false;
-			_endGame = false;
 		}
 	}
 }
