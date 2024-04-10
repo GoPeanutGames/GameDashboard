@@ -12,16 +12,6 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 {
 	public class RPSGameLogicFreePvpController: MonoBehaviour
 	{
-		//TODO: UI for connection?
-		//TODO: on server connect -> server spawn connector
-		//TODO: connector communicate mode / player type / player choice
-		//TODO: server returns ok and returns opponent choice
-		//TODO: server saves result, client shows everything for himself
-		//TODO: server starts countdown, client is synced with it, client triggers choice
-		//TODO: server returns choice, saves result, etc.
-		//TODO: server triggers win / lose
-		//TODO: server deactivates, disconnects, player removes everything related to server and starts again
-		
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
 		private Sprite _questionMarkSprite;
@@ -40,6 +30,9 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		
 		[SerializeField]
 		private AudioClip _winGame;
+		
+		[SerializeField]
+		private AudioClip _loseRound;
 		
 		[SerializeField]
 		private AudioClip _loseGame;
@@ -204,6 +197,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 				Destroy(this.gameObject);
 			}
 			else{
+				RPSAudioEvents.RaisePlaySfxEvent(_loseRound, 1f);
 				RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
 			}
 		}

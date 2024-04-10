@@ -22,6 +22,9 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		
 		[SerializeField]
 		private Button _backButton;
+		
+		[SerializeField]
+		private AudioClip _selectChoice;
 
 		private void OnEnable()
 		{
@@ -48,6 +51,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		{
 			LoggerService.LogInfo($"{nameof(RPSChoiceButtonsController)}::{nameof(OnRockToggleValueChange)} - {value}");
 			if (value){
+				RPSAudioEvents.RaisePlaySfxEvent(_selectChoice, 1f);
 				RPSCurrentClientState.rpsChoiceType = RPSChoiceType.Rock;
 			}
 		}
@@ -56,6 +60,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		{
 			LoggerService.LogInfo($"{nameof(RPSChoiceButtonsController)}::{nameof(OnPaperToggleValueChange)} - {value}");
 			if (value){
+				RPSAudioEvents.RaisePlaySfxEvent(_selectChoice, 1f);
 				RPSCurrentClientState.rpsChoiceType = RPSChoiceType.Paper;
 			}
 		}
@@ -64,6 +69,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
 		{
 			LoggerService.LogInfo($"{nameof(RPSChoiceButtonsController)}::{nameof(OnScissorsToggleValueChange)} - {value}");
 			if (value){
+				RPSAudioEvents.RaisePlaySfxEvent(_selectChoice, 1f);
 				RPSCurrentClientState.rpsChoiceType = RPSChoiceType.Scissors;
 			}
 		}

@@ -17,6 +17,9 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 		private AudioClip _winGame;
 		
 		[SerializeField]
+		private AudioClip _loseRound;
+		
+		[SerializeField]
 		private AudioClip _loseGame;
 		
 		[Header(InspectorNames.DebugDynamic)]
@@ -206,6 +209,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Controllers
 				Destroy(this.gameObject);
 			}
 			else{
+				RPSAudioEvents.RaisePlaySfxEvent(_loseRound, 1f);
 				RPSClientGameEvents.RaiseStartBattleBgOpenAnimationEvent();
 			}
 		}

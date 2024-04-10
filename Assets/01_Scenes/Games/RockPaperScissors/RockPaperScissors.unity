@@ -6989,6 +6989,7 @@ MonoBehaviour:
   _paperToggle: {fileID: 68843071}
   _scissorsToggle: {fileID: 673796741}
   _backButton: {fileID: 762008435}
+  _selectChoice: {fileID: 8300000, guid: 2d3e54cbdd3cebb44a6e985d45d916b0, type: 3}
 --- !u!1 &1336186594
 GameObject:
   m_ObjectHideFlags: 0
