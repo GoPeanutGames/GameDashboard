@@ -90,6 +90,7 @@ namespace PeanutDashboard._03_RockPaperScissors.Bots
         private void OnPlayBotStartScreenAnimation()
         {
             LoggerService.LogInfo($"{nameof(RPSBotController)}::{nameof(OnPlayBotStartScreenAnimation)}");
+            OnShowBots();
             _playerAnimator.SetBool(StartScreen, true);
             _opponentAnimator.SetBool(StartScreen, true);
         }
