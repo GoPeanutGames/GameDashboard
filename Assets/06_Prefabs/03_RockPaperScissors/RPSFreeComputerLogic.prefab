@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _winRound: {fileID: 8300000, guid: fc2624d69ba75344489a37e25fecc70d, type: 3}
   _winGame: {fileID: 8300000, guid: c991c9e1751a8054084baff2b101afe8, type: 3}
+  _loseRound: {fileID: 8300000, guid: 8d654847337e07c4ca355c107547012d, type: 3}
   _loseGame: {fileID: 8300000, guid: 205183e0fcf55bf429dd11ae589fa0aa, type: 3}
   _round: 0
   _scorePlayer: 0

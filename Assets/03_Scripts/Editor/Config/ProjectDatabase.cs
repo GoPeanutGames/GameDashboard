@@ -36,6 +36,7 @@ namespace PeanutDashboard.Editor
 		public List<GameSceneConfig> serverGameSceneConfigs;
 		public List<AddressableAssetGroup> addressableGroups;
 		public GameSceneConfig rockPaperScissorsSceneConfig;
+		public GameSceneConfig rockPaperScissorsServerSceneConfig;
 		public GameConfig gameConfig;
 		
 		public static ProjectDatabase Instance {

@@ -25,6 +25,9 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
         private GameObject _gameBattleScreen;
         
         [SerializeField]
+        private GameObject _pvpLoadUI;
+        
+        [SerializeField]
         private GameObject _wonScreen;
         
         [SerializeField]
@@ -46,6 +49,8 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUIEvents.OnShowGameChooseOptionScreen += OnShowGameChooseOptionScreen;
             RPSUIEvents.OnShowStartScreen += OnShowStartScreen;
             RPSUIEvents.OnHideResultScreens += OnHideResultScreens;
+            RPSUIEvents.OnShowPvpLoadUI += OnShowPvpLoadUI;
+            RPSUIEvents.OnHidePvpLoadUI += OnHidePvpLoadUI;
             RPSClientGameEvents.OnShowBattle += OnShowBattle;
             RPSClientGameEvents.OnBattleBgOpenAnimationDone += OnHideBattleBgDone;
             RPSClientGameEvents.OnYouWonGame += OnShowWonScreen;
@@ -59,6 +64,8 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             RPSUIEvents.OnShowGameChooseOptionScreen -= OnShowGameChooseOptionScreen;
             RPSUIEvents.OnShowStartScreen -= OnShowStartScreen;
             RPSUIEvents.OnHideResultScreens -= OnHideResultScreens;
+            RPSUIEvents.OnShowPvpLoadUI -= OnShowPvpLoadUI;
+            RPSUIEvents.OnHidePvpLoadUI -= OnHidePvpLoadUI;
             RPSClientGameEvents.OnShowBattle -= OnShowBattle;
             RPSClientGameEvents.OnBattleBgOpenAnimationDone -= OnHideBattleBgDone;
             RPSClientGameEvents.OnYouWonGame -= OnShowWonScreen;
@@ -76,6 +83,7 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             _chooseOpponentScreen.Deactivate();
             _gameChooseOptionsScreen.Deactivate();
             _startScreen.Deactivate();
+            _pvpLoadUI.Deactivate();
         }
         
         private void OnShowStartScreen()
@@ -126,6 +134,16 @@ namespace PeanutDashboard._03_RockPaperScissors.UI
             _gameBattleScreen.Activate();
             RPSBotEvents.RaiseResetBotsEvent();
             RPSAudioEvents.RaisePlaySfxEvent(_battleMusic, 1f);
+        }
+
+        private void OnShowPvpLoadUI()
+        {
+            _pvpLoadUI.Activate();
+        }
+
+        private void OnHidePvpLoadUI()
+        {
+            _pvpLoadUI.Deactivate();
         }
         
         private void OnHideBattleBgDone()

@@ -9,6 +9,8 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
         private static UnityAction _showChooseOpponentScreen;
         private static UnityAction _showChooseModeScreen;
         private static UnityAction _showGameChooseOptionScreen;
+        private static UnityAction _showPvPLoadUI;
+        private static UnityAction _hidePvPLoadUI;
         private static UnityAction _hideResultScreens;
         private static UnityAction _playButtonClick;
         
@@ -34,6 +36,18 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
         {
             add => _showGameChooseOptionScreen += value;
             remove => _showGameChooseOptionScreen -= value;
+        }
+        
+        public static event UnityAction OnShowPvpLoadUI
+        {
+            add => _showPvPLoadUI += value;
+            remove => _showPvPLoadUI -= value;
+        }
+        
+        public static event UnityAction OnHidePvpLoadUI
+        {
+            add => _hidePvPLoadUI += value;
+            remove => _hidePvPLoadUI -= value;
         }
         
         public static event UnityAction OnHideResultScreens
@@ -82,6 +96,24 @@ namespace PeanutDashboard._03_RockPaperScissors.Events
                 return;
             }
             _showGameChooseOptionScreen.Invoke();
+        }
+        
+        public static void RaiseShowPvpLoadUIEvent()
+        {
+            if (_showPvPLoadUI == null){
+                LoggerService.LogWarning($"{nameof(RPSUIEvents)}::{nameof(RaiseShowPvpLoadUIEvent)} raised, but nothing picked it up");
+                return;
+            }
+            _showPvPLoadUI.Invoke();
+        }
+        
+        public static void RaiseHidePvpLoadUIEvent()
+        {
+            if (_hidePvPLoadUI == null){
+                LoggerService.LogWarning($"{nameof(RPSUIEvents)}::{nameof(RaiseHidePvpLoadUIEvent)} raised, but nothing picked it up");
+                return;
+            }
+            _hidePvPLoadUI.Invoke();
         }
 
         public static void RaiseHideResultScreens()

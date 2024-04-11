@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PeanutDashboard.Init;
 using PeanutDashboard.Shared.Config;
 using PeanutDashboard.Shared.Environment;
@@ -8,6 +9,9 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using System.Threading.Tasks;
+using PeanutDashboard.UnityServer.Events;
+using Unity.Networking.Transport.Relay;
+using Unity.Services.Lobbies.Models;
 #if SERVER
 using System.Collections;
 using Newtonsoft.Json;
@@ -27,10 +31,9 @@ namespace PeanutDashboard.UnityServer.Core
 	public class UnityServerStartUp : MonoBehaviour
 	{
 		public static event Action ClientInstance;
-		public static event Action ServerInstance; 
-		
-		[SerializeField]
-		private GameInfo _currentGameInfo;
+		public static event Action ServerInstance;
+
+		public int maxPlayers;
 		
 		private GameConfig _gameConfig;
 		private const string InternalServerIP = "0.0.0.0";
@@ -46,11 +49,21 @@ namespace PeanutDashboard.UnityServer.Core
 		private float _timeout = 60f;
 #endif
 
-		private async void Start()
+		private void OnEnable()
 		{
-			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(Start)}");
+			ServerEvents.StartServer += OnStartServer;
+		}
+
+		private void OnDisable()
+		{
+			ServerEvents.StartServer -= OnStartServer;
+		}
+
+		private async void OnStartServer(GameInfo gameInfo)
+		{
+			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(OnStartServer)}");
 			_gameConfig = EnvironmentManager.Instance.GetGameConfig();
-			GameNetworkSyncService.AssignCurrentGameInfo(_currentGameInfo);
+			GameNetworkSyncService.AssignCurrentGameInfo(gameInfo);
 			await InitialiseAuth();
 			bool server = false;
 			string[] args = System.Environment.GetCommandLineArgs();
@@ -88,7 +101,7 @@ namespace PeanutDashboard.UnityServer.Core
 		private async Task StartServer()
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - IP: {InternalServerIP} at port: {_serverPort}");
-			Allocation allocation = await RelayService.Instance.CreateAllocationAsync((int)ConnectionApprovalHandler.MaxPlayers);
+			Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxPlayers);
 			NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "wss"));
 			string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - unity services relay join - {joinCode}");
@@ -104,7 +117,7 @@ namespace PeanutDashboard.UnityServer.Core
 							DataObject.VisibilityOptions.Member, joinCode)
 					}
 				};
-				Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("n/a", 2, createLobbyOptions);
+				Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("n/a", maxPlayers + 1, createLobbyOptions);
 				LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - lobby created");
 				_lobbyId = lobby.Id;
 				LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServer)} - lobby created - {lobby.Id}");
@@ -131,7 +144,7 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)}");
 			try{
 				_multiplayService = MultiplayService.Instance;
-				_serverQueryHandler = await _multiplayService.StartServerQueryHandlerAsync(ConnectionApprovalHandler.MaxPlayers, "n/a", "n/a", "0", "n/a");
+				_serverQueryHandler = await _multiplayService.StartServerQueryHandlerAsync((ushort)maxPlayers, "n/a", "n/a", "0", "n/a");
 			}
 			catch (Exception e){
 				LoggerService.LogWarning($"{nameof(UnityServerStartUp)}::{nameof(StartServerServices)} - Something went wrong trying to set up the SQP service:\n{e}");
