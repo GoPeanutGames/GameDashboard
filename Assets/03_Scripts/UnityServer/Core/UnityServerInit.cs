@@ -26,18 +26,22 @@ namespace PeanutDashboard.UnityServer.Core
 			ServerEvents.SpawnServer -= OnSpawnServer;
 		}
 
-#if SERVER
+
 		private void Start()
 		{
 			OnSpawnServer();
 		}
-#endif
+
 
 		private void OnSpawnServer()
 		{
-			LoggerService.LogInfo($"{nameof(UnityServerInit)}::{nameof(OnSpawnServer)}");
-			Instantiate(_networkManager);
-			ServerEvents.RaiseStartServerEvent(_gameInfo);
-		}
-	}
+            LoggerService.LogInfo($"{nameof(UnityServerInit)}::{nameof(OnSpawnServer)}");
+            ServerEvents.RaiseStartServerEvent(_gameInfo);
+            //#if SERVER
+            //			LoggerService.LogInfo($"{nameof(UnityServerInit)}::{nameof(OnSpawnServer)}");
+            //			Instantiate(_networkManager);
+            //			ServerEvents.RaiseStartServerEvent(_gameInfo);
+            //#endif
+        }
+    }
 }

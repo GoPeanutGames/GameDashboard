@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabBackground: {fileID: 7826289173869508927, guid: 0ba73a68b7d9f064293e339ab434b4db, type: 3}
-  _areaType: {fileID: 11400000, guid: 877e07a838fb3ab4da51498a6c72b837, type: 2}
+  _battleDashAreaType: {fileID: 11400000, guid: 877e07a838fb3ab4da51498a6c72b837, type: 2}
   _spawnedBackground: {fileID: 0}
   _direction: {x: 0, y: 0, z: 0}
   _startingDistance: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee8e56e3550430a9ff5d4914602f8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnDefinition: {fileID: 11400000, guid: ce809756b0573b2408dda534558a797e, type: 2}
+  _spawnDefinition: {fileID: 11400000, guid: 78c01044f4f6ef146aa9a27800490146, type: 2}
 --- !u!114 &617091695053435901
 MonoBehaviour:
   m_ObjectHideFlags: 0

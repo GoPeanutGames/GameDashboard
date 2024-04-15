@@ -1984,6 +1984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d604f389f247aa94033d699edc435f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPlayers: 1
 --- !u!1 &923202124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,6 +3947,7 @@ GameObject:
   - component: {fileID: 1714184602}
   - component: {fileID: 1714184604}
   - component: {fileID: 1714184603}
+  - component: {fileID: 1714184605}
   m_Layer: 0
   m_Name: ServerManager
   m_TagString: Untagged
@@ -3993,7 +3995,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19450acbd7766614b89910dabd7fec0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentGameInfo: {fileID: 11400000, guid: d4692a79751fb7344ab3ebec6667f211, type: 2}
+  maxPlayers: 1
+--- !u!114 &1714184605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714184601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0365a5bd614962957f794f431c211b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameInfo: {fileID: 11400000, guid: d4692a79751fb7344ab3ebec6667f211, type: 2}
+  _networkManager: {fileID: 128181344}
 --- !u!1 &1798008989
 GameObject:
   m_ObjectHideFlags: 0

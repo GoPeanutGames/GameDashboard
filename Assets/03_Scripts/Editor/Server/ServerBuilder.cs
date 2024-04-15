@@ -56,7 +56,7 @@ namespace PeanutDashboard.Editor
 			}
 
 			List<string> scenesInBuild = new List<string>();
-			scenesInBuild.Add($"Assets/01_Scenes/Server/EntryPointScene.unity");
+			//scenesInBuild.Add($"Assets/01_Scenes/Server/EntryPointScene.unity");
 			foreach (GameSceneConfig gameSceneConfig in ProjectDatabase.Instance.serverGameSceneConfigs){
 				scenesInBuild.Add(gameSceneConfig.scenePath);
 				BundledAssetGroupSchema schema = gameSceneConfig.group.GetSchema<BundledAssetGroupSchema>();
