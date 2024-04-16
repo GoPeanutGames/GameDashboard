@@ -7,41 +7,37 @@ using UnityEngine;
 
 namespace PeanutDashboard.UnityServer.Core
 {
-	public class UnityServerInit: MonoBehaviour
-	{
-		[Header(InspectorNames.SetInInspector)]
-		[SerializeField]
-		private GameInfo _gameInfo;
+    public class UnityServerInit : MonoBehaviour
+    {
+        [Header(InspectorNames.SetInInspector)]
+        [SerializeField]
+        private GameInfo _gameInfo;
 
-		[SerializeField]
-		private GameObject _networkManager;
+        [SerializeField]
+        private GameObject _networkManager;
 
-		private void OnEnable()
-		{
-			ServerEvents.SpawnServer += OnSpawnServer;
-		}
+        private void OnEnable()
+        {
+            ServerEvents.SpawnServer += OnSpawnServer;
+        }
 
-		private void OnDisable()
-		{
-			ServerEvents.SpawnServer -= OnSpawnServer;
-		}
+        private void OnDisable()
+        {
+            ServerEvents.SpawnServer -= OnSpawnServer;
+        }
 
-
+#if SERVER
 		private void Start()
 		{
 			OnSpawnServer();
 		}
+#endif
 
-
-		private void OnSpawnServer()
-		{
+        private void OnSpawnServer()
+        {
             LoggerService.LogInfo($"{nameof(UnityServerInit)}::{nameof(OnSpawnServer)}");
+            Instantiate(_networkManager);
             ServerEvents.RaiseStartServerEvent(_gameInfo);
-            //#if SERVER
-            //			LoggerService.LogInfo($"{nameof(UnityServerInit)}::{nameof(OnSpawnServer)}");
-            //			Instantiate(_networkManager);
-            //			ServerEvents.RaiseStartServerEvent(_gameInfo);
-            //#endif
         }
     }
 }

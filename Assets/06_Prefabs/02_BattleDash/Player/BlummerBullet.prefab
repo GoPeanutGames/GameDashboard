@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56883173b6b1e474a8b865482843ea96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _factionType: {fileID: 11400000, guid: 04450ef5614dc4c45aa14f59bc11b8ed, type: 2}
+  _battleDashFactionType: {fileID: 11400000, guid: 04450ef5614dc4c45aa14f59bc11b8ed, type: 2}
 --- !u!58 &3012145208489396242
 CircleCollider2D:
   m_ObjectHideFlags: 0

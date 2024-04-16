@@ -4005,11 +4005,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1714184601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0365a5bd614962957f794f431c211b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c58d83ace8fd0e489b785301359e90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gameInfo: {fileID: 11400000, guid: d4692a79751fb7344ab3ebec6667f211, type: 2}
-  _networkManager: {fileID: 128181344}
 --- !u!1 &1798008989
 GameObject:
   m_ObjectHideFlags: 0

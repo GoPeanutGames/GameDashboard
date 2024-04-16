@@ -17,7 +17,7 @@ MonoBehaviour:
     spawned: 0
     _monsterSpawnPatterns:
     - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
       amount: 1
       timeBetweenSpawns: 0
       timeElapsed: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
     spawned: 0
     _monsterSpawnPatterns:
     - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
       amount: 3
       timeBetweenSpawns: 2
       timeElapsed: 0
@@ -35,12 +35,12 @@ MonoBehaviour:
     spawned: 0
     _monsterSpawnPatterns:
     - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
       amount: 2
       timeBetweenSpawns: 2
       timeElapsed: 0
       timeToBeginSpawn: 0
-    - battleDashMonsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+    - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
       battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
       amount: 1
       timeBetweenSpawns: 0
@@ -50,13 +50,13 @@ MonoBehaviour:
     spawned: 0
     _monsterSpawnPatterns:
     - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
       amount: 3
       timeBetweenSpawns: 2
       timeElapsed: 0
       timeToBeginSpawn: 0
-    - battleDashMonsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
+    - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
       amount: 3
       timeBetweenSpawns: 2
       timeElapsed: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   - areaPercentage: 0.52
     spawned: 0
     _monsterSpawnPatterns:
-    - battleDashMonsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+    - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
       battleDashMonsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
       amount: 6
       timeBetweenSpawns: 3
@@ -79,7 +79,7 @@ MonoBehaviour:
       timeBetweenSpawns: 3
       timeElapsed: 0
       timeToBeginSpawn: 0
-    - battleDashMonsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+    - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
       battleDashMonsterSpawnLocation: {fileID: 11400000, guid: c905f086fc1d06440bbc8be180ba6ef7, type: 2}
       amount: 2
       timeBetweenSpawns: 3
@@ -89,7 +89,7 @@ MonoBehaviour:
     spawned: 0
     _monsterSpawnPatterns:
     - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
       amount: 2
       timeBetweenSpawns: 3
       timeElapsed: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
     spawned: 0
     _monsterSpawnPatterns:
     - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
       amount: 3
       timeBetweenSpawns: 3
       timeElapsed: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
       timeElapsed: 0
       timeToBeginSpawn: 0
     - battleDashMonsterType: {fileID: 11400000, guid: c247f701a4eed9a41858da0f34792b65, type: 2}
-      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: 28bf0ecfbcbcbc34999829f7cb219e2d, type: 2}
+      battleDashMonsterSpawnLocation: {fileID: 11400000, guid: d0b537a19af75744491e58917374bd14, type: 2}
       amount: 3
       timeBetweenSpawns: 3
       timeElapsed: 0
