@@ -4,10 +4,9 @@ using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PeanutDashboard._04_RunnerGame.UI
+namespace PeanutDashboard._04_SpaceEscape.UI
 {
-    
-    public class RunnerGameStartScreenPlay : MonoBehaviour
+    public class SpaceEscapeStartScreenPlay : MonoBehaviour
     {
         [Header(InspectorNames.SetInInspector)]
         [SerializeField]

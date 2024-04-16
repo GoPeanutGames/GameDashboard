@@ -1,10 +1,9 @@
 using PeanutDashboard.Shared;
 using UnityEngine;
 
-namespace PeanutDashboard._04_RunnerGame.Controllers
+namespace PeanutDashboard._04_SpaceEscape.Controllers
 {
-    
-    public class RunnerGameLoader : MonoBehaviour
+    public class SpaceEscapeLoader : MonoBehaviour
     {
         private void Start()
         {
