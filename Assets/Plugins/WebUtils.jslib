@@ -3,7 +3,7 @@
         return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     },
 	
-	RequestAuthInfo: async function (cbSuccess, cbFailure) {
+	RequestAuthenticationInfo: async function (cbSuccess, cbFailure) {
 		try 
 		{
 			// throws error if no auth info saved
