@@ -10,6 +10,7 @@ using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Shared.Metamask.Model;
 using PeanutDashboard.Utils.WebGL;
+using UnityEngine;
 
 namespace PeanutDashboard.Shared.Metamask
 {
@@ -21,6 +22,10 @@ namespace PeanutDashboard.Shared.Metamask
 
 		[DllImport("__Internal")]
 		private static extern void RequestSignature(string schema, string address, Action<string> cbSuccess, Action<string> cbFail);
+
+
+
+
 
 		private static string WalletAddress => MetaMaskUnity.Instance.Wallet.ConnectedAddress.ToLower();
 		private static long ChainId => EnvironmentManager.Instance.IsDev() ? ChainDataReference.SepoliaChainId : ChainDataReference.BlastChainId;
@@ -151,15 +156,21 @@ namespace PeanutDashboard.Shared.Metamask
 		public static void RequestMetamaskSignature(string schema, string address)
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(RequestMetamaskSignature)}");
-			if (WebGLUtils.IsWebMobile){
+			if (WebGLUtils.IsWebMobile)
+			{
 				RequestMobileSignature(schema, address);
 			}
-			else{
+			else
+			{
 				RequestSignature(schema, address, OnRequestSignatureSuccess, OnRequestSignatureFail);
 			}
 		}
 
-		[MonoPInvokeCallback(typeof(Action<string>))]
+
+
+
+
+        [MonoPInvokeCallback(typeof(Action<string>))]
 		private static void OnMetamaskLoginSuccess(string address)
 		{
 			LoggerService.LogInfo($"{nameof(MetamaskService)}::{nameof(OnMetamaskLoginSuccess)} - {address}");

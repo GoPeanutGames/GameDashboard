@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using System;
 using System.Threading.Tasks;
 using MetaMask.Unity;
 using PeanutDashboard.Server;
@@ -8,6 +10,7 @@ using PeanutDashboard.Shared.User;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
+using AOT;
 
 namespace PeanutDashboard.Shared.Metamask
 {
@@ -17,7 +20,8 @@ namespace PeanutDashboard.Shared.Metamask
 		private static string _signature;
 		private static string _env;
 
-		public static void Initialise(MetaMaskConfig metaMaskConfig, string unityEnv)
+        
+        public static void Initialise(MetaMaskConfig metaMaskConfig, string unityEnv)
 		{
 			_env = unityEnv;
 			MetamaskService.Initialise(metaMaskConfig);
