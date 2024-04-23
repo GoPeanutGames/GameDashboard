@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using PeanutDashboard._04_SpaceEscape.Model;
 using UnityEngine;
 
@@ -7,6 +5,7 @@ namespace PeanutDashboard._04_SpaceEscape.Controllers
 {
     public class SpaceEscapePlayerMovement : MonoBehaviour
     {
+        private int health = 3;
         private SpaceEscapeRunwayPartSide _partSide = SpaceEscapeRunwayPartSide.Center;
         private bool _jumping = false;
         private bool _jumpingEnabled = true;
@@ -83,6 +82,14 @@ namespace PeanutDashboard._04_SpaceEscape.Controllers
         private void OnCollisionEnter(Collision other)
         {
             _jumpingEnabled = true;
+        }
+
+        public void Damage(int damage)
+        {
+            health -= damage;
+            if (health <= 0){
+                Destroy(this.gameObject);
+            }
         }
     }
 }

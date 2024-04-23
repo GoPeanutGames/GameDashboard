@@ -35,13 +35,16 @@ namespace PeanutDashboard._04_SpaceEscape.Controllers
             switch (partSide)
             {
                 case SpaceEscapeRunwayPartSide.Left:
-                    Instantiate(_runwayPartPrefab, _leftSpawnPoint.transform.position, Quaternion.identity);
+                    GameObject runwayPart = Instantiate(_runwayPartPrefab, _leftSpawnPoint.transform.position, Quaternion.identity);
+                    runwayPart.GetComponent<SpaceEscapeRunwayPart>().Initialise(SpaceEscapeRunwayPartSide.Left);
                     break;
                 case SpaceEscapeRunwayPartSide.Center:
-                    Instantiate(_runwayPartPrefab, _centralSpawnPoint.transform.position, Quaternion.identity);
+                    GameObject runwayPart2 = Instantiate(_runwayPartPrefab, _centralSpawnPoint.transform.position, Quaternion.identity);
+                    runwayPart2.GetComponent<SpaceEscapeRunwayPart>().Initialise(SpaceEscapeRunwayPartSide.Center);
                     break;
                 case SpaceEscapeRunwayPartSide.Right:
-                    Instantiate(_runwayPartPrefab, _rightSpawnPoint.transform.position, Quaternion.identity);
+                    GameObject runwayPart3 = Instantiate(_runwayPartPrefab, _rightSpawnPoint.transform.position, Quaternion.identity);
+                    runwayPart3.GetComponent<SpaceEscapeRunwayPart>().Initialise(SpaceEscapeRunwayPartSide.Right);
                     break;
             }
         }
