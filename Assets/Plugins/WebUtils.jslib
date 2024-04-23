@@ -16,7 +16,7 @@
 		} 
 		catch (e) {
 			console.log("Failed to get saved auth info:", e.message)
-			Module.dynCall_vi(cbFailure);
+			Module.dynCall_v(cbFailure);
 		}
 	}
 });

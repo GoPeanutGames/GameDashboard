@@ -39,7 +39,7 @@ public class BackendAuthenticationManager : NetworkBehaviour
         AuthenticationEvents.Instance.RaiseAuthenticationDataRetrievalSuccessEvent(_authData);
     }
 
-    [MonoPInvokeCallback(typeof(Action<string>))]
+    [MonoPInvokeCallback(typeof(Action))]
     private static void OnAuthenticationDataFail()
     {
         LoggerService.LogInfo($"{nameof(BackendAuthenticationManager)}::{nameof(OnAuthenticationDataFail)}");
