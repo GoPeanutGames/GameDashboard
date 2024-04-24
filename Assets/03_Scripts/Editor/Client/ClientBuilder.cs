@@ -67,10 +67,10 @@ namespace PeanutDashboard.Editor
 			PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
 			PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.WebGL, ManagedStrippingLevel.Low);
 			AddressableAssetSettings.BuildPlayerContent();
-			string folderName = "BattleDash";
+			string folderName = "FlappyIdiots";
 			BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions()
 			{
-				scenes = new[] { "Assets/01_Scenes/Games/BattleDash/BattleDashGameScene.unity" },
+				scenes = new[] { "Assets/01_Scenes/Games/FlappyIdiots/FlappyIdiotsGameScene.unity" },
 				locationPathName = Path.Combine(parentFolderPath, folderName),
 				target = BuildTarget.WebGL,
 			};

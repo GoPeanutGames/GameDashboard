@@ -19,6 +19,7 @@ public class BackendAuthenticationManager : NetworkBehaviour
     private static extern void RequestAuthenticationInfo(Action<string> cbSuccess, Action cbFail);
     public static void RetrieveLocalAuthenticationData()
     {
+        RequestAuthenticationInfo(OnAuthenticationDataSuccess, OnAuthenticationDataFail);
 #if !UNITY_EDITOR
         RequestAuthenticationInfo(OnAuthenticationDataSuccess, OnAuthenticationDataFail);
 #else

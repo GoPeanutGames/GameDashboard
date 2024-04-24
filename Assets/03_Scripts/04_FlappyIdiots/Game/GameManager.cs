@@ -1,3 +1,4 @@
+using PeanutDashboard.Shared.Events;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace PeanutDashboard._04_FlappyIdiots
         GameOver,
         Leaderboard
     }
+
+
     public class GameManager : MonoBehaviour
     {
         public GameState state = GameState.Connected;
@@ -23,6 +26,8 @@ namespace PeanutDashboard._04_FlappyIdiots
         public string UserName = "Flappy";
         public int GameScore = 0;
 
+        public Text authenticationInfoText;
+        private string authneticationInfo;
         private bool connected = false;
 
         [SerializeField]
@@ -51,7 +56,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         public CanvasGroup InGameSettingsCanvasGroup;
         public CanvasGroup LeaderboardUICanvasGroup;
         public CanvasGroup GameOverCanvasGroup;
-
+        public BackendAuthenticationManager _backendAuthenticationManager;
 
         public UnityEngine.UI.Text MetamaskPointsText;
         public UnityEngine.UI.Text UsernameText;
@@ -138,6 +143,11 @@ namespace PeanutDashboard._04_FlappyIdiots
                 Destroy(gameObject); // Destroy duplicate instances
                 return;
             }
+
+
+            var ok = AuthenticationEvents.Instance;
+            ok.AuthenticationDataRetrievalSuccess += ((str) => { authenticationInfoText.text = "address= " + str.address + " signature= " + str.signature; });
+            ok.AuthenticationDataRetrievalFail += (() => { authenticationInfoText.text = "Auth Failed"; });
         }
 
         public void OnGameOver()
@@ -372,7 +382,8 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         public void OnConnectClicked()
         {
-            OnConnected();
+            BackendAuthenticationManager.RetrieveLocalAuthenticationData();
+         //   OnConnected();
         }
 
         public void OnPlayAsGuestClicked()
