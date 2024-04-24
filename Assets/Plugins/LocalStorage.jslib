@@ -1,11 +1,11 @@
 var FileIO = {
 
   SaveToLocalStorage : function(key, data) {
-    localStorage.setItem(Pointer_stringify(key), Pointer_stringify(data));
+    localStorage.setItem(UTF8ToString(key), UTF8ToString(data));
   },
 
   LoadFromLocalStorage : function(key) {
-    var returnStr = localStorage.getItem(Pointer_stringify(key));
+    var returnStr = localStorage.getItem(UTF8ToString(key));
     if (!returnStr) {
         return null;
     }
@@ -16,11 +16,11 @@ var FileIO = {
   },
 
   RemoveFromLocalStorage : function(key) {
-    localStorage.removeItem(Pointer_stringify(key));
+    localStorage.removeItem(UTF8ToString(key));
   },
 
   HasKeyInLocalStorage : function(key) {
-    if (localStorage.getItem(Pointer_stringify(key))) {
+    if (localStorage.getItem(UTF8ToString(key))) {
       return 1;
     }
     else {

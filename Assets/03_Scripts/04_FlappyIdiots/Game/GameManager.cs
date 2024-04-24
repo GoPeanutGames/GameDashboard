@@ -432,6 +432,7 @@ namespace PeanutDashboard._04_FlappyIdiots
             {
                 if (resp.nickname == null || resp.nickname == "")
                 {
+                    Debug.Log("nicname empty");
                     var randomName = "user" + Random.Range(100000, 999999);
                     UsernameInputField.text = randomName;
                     ChangeUserNameData formData = new()
@@ -450,6 +451,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 }
                 else
                 {
+                    Debug.Log("CONNECTED SUCCESFULY");
                     UsernameInputField.text = resp.nickname;
                     OnConnected();
                 }
@@ -458,17 +460,22 @@ namespace PeanutDashboard._04_FlappyIdiots
 
             return;
 #else
+ Debug.Log("Getting Auth DAta");
             var webInfoStr = LocalStorageManager.GetString("web3Info");
+             
             if (webInfoStr != null)
             {
                 var authData = JsonUtility.FromJson<MetaMaskAuthData>(webInfoStr);
                 if (authData != null)
                 {
+                Debug.Log("Auth Data Parsed succesfuly");
                     _authData = authData;
                     ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, string>(PlayerApi.GetGeneralData, ((resp) =>
                     {
+                        
                         if (resp.nickname == null || resp.nickname == "")
                         {
+                            Debug.Log("nicname empty");
                             var randomName = "user" + Random.Range(100000, 999999);
                             _lastUsername = randomName;
                             UsernameInputField.text = randomName;
@@ -491,10 +498,15 @@ namespace PeanutDashboard._04_FlappyIdiots
                         {
                             _lastUsername = resp.nickname;
                             UsernameInputField.text = resp.nickname;
+                               Debug.Log("CONNECTED SUCCESFULY");
                             OnConnected();
                         }
                     }), authData.address);
-            
+                    Debug.Log("Waiting for nickname...");
+                }
+                else
+                {
+                    Debug.Log("Auth Data empty...");
                 }
             }
             
