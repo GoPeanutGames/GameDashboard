@@ -1,10 +1,7 @@
 using AOT;
 using PeanutDashboard.Shared.Events;
 using PeanutDashboard.Shared.Logging;
-using PeanutDashboard.UnityServer.Core;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.Netcode;
 using UnityEngine;
@@ -19,7 +16,6 @@ public class BackendAuthenticationManager : NetworkBehaviour
     private static extern void RequestAuthenticationInfo(Action<string> cbSuccess, Action cbFail);
     public static void RetrieveLocalAuthenticationData()
     {
-        RequestAuthenticationInfo(OnAuthenticationDataSuccess, OnAuthenticationDataFail);
 #if !UNITY_EDITOR
         RequestAuthenticationInfo(OnAuthenticationDataSuccess, OnAuthenticationDataFail);
 #else
@@ -87,6 +83,4 @@ public class BackendAuthenticationManager : NetworkBehaviour
         LoggerService.LogInfo($"[SERVER-RPC]{nameof(BackendAuthenticationManager)}::{nameof(RetrieveAuthenticationData_ServerRpc)}" + jsonData);
         _authData = JsonUtility.FromJson<AuthenticationData>(jsonData);
     }
-
-
 }

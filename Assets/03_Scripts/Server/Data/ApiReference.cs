@@ -13,7 +13,8 @@ namespace PeanutDashboard.Server.Data
 	public enum PlayerApi
 	{
 		GetGeneralData,
-		GetWallet
+		GetWallet,
+		ChangeNickName
 	}
 
 	public static class ApiReference
@@ -28,7 +29,8 @@ namespace PeanutDashboard.Server.Data
 		{
 			{ PlayerApi.GetGeneralData, "/player/me/" },
 			{ PlayerApi.GetWallet, "/player/wallet/" },
-		};
+            { PlayerApi.ChangeNickName, "/player/nickname/" },
+        };
 
 		public static string GetApi<T>(T api) where T : struct, IConvertible
 		{

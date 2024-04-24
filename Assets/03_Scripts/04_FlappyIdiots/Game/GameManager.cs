@@ -1,8 +1,11 @@
+using PeanutDashboard.Server;
+using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Events;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 using Random = UnityEngine.Random;
 
 namespace PeanutDashboard._04_FlappyIdiots
@@ -16,6 +19,21 @@ namespace PeanutDashboard._04_FlappyIdiots
         Leaderboard
     }
 
+    [System.Serializable]
+    public class MetaMaskAuthData
+    {
+        public string address;
+        public string signature;
+    }
+
+    [Serializable]
+    public class ChangeUserNameData
+    {
+        public string signature;
+        public string address;
+        public string nickname;
+    }
+
 
     public class GameManager : MonoBehaviour
     {
@@ -23,9 +41,10 @@ namespace PeanutDashboard._04_FlappyIdiots
         public string gameSceneName = "Game";
         public string leaderBoardSceneName = "Leadeboard";
         public int MetamaskPoints = 9999;
-        public string UserName = "Flappy";
         public int GameScore = 0;
 
+        private string _lastUsername = "Disconnected";
+        private MetaMaskAuthData _authData = null;
         public Text authenticationInfoText;
         private string authneticationInfo;
         private bool connected = false;
@@ -59,7 +78,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         public BackendAuthenticationManager _backendAuthenticationManager;
 
         public UnityEngine.UI.Text MetamaskPointsText;
-        public UnityEngine.UI.Text UsernameText;
+        public UnityEngine.UI.InputField UsernameInputField;
         public UnityEngine.UI.Text ScoreText;
         public UnityEngine.UI.Text GameOverScoreText;
         public UnityEngine.UI.Text GameOverPointsEarnedText;
@@ -124,7 +143,11 @@ namespace PeanutDashboard._04_FlappyIdiots
         {
             if (isGuest)
             {
-                UserName = "Guest";
+                UsernameInputField.text = "Guest";
+            }
+            else
+            {
+                UsernameInputField.interactable = true;
             }
             connected = true;
             StartCoroutine(ConnectedTransition());
@@ -144,7 +167,8 @@ namespace PeanutDashboard._04_FlappyIdiots
                 return;
             }
 
-
+            UsernameInputField.interactable = false;
+            UsernameInputField.text = _lastUsername;
             var ok = AuthenticationEvents.Instance;
             ok.AuthenticationDataRetrievalSuccess += ((str) => { authenticationInfoText.text = "address= " + str.address + " signature= " + str.signature; });
             ok.AuthenticationDataRetrievalFail += (() => { authenticationInfoText.text = "Auth Failed"; });
@@ -261,10 +285,6 @@ namespace PeanutDashboard._04_FlappyIdiots
                 return;
             }
 
-            if (UsernameText != null)
-            {
-                UsernameText.text = UserName;
-            }
             if (ScoreText != null)
             {
                 ScoreText.text = GameScore.ToString();
@@ -379,11 +399,106 @@ namespace PeanutDashboard._04_FlappyIdiots
                 onEnd();
             }
         }
+        public void RequestChangeUsername(string newName)
+        {
+            if (_authData == null)
+            {
+                UsernameInputField.text = _lastUsername;
+                return;
+            }
 
+            Debug.Log("REQUESTED CHANGED NAME" + newName);
+            ChangeUserNameData formData = new()
+            {
+                signature = _authData.signature,
+                address = _authData.address,
+                nickname = newName,
+            };
+            ServerService.PostDataToServer<PlayerApi>(PlayerApi.ChangeNickName, JsonUtility.ToJson(formData), ((strRespo) =>
+            {
+                _lastUsername = newName;
+                UsernameInputField.text = newName;
+                OnConnected();
+            }), ((strfailure) => { UsernameInputField.text = _lastUsername; }));
+        }
         public void OnConnectClicked()
         {
-            BackendAuthenticationManager.RetrieveLocalAuthenticationData();
-         //   OnConnected();
+#if UNITY_EDITOR
+            _authData = new();
+            _authData.signature = "0x559737c141943d2d9d1b3b3788eb897742b7a322990ed262522cff7dd953e76d3299926455bd61c3fe534e7b445796b3344e49fc7695ee881846b6cfcfb887f81b";
+            _authData.address = "0x8121267d0d9261B2BeF321b42e3a0FE7E472fAb8";
+
+            ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, string>(PlayerApi.GetGeneralData, ((resp) =>
+            {
+                if (resp.nickname == null || resp.nickname == "")
+                {
+                    var randomName = "user" + Random.Range(100000, 999999);
+                    UsernameInputField.text = randomName;
+                    ChangeUserNameData formData = new()
+                    {
+                        signature = _authData.signature,
+                        address = _authData.address,
+                        nickname = randomName
+                    };
+                    ServerService.PostDataToServer<PlayerApi>(PlayerApi.ChangeNickName, JsonUtility.ToJson(formData), ((strRespo) =>
+                    {
+                        Debug.Log("NICKNAME SUCESSFULY UPDATED:\n" + strRespo);
+                        UsernameInputField.text = randomName;
+                        OnConnected();
+
+                    }), ((strfailure) => { }));
+                }
+                else
+                {
+                    UsernameInputField.text = resp.nickname;
+                    OnConnected();
+                }
+            }), _authData.address);
+
+
+            return;
+#else
+            var webInfoStr = LocalStorageManager.GetString("web3Info");
+            if (webInfoStr != null)
+            {
+                var authData = JsonUtility.FromJson<MetaMaskAuthData>(webInfoStr);
+                if (authData != null)
+                {
+                    _authData = authData;
+                    ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, string>(PlayerApi.GetGeneralData, ((resp) =>
+                    {
+                        if (resp.nickname == null || resp.nickname == "")
+                        {
+                            var randomName = "user" + Random.Range(100000, 999999);
+                            _lastUsername = randomName;
+                            UsernameInputField.text = randomName;
+                            ChangeUserNameData formData = new()
+                            {
+                                signature = _authData.signature,
+                                address = _authData.address,
+                                nickname = randomName
+                            };
+                            ServerService.PostDataToServer<PlayerApi>(PlayerApi.ChangeNickName, JsonUtility.ToJson(formData), ((strRespo) =>
+                            {
+                                Debug.Log("NICKNAME SUCESSFULY UPDATED:\n" + strRespo);
+                                _lastUsername = randomName;
+                                UsernameInputField.text = randomName;
+                                OnConnected();
+
+                            }), ((strfailure) => { }));
+                        }
+                        else
+                        {
+                            _lastUsername = resp.nickname;
+                            UsernameInputField.text = resp.nickname;
+                            OnConnected();
+                        }
+                    }), authData.address);
+            
+                }
+            }
+            
+#endif
         }
 
         public void OnPlayAsGuestClicked()
@@ -402,7 +517,5 @@ namespace PeanutDashboard._04_FlappyIdiots
             }
             Invoke("Spawn", Random.Range(SpawnTimeMin, SpawnTimeMax));
         }
-
-
     }
 }
