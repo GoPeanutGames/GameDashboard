@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4063119626
+  GlobalObjectIdHash: 2786265370
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -331,11 +331,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f80edc4321424ca3ecddb33bd064f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _factionType: {fileID: 11400000, guid: 215c8f7390d5eaa42818f761f81c4921, type: 2}
-  _monsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
+  _battleDashFactionType: {fileID: 11400000, guid: 215c8f7390d5eaa42818f761f81c4921, type: 2}
+  _battleDashMonsterType: {fileID: 11400000, guid: c87c48017556abc4e8ab6a72247d35e2, type: 2}
   _dieSfxClip: {fileID: 8300000, guid: d721ca713b18dc34e8762b895e648a81, type: 3}
-  _networkAnimator: {fileID: 0}
-  _collider2D: {fileID: 0}
+  _networkAnimator: {fileID: 1454763836584239296}
+  _collider2D: {fileID: 6543525572763666686}
   _destroyed: 0
   _hp: 0
 --- !u!50 &7413389356530965772

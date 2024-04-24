@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda1459e3e544392afd285796dcb3e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _factionType: {fileID: 11400000, guid: 04450ef5614dc4c45aa14f59bc11b8ed, type: 2}
+  _battleDashFactionType: {fileID: 11400000, guid: 04450ef5614dc4c45aa14f59bc11b8ed, type: 2}
   _animator: {fileID: 2945700262663982696}
   _networkAnimator: {fileID: 6221633230311402463}
   _damagedClip: {fileID: 8300000, guid: 442e0b6f00b427a4db49a74727dd890a, type: 3}
