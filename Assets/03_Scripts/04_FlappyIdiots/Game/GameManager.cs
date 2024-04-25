@@ -3,6 +3,7 @@ using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Events;
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
@@ -34,17 +35,24 @@ namespace PeanutDashboard._04_FlappyIdiots
         public string nickname;
     }
 
+    [Serializable]
+    public class WalletData
+    {
+        public int gems;
+        public int energy;
+        public int bubbles;
+    }
 
     public class GameManager : MonoBehaviour
     {
         public GameState state = GameState.Connected;
         public string gameSceneName = "Game";
         public string leaderBoardSceneName = "Leadeboard";
-        public int MetamaskPoints = 9999;
         public int GameScore = 0;
 
         private string _lastUsername = "Disconnected";
         private MetaMaskAuthData _authData = null;
+        private WalletData _walletData = null;
         public Text authenticationInfoText;
         private string authneticationInfo;
         private bool connected = false;
@@ -144,10 +152,13 @@ namespace PeanutDashboard._04_FlappyIdiots
             if (isGuest)
             {
                 UsernameInputField.text = "Guest";
+                MetamaskCanvasGroup.alpha = 0;
             }
             else
             {
                 UsernameInputField.interactable = true;
+
+                MetamaskCanvasGroup.alpha = 1;
             }
             connected = true;
             StartCoroutine(ConnectedTransition());
@@ -289,9 +300,9 @@ namespace PeanutDashboard._04_FlappyIdiots
             {
                 ScoreText.text = GameScore.ToString();
             }
-            if (MetamaskPointsText != null)
+            if (MetamaskPointsText != null && _walletData != null)
             {
-                MetamaskPointsText.text = MetamaskPoints.ToString();
+                MetamaskPointsText.text = _walletData.bubbles.ToString();
             }
         }
 
@@ -316,10 +327,16 @@ namespace PeanutDashboard._04_FlappyIdiots
         IEnumerator ConnectedTransition()
         {
             ConnectButtonCanvasGroup.interactable = false;
+
+            var enableCanvas = new  CanvasGroup[] { UsernameOKButtonCanvasGroup, StartButtonCanvasGroup };
+            if (!isGuest)
+            {
+                enableCanvas = enableCanvas.Append(MetamaskCanvasGroup).ToArray();
+            }
             StartCoroutine(CanvasTransition(ConnectButtonCanvasGroup, 0.5f, true, () =>
             {
 
-                StartCoroutine(CanvasTransition(new CanvasGroup[] { UsernameOKButtonCanvasGroup, MetamaskCanvasGroup, StartButtonCanvasGroup }, 0.5f, false));
+                StartCoroutine(CanvasTransition(enableCanvas, 0.5f, false));
             }));
 
             state = GameState.Connected;
@@ -399,6 +416,21 @@ namespace PeanutDashboard._04_FlappyIdiots
                 onEnd();
             }
         }
+        void SynchronizeWallet()
+        {
+            if (_authData != null)
+            {
+                ServerService.GetDataFromServer<PlayerApi, WalletData, string>(PlayerApi.GetWallet, (walletData) =>
+                {
+                    if (walletData != null)
+                    {
+                        _walletData = walletData;
+                        UpdateScoreAndUser();
+                    }
+
+                }, _authData.address);
+            }
+        }
         public void RequestChangeUsername(string newName)
         {
             if (_authData == null)
@@ -430,9 +462,9 @@ namespace PeanutDashboard._04_FlappyIdiots
 
             ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, string>(PlayerApi.GetGeneralData, ((resp) =>
             {
+                SynchronizeWallet();
                 if (resp.nickname == null || resp.nickname == "")
                 {
-                    Debug.Log("nicname empty");
                     var randomName = "user" + Random.Range(100000, 999999);
                     UsernameInputField.text = randomName;
                     ChangeUserNameData formData = new()
@@ -472,7 +504,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                     _authData = authData;
                     ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, string>(PlayerApi.GetGeneralData, ((resp) =>
                     {
-                        
+                         SynchronizeWallet();
                         if (resp.nickname == null || resp.nickname == "")
                         {
                             Debug.Log("nicname empty");

@@ -32,6 +32,7 @@ namespace PeanutDashboard.Server.Data
             { PlayerApi.ChangeNickName, "/player/nickname/" },
         };
 
+
 		public static string GetApi<T>(T api) where T : struct, IConvertible
 		{
 			Type apiType = typeof(T);
