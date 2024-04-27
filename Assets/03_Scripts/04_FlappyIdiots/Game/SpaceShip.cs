@@ -38,7 +38,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 isOutScreen = false;
                 outOfScreenTimer = 0f;
             }
-            if (other.gameObject.CompareTag("Asteroid") && other.transform.position.x < transform.position.x - 2)
+            if (other.gameObject.CompareTag("Asteroid") && other.transform.position.x < transform.position.x - 2.3f)
             {
                 Asteroid asteroid = other.gameObject.GetComponent<Asteroid>();
                 if (asteroid != null && !asteroid.HasExploded)
