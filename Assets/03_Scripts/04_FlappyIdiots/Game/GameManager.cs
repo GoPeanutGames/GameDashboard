@@ -1,11 +1,14 @@
+using Dynamitey.DynamicObjects;
 using PeanutDashboard.Server;
 using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Events;
 using System;
 using System.Collections;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using ZXing.QrCode.Internal;
 using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 using Random = UnityEngine.Random;
 
@@ -34,7 +37,58 @@ namespace PeanutDashboard._04_FlappyIdiots
         public string address;
         public string nickname;
     }
+    [Serializable]
+    public class SessionStartData
+    {
+        public string signature;
+        public string address;
+        public string mode;
+        public string timezone;
+        public string startTime;
+        public string gameName;
+    }
 
+    [Serializable]
+    public class SessionUpdateData
+    {
+        public string signature;
+        public string address;
+        public string sessionId;
+        public int score;
+    }
+
+    [Serializable]
+    public class SessionEndData
+    {
+        public string signature;
+        public string address;
+        public string sessionId;
+        public int score;
+        public string status;
+        public string endTime;
+    }
+    [Serializable]
+    public class SessionData
+    {
+        public string sessionId;
+    }
+
+    [Serializable]
+    public class GameFormData
+    {
+        public string gameName;
+    }
+    [Serializable]
+    public class LeaderBoardEltData
+    {
+        public int score;
+        public string nickname;
+    }
+    [Serializable]
+    public class LeaderBoardResponseData
+    {
+        public LeaderBoardEltData[] highScores;
+    }
     [Serializable]
     public class WalletData
     {
@@ -45,10 +99,22 @@ namespace PeanutDashboard._04_FlappyIdiots
 
     public class GameManager : MonoBehaviour
     {
+        private string gameName = "FLAPPY_IDIOTS";
+
         public GameState state = GameState.Connected;
         public string gameSceneName = "Game";
         public string leaderBoardSceneName = "Leadeboard";
-        public int GameScore = 0;
+        private int _gameScore = 0;
+        public int GameScore { set {
+                _gameScore = value;
+                if (value > 0)
+                {
+                    updateSession();
+                }
+                SynchronizeWallet();
+            } 
+            get { return _gameScore; }
+        }
 
         private string _lastUsername = "Disconnected";
         private MetaMaskAuthData _authData = null;
@@ -70,6 +136,8 @@ namespace PeanutDashboard._04_FlappyIdiots
         private GameObject SpawnObject;
         public GameObject[] SpawnObjects;
 
+        public LeaderboardContent leaderboardContent;
+        private string currentSessionId = "";
         public float SpawnTimeMin = 3f;
         public float SpawnTimeMax = 3f;
         public float SpawnHeightRange = 2.5f;
@@ -94,7 +162,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         public TopPlayerLine[] leaderBoardPlayers;
 
         private bool isGuest = false;
-
+        private string timeZone = "GMT+" + TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).ToString("hh\\:mm");
         public void UpdateLeaderBoard()
         {
             foreach (var topPlayer in leaderBoardPlayers)
@@ -142,11 +210,18 @@ namespace PeanutDashboard._04_FlappyIdiots
             SpawnObject = SpawnObjects[Random.Range(0, SpawnObjects.Length)];
             UpdateScoreText();
             Spawn();
+            getTime();
         }
         public void OnPlayAgain()
         {
             StartCoroutine(PlayAgainTransition());
         }
+
+        public string getTime()
+        {
+            return DateTime.Now.ToString("ddd MMM dd yyyy HH:mm:ss");
+        }
+
         public void OnConnected()
         {
             if (isGuest)
@@ -180,9 +255,6 @@ namespace PeanutDashboard._04_FlappyIdiots
 
             UsernameInputField.interactable = false;
             UsernameInputField.text = _lastUsername;
-            var ok = AuthenticationEvents.Instance;
-            ok.AuthenticationDataRetrievalSuccess += ((str) => { authenticationInfoText.text = "address= " + str.address + " signature= " + str.signature; });
-            ok.AuthenticationDataRetrievalFail += (() => { authenticationInfoText.text = "Auth Failed"; });
         }
 
         public void OnGameOver()
@@ -192,6 +264,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         IEnumerator GameOverTransition()
         {
+            endSession(true);
             SoundManager.Instance.PlayVictory();
             UpdateScoreText();
             state = GameState.GameOver;
@@ -211,6 +284,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         IEnumerator HomeTransition()
         {
+            endSession(false);
             GameScore = 0;
             ConnectButtonCanvasGroup.interactable = false;
             GameOverCanvasGroup.interactable = false;
@@ -259,6 +333,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         IEnumerator PlayAgainTransition()
         {
+            startNewSession();
             GameScore = 0;
             GameOverCanvasGroup.interactable = false;
             SpaceShip.gameObject.SetActive(true);
@@ -306,6 +381,22 @@ namespace PeanutDashboard._04_FlappyIdiots
             }
         }
 
+        private void UpdateLeaderBoardData()
+        {
+            var formData = new GameFormData();
+            formData.gameName = gameName;
+            ServerService.PostDataToServer<PlayerApi>(PlayerApi.Leaderboard, JsonUtility.ToJson(formData), ((strRespo) =>
+            {
+                var resp = JsonUtility.FromJson<LeaderBoardResponseData>(strRespo);
+                if (resp != null && resp.highScores != null && leaderboardContent != null)
+                {
+                    leaderboardContent.UpdateTopPlayers(resp.highScores);
+                }
+            }), ((strfailure) => {
+                Debug.LogError("Leaderboard request failed");
+            }));
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -328,7 +419,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         {
             ConnectButtonCanvasGroup.interactable = false;
 
-            var enableCanvas = new  CanvasGroup[] { UsernameOKButtonCanvasGroup, StartButtonCanvasGroup };
+            var enableCanvas = new CanvasGroup[] { UsernameOKButtonCanvasGroup, StartButtonCanvasGroup };
             if (!isGuest)
             {
                 enableCanvas = enableCanvas.Append(MetamaskCanvasGroup).ToArray();
@@ -345,6 +436,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         IEnumerator StartGameTransition()
         {
+            startNewSession();
             StartCoroutine(CanvasTransition(new CanvasGroup[] { StartUICanvas, UsernameOKButtonCanvasGroup, UsernameLobbyCanvasGroup }, transitionDuration));
             StartCoroutine(CanvasTransition(InGameSettingsCanvasGroup, transitionDuration, false));
             if (_backgroundLoop != null)
@@ -363,6 +455,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         IEnumerator LeaderboardTransition()
         {
+            UpdateLeaderBoardData();
             if (_backgroundLoop != null)
             {
                 _backgroundLoop.ChangeScrollSpeed(-100, 1f, () => { _backgroundLoop.ChangeScrollSpeed(-1f, 0.5f); });
@@ -416,6 +509,84 @@ namespace PeanutDashboard._04_FlappyIdiots
                 onEnd();
             }
         }
+
+        void startNewSession()
+        {
+            currentSessionId = "";
+            if (_authData != null && !isGuest)
+            {
+                SessionStartData formData = new()
+                {
+                    signature = _authData.signature,
+                    address = _authData.address,
+                    mode = "FREE",
+                    timezone = timeZone,
+                    startTime = getTime(),
+                    gameName = gameName,
+                };
+               
+                ServerService.PostDataToServer<SessionApi>(SessionApi.Start, JsonUtility.ToJson(formData), (resp) =>
+                {
+                    Debug.Log("START SESSION SUCCESS resp = " + resp);
+                    var sessionData = JsonUtility.FromJson<SessionData>(resp);
+                    if (sessionData != null && sessionData.sessionId != null && sessionData.sessionId != "")
+                    {
+                        currentSessionId = sessionData.sessionId;
+                    }
+                    else
+                    {
+                        Debug.Log("Failed to parse session ID");
+                    }
+                }, (str) => {
+                    Debug.Log("Session start failed = " + str);
+                });
+            }
+        }
+
+        void updateSession()
+        {
+            if (state == GameState.Playing && _authData != null && !isGuest && currentSessionId != "")
+            {
+                SessionUpdateData formData = new()
+                {
+                    signature = _authData.signature,
+                    address = _authData.address,
+                    sessionId = currentSessionId,
+                    score = GameScore,
+                };
+
+                ServerService.PostDataToServer<SessionApi>(SessionApi.Update, JsonUtility.ToJson(formData), (resp) =>
+                {
+                    Debug.Log("UPDATE SESSION SUCCESS resp = " + resp);
+                }, (str) => {
+                    Debug.Log("Session Update failed");
+                });
+            }
+        }
+
+        void endSession(bool win)
+        {
+            if (_authData != null && !isGuest && currentSessionId != "")
+            {
+                SessionEndData formData = new()
+                {
+                    signature = _authData.signature,
+                    address = _authData.address,
+                    sessionId = currentSessionId,
+                    score = GameScore,
+                    status = win ? "WON" : "LOSE",
+                    endTime = getTime(),
+                };
+                currentSessionId = "";
+                ServerService.PostDataToServer<SessionApi>(SessionApi.End, JsonUtility.ToJson(formData), (resp) =>
+                {
+                    Debug.Log("END SESSION SUCCESS resp = " + resp);
+                }, (str) => {
+                    Debug.Log("Session END failed");
+                });
+            }
+        }
+
         void SynchronizeWallet()
         {
             if (_authData != null)
@@ -468,14 +639,13 @@ namespace PeanutDashboard._04_FlappyIdiots
                     var randomName = "user" + Random.Range(100000, 999999);
                     UsernameInputField.text = randomName;
                     ChangeUserNameData formData = new()
-                    {
+                    { 
                         signature = _authData.signature,
                         address = _authData.address,
                         nickname = randomName
                     };
                     ServerService.PostDataToServer<PlayerApi>(PlayerApi.ChangeNickName, JsonUtility.ToJson(formData), ((strRespo) =>
                     {
-                        Debug.Log("NICKNAME SUCESSFULY UPDATED:\n" + strRespo);
                         UsernameInputField.text = randomName;
                         OnConnected();
 
@@ -483,16 +653,14 @@ namespace PeanutDashboard._04_FlappyIdiots
                 }
                 else
                 {
-                    Debug.Log("CONNECTED SUCCESFULY");
                     UsernameInputField.text = resp.nickname;
                     OnConnected();
                 }
             }), _authData.address);
-
-
+            
             return;
 #else
- Debug.Log("Getting Auth DAta");
+
             var webInfoStr = LocalStorageManager.GetString("web3Info");
              
             if (webInfoStr != null)
@@ -545,6 +713,10 @@ namespace PeanutDashboard._04_FlappyIdiots
 #endif
         }
 
+#if UNITY_WEBGL
+        [DllImport("__Internal")]
+        private static extern void OpenMetamaskLogin();
+#endif
         public void OnPlayAsGuestClicked()
         {
             isGuest = true;

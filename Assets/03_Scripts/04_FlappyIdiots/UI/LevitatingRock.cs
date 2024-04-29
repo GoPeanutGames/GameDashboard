@@ -8,9 +8,11 @@ namespace PeanutDashboard._04_FlappyIdiots
         public float floatHeight = 0.5f; // Adjust this to change the height of the float
         private Vector3 startPos;
         private UnityEngine.UI.Image image;
+
+        float randomFloat = 0f;
         void Start()
         {
-
+            randomFloat = Random.Range(0f, 1f);
             image = GetComponent<UnityEngine.UI.Image>();
             if (image != null)
             {
@@ -25,7 +27,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         void Update()
         {
             // Calculate the new position using a sine wave to create the floating effect
-            float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatHeight;
+            float newY = startPos.y + Mathf.Sin((randomFloat) + Time.time * floatSpeed) * floatHeight;
 
             // Update the position of the GameObject
             if (image != null)

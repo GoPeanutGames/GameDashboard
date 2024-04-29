@@ -325,7 +325,7 @@
             streamingAssetsUrl: "StreamingAssets",
             companyName: "Peanut Games",
             productName: "Flappy Idiots",
-            productVersion: "1.0.0",
+            productVersion: "0.0.1",
             // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
             // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
           },
@@ -341,6 +341,7 @@
           }
         )
           .then((unityInstance) => {
+            document.getElementById("game-logo").style.display = "none";
             document.getElementById(
               "unity-progress-bar-empty"
             ).style.display = "none";

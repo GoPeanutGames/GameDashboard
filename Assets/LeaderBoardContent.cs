@@ -1,3 +1,4 @@
+using PeanutDashboard._04_FlappyIdiots;
 using UnityEngine;
 
 public class LeaderboardContent : MonoBehaviour
@@ -10,6 +11,21 @@ public class LeaderboardContent : MonoBehaviour
         gameObject.transform.position = resetPos;
     }
 
+    public void UpdateTopPlayers(LeaderBoardEltData[] data)
+    {
+        var childs = GetComponentsInChildren<TopPlayerLine>();
+        
+        for (var i = 0; i < childs.Length; i++)
+        {
+            var playerLine = childs[i];
+            var scoreInfo = new LeaderBoardEltData();
+            if (data.Length > i) 
+            {
+                scoreInfo = data[i];
+            }
+            playerLine.SetData(scoreInfo.nickname, scoreInfo.score.ToString(), "");
+        }
+    }
     // Update is called once per frame
     void Update()
     {

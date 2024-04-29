@@ -1217,6 +1217,10 @@ PrefabInstance:
       value: -0.085
       objectReference: {fileID: 0}
     - target: {fileID: 9185654926553407841, guid: a6e046848a2ec2c4db3008cb305fb758, type: 3}
+      propertyPath: BackgroundAdjustement
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9185654926553407841, guid: a6e046848a2ec2c4db3008cb305fb758, type: 3}
       propertyPath: backgrounds.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -20544,6 +20548,10 @@ PrefabInstance:
       propertyPath: UsernameInputField
       value: 
       objectReference: {fileID: 110353136}
+    - target: {fileID: 3976828618258354081, guid: bc569992b0860884492ea947c57f25aa, type: 3}
+      propertyPath: leaderboardContent
+      value: 
+      objectReference: {fileID: 898888196}
     - target: {fileID: 3976828618258354081, guid: bc569992b0860884492ea947c57f25aa, type: 3}
       propertyPath: GameOverCanvasGroup
       value: 

@@ -34,7 +34,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 originalPositions[i] = backgrounds[i].position;
             }
         }
-
+        public float BackgroundAdjustement = 0f;
         private void FixedUpdate()
         {
             var scale = this.gameObject.transform.localScale.x;
@@ -49,7 +49,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 firstBackground = backgrounds[1];
                 secondBackground = backgrounds[0];
             }
-            var halfWidth = (backgroundWidth / 2) * scale;
+            var halfWidth = (backgroundWidth + BackgroundAdjustement) * scale;
             Vector3 newPos = firstBackground.position;
             newPos.x += stepDistance;
             firstBackground.position = newPos;

@@ -16,6 +16,12 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         public void SetData(string name, string score, string date)
         {
+            if (name == null || name == "")
+            {
+                NameText.text = "";
+                ScoreText.text = "";
+                DateText.text = "";
+            }
             NameText.text = name;
             ScoreText.text = score;
             DateText.text = date;
