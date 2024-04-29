@@ -37,6 +37,14 @@ namespace PeanutDashboard._04_FlappyIdiots
         public string address;
         public string nickname;
     }
+
+    [Serializable]
+    public class SessionEndResponseData
+    {
+        public int bubbles;
+        public string sessionId;
+    }
+
     [Serializable]
     public class SessionStartData
     {
@@ -158,18 +166,11 @@ namespace PeanutDashboard._04_FlappyIdiots
         public UnityEngine.UI.Text ScoreText;
         public UnityEngine.UI.Text GameOverScoreText;
         public UnityEngine.UI.Text GameOverPointsEarnedText;
-
-        public TopPlayerLine[] leaderBoardPlayers;
+        private int _bubbleEarned = 0;
 
         private bool isGuest = false;
         private string timeZone = "GMT+" + TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).ToString("hh\\:mm");
-        public void UpdateLeaderBoard()
-        {
-            foreach (var topPlayer in leaderBoardPlayers)
-            {
-                topPlayer.SetData("", "", "");
-            }
-        }
+
         public void UpdateScoreText(bool updateGameOver = true)
         {
             if (updateGameOver)
@@ -181,7 +182,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
                 if (GameOverPointsEarnedText != null)
                 {
-                    GameOverPointsEarnedText.text = "And you've earned <color=#66B9F1>" + GameScore * 300 + "</color> points";
+                    GameOverPointsEarnedText.text = "And you've earned <color=#66B9F1>" + _bubbleEarned + "</color> Bubbles";
                 }
             }
             if (ScoreText != null)
@@ -191,7 +192,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         }
         void Start()
         {
-            UpdateLeaderBoard();
+            UpdateLeaderBoardData();
             state = GameState.Disconnected;
             SoundManager.Instance.PlayTrack(SoundManager.Instance.TitleAudioSource);
 
@@ -387,6 +388,7 @@ namespace PeanutDashboard._04_FlappyIdiots
             formData.gameName = gameName;
             ServerService.PostDataToServer<PlayerApi>(PlayerApi.Leaderboard, JsonUtility.ToJson(formData), ((strRespo) =>
             {
+                Debug.Log("Get Leaderboard response = " + strRespo);
                 var resp = JsonUtility.FromJson<LeaderBoardResponseData>(strRespo);
                 if (resp != null && resp.highScores != null && leaderboardContent != null)
                 {
@@ -566,6 +568,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         void endSession(bool win)
         {
+            _bubbleEarned = 0;
             if (_authData != null && !isGuest && currentSessionId != "")
             {
                 SessionEndData formData = new()
@@ -581,6 +584,12 @@ namespace PeanutDashboard._04_FlappyIdiots
                 ServerService.PostDataToServer<SessionApi>(SessionApi.End, JsonUtility.ToJson(formData), (resp) =>
                 {
                     Debug.Log("END SESSION SUCCESS resp = " + resp);
+
+                    var data = JsonUtility.FromJson<SessionEndResponseData>(resp);
+                    if (data != null && data.bubbles != null)
+                    {
+                        _bubbleEarned = data.bubbles;
+                    }
                 }, (str) => {
                     Debug.Log("Session END failed");
                 });

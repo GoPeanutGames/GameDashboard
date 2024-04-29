@@ -21,6 +21,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 NameText.text = "";
                 ScoreText.text = "";
                 DateText.text = "";
+                return;
             }
             NameText.text = name;
             ScoreText.text = score;
