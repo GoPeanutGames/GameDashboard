@@ -45,7 +45,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		public static void RaiseUpdatePlayerAimEvent(Vector2 worldPosition)
 		{
 			if (_updatePlayerAim == null){
-				LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseUpdatePlayerAimEvent)} raised, but nothing picked it up");
+				//LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseUpdatePlayerAimEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_updatePlayerAim.Invoke(worldPosition);
@@ -54,7 +54,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		public static void RaiseUpdatePlayerBulletSpawnPointEvent(Vector2 worldPosition)
 		{
 			if (_updatePlayerBulletSpawnPoint == null){
-				LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseUpdatePlayerBulletSpawnPointEvent)} raised, but nothing picked it up");
+				//LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseUpdatePlayerBulletSpawnPointEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_updatePlayerBulletSpawnPoint.Invoke(worldPosition);
@@ -63,7 +63,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		public static void RaiseUpdatePlayerVisualPositionEvent(Vector3 visualPosition)
 		{
 			if (_updatePlayerVisualPosition == null){
-				LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseUpdatePlayerVisualPositionEvent)} raised, but nothing picked it up");
+				//LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseUpdatePlayerVisualPositionEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_updatePlayerVisualPosition.Invoke(visualPosition);
@@ -72,7 +72,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		public static void RaiseMobilePlayerTouchShootPositionEvent(Vector2 screenTouchPosition)
 		{
 			if (_mobilePlayerTouchShootPosition == null){
-				LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseMobilePlayerTouchShootPositionEvent)} raised, but nothing picked it up");
+				//LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaiseMobilePlayerTouchShootPositionEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_mobilePlayerTouchShootPosition.Invoke(screenTouchPosition);
@@ -81,7 +81,7 @@ namespace PeanutDashboard._02_BattleDash.Events
 		public static void RaisePlayerRequestDisconnectEvent()
 		{
 			if (_playerRequestDisconnect == null){
-				LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaisePlayerRequestDisconnectEvent)} raised, but nothing picked it up");
+				//LoggerService.LogWarning($"{nameof(BattleDashClientActionEvents)}::{nameof(RaisePlayerRequestDisconnectEvent)} raised, but nothing picked it up");
 				return;
 			}
 			_playerRequestDisconnect.Invoke();

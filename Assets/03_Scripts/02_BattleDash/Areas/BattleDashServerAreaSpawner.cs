@@ -18,7 +18,7 @@ namespace PeanutDashboard._02_BattleDash.Areas
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private GameObject _currentAreaPrefab;
-		
+
 #if SERVER
 		private void OnEnable()
 		{
@@ -46,6 +46,7 @@ namespace PeanutDashboard._02_BattleDash.Areas
 			LoggerService.LogInfo($"{nameof(BattleDashServerAreaSpawner)}::{nameof(SpawnArea)} - index: {randomIndex}");
 			if (_areaPrefabs.Count == 0){ 
 				SendClientWon_ClientRpc();
+				BackendAuthenticationManager.SubmitGameEnd(true);
 			}
 			GameObject prefab = _areaPrefabs[randomIndex];
 			_areaPrefabs.RemoveAt(randomIndex);
@@ -66,7 +67,7 @@ namespace PeanutDashboard._02_BattleDash.Areas
 		}
 #endif
 
-		[ClientRpc]
+        [ClientRpc]
 		private void SendClientWon_ClientRpc()
 		{
 			BattleDashClientUIEvents.RaiseShowWonEvent();

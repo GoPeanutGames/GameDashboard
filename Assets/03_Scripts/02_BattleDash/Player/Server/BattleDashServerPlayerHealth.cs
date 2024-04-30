@@ -43,11 +43,12 @@ namespace PeanutDashboard._02_BattleDash.Player.Server
 				LoggerService.LogInfo($"{nameof(BattleDashServerPlayerHealth)}::{nameof(TakeDamage)} - die");
 				_networkAnimator.SetTrigger(Die);
 				SendClientPlayerDied_ClientRpc();
+				BackendAuthenticationManager.SubmitGameEnd(false);
 			}
 #endif
-		}
+        }
 
-		[ClientRpc]
+        [ClientRpc]
 		private void SendClientPlayerDied_ClientRpc()
 		{
 			LoggerService.LogInfo($"{nameof(BattleDashServerPlayerHealth)}::{nameof(SendClientPlayerDied_ClientRpc)}");
