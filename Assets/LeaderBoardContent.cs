@@ -23,7 +23,7 @@ public class LeaderboardContent : MonoBehaviour
             {
                 scoreInfo = data[i];
             }
-            playerLine.SetData(scoreInfo.nickname, scoreInfo.score.ToString(), "");
+            playerLine.SetData(scoreInfo.playerName, scoreInfo.highestScore.ToString(), "");
         }
     }
     // Update is called once per frame

@@ -45,8 +45,8 @@ namespace PeanutDashboard.Server.Data
         private static readonly Dictionary<SessionApi, string> SessionApiMap = new()
         {
             { SessionApi.Start, "/session/start/" },
-            { SessionApi.Update, "/session/update/" },
-            { SessionApi.End, "/session/end/" },
+            { SessionApi.Update, "/session/v2/update/" },
+            { SessionApi.End, "/session/v2/end/" },
         };
 
         public static string GetApi<T>(T api) where T : struct, IConvertible

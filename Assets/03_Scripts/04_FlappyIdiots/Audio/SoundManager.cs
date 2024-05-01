@@ -33,6 +33,13 @@ namespace PeanutDashboard._04_FlappyIdiots
             _allSource = new AudioSource[] { TitleAudioSource, GameAudioSource, LeaderboardAudioSource };
         }
 
+        public void SetMusicSpeed(float speedRatio)
+        {
+            var newPitch = 1f + (speedRatio - 1f) * 0.2f;
+            
+            _currentPlayingMusicSource.pitch = newPitch;
+        }
+
         public void Mute()
         {
             if (!isMute)

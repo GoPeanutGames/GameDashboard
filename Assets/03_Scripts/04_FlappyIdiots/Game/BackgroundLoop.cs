@@ -12,6 +12,8 @@ namespace PeanutDashboard._04_FlappyIdiots
         public Transform[] backgrounds;
         private float backgroundWidth;
         private Vector3[] originalPositions;
+
+        public float speedMultiplier = 1.0f;
         private void Awake()
         {
             if (instance == null)
@@ -40,7 +42,7 @@ namespace PeanutDashboard._04_FlappyIdiots
             var scale = this.gameObject.transform.localScale.x;
             // Move backgrounds based on scroll speed direction
             float moveDirection = scrollSpeed > 0 ? -1f : 1f;
-            float moveDistance = Mathf.Abs(scrollSpeed) * Time.deltaTime;
+            float moveDistance = Mathf.Abs(scrollSpeed * speedMultiplier) * Time.deltaTime;
             float stepDistance = moveDirection * moveDistance;
             var firstBackground = backgrounds[0];
             var secondBackground = backgrounds[1];
@@ -80,6 +82,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         public void ChangeScrollSpeed(float newSpeed, float duration, Action endAction = null)
         {
+            speedMultiplier = 1.0f;
             StartCoroutine(LerpScrollSpeed(newSpeed, duration, endAction));
         }
 

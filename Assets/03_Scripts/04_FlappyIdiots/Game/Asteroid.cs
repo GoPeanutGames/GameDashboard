@@ -5,12 +5,30 @@ namespace PeanutDashboard._04_FlappyIdiots
 {
     public class Asteroid : MonoBehaviour
     {
-        public float Speed = 10f;
+        public float Speed = 1f;
         public float animationDuration = 0.5f;
+        public bool HasRandomSize = false;
+        public bool isMoving = false;
+        public float Size = 1.0f;
+        public float MovingRatio = 0.35f;
+        public float SmallRatio = 0.35f;
         // Start is called before the first frame update
         void Start()
         {
-
+            if (HasRandomSize && Random.Range(0f, 1f) > 1 - SmallRatio)
+            {
+                Size = Random.Range(0.55f, 1f);
+                gameObject.transform.localScale = gameObject.transform.localScale * Size; ;
+            }
+            if (isMoving && Random.Range(0f, 1f) > 1 - MovingRatio)
+            {
+                var levitatingRock = GetComponent<LevitatingRock>();
+                if (levitatingRock != null)
+                {
+                    levitatingRock.floatHeight = Random.Range(1.5f, 3f);
+                    levitatingRock.floatSpeed = Random.Range(0.5f, 1.5f);
+                }
+            }
         }
         public bool HasExploded = false;
         // Update is called once per frame
@@ -19,7 +37,7 @@ namespace PeanutDashboard._04_FlappyIdiots
             if (GameManager.Instance.state == GameState.Playing)
             {
                 var newPos = transform.position;
-                newPos.x = newPos.x - Speed;
+                newPos.x = newPos.x - Speed * 0.1f;
                 transform.position = newPos;
             }
         }

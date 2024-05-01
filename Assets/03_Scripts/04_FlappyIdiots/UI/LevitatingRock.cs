@@ -27,7 +27,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         void Update()
         {
             // Calculate the new position using a sine wave to create the floating effect
-            float newY = startPos.y + Mathf.Sin((randomFloat) + Time.time * floatSpeed) * floatHeight;
+            float newY = startPos.y + Mathf.Sin((randomFloat * Mathf.PI) + Time.time * floatSpeed) * floatHeight;
 
             // Update the position of the GameObject
             if (image != null)

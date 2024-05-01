@@ -89,8 +89,8 @@ namespace PeanutDashboard._04_FlappyIdiots
     [Serializable]
     public class LeaderBoardEltData
     {
-        public int score;
-        public string nickname;
+        public int highestScore;
+        public string playerName;
     }
     [Serializable]
     public class LeaderBoardResponseData
@@ -118,11 +118,30 @@ namespace PeanutDashboard._04_FlappyIdiots
                 if (value > 0)
                 {
                     updateSession();
+                    if (SpeedIncreaseThresholds.Contains(value))
+                    {
+                        speedMultipier += 0.25f;
+                        var asteroids = GameObject.FindObjectsByType<Asteroid>(FindObjectsSortMode.None);
+                        foreach (var asteroid in asteroids)
+                        {
+                            asteroid.Speed = speedMultipier;
+                        }
+                    }
                 }
+                else
+                {
+                    speedMultipier = 1f;
+                }
+                _backgroundLoop.speedMultiplier = speedMultipier;
+                SpaceShip.SpeedMultiplier = speedMultipier;
+                SoundManager.Instance.SetMusicSpeed(speedMultipier);
                 SynchronizeWallet();
             } 
             get { return _gameScore; }
         }
+        public int[] SpeedIncreaseThresholds = { 100 };
+        public int rockSizeIncreaseThreshold = 130;
+        public int rockMoveThreshold = 90;
 
         private string _lastUsername = "Disconnected";
         private MetaMaskAuthData _authData = null;
@@ -133,7 +152,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         [SerializeField]
         private BackgroundLoop _backgroundLoop;
-
+        private float speedMultipier = 1.0f;
         public float transitionDuration = 0.5f;
         public Scrollbar LeaderboardScrollbar;
         public float TitleBackgroundSpeed = 1.0f;
@@ -182,7 +201,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
                 if (GameOverPointsEarnedText != null)
                 {
-                    GameOverPointsEarnedText.text = "And you've earned <color=#66B9F1>" + _bubbleEarned + "</color> Bubbles";
+                    GameOverPointsEarnedText.text = "And you've earned <color=#66B9F1>" + _bubbleEarned + "</color> Points";
                 }
             }
             if (ScoreText != null)
@@ -227,7 +246,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         {
             if (isGuest)
             {
-                UsernameInputField.text = "Guest";
+
                 MetamaskCanvasGroup.alpha = 0;
             }
             else
@@ -728,6 +747,20 @@ namespace PeanutDashboard._04_FlappyIdiots
 #endif
         public void OnPlayAsGuestClicked()
         {
+            UsernameInputField.text = "Guest";
+            isGuest = true;
+            rockMoveThreshold = 90;
+            rockSizeIncreaseThreshold = 130;
+            SpeedIncreaseThresholds = new int[] { 100 };
+            OnConnected();
+        }
+
+        public void StartTestMode()
+        {
+            rockMoveThreshold = 10;
+            rockSizeIncreaseThreshold = 10;
+            SpeedIncreaseThresholds = new int[]{ 10, 15 };
+            UsernameInputField.text = "Test";
             isGuest = true;
             OnConnected();
         }
@@ -739,8 +772,19 @@ namespace PeanutDashboard._04_FlappyIdiots
                 //random y position
                 float y = Random.Range(-SpawnHeightRange, SpawnHeightRange);
                 GameObject asteroid = Instantiate(SpawnObject, this.transform.position + new Vector3(0, y, 0), Quaternion.identity) as GameObject;
+                var asteoridComponent = asteroid.GetComponent<Asteroid>();
+                asteoridComponent.Speed *= speedMultipier;
+                if (GameScore > rockMoveThreshold)
+                {
+                    asteoridComponent.isMoving = true;
+                }
+                if (GameScore > rockSizeIncreaseThreshold)
+                {
+                    asteoridComponent.HasRandomSize = true;
+                }
+               
             }
-            Invoke("Spawn", Random.Range(SpawnTimeMin, SpawnTimeMax));
+            Invoke("Spawn", Random.Range(SpawnTimeMin / speedMultipier, SpawnTimeMax / speedMultipier));
         }
     }
 }

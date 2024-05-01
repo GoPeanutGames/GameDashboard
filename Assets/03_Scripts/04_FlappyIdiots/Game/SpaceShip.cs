@@ -15,13 +15,28 @@ namespace PeanutDashboard._04_FlappyIdiots
         private Vector3 shipRotation = Vector3.zero;
         public float RotateDownSpeed = 1;
         public float RotateUpSpeed = 1;
-
+        
         public float OutOfScreenLimit = 3f;
         private float outOfScreenTimer = 0f;
         bool isOutScreen = false;
 
         public float MaxUpperAngle = 0f;
         public float MaxLowerAngle = 45f;
+        private float _speedMutliplier = 1.0f;
+        private float GravityScale = -2.0f;
+        private float _mass = 9.0f;
+        public float SpeedMultiplier
+        {
+            get { return _speedMutliplier; }
+            set { _speedMutliplier = value;
+                var rb = GetComponent<Rigidbody2D>();
+                if (rb != null )
+                {
+                    rb.gravityScale = GravityScale * value;
+                    rb.mass = _mass * value;
+                }
+            }
+        }
 
         bool isDead = false;
         private void OnTriggerEnter2D(Collider2D other)
@@ -38,10 +53,10 @@ namespace PeanutDashboard._04_FlappyIdiots
                 isOutScreen = false;
                 outOfScreenTimer = 0f;
             }
-            if (other.gameObject.CompareTag("Asteroid") && other.transform.position.x < transform.position.x - 2.3f)
+            if (other.gameObject.CompareTag("Asteroid") )
             {
                 Asteroid asteroid = other.gameObject.GetComponent<Asteroid>();
-                if (asteroid != null && !asteroid.HasExploded)
+                if (asteroid != null && !asteroid.HasExploded && other.transform.position.x < (transform.position.x - 2.316f) * asteroid.Size)
                 {
                     OnDeath();
                 }
@@ -75,7 +90,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 if (asteroid != null && !asteroid.HasExploded)
                 {
                     asteroid.Explode();
-                    Jump(jumpForce * 0.8f, false);
+                    Jump((_mass + jumpForce) * 0.8f, false);
                     GameManager.Instance.GameScore++;
                 }
             }
@@ -95,7 +110,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 if (Input.GetMouseButtonDown(0))  // 0 represents left mouse button
                 {
                     // Make the spaceship jump
-                    Jump(jumpForce);
+                    Jump((_mass * SpeedMultiplier) + jumpForce);
                 }
 
                 if (isOutScreen)
