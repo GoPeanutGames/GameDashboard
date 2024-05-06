@@ -11,14 +11,8 @@ namespace PeanutDashboard.Shared.Events
 		private UnityAction<string> _userSignatureReceived;
 		private UnityAction<string> _metamaskConnectionFail;
 		private UnityAction<string> _metamaskSignatureFail;
-		private UnityAction<AuthenticationData> _authenticationDataRetrievalSuccess;
 		private UnityAction _authenticationDataRetrievalFail;
 
-		public event UnityAction<AuthenticationData> AuthenticationDataRetrievalSuccess
-		{
-			add => _authenticationDataRetrievalSuccess += value;
-			remove => _authenticationDataRetrievalSuccess -= value;
-        }
 
         public event UnityAction AuthenticationDataRetrievalFail
         {
@@ -87,14 +81,9 @@ namespace PeanutDashboard.Shared.Events
 			_metamaskSignatureFail.Invoke(error);
 		}
 
-		public void RaiseAuthenticationDataRetrievalSuccessEvent(AuthenticationData authenticationData)
+		public void RaiseAuthenticationDataRetrievalSuccessEvent()
 		{
-			if (_authenticationDataRetrievalSuccess == null)
-			{
-                LoggerService.LogWarning($"{nameof(AuthenticationEvents)}::{nameof(RaiseAuthenticationDataRetrievalSuccessEvent)} raised, but nothing picked it up");
-                return;
-            }
-			_authenticationDataRetrievalSuccess.Invoke(authenticationData);
+
 		}
 
 		public void RaiseAuthenticationDataRetrievalFailEvent()

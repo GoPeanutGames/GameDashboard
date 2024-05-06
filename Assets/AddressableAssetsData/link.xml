@@ -78,9 +78,6 @@
     <type fullname="PeanutDashboard._02_BattleDash.Data.BattleDashAreaMonsterSpawn" preserve="nothing" serialized="true" />
     <type fullname="PeanutDashboard._02_BattleDash.Data.BattleDashMonsterSpawnPattern" preserve="nothing" serialized="true" />
   </assembly>
-  <assembly fullname="MetaMaskUnity.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="MetaMask.Unity.MetaMaskConfig" preserve="all" />
-  </assembly>
   <assembly fullname="Unity.2D.Animation.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.U2D.Animation.SpriteSkin" preserve="all" />
   </assembly>

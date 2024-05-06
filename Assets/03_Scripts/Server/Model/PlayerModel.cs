@@ -7,6 +7,7 @@ namespace PeanutDashboard.Server.Data
 	{
 		public string nickname;
 		public int rank;
+		public string code;
 	}
 
 	[Serializable]

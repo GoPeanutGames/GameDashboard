@@ -4,13 +4,13 @@ namespace PeanutDashboard.Utils.WebGL
 {
     public static class WebGLUtils
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
         [DllImport("__Internal")]
         private static extern bool IsMobile();
 
-#if !UNITY_EDITOR
         public static bool IsWebMobile => IsMobile();
 #else
-	    public static bool IsWebMobile => false;
+        public static bool IsWebMobile => false;
 #endif
     }
 }

@@ -1,15 +1,17 @@
-using Dynamitey.DynamicObjects;
+using Nethereum.ABI.EIP712;
+using Nethereum.ABI.FunctionEncoding.Attributes;
+using Newtonsoft.Json.Linq;
 using PeanutDashboard.Server;
 using PeanutDashboard.Server.Data;
-using PeanutDashboard.Shared.Events;
+using PeanutDashboard.Shared.Environment;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Thirdweb;
 using UnityEngine;
 using UnityEngine.UI;
-using ZXing.QrCode.Internal;
-using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 using Random = UnityEngine.Random;
 
 namespace PeanutDashboard._04_FlappyIdiots
@@ -57,14 +59,29 @@ namespace PeanutDashboard._04_FlappyIdiots
     }
 
     [Serializable]
+    public class SessionMetadata
+    {
+        public string @event;
+    }
+    [Serializable]
     public class SessionUpdateData
     {
         public string signature;
         public string address;
         public string sessionId;
         public int score;
+        public SessionMetadata metadata;
     }
 
+    [Serializable]
+    public class RedeemCodeData
+    {
+        public string code;
+        public string address;
+        public string signature;
+        public string twitterHandle;
+        public string twitterUserId;
+    }
     [Serializable]
     public class SessionEndData
     {
@@ -113,6 +130,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         public string gameSceneName = "Game";
         public string leaderBoardSceneName = "Leadeboard";
         private int _gameScore = 0;
+        public LoadingScreen loadingScreen;
         public int GameScore { set {
                 _gameScore = value;
                 if (value > 0)
@@ -136,7 +154,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                 SpaceShip.SpeedMultiplier = speedMultipier;
                 SoundManager.Instance.SetMusicSpeed(speedMultipier);
                 SynchronizeWallet();
-            } 
+            }
             get { return _gameScore; }
         }
         public int[] SpeedIncreaseThresholds = { 100 };
@@ -147,7 +165,6 @@ namespace PeanutDashboard._04_FlappyIdiots
         private MetaMaskAuthData _authData = null;
         private WalletData _walletData = null;
         public Text authenticationInfoText;
-        private string authneticationInfo;
         private bool connected = false;
 
         [SerializeField]
@@ -162,7 +179,7 @@ namespace PeanutDashboard._04_FlappyIdiots
         public static GameManager Instance { get; private set; }
         private GameObject SpawnObject;
         public GameObject[] SpawnObjects;
-
+        private bool hasLoggedOff = false;
         public LeaderboardContent leaderboardContent;
         private string currentSessionId = "";
         public float SpawnTimeMin = 3f;
@@ -189,6 +206,7 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         private bool isGuest = false;
         private string timeZone = "GMT+" + TimeZoneInfo.Local.GetUtcOffset(DateTime.Now).ToString("hh\\:mm");
+        private bool connectClicked = false;
 
         public void UpdateScoreText(bool updateGameOver = true)
         {
@@ -201,7 +219,14 @@ namespace PeanutDashboard._04_FlappyIdiots
 
                 if (GameOverPointsEarnedText != null)
                 {
-                    GameOverPointsEarnedText.text = "And you've earned <color=#66B9F1>" + _bubbleEarned + "</color> Points";
+                    if (isGuest)
+                    {
+                        GameOverPointsEarnedText.text = "";
+                    }
+                    else
+                    {
+                        GameOverPointsEarnedText.text = "And you've earned <color=#66B9F1>" + _bubbleEarned + "</color> Points";
+                    }
                 }
             }
             if (ScoreText != null)
@@ -211,6 +236,8 @@ namespace PeanutDashboard._04_FlappyIdiots
         }
         void Start()
         {
+            GetWalletAddress(false);
+            loadingScreen.OnDisactivate();
             UpdateLeaderBoardData();
             state = GameState.Disconnected;
             SoundManager.Instance.PlayTrack(SoundManager.Instance.TitleAudioSource);
@@ -241,12 +268,92 @@ namespace PeanutDashboard._04_FlappyIdiots
         {
             return DateTime.Now.ToString("ddd MMM dd yyyy HH:mm:ss");
         }
+        private void OnWalletConnected(object sender, EventArgs e)
+        {
+            Debug.Log("Wallet is connected " + e.ToString());
+        }
+
+        [Serializable]
+        public class EIPDomain
+        {
+            public string name;
+            public string type;
+        }
+        [Serializable]
+        public class SignatureTypes
+        {
+            public EIPDomain[] EIP712Domain;
+            public EIPDomain[] metaType;
+        }
+        [Serializable]
+        public class  SignatureDomain : IDomain
+        {
+            public string version;
+            public int chainId;
+            public string verifyingContract;
+            public string name;
+        }
+        [Serializable]
+        public class SignatureMessage
+        {
+            public string description;
+            public string signer;
+        }
+
+        [Serializable]
+        public class SignatureTypedData
+        {
+            public SignatureTypes types;
+            public SignatureDomain domain;
+            public string primaryType;
+            public SignatureMessage message;
+        }
+
+        public class metaType
+        {
+            [Parameter("string", "description", 1)]
+            public string description { get; set; }
+            [Parameter("address", "signer", 2)]
+            public string signer { get; set; }
+        }
+
+        private SignatureTypedData lastReceivedSchema = null;
+
+        private int getChainID()
+        {
+            int blastSepoliaChainID = 168587773;
+            int blastChainID = 81457;
+            int chainID = blastChainID;
+            if (EnvironmentManager.Instance.IsDev())
+            {
+                chainID = blastSepoliaChainID;
+            }
+            return chainID;
+        }
+        public async void MetamaskLogin()
+        {
+
+            var sdk = ThirdwebManager.Instance.SDK;  
+            var address = await sdk.Wallet.Connect(new WalletConnection(WalletProvider.Metamask, getChainID()));
+
+            if (address != null && address != "")
+            {
+                ServerService.GetDataFromServer<AuthenticationApi, SignatureTypedData, string>(AuthenticationApi.GetLoginSchema, (schema) =>
+                    {
+                        lastReceivedSchema = schema;
+                    }, address);
+            }
+        }
+
+        public void OnAuthDataUpdated()
+        {
+
+        }
 
         public void OnConnected()
         {
             if (isGuest)
             {
-
                 MetamaskCanvasGroup.alpha = 0;
             }
             else
@@ -259,8 +366,82 @@ namespace PeanutDashboard._04_FlappyIdiots
             StartCoroutine(ConnectedTransition());
         }
 
+        private void FixedUpdate()
+        {
+
+            if (_authData == null && lastReceivedSchema != null)
+            {
+                    var receivedSchema = lastReceivedSchema;
+                    lastReceivedSchema = null;
+                    getSignatureAsync(receivedSchema);
+            }
+            UpdateScoreAndUser();
+        }
+       
+        private async Task<string> sendSignRequest(ThirdwebSession session, string address, SignatureTypedData schema)
+        {
+            string[] listobj = new string[] { address, JsonUtility.ToJson(schema) };
+            var request = new Nethereum.JsonRpc.Client.RpcRequest(ThirdwebSession.Nonce, "eth_signTypedData_v4", listobj);
+                
+           return await session.Web3.Client.SendRequestAsync<string>(request);
+        }
+#if UNITY_WEBGL && !UNITY_EDITOR
+        private async Task<string> sendSignRequestWebGL(SignatureTypedData schema)
+        {
+            var types = new Dictionary<string, object>();
+            types.Add("metaType", schema.types.metaType);
+
+            var message = new Dictionary<string, object>();
+            message.Add("description", schema.message.description);
+            message.Add("signer", schema.message.signer);
+            var result = await Bridge.InvokeRoute<JToken>("sdk#wallet/signTypedData", Thirdweb.Utils.ToJsonStringArray(schema.domain, types, message));
+            return result["signature"].Value<string>();
+        }
+#endif
+        private async void getSignatureAsync(SignatureTypedData receivedSchema)
+        {
+                var schema = receivedSchema;
+                var sdk = ThirdwebManager.Instance.SDK;
+                bool walletIsConnected = await sdk.Wallet.IsConnected();
+          //  sdk.Wallet.SignTypedDataV4
+                if (!walletIsConnected)
+                {
+                    return;
+                }
+            try
+            {
+                loadingScreen.Activate();
+#if UNITY_WEBGL && !UNITY_EDITOR
+                var signature = await sendSignRequestWebGL(receivedSchema);
+#else
+                var signature = await sendSignRequest(sdk.Session, receivedSchema.message.signer, receivedSchema);
+#endif
+                Debug.Log("SIGNATURE RECEIVED =" + signature);
+                if (signature != null)
+                {
+                    _authData = new MetaMaskAuthData() { signature = signature, address = schema.message.signer };
+#if UNITY_WEBGL && !UNITY_EDITOR
+                    LocalStorageManager.SetString("web3Info", JsonUtility.ToJson(_authData));
+                    LocalStorageManager.Save();
+#else
+                    PlayerPrefs.SetString("web3signature", signature);
+                    PlayerPrefs.SetString("web3address", schema.message.signer);
+                    PlayerPrefs.Save();
+#endif
+                    Debug.Log("signature obtained = " + signature);
+                    GetAccountInfo();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning("Failed to get signature");
+            }
+            loadingScreen.OnDisactivate();
+        }
+
         private void Awake()
         {
+            lastReceivedSchema = null;
             // Ensure only one instance of MusicManager exists
             if (Instance == null)
             {
@@ -328,6 +509,8 @@ namespace PeanutDashboard._04_FlappyIdiots
                     _backgroundLoop.ChangeScrollSpeed(TitleBackgroundSpeed, fadeOutDuration);
                 });
             }
+            isGuest = false;
+            UsernameInputField.text = _lastUsername;
             if (connected)
             {
                 StartCoroutine(CanvasTransition(removedCanvases, fadeOutDuration, true, () =>
@@ -342,7 +525,6 @@ namespace PeanutDashboard._04_FlappyIdiots
             {
                 StartCoroutine(CanvasTransition(removedCanvases, fadeOutDuration, true, () =>
                 {
-
                     StartCoroutine(CanvasTransition(new CanvasGroup[] { ConnectButtonCanvasGroup, StartUICanvas }, fadeOutDuration, false));
                 }));
                 ConnectButtonCanvasGroup.interactable = true;
@@ -397,7 +579,10 @@ namespace PeanutDashboard._04_FlappyIdiots
             }
             if (MetamaskPointsText != null && _walletData != null)
             {
+                var tmpEnable = MetamaskCanvasGroup.enabled;
+                MetamaskPointsText.enabled = false;
                 MetamaskPointsText.text = _walletData.bubbles.ToString();
+                MetamaskPointsText.enabled = tmpEnable;
             }
         }
 
@@ -423,10 +608,6 @@ namespace PeanutDashboard._04_FlappyIdiots
         {
 
         }
-        private void FixedUpdate()
-        {
-            UpdateScoreAndUser();
-        }
 
         public void OnStartClicked()
         {
@@ -440,11 +621,8 @@ namespace PeanutDashboard._04_FlappyIdiots
         {
             ConnectButtonCanvasGroup.interactable = false;
 
-            var enableCanvas = new CanvasGroup[] { UsernameOKButtonCanvasGroup, StartButtonCanvasGroup };
-            if (!isGuest)
-            {
-                enableCanvas = enableCanvas.Append(MetamaskCanvasGroup).ToArray();
-            }
+            var enableCanvas = new CanvasGroup[] { UsernameOKButtonCanvasGroup, StartButtonCanvasGroup, MetamaskCanvasGroup };
+            
             StartCoroutine(CanvasTransition(ConnectButtonCanvasGroup, 0.5f, true, () =>
             {
 
@@ -454,7 +632,43 @@ namespace PeanutDashboard._04_FlappyIdiots
             state = GameState.Connected;
             yield return null;
         }
+        IEnumerator LogoutTransition()
+        {
+            ConnectButtonCanvasGroup.interactable = true;
 
+            var disableCanvas = new CanvasGroup[] { UsernameOKButtonCanvasGroup, StartButtonCanvasGroup, MetamaskCanvasGroup };
+            
+            StartCoroutine(CanvasTransition(disableCanvas, 0.5f, true, () =>
+            {
+
+                StartCoroutine(CanvasTransition(ConnectButtonCanvasGroup, 0.5f, false));
+            }));
+            
+            state = GameState.Disconnected;
+            yield return null;
+        }
+
+        public void OnLogoutClicked()
+        {
+            _authData = null;
+            _lastUsername = "Disconnected";
+            UsernameInputField.text = _lastUsername;
+            connected = false;
+            
+            UsernameInputField.interactable = false;
+            MetamaskCanvasGroup.alpha = 0;
+            hasLoggedOff = true;
+            DisconnectWallet();
+            StartCoroutine(LogoutTransition());
+        }
+        
+        public async void DisconnectWallet()
+        {
+            if (await ThirdwebManager.Instance.SDK.Wallet.IsConnected())
+            {
+                ThirdwebManager.Instance.SDK.Wallet.Disconnect();
+            }
+        }
         IEnumerator StartGameTransition()
         {
             startNewSession();
@@ -471,6 +685,10 @@ namespace PeanutDashboard._04_FlappyIdiots
             SoundManager.Instance.PlayTrack(SoundManager.Instance.GameAudioSource);
             SpaceShip.gameObject.SetActive(true);
             SpaceShip.Appear(spaceshipAppearDuration);
+            if (isGuest)
+            {
+                UsernameInputField.text = "Guest";
+            }
             yield return null;
         }
 
@@ -574,6 +792,7 @@ namespace PeanutDashboard._04_FlappyIdiots
                     address = _authData.address,
                     sessionId = currentSessionId,
                     score = GameScore,
+                    metadata = new SessionMetadata() { @event = "DESTROY_SPACE_ROCK" }
                 };
 
                 ServerService.PostDataToServer<SessionApi>(SessionApi.Update, JsonUtility.ToJson(formData), (resp) =>
@@ -587,7 +806,8 @@ namespace PeanutDashboard._04_FlappyIdiots
 
         void endSession(bool win)
         {
-            _bubbleEarned = 0;
+            _bubbleEarned = GameScore * 500;
+            UpdateScoreText();
             if (_authData != null && !isGuest && currentSessionId != "")
             {
                 SessionEndData formData = new()
@@ -600,15 +820,20 @@ namespace PeanutDashboard._04_FlappyIdiots
                     endTime = getTime(),
                 };
                 currentSessionId = "";
+                
                 ServerService.PostDataToServer<SessionApi>(SessionApi.End, JsonUtility.ToJson(formData), (resp) =>
                 {
                     Debug.Log("END SESSION SUCCESS resp = " + resp);
-
                     var data = JsonUtility.FromJson<SessionEndResponseData>(resp);
                     if (data != null && data.bubbles != null)
                     {
-                        _bubbleEarned = data.bubbles;
+                            _bubbleEarned = data.bubbles;
                     }
+                    if (GameScore > 0 && _bubbleEarned == 0)
+                    {
+                        _bubbleEarned = GameScore * 500;
+                    }
+                    UpdateScoreText();
                 }, (str) => {
                     Debug.Log("Session END failed");
                 });
@@ -652,28 +877,78 @@ namespace PeanutDashboard._04_FlappyIdiots
                 OnConnected();
             }), ((strfailure) => { UsernameInputField.text = _lastUsername; }));
         }
-        public void OnConnectClicked()
-        {
-#if UNITY_EDITOR
-            _authData = new();
-            _authData.signature = "0x559737c141943d2d9d1b3b3788eb897742b7a322990ed262522cff7dd953e76d3299926455bd61c3fe534e7b445796b3344e49fc7695ee881846b6cfcfb887f81b";
-            _authData.address = "0x8121267d0d9261B2BeF321b42e3a0FE7E472fAb8";
 
-            ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, string>(PlayerApi.GetGeneralData, ((resp) =>
+        void clearLocalStorage()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            LocalStorageManager.DeleteKey("web3Info");
+            LocalStorageManager.Save();
+#else
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+#endif
+            _authData = null;
+        }
+
+        private void GetWalletAddress(bool tryToLoginIfFail = true)
+        {
+            if (!hasLoggedOff)
+            {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            var webInfoStr = LocalStorageManager.GetString("web3Info");
+
+            if (webInfoStr != null)
+            {
+                var authData = JsonUtility.FromJson<MetaMaskAuthData>(webInfoStr);
+                if (authData != null)
+                {
+                    Debug.Log("Auth Data Parsed succesfuly");
+                    _authData = authData;
+                }
+            }
+#else
+                var address = PlayerPrefs.GetString("web3address");
+                var signature = PlayerPrefs.GetString("web3signature");
+                if (!(address == null || address == "") && !(signature == null || signature == ""))
+                {
+                    _authData = new() { signature = signature, address = address };
+                    Debug.Log("SIGNATURE= " + signature);
+                }
+#endif
+            }
+                if (_authData == null)
+                {
+                    if (tryToLoginIfFail)
+                    {
+                        MetamaskLogin();
+                    }
+                }
+                else
+                {
+                    GetAccountInfo();
+                }
+        }
+        void GetAccountInfo()
+        {
+            ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, GetGeneralDataResponse>(PlayerApi.GetGeneralData, ((resp) =>
             {
                 SynchronizeWallet();
                 if (resp.nickname == null || resp.nickname == "")
                 {
+                    Debug.Log("nickname is empty - choosing a random name");
                     var randomName = "user" + Random.Range(100000, 999999);
+                    _lastUsername = randomName;
                     UsernameInputField.text = randomName;
                     ChangeUserNameData formData = new()
-                    { 
+                    {
                         signature = _authData.signature,
                         address = _authData.address,
                         nickname = randomName
                     };
                     ServerService.PostDataToServer<PlayerApi>(PlayerApi.ChangeNickName, JsonUtility.ToJson(formData), ((strRespo) =>
                     {
+                        Debug.Log("NICKNAME SUCESSFULY UPDATED:\n" + strRespo);
+                        _lastUsername = randomName;
                         UsernameInputField.text = randomName;
                         OnConnected();
 
@@ -681,78 +956,61 @@ namespace PeanutDashboard._04_FlappyIdiots
                 }
                 else
                 {
+                    _lastUsername = resp.nickname;
                     UsernameInputField.text = resp.nickname;
+                    Debug.Log("CONNECTED SUCCESFULY");
                     OnConnected();
                 }
-            }), _authData.address);
-            
-            return;
-#else
-
-            var webInfoStr = LocalStorageManager.GetString("web3Info");
-             
-            if (webInfoStr != null)
-            {
-                var authData = JsonUtility.FromJson<MetaMaskAuthData>(webInfoStr);
-                if (authData != null)
+            }), _authData.address, (failResp) => {
+                var resp = failResp;
+                if (resp != null && resp.code != null && resp.code == "player_not_found")
                 {
-                Debug.Log("Auth Data Parsed succesfuly");
-                    _authData = authData;
-                    ServerService.GetDataFromServer<PlayerApi, GetGeneralDataResponse, string>(PlayerApi.GetGeneralData, ((resp) =>
+                    Debug.Log("Account not found! //TODO create an account automatically");
+                    var formData = new RedeemCodeData();
+                    formData.code = "000000";
+                    formData.address = _authData.address;
+                    formData.signature = _authData.signature;
+                    formData.twitterHandle = "admin";
+                    formData.twitterUserId = "admin";
+                    ServerService.PostDataToServer<ReferalApi>(ReferalApi.RedeemCode, JsonUtility.ToJson(formData), ((strRespo) =>
                     {
-                         SynchronizeWallet();
-                        if (resp.nickname == null || resp.nickname == "")
-                        {
-                            Debug.Log("nicname empty");
-                            var randomName = "user" + Random.Range(100000, 999999);
-                            _lastUsername = randomName;
-                            UsernameInputField.text = randomName;
-                            ChangeUserNameData formData = new()
-                            {
-                                signature = _authData.signature,
-                                address = _authData.address,
-                                nickname = randomName
-                            };
-                            ServerService.PostDataToServer<PlayerApi>(PlayerApi.ChangeNickName, JsonUtility.ToJson(formData), ((strRespo) =>
-                            {
-                                Debug.Log("NICKNAME SUCESSFULY UPDATED:\n" + strRespo);
-                                _lastUsername = randomName;
-                                UsernameInputField.text = randomName;
-                                OnConnected();
+                        Debug.Log("ACCOUNT CREATED = " + strRespo);
+                        GetAccountInfo();
+                    }), ((strfailure) => {
+                        Debug.LogError("ACCOUNT CREATION FAILED = " + strfailure);
 
-                            }), ((strfailure) => { }));
-                        }
-                        else
-                        {
-                            _lastUsername = resp.nickname;
-                            UsernameInputField.text = resp.nickname;
-                               Debug.Log("CONNECTED SUCCESFULY");
-                            OnConnected();
-                        }
-                    }), authData.address);
-                    Debug.Log("Waiting for nickname...");
+                        clearLocalStorage();
+                    }));
+                    return;
                 }
-                else
-                {
-                    Debug.Log("Auth Data empty...");
-                }
-            }
-            
-#endif
+            });
         }
 
-#if UNITY_WEBGL
-        [DllImport("__Internal")]
-        private static extern void OpenMetamaskLogin();
-#endif
+        public void OnConnectClicked()
+        {
+            connectClicked = true;
+            if (_authData == null)
+            {
+                GetWalletAddress();
+                if (_authData == null)
+                {
+                    return;
+                }
+                return;
+            }
+            else
+            {
+                GetAccountInfo();
+            }
+        }
+
         public void OnPlayAsGuestClicked()
         {
-            UsernameInputField.text = "Guest";
             isGuest = true;
             rockMoveThreshold = 90;
             rockSizeIncreaseThreshold = 130;
             SpeedIncreaseThresholds = new int[] { 100 };
-            OnConnected();
+            OnStartClicked();
         }
 
         public void StartTestMode()
@@ -771,7 +1029,7 @@ namespace PeanutDashboard._04_FlappyIdiots
             {
                 //random y position
                 float y = Random.Range(-SpawnHeightRange, SpawnHeightRange);
-                GameObject asteroid = Instantiate(SpawnObject, this.transform.position + new Vector3(0, y, 0), Quaternion.identity) as GameObject;
+                GameObject asteroid = Instantiate(SpawnObject, this.transform.position + new UnityEngine.Vector3(0, y, 0), UnityEngine.Quaternion.identity) as GameObject;
                 var asteoridComponent = asteroid.GetComponent<Asteroid>();
                 asteoridComponent.Speed *= speedMultipier;
                 if (GameScore > rockMoveThreshold)

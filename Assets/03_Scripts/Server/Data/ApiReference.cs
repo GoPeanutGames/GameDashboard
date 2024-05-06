@@ -7,6 +7,7 @@ namespace PeanutDashboard.Server.Data
 	public enum AuthenticationApi
 	{
 		GetLoginSchema,
+		GetSigninSchema,
 		Web3LoginCheck
 	}
 
@@ -16,7 +17,8 @@ namespace PeanutDashboard.Server.Data
 		GetWallet,
 		ChangeNickName,
 		Score,
-		Leaderboard
+		Leaderboard,
+		CreateAccount
 	}
 
     public enum SessionApi
@@ -25,12 +27,16 @@ namespace PeanutDashboard.Server.Data
 		Update,
 		End
     }
-
+	public enum ReferalApi
+	{
+		RedeemCode,
+    }
     public static class ApiReference
 	{
 		private static readonly Dictionary<AuthenticationApi, string> AuthApiMap = new()
 		{
 			{ AuthenticationApi.GetLoginSchema, "/auth/login-schema/" },
+			{ AuthenticationApi.GetSigninSchema, "/auth/access-schema/" },
 			{ AuthenticationApi.Web3LoginCheck, "/auth/web3-login" },
 		};
 
@@ -49,6 +55,12 @@ namespace PeanutDashboard.Server.Data
             { SessionApi.End, "/session/v2/end/" },
         };
 
+        private static readonly Dictionary<ReferalApi, string> ReferalApiMap = new()
+        {
+            { ReferalApi.RedeemCode, "/referral/redeem-code/" },
+        };
+
+
         public static string GetApi<T>(T api) where T : struct, IConvertible
 		{
 			Type apiType = typeof(T);
@@ -60,10 +72,15 @@ namespace PeanutDashboard.Server.Data
 				AuthenticationApi authenticationApi = (AuthenticationApi)Convert.ChangeType(api, typeof(AuthenticationApi));
 				return AuthApiMap[authenticationApi];
 			}
-            if (typeof(SessionApi) == apiType)
+			if (typeof(SessionApi) == apiType)
+			{
+				SessionApi sessionApi = (SessionApi)Convert.ChangeType(api, typeof(SessionApi));
+				return SessionApiMap[sessionApi];
+			}
+			if (typeof(ReferalApi) == apiType)
             {
-                SessionApi sessionApi = (SessionApi)Convert.ChangeType(api, typeof(SessionApi));
-                return SessionApiMap[sessionApi];
+                ReferalApi referalApi = (ReferalApi)Convert.ChangeType(api, typeof(ReferalApi));
+                return ReferalApiMap[referalApi];
             }
             LoggerService.LogError($"{nameof(ApiReference)}::{nameof(GetApi)} - type {apiType} is not supported");
 			return "";
