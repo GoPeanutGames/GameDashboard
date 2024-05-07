@@ -9,7 +9,11 @@ namespace PeanutDashboard._04_SpaceEscape.Controllers
     {
         [Header(InspectorNames.SetInInspector)]
         [SerializeField]
-        private GameObject _runwayPartPrefab;
+        private GameObject _runwayPartPrefabLeft;
+        [SerializeField]
+        private GameObject _runwayPartPrefabRight;
+        [SerializeField]
+        private GameObject _runwayPartPrefabCenter;
 
         [SerializeField]
         private GameObject _leftSpawnPoint;
@@ -35,18 +39,31 @@ namespace PeanutDashboard._04_SpaceEscape.Controllers
             switch (partSide)
             {
                 case SpaceEscapeRunwayPartSide.Left:
-                    GameObject runwayPart = Instantiate(_runwayPartPrefab, _leftSpawnPoint.transform.position, Quaternion.identity);
+                    GameObject runwayPart = Instantiate(_runwayPartPrefabLeft, _leftSpawnPoint.transform.position, Quaternion.identity);
                     runwayPart.GetComponent<SpaceEscapeRunwayPart>().Initialise(SpaceEscapeRunwayPartSide.Left);
                     break;
                 case SpaceEscapeRunwayPartSide.Center:
-                    GameObject runwayPart2 = Instantiate(_runwayPartPrefab, _centralSpawnPoint.transform.position, Quaternion.identity);
+                    GameObject runwayPart2 = Instantiate(_runwayPartPrefabCenter, _centralSpawnPoint.transform.position, Quaternion.identity);
                     runwayPart2.GetComponent<SpaceEscapeRunwayPart>().Initialise(SpaceEscapeRunwayPartSide.Center);
                     break;
                 case SpaceEscapeRunwayPartSide.Right:
-                    GameObject runwayPart3 = Instantiate(_runwayPartPrefab, _rightSpawnPoint.transform.position, Quaternion.identity);
+                    GameObject runwayPart3 = Instantiate(_runwayPartPrefabRight, _rightSpawnPoint.transform.position, Quaternion.identity);
                     runwayPart3.GetComponent<SpaceEscapeRunwayPart>().Initialise(SpaceEscapeRunwayPartSide.Right);
                     break;
             }
+        }
+        
+        private GameObject GetPrefabForSide(SpaceEscapeRunwayPartSide runwayPartSide)
+        {
+            switch (runwayPartSide){
+                case SpaceEscapeRunwayPartSide.Right:
+                    return _runwayPartPrefabRight;
+                case SpaceEscapeRunwayPartSide.Left:
+                    return _runwayPartPrefabLeft;
+                case SpaceEscapeRunwayPartSide.Center:
+                    return _runwayPartPrefabCenter;
+            }
+            return null;
         }
     }
 }
