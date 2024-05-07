@@ -113,7 +113,7 @@ namespace PeanutDashboard.Server
 		
 		public static void PostDataToServer<T>(T api, string formData, Action<string> onComplete, Action<string> onFail = null) where T : struct, IConvertible
 		{
-			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(GetDataFromServer)} - {api}, with {formData}");
+			LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(PostDataToServer)} - {api}, with {formData}");
 			UnityWebRequest webRequest = SetupPostWebRequest(ApiReference.GetApi(api), formData);
 			SendWebRequest(webRequest, onComplete, onFail);
 		}

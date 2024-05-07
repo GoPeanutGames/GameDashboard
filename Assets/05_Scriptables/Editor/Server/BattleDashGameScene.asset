@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fbc60319584f858164bbcb87502dd9, type: 3}
   m_Name: BattleDashGameScene
   m_EditorClassIdentifier: 
-  scenePath: Assets/01_Scenes/Games/BattleDashGameScene.unity
+  scenePath: Assets/01_Scenes/Games/BattleDash/BattleDashGameScene.unity
   group: {fileID: 11400000, guid: 0fbdbc0219e602b4bad2e2615c911f55, type: 2}

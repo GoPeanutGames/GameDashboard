@@ -1,5 +1,6 @@
+using System.Runtime.InteropServices;
+using System;
 using System.Threading.Tasks;
-using MetaMask.Unity;
 using PeanutDashboard.Server;
 using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Events;
@@ -8,6 +9,7 @@ using PeanutDashboard.Shared.User;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using UnityEngine;
+using AOT;
 
 namespace PeanutDashboard.Shared.Metamask
 {
@@ -17,10 +19,13 @@ namespace PeanutDashboard.Shared.Metamask
 		private static string _signature;
 		private static string _env;
 
-		public static void Initialise(MetaMaskConfig metaMaskConfig, string unityEnv)
+        
+        public static void Initialise(string unityEnv)
 		{
+
 			_env = unityEnv;
-			MetamaskService.Initialise(metaMaskConfig);
+			return;
+			//MetamaskService.Initialise();
 		}
 		
 		public static void StartMetamaskLogin()
@@ -28,9 +33,7 @@ namespace PeanutDashboard.Shared.Metamask
 			LoggerService.LogInfo($"{nameof(AuthenticationService)}::{nameof(StartMetamaskLogin)}");
 			LoadingEvents.RaiseShowLoadingEvent("Connecting to metamask...");
 #if !UNITY_EDITOR
-			AuthenticationEvents.Instance.UserMetamaskConnected += OnUserMetamaskConnected;
-			AuthenticationEvents.Instance.MetamaskConnectionFail += OnMetamaskConnectionFail;
-			MetamaskService.LoginMetamask();
+
 #elif UNITY_EDITOR
 			_signature = "0x821ee840b49c4294850eb51319b9ddb85504190ee38f4dec00f81b13b64fbd6a388d75df615de9aaac22adbc6b565134eaefa25e3b09223313932323e48c4aba1b";
 			_walletAddress = "0x5d7167477bf3abedb261b4a5a1c150b87e6837a9";
@@ -41,7 +44,6 @@ namespace PeanutDashboard.Shared.Metamask
 		public static void DisconnectMetamask()
 		{
 			UserService.Instance.UserLoggedOut();
-			MetamaskService.LogOutMetamask();
 		}
 
 		private static void OnUserMetamaskConnected(string walletAddress)
@@ -68,7 +70,6 @@ namespace PeanutDashboard.Shared.Metamask
 			AuthenticationEvents.Instance.UserSignatureReceived += OnMetamaskSignatureReceived;
 			AuthenticationEvents.Instance.MetamaskSignatureFail += OnMetamaskSignatureFail;
 			LoadingEvents.RaiseUpdateLoadingEvent("Requesting signature...");
-			MetamaskService.RequestMetamaskSignature(schema, _walletAddress);
 		}
 
 		private static void OnMetamaskSignatureReceived(string signature)

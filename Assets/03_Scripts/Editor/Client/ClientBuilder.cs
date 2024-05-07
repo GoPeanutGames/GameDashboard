@@ -10,21 +10,21 @@ namespace PeanutDashboard.Editor
 	[CustomEditor(typeof(ClientBuilder))]
 	public class ClientBuilder : UnityEditor.Editor
 	{
-		[MenuItem("PeanutDashboard/Build/Client/Development Testing")]
+		[MenuItem("PeanutDashboard/Build/BattleDash/Client/Development Testing")]
 		public static void BuildForClientDevTesting()
 		{
 			ProjectDatabase.Instance.gameConfig.ConfigureForDevTesting();
 			BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 		
-		[MenuItem("PeanutDashboard/Build/Client/Development Release")]
+		[MenuItem("PeanutDashboard/Build/BattleDash/Client/Development Release")]
 		public static void BuildForClientDevRelease()
 		{
 			ProjectDatabase.Instance.gameConfig.ConfigureForDevRelease();
 			BuildForClient(ProjectDatabase.Instance.gameConfig.currentEnvironmentModel.unityAddressablesProfileId);
 		}
 
-		[MenuItem("PeanutDashboard/Build/Client/Production Testing")]
+		[MenuItem("PeanutDashboard/Build/BattleDash/Client/Production Testing")]
 		public static void BuildForClientProdTest()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
@@ -33,7 +33,7 @@ namespace PeanutDashboard.Editor
 			}
 		}
 
-		[MenuItem("PeanutDashboard/Build/Client/Production Release")]
+		[MenuItem("PeanutDashboard/Build/BattleDash/Client/Production Release")]
 		public static void BuildForClientProdRelease()
 		{
 			if (EditorUtility.DisplayDialog("Are you sure?", "Are you sure you want to build for production?", "Build", "Cancel")){
@@ -67,10 +67,10 @@ namespace PeanutDashboard.Editor
 			PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
 			PlayerSettings.SetManagedStrippingLevel(NamedBuildTarget.WebGL, ManagedStrippingLevel.Low);
 			AddressableAssetSettings.BuildPlayerContent();
-			string folderName = "Dashboard";
+			string folderName = "FlappyIdiots";
 			BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions()
 			{
-				scenes = new[] { "Assets/01_Scenes/Core/InitScene.unity" },
+				scenes = new[] { "Assets/01_Scenes/Games/FlappyIdiots/FlappyIdiotsGameScene.unity" },
 				locationPathName = Path.Combine(parentFolderPath, folderName),
 				target = BuildTarget.WebGL,
 			};

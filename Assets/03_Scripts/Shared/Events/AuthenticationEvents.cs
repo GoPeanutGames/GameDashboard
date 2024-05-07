@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Shared.Logging;
+﻿using Org.BouncyCastle.Asn1.Cms;
+using PeanutDashboard.Shared.Logging;
 using PeanutDashboard.Utils;
 using UnityEngine.Events;
 
@@ -10,8 +11,17 @@ namespace PeanutDashboard.Shared.Events
 		private UnityAction<string> _userSignatureReceived;
 		private UnityAction<string> _metamaskConnectionFail;
 		private UnityAction<string> _metamaskSignatureFail;
+		private UnityAction _authenticationDataRetrievalFail;
 
-		public event UnityAction<string> UserMetamaskConnected
+
+        public event UnityAction AuthenticationDataRetrievalFail
+        {
+            add => _authenticationDataRetrievalFail += value;
+            remove => _authenticationDataRetrievalFail -= value;
+        }
+
+
+        public event UnityAction<string> UserMetamaskConnected
 		{
 			add => _userMetamaskConnected += value;
 			remove => _userMetamaskConnected -= value;
@@ -70,5 +80,21 @@ namespace PeanutDashboard.Shared.Events
 			}
 			_metamaskSignatureFail.Invoke(error);
 		}
-	}
+
+		public void RaiseAuthenticationDataRetrievalSuccessEvent()
+		{
+
+		}
+
+		public void RaiseAuthenticationDataRetrievalFailEvent()
+		{
+			if (_authenticationDataRetrievalFail == null)
+			{
+                LoggerService.LogWarning($"{nameof(AuthenticationEvents)}::{nameof(RaiseAuthenticationDataRetrievalFailEvent)} raised, but nothing picked it up");
+				return;
+            }
+			_authenticationDataRetrievalFail.Invoke();
+		}
+
+    }
 }

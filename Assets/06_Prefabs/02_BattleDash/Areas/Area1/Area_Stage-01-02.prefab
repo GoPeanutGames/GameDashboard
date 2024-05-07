@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabBackground: {fileID: 7826289173869508927, guid: 6f2fd295c04019b49a32b6de6c5a6ff5, type: 3}
-  _areaType: {fileID: 11400000, guid: c8486cb50dc1d5e40836359d69fab811, type: 2}
+  _battleDashAreaType: {fileID: 11400000, guid: c8486cb50dc1d5e40836359d69fab811, type: 2}
   _spawnedBackground: {fileID: 0}
   _direction: {x: 0, y: 0, z: 0}
   _startingDistance: 0

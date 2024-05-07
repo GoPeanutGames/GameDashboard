@@ -10,10 +10,12 @@ namespace PeanutDashboard.Shared.UI
 		public override void OnPointerDown(PointerEventData eventData)
 		{
 			Debug.Log($"{nameof(GoFullscreenOnMobileAndCallClickButton)}::{nameof(OnPointerDown)}");
+#if UNITY_WEBGL
 			if (WebGLUtils.IsWebMobile){
 				Debug.Log($"{nameof(GoFullscreenOnMobileAndCallClickButton)}::{nameof(OnPointerDown)} - trigger full screen");
 				Screen.fullScreen = true;
 			}
+#endif
 			base.OnPointerDown(eventData);
 		}
 	}
