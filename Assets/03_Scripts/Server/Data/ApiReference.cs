@@ -16,6 +16,13 @@ namespace PeanutDashboard.Server.Data
 		GetWallet
 	}
 
+	public enum SessionApi
+	{
+        Start,
+        Update,
+        End
+    }
+
 	public static class ApiReference
 	{
 		private static readonly Dictionary<AuthenticationApi, string> AuthApiMap = new()
@@ -27,21 +34,37 @@ namespace PeanutDashboard.Server.Data
 		private static readonly Dictionary<PlayerApi, string> PlayerApiMap = new()
 		{
 			{ PlayerApi.GetGeneralData, "/player/me/" },
-			{ PlayerApi.GetWallet, "/player/wallet/" },
-		};
+			{ PlayerApi.GetWallet, "/player/wallet/" }
+        };
 
-		public static string GetApi<T>(T api) where T : struct, IConvertible
+        private static readonly Dictionary<SessionApi, string> SessionApiMap = new()
+        {
+            { SessionApi.Start, "/session/start/" },
+            { SessionApi.Update, "/session/v2/update/" },
+            { SessionApi.End, "/session/v2/end/" },
+        };
+
+        public static string GetApi<T>(T api) where T : struct, IConvertible
 		{
 			Type apiType = typeof(T);
-			if (typeof(PlayerApi) == apiType){
+			if (typeof(PlayerApi) == apiType) 
+			{
 				PlayerApi playerApi = (PlayerApi)Convert.ChangeType(api, typeof(PlayerApi));
 				return PlayerApiMap[playerApi];
 			}
-			if (typeof(AuthenticationApi) == apiType){
+			if (typeof(AuthenticationApi) == apiType)
+			{
 				AuthenticationApi authenticationApi = (AuthenticationApi)Convert.ChangeType(api, typeof(AuthenticationApi));
 				return AuthApiMap[authenticationApi];
 			}
-			LoggerService.LogError($"{nameof(ApiReference)}::{nameof(GetApi)} - type {apiType} is not supported");
+            if (typeof(SessionApi) == apiType)
+            {
+                SessionApi sessionApi = (SessionApi)Convert.ChangeType(api, typeof(SessionApi));
+                return SessionApiMap[sessionApi];
+            }
+
+
+            LoggerService.LogError($"{nameof(ApiReference)}::{nameof(GetApi)} - type {apiType} is not supported");
 			return "";
 		}
 	}

@@ -59,6 +59,7 @@ namespace PeanutDashboard.UnityServer.Core
 			ServerEvents.StartServer -= OnStartServer;
 		}
 
+
 		private async void OnStartServer(GameInfo gameInfo)
 		{
 			LoggerService.LogInfo($"{nameof(UnityServerStartUp)}::{nameof(OnStartServer)}");

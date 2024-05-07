@@ -76,8 +76,8 @@ namespace PeanutDashboard.UnityServer.Core
 			LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - start - {_gotAssignment}");
 			_gotAssignment = false;
 			do{
-				yield return new WaitForSeconds(1.2f);
-				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - wait 1 sec");
+				yield return new WaitForSeconds(5f);
+				LoggerService.LogInfo($"{nameof(MatchmakerClient)}::{nameof(PollTicketStatus)} - wait 5 sec");
 				GetTicketStatus();
 			} while (!_gotAssignment);
 			yield return null;
