@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
     public class RobotRampageBackgroundController: MonoBehaviour
     {
+        private const float HorizontalIncrease = 10.8f;
+        private const float VerticalIncrease = 19.2f;
+        
         [SerializeField]
         private GameObject _bgPrefab;
 
         [SerializeField]
         private Sprite _defaultBackground;
+        
+        [SerializeField]
+        private List<Sprite> _decor;
 
         [SerializeField]
         private float _centralWidth = 4f;
@@ -18,32 +23,41 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private List<GameObject> _backgroundObjectsSpawned;
 
-        private int currentGridPosX = 0;
-        private int currentGridPosY = 0;
-
-        private float horizontalIncrease = 10.8f;
-        private float verticalIncrease = 19.2f;
-
+        [SerializeField]
+        private int _currentGridPosX = 0;
+        
+        [SerializeField]
+        private int _currentGridPosY = 0;
+        
         private void Start()
         {
             GameObject bg = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, 0, 0), Quaternion.identity);
             bg.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + horizontalIncrease, 0, 0), Quaternion.identity);
+            bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + HorizontalIncrease, 0, 0), Quaternion.identity);
             bgRight.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - horizontalIncrease, 0, 0), Quaternion.identity);
+            bgRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - HorizontalIncrease, 0, 0), Quaternion.identity);
             bgLeft.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgTop = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, verticalIncrease, 0), Quaternion.identity);
+            bgLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgTop = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, VerticalIncrease, 0), Quaternion.identity);
             bgTop.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgDown = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, -verticalIncrease, 0), Quaternion.identity);
+            bgTop.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgDown = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, -VerticalIncrease, 0), Quaternion.identity);
             bgDown.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgTopRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + horizontalIncrease, verticalIncrease, 0), Quaternion.identity);
+            bgDown.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgTopRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + HorizontalIncrease, VerticalIncrease, 0), Quaternion.identity);
             bgTopRight.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgTopLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - horizontalIncrease, verticalIncrease, 0), Quaternion.identity);
+            bgTopRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgTopLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - HorizontalIncrease, VerticalIncrease, 0), Quaternion.identity);
             bgTopLeft.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgBottomLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - horizontalIncrease, -verticalIncrease, 0), Quaternion.identity);
+            bgTopLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgBottomLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - HorizontalIncrease, -VerticalIncrease, 0), Quaternion.identity);
             bgBottomLeft.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            GameObject bgBottomRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + horizontalIncrease, -verticalIncrease, 0), Quaternion.identity);
+            bgBottomLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            GameObject bgBottomRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + HorizontalIncrease, -VerticalIncrease, 0), Quaternion.identity);
             bgBottomRight.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
+            bgBottomRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
             _backgroundObjectsSpawned.Add(bg);
             _backgroundObjectsSpawned.Add(bgRight);
             _backgroundObjectsSpawned.Add(bgLeft);
@@ -68,15 +82,15 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void CheckPos()
         {
-            int newGridPosX = Mathf.FloorToInt(RobotRampagePlayerMovement.currentPosition.x / horizontalIncrease);
-            int newGridPosY = (int)(RobotRampagePlayerMovement.currentPosition.y / verticalIncrease);
-            if (currentGridPosX != newGridPosX || currentGridPosY != newGridPosY)
+            int newGridPosX = Mathf.FloorToInt(RobotRampagePlayerMovement.currentPosition.x / HorizontalIncrease);
+            int newGridPosY = (int)(RobotRampagePlayerMovement.currentPosition.y / VerticalIncrease);
+            if (_currentGridPosX != newGridPosX || _currentGridPosY != newGridPosY)
             {
                 CheckBgs(newGridPosX, newGridPosY);
             }
 
-            currentGridPosX = newGridPosX;
-            currentGridPosY = newGridPosY;
+            _currentGridPosX = newGridPosX;
+            _currentGridPosY = newGridPosY;
         }
 
         private void CheckBgs(int newGridPosX, int newGridPosY)
@@ -84,8 +98,8 @@ namespace PeanutDashboard._06_RobotRampage
             bool bgDeleted = false;
             foreach (GameObject bg in _backgroundObjectsSpawned)
             {
-                int bgGridPosX = Mathf.FloorToInt(bg.transform.position.x / horizontalIncrease);
-                int bgGridPosY = (int)(bg.transform.position.y / verticalIncrease);
+                int bgGridPosX = Mathf.FloorToInt(bg.transform.position.x / HorizontalIncrease);
+                int bgGridPosY = (int)(bg.transform.position.y / VerticalIncrease);
                 if (Mathf.Abs(newGridPosX - bgGridPosX) >= 2 || Mathf.Abs(newGridPosY - bgGridPosY) >=2)
                 {
                     Destroy(bg);
@@ -105,8 +119,8 @@ namespace PeanutDashboard._06_RobotRampage
                     bool found = false;
                     foreach (GameObject bg in _backgroundObjectsSpawned)
                     {
-                        int bgGridPosX = Mathf.FloorToInt(bg.transform.position.x / horizontalIncrease);
-                        int bgGridPosY = (int)(bg.transform.position.y / verticalIncrease);
+                        int bgGridPosX = Mathf.FloorToInt(bg.transform.position.x / HorizontalIncrease);
+                        int bgGridPosY = (int)(bg.transform.position.y / VerticalIncrease);
                         if (bgGridPosX == i + newGridPosX && bgGridPosY == j+newGridPosY)
                         {
                             found = true;
@@ -115,8 +129,9 @@ namespace PeanutDashboard._06_RobotRampage
 
                     if (!found)
                     {
-                        GameObject bg = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + (i + newGridPosX)*horizontalIncrease, (j+newGridPosY)*verticalIncrease, 0), Quaternion.identity);
+                        GameObject bg = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + (i + newGridPosX)*HorizontalIncrease, (j+newGridPosY)*VerticalIncrease, 0), Quaternion.identity);
                         bg.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
+                        bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
                         _backgroundObjectsSpawned.Add(bg);
                     }
                 }

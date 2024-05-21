@@ -11,8 +11,8 @@ namespace PeanutDashboard._06_RobotRampage
         private int _minAmountToHave;
         private int _maxAmountToHave;
         private bool _spawnActive = false;
-        private List<GameObject> _currentMonsters = new List<GameObject>();
-        private float _timeToSpawn = 0.3f;
+        private readonly List<GameObject> _currentMonsters = new List<GameObject>();
+        private const float TimeToSpawn = 0.3f;
         private float _timer;
 
         private void OnEnable()
@@ -32,7 +32,7 @@ namespace PeanutDashboard._06_RobotRampage
             _minAmountToHave = min;
             _maxAmountToHave = max;
             _spawnActive = true;
-            _timer = _timeToSpawn;
+            _timer = TimeToSpawn;
         }
 
         private void RemoveDestroyed()
@@ -58,7 +58,7 @@ namespace PeanutDashboard._06_RobotRampage
                     if (_timer <= 0)
                     {
                         SpawnMonster();
-                        _timer = _timeToSpawn;
+                        _timer = TimeToSpawn;
                     }
                 }
             }

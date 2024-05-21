@@ -196,7 +196,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -688,8 +688,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bgPrefab: {fileID: 5074609970960891906, guid: 1c238b59a41925c478981e96f692ae94, type: 3}
   _defaultBackground: {fileID: 21300000, guid: e70ca1b58f986cc42856181de36fdd80, type: 3}
+  _decor:
+  - {fileID: 21300000, guid: 63c0073155a305148a99453d389514ac, type: 3}
+  - {fileID: 21300000, guid: 06aab0c63f4832f4db77fffe44c79d2f, type: 3}
   _centralWidth: 4
   _backgroundObjectsSpawned: []
+  _currentGridPosX: 0
+  _currentGridPosY: 0
 --- !u!1 &2051327036
 GameObject:
   m_ObjectHideFlags: 0
