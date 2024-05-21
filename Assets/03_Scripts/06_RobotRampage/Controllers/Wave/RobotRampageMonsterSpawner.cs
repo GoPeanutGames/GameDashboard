@@ -67,7 +67,7 @@ namespace PeanutDashboard._06_RobotRampage
         private void SpawnMonster()
         {
             LoggerService.LogInfo($"{nameof(RobotRampageMonsterSpawner)}::{nameof(SpawnMonster)}");
-            Vector3 pos = Random.insideUnitCircle.normalized * Random.Range(8f,12f);
+            Vector3 pos = RobotRampagePlayerMovement.currentPosition + (Vector3)Random.insideUnitCircle.normalized * Random.Range(8f,12f);
             GameObject monster = Instantiate(_currentMonsterPrefab, pos, Quaternion.identity);
             _currentMonsters.Add(monster);
         }

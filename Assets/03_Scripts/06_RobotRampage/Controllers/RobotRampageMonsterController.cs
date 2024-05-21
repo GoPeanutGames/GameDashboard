@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
@@ -9,7 +8,7 @@ namespace PeanutDashboard._06_RobotRampage
         {
             Vector3 direction = RobotRampagePlayerMovement.currentPosition - this.transform.position;
             this.transform.Translate(direction.normalized * 0.7f * Time.deltaTime);
-            if (Vector2.Distance(this.transform.position, RobotRampagePlayerMovement.currentPosition) > 20f)
+            if (Vector2.Distance(this.transform.position, RobotRampagePlayerMovement.currentPosition) > 15f)
             {
                 Destroy(this.gameObject);
             }
