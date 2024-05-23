@@ -4,9 +4,12 @@
 	{
 		public const string PeanutDashboard = "PeanutDashboard/";
 		public const string BattleDash = "BattleDash/";
+		public const string RobotRampage = "RobotRampage/";
 		public const string DashboardModels = PeanutDashboard + "Models/";
 		public const string DashboardConfigs = PeanutDashboard + "Configs/";
 		public const string BattleDashModels = BattleDash + "Models/";
 		public const string BattleDashConfigs = BattleDash + "Configs/";
+		public const string RobotRampageModels = RobotRampage + "Models/";
+		public const string RobotRampageConfigs = RobotRampage + "Configs/";
 	}
 }

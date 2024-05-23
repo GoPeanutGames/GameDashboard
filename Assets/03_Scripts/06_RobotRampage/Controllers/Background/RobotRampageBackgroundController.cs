@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
@@ -8,11 +9,9 @@ namespace PeanutDashboard._06_RobotRampage
         private const float HorizontalIncrease = 10.8f;
         private const float VerticalIncrease = 19.2f;
         
+        [Header(InspectorNames.SetInInspector)]
         [SerializeField]
         private GameObject _bgPrefab;
-
-        [SerializeField]
-        private Sprite _defaultBackground;
         
         [SerializeField]
         private List<Sprite> _decor;
@@ -20,6 +19,7 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private float _centralWidth = 4f;
 
+        [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private List<GameObject> _backgroundObjectsSpawned;
 
@@ -28,9 +28,13 @@ namespace PeanutDashboard._06_RobotRampage
         
         [SerializeField]
         private int _currentGridPosY = 0;
+
+        [SerializeField]
+        private Sprite _defaultBackground;
         
         private void Start()
         {
+            _defaultBackground = RobotRampageStageService.currentStageData.DefaultBackground;
             GameObject bg = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, 0, 0), Quaternion.identity);
             bg.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
             bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
