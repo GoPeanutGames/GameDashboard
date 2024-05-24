@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils.Misc;
+﻿using System.Collections.Generic;
+using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
@@ -12,6 +13,16 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private Sprite _defaultBackground;
 
+        [SerializeField]
+        private List<Sprite> _possibleDecor;
+
+        [SerializeField]
+        private List<RobotRampageWaveData> _wavesData;
+
         public Sprite DefaultBackground => _defaultBackground;
+
+        public List<Sprite> PossibleDecor => _possibleDecor;
+
+        public List<RobotRampageWaveData> WavesData => _wavesData;
     }
 }

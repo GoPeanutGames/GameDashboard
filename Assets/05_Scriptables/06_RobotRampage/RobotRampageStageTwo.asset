@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b4702ee4a4d4b7c99c0a68fd0e7d089, type: 3}
-  m_Name: RobotRampageStageOne
+  m_Name: RobotRampageStageTwo
   m_EditorClassIdentifier: 
-  _defaultBackground: {fileID: 21300000, guid: e70ca1b58f986cc42856181de36fdd80, type: 3}
+  _defaultBackground: {fileID: 21300000, guid: c4e15fb04171b5841b4d6b0f14ef8866, type: 3}
   _possibleDecor:
-  - {fileID: 21300000, guid: 63c0073155a305148a99453d389514ac, type: 3}
-  - {fileID: 21300000, guid: 06aab0c63f4832f4db77fffe44c79d2f, type: 3}
+  - {fileID: 21300000, guid: 025d67ddd6f4dcc48b1e09a2e9a70011, type: 3}
+  - {fileID: 21300000, guid: 115bf84e0f065054ba8fcd2c4331675f, type: 3}
   _wavesData:
   - waveTimer: 60
     robotRampageWaveMonsterData:

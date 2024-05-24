@@ -12,9 +12,6 @@ namespace PeanutDashboard._06_RobotRampage
         [Header(InspectorNames.SetInInspector)]
         [SerializeField]
         private GameObject _bgPrefab;
-        
-        [SerializeField]
-        private List<Sprite> _decor;
 
         [SerializeField]
         private float _centralWidth = 4f;
@@ -32,9 +29,13 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private Sprite _defaultBackground;
         
+        [SerializeField]
+        private List<Sprite> _decor;
+        
         private void Start()
         {
             _defaultBackground = RobotRampageStageService.currentStageData.DefaultBackground;
+            _decor = RobotRampageStageService.currentStageData.PossibleDecor;
             GameObject bg = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, 0, 0), Quaternion.identity);
             bg.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
             bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor);

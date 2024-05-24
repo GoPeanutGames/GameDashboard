@@ -7,12 +7,11 @@ namespace PeanutDashboard._06_RobotRampage
 {
     public class RobotRampageMonsterSpawner: MonoBehaviour
     {
-        private GameObject _currentMonsterPrefab;
-        private int _minAmountToHave;
-        private int _maxAmountToHave;
-        private bool _spawnActive = false;
-        private readonly List<GameObject> _currentMonsters = new List<GameObject>();
         private const float TimeToSpawn = 0.3f;
+
+        private List<RobotRampageWaveMonsterData> _currentWaveSetup;
+        private readonly Dictionary<GameObject, List<GameObject>> _prefabCurrentMonstersList = new ();
+        private bool _spawnActive = false;
         private float _timer;
 
         private void OnEnable()
@@ -25,19 +24,24 @@ namespace PeanutDashboard._06_RobotRampage
             RobotRampageWaveEvents.OnStartWaveSpawn -= OnStartWaveSpawn;
         }
 
-        private void OnStartWaveSpawn(GameObject prefab, int min, int max)
+        private void OnStartWaveSpawn(List<RobotRampageWaveMonsterData> robotRampageMonstersData)
         {
             LoggerService.LogInfo($"{nameof(RobotRampageMonsterSpawner)}::{nameof(OnStartWaveSpawn)}");
-            _currentMonsterPrefab = prefab;
-            _minAmountToHave = min;
-            _maxAmountToHave = max;
-            _spawnActive = true;
+            _currentWaveSetup = robotRampageMonstersData;
+            foreach (RobotRampageWaveMonsterData robotRampageWaveMonsterData in _currentWaveSetup)
+            {
+                _prefabCurrentMonstersList.TryAdd(robotRampageWaveMonsterData.prefab, new List<GameObject>());
+            }
             _timer = TimeToSpawn;
+            _spawnActive = true;
         }
 
         private void RemoveDestroyed()
         {
-            _currentMonsters.RemoveAll((m) => m == null);
+            foreach (GameObject prefabKey in _prefabCurrentMonstersList.Keys)
+            {
+                _prefabCurrentMonstersList[prefabKey].RemoveAll((m) => m == null);
+            }
         }
         
         private void Update()
@@ -45,31 +49,37 @@ namespace PeanutDashboard._06_RobotRampage
             RemoveDestroyed();
             if (_spawnActive)
             {
-                if (_currentMonsters.Count < _minAmountToHave)
+                foreach (RobotRampageWaveMonsterData robotRampageWaveMonsterData in _currentWaveSetup)
                 {
-                    for (int i = 0; i < _minAmountToHave - _currentMonsters.Count; i++)
+                    int currentMonsterAmount = _prefabCurrentMonstersList[robotRampageWaveMonsterData.prefab].Count;
+                    int minToSpawn = robotRampageWaveMonsterData.minToSpawn;
+                    int maxToSpawn = robotRampageWaveMonsterData.maxToSpawn;
+                    if (currentMonsterAmount < minToSpawn)
                     {
-                        SpawnMonster();
+                        for (int i = 0; i < minToSpawn - currentMonsterAmount; i++)
+                        {
+                            SpawnMonster(robotRampageWaveMonsterData.prefab);
+                        }
                     }
-                }
-                else if (_currentMonsters.Count < _maxAmountToHave)
-                {
-                    _timer -= Time.deltaTime;
-                    if (_timer <= 0)
+                    else if (currentMonsterAmount < maxToSpawn)
                     {
-                        SpawnMonster();
-                        _timer = TimeToSpawn;
+                        _timer -= Time.deltaTime;
+                        if (_timer <= 0)
+                        {
+                            SpawnMonster(robotRampageWaveMonsterData.prefab);
+                            _timer = TimeToSpawn;
+                        }
                     }
                 }
             }
         }
 
-        private void SpawnMonster()
+        private void SpawnMonster(GameObject prefab)
         {
             LoggerService.LogInfo($"{nameof(RobotRampageMonsterSpawner)}::{nameof(SpawnMonster)}");
             Vector3 pos = RobotRampagePlayerMovement.currentPosition + (Vector3)Random.insideUnitCircle.normalized * Random.Range(8f,12f);
-            GameObject monster = Instantiate(_currentMonsterPrefab, pos, Quaternion.identity);
-            _currentMonsters.Add(monster);
+            GameObject monster = Instantiate(prefab, pos, Quaternion.identity);
+            _prefabCurrentMonstersList[prefab].Add(monster);
         }
     }
 }
