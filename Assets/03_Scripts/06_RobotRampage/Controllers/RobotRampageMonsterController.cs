@@ -8,6 +8,13 @@ namespace PeanutDashboard._06_RobotRampage
         [Header(InspectorNames.SetInInspector)]
         [SerializeField]
         private GameObject _enemyImage;
+
+        [SerializeField]
+        private float _maxHealthRef;
+        
+        [Header(InspectorNames.DebugDynamic)]
+        [SerializeField]
+        private float _currentHealth;
         
         private void Update()
         {

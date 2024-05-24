@@ -11,6 +11,9 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private float _damageToDeal;
 
+        [SerializeField]
+        private bool _ignoreTriggers;
+
         public virtual void Setup(string tagToDamage, float damage)
         {
             _tagToDamage = tagToDamage;
@@ -19,8 +22,9 @@ namespace PeanutDashboard._06_RobotRampage
 
         protected void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.tag.Equals(_tagToDamage))
+            if (other.tag.Equals(_tagToDamage) && !_ignoreTriggers)
             {
+                _ignoreTriggers = true;
                 Destroy(other.gameObject);
                 Destroy(this.gameObject);
             }
