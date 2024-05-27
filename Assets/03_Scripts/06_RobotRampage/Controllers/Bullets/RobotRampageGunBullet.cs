@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
     public class RobotRampageGunBullet: RobotRampageBaseBullet
     {
+        [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private Vector3 _direction;
 

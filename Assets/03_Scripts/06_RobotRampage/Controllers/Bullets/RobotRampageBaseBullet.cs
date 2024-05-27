@@ -1,16 +1,18 @@
-﻿using System;
+﻿using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
     public class RobotRampageBaseBullet: MonoBehaviour
     {
+        [Header(InspectorNames.SetInInspector)]
         [SerializeField]
         private string _tagToDamage;
 
         [SerializeField]
         private float _damageToDeal;
 
+        [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private bool _ignoreTriggers;
 
@@ -20,12 +22,12 @@ namespace PeanutDashboard._06_RobotRampage
             _damageToDeal = damage;
         }
 
-        protected void OnTriggerEnter2D(Collider2D other)
+        protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.tag.Equals(_tagToDamage) && !_ignoreTriggers)
             {
                 _ignoreTriggers = true;
-                Destroy(other.gameObject);
+                other.GetComponent<RobotRampageMonsterController>().Damage(_damageToDeal);
                 Destroy(this.gameObject);
             }
         }

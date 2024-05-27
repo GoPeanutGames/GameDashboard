@@ -87,8 +87,8 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void CheckPos()
         {
-            int newGridPosX = Mathf.FloorToInt(RobotRampagePlayerMovement.currentPosition.x / HorizontalIncrease);
-            int newGridPosY = (int)(RobotRampagePlayerMovement.currentPosition.y / VerticalIncrease);
+            int newGridPosX = Mathf.FloorToInt(RobotRampagePlayerController.currentPosition.x / HorizontalIncrease);
+            int newGridPosY = (int)(RobotRampagePlayerController.currentPosition.y / VerticalIncrease);
             if (_currentGridPosX != newGridPosX || _currentGridPosY != newGridPosY)
             {
                 CheckBgs(newGridPosX, newGridPosY);

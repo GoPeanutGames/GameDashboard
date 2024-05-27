@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -5838422183902273843}
   - component: {fileID: 967400986983787709}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: MobB
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyImage: {fileID: 1362890025984825399}
+  _maxHealthRef: 30
+  _currentHealth: 0
 --- !u!58 &967400986983787709
 CircleCollider2D:
   m_ObjectHideFlags: 0

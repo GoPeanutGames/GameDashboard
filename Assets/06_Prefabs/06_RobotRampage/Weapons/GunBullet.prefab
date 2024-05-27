@@ -4930,8 +4930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3436e5950fb414cac439e796359cbff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tagToDamage: 
-  _damageToDeal: 0
+  _tagToDamage: Enemy
+  _damageToDeal: 20
   _ignoreTriggers: 0
   _direction: {x: 0, y: 0, z: 0}
   _speed: 0

@@ -1,14 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
-    public class RobotRampagePlayerMovement: MonoBehaviour
+    public class RobotRampagePlayerController: MonoBehaviour
     {
         public static Vector3 currentPosition;
 
         [SerializeField]
         private GameObject _playerImage;
-        
+
+        private void OnEnable()
+        {
+            RobotRampagePlayerEvents.OnPlayerKilled += OnPlayerKilled;
+        }
+
+        private void OnDisable()
+        {
+            RobotRampagePlayerEvents.OnPlayerKilled -= OnPlayerKilled;
+        }
+
+        private void Start()
+        {
+            Camera.main.transform.SetParent(this.transform);
+        }
+
         private void Update()
         {
             RotateToMouse();
@@ -31,6 +47,12 @@ namespace PeanutDashboard._06_RobotRampage
 
             float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
             _playerImage.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+        }
+
+        private void OnPlayerKilled()
+        {
+            Camera.main.transform.SetParent(null);
+            Destroy(this.gameObject);
         }
     }
 }
