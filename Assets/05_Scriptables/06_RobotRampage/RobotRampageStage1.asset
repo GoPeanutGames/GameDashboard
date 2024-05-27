@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4702ee4a4d4b7c99c0a68fd0e7d089, type: 3}
+  m_Name: RobotRampageStage1
+  m_EditorClassIdentifier: 
+  _defaultBackground: {fileID: 21300000, guid: e70ca1b58f986cc42856181de36fdd80, type: 3}
+  _possibleDecor:
+  - {fileID: 21300000, guid: 63c0073155a305148a99453d389514ac, type: 3}
+  - {fileID: 21300000, guid: 06aab0c63f4832f4db77fffe44c79d2f, type: 3}
+  _wavesData:
+  - waveTimer: 60
+    robotRampageWaveMonsterData:
+    - prefab: {fileID: 4495238537429630895, guid: 28086c07b78aa464c9e0c238f8c21be2, type: 3}
+      minToSpawn: 8
+      maxToSpawn: 15
+  - waveTimer: 60
+    robotRampageWaveMonsterData:
+    - prefab: {fileID: 4495238537429630895, guid: 28086c07b78aa464c9e0c238f8c21be2, type: 3}
+      minToSpawn: 12
+      maxToSpawn: 28
+  - waveTimer: 60
+    robotRampageWaveMonsterData:
+    - prefab: {fileID: 4495238537429630895, guid: 28086c07b78aa464c9e0c238f8c21be2, type: 3}
+      minToSpawn: 8
+      maxToSpawn: 16
+    - prefab: {fileID: 4495238537429630895, guid: 3d72fe9f1af49c8438d545c4e28de1ab, type: 3}
+      minToSpawn: 4
+      maxToSpawn: 8
+  - waveTimer: 60
+    robotRampageWaveMonsterData:
+    - prefab: {fileID: 4495238537429630895, guid: 28086c07b78aa464c9e0c238f8c21be2, type: 3}
+      minToSpawn: 10
+      maxToSpawn: 20
+    - prefab: {fileID: 4495238537429630895, guid: 3d72fe9f1af49c8438d545c4e28de1ab, type: 3}
+      minToSpawn: 10
+      maxToSpawn: 20
+  - waveTimer: 60
+    robotRampageWaveMonsterData:
+    - prefab: {fileID: 4495238537429630895, guid: 3d72fe9f1af49c8438d545c4e28de1ab, type: 3}
+      minToSpawn: 15
+      maxToSpawn: 30
