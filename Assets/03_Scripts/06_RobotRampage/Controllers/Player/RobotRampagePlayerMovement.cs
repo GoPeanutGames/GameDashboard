@@ -14,7 +14,7 @@ namespace PeanutDashboard._06_RobotRampage
             RotateToMouse();
             if (Input.GetKey(KeyCode.W))
             {
-                this.transform.Translate(_playerImage.transform.right *Time.deltaTime*2f);
+                this.transform.Translate(-_playerImage.transform.up *Time.deltaTime*2f);
             }
 
             currentPosition = this.transform.position;
@@ -30,7 +30,7 @@ namespace PeanutDashboard._06_RobotRampage
             mousePos.y = mousePos.y - objectPos.y;
 
             float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-            _playerImage.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            _playerImage.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
         }
     }
 }
