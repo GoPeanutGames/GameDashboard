@@ -19,10 +19,15 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private List<RobotRampageWaveData> _wavesData;
 
+        [SerializeField]
+        private AudioClip _stageBackgroundMusic;
+
         public Sprite DefaultBackground => _defaultBackground;
 
         public List<Sprite> PossibleDecor => _possibleDecor;
 
         public List<RobotRampageWaveData> WavesData => _wavesData;
+
+        public AudioClip StageBackgroundMusic => _stageBackgroundMusic;
     }
 }

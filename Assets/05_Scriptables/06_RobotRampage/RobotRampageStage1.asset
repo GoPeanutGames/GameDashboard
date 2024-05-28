@@ -48,3 +48,4 @@ MonoBehaviour:
     - prefab: {fileID: 4495238537429630895, guid: 571dc2846bb9099429cb3c7f6dd690f7, type: 3}
       minToSpawn: 10
       maxToSpawn: 20
+  _stageBackgroundMusic: {fileID: 8300000, guid: 6af08cb35290a694c870221ee82813fe, type: 3}
