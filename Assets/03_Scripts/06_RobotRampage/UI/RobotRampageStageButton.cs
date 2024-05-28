@@ -34,7 +34,7 @@ namespace PeanutDashboard._06_RobotRampage
         private void OnStageButtonClick()
         {
             RobotRampageStageService.currentStageData = _stageData;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }
