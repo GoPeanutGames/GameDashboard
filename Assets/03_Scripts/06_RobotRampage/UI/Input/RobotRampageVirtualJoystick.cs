@@ -68,8 +68,8 @@ namespace PeanutDashboard._06_RobotRampage
 			}else if (_active){
 				_centralVisual.transform.position = GetInputPosition();
 				Vector3 newLocal = Vector3.ClampMagnitude(_centralVisual.transform.localPosition, _movementRange);
-				float multiplier = _centralVisual.transform.localPosition.magnitude / _movementRange;
 				_centralVisual.transform.localPosition = newLocal;
+				float multiplier = _centralVisual.transform.localPosition.magnitude / _movementRange;
 				Vector3 direction = _centralVisual.transform.localPosition.normalized * multiplier;
 				RobotRampagePlayerEvents.RaiseMovementDirectionUpdated(direction);
 			}
