@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using PeanutDashboard.Utils.Misc;
+using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
@@ -6,17 +7,23 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		public static Vector3 currentPosition;
 
+		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private GameObject _playerImage;
+		
+		[SerializeField]
+		private Vector3 _currentDirection = Vector3.zero;
 
 		private void OnEnable()
 		{
 			RobotRampagePlayerEvents.OnPlayerKilled += OnPlayerKilled;
+			RobotRampagePlayerEvents.OnMovementDirectionUpdated += OnUpdateMovementDirection;
 		}
 
 		private void OnDisable()
 		{
 			RobotRampagePlayerEvents.OnPlayerKilled -= OnPlayerKilled;
+			RobotRampagePlayerEvents.OnMovementDirectionUpdated -= OnUpdateMovementDirection;
 		}
 
 		private void Start()
@@ -26,30 +33,19 @@ namespace PeanutDashboard._06_RobotRampage
 
 		private void Update()
 		{
-			Vector3 direction = Vector3.zero;
-			if (Input.GetKey(KeyCode.W)){
-				direction += new Vector3(0, 1, 0);
-			}
-			else if (Input.GetKey(KeyCode.S)){
-				direction += new Vector3(0, -1, 0);
-			}
-			if (Input.GetKey(KeyCode.A)){
-				direction += new Vector3(-1, 0, 0);
-			}
-			else if (Input.GetKey(KeyCode.D)){
-				direction += new Vector3(1, 0, 0);
-			}
-			if (direction != Vector3.zero){
-				direction.Normalize();
-				this.transform.Translate(direction * Time.deltaTime * 2f);
-
-				float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+			if (_currentDirection != Vector3.zero){
+				this.transform.Translate(_currentDirection * Time.deltaTime * 2f);
+				float angle = Mathf.Atan2(_currentDirection.y, _currentDirection.x) * Mathf.Rad2Deg;
 				_playerImage.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 				currentPosition = this.transform.position;
 			}
-
 		}
 
+		private void OnUpdateMovementDirection(Vector3 direction)
+		{
+			_currentDirection = direction;
+		}
+		
 		private void OnPlayerKilled()
 		{
 			Camera.main.transform.SetParent(null);
