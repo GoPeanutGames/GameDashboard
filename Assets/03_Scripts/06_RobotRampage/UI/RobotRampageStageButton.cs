@@ -12,6 +12,9 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private RobotRampageStageData _stageData;
         
+        [SerializeField]
+        private AudioClip _sfx;
+        
         [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private Button _button;
@@ -34,6 +37,7 @@ namespace PeanutDashboard._06_RobotRampage
         private void OnStageButtonClick()
         {
             RobotRampageStageService.currentStageData = _stageData;
+            RobotRampageAudioEvents.RaisePlaySfxOneShotEvent(_sfx);
             SceneManager.LoadScene(1);
         }
     }
