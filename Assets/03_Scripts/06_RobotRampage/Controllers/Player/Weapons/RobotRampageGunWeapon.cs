@@ -25,7 +25,7 @@ namespace PeanutDashboard._06_RobotRampage
             {
                 GameObject bullet = Instantiate(_bulletPrefab, this.transform.position + this.transform.right * 0.3f, Quaternion.identity);
                 bullet.GetComponent<RobotRampageGunBullet>().Setup("Enemy", 30f);
-                bullet.GetComponent<RobotRampageGunBullet>().SetStats(this.transform.right, 2f, 3f);
+                bullet.GetComponent<RobotRampageGunBullet>().SetStats(this.transform.right, 2.4f, 3f);
                 _timeToShoot = 1f / _shotsPerSecond;
             }
         }

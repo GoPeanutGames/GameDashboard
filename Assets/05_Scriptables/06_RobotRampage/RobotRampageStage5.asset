@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4702ee4a4d4b7c99c0a68fd0e7d089, type: 3}
   m_Name: RobotRampageStage5
   m_EditorClassIdentifier: 
+  _stageName: Stage 5\Titan Fortress
   _defaultBackground: {fileID: 21300000, guid: f22969c9c802be6449f64f5207e77b84, type: 3}
   _possibleDecor:
   - {fileID: 21300000, guid: 1a91bbca86e33344cb7e8ca5dc0be8df, type: 3}

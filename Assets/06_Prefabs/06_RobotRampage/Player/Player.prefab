@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerImage: {fileID: 674226631358789080}
+  _currentDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &2157984200317638438
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 9124418380326949336, guid: cdfbb1d8f12d29e41ac1e729a0f36d15, type: 3}
-  _shotsPerSecond: 2
+  _shotsPerSecond: 3
   _timeToShoot: 0
 --- !u!1 &7766790036837905646
 GameObject:

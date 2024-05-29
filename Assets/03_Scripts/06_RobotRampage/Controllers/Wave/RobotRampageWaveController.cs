@@ -1,59 +1,64 @@
 ﻿using System;
+using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
-    public class RobotRampageWaveController: MonoBehaviour
-    {
-        [SerializeField]
-        private int _currentWaveIndex = 0;
-        
-        [SerializeField]
-        private float _timeToStart = 1f;
-        
-        [SerializeField]
-        private bool _started = false;
+	public class RobotRampageWaveController : MonoBehaviour
+	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private float _timeToStart;
 
-        private void OnEnable()
-        {
-            RobotRampageTimerEvents.OnTimerDone += OnTimerDone;
-        }
+		[Header(InspectorNames.DebugDynamic)]
+		[SerializeField]
+		private int _currentWaveIndex = 0;
 
-        private void OnDisable()
-        {
-            RobotRampageTimerEvents.OnTimerDone -= OnTimerDone;
-        }
+		[SerializeField]
+		private bool _started = false;
 
-        private void Update()
-        {
-            if (!_started)
-            {
-                _timeToStart -= Time.deltaTime;
-                if (_timeToStart <= 0)
-                {
-                    _started = true;
-                    TriggerNextWave();
-                }
-            }
-        }
+		private void OnEnable()
+		{
+			RobotRampageTimerEvents.OnTimerDone += OnTimerDone;
+		}
 
-        private void OnTimerDone()
-        {
-            _currentWaveIndex++;
-            if (_currentWaveIndex < RobotRampageStageService.currentStageData.WavesData.Count)
-            {
-                TriggerNextWave();
-            }
-            else
-            {
-                //TODO: victory?
-            }
-        }
+		private void OnDisable()
+		{
+			RobotRampageTimerEvents.OnTimerDone -= OnTimerDone;
+		}
 
-        private void TriggerNextWave()
-        {
-            RobotRampageTimerEvents.RaiseStartTimerEvent(RobotRampageStageService.currentStageData.WavesData[_currentWaveIndex].waveTimer);
-            RobotRampageWaveEvents.RaiseStartWaveSpawnEvent(RobotRampageStageService.currentStageData.WavesData[_currentWaveIndex].robotRampageWaveMonsterData);
-        }
-    }
+		private void Start()
+		{
+			RobotRampageUIEvents.RaiseShowCentralNotificationEvent(RobotRampageStageService.currentStageData.StageName);
+		}
+
+		private void Update()
+		{
+			if (!_started){
+				_timeToStart -= Time.deltaTime;
+				if (_timeToStart <= 0){
+					_started = true;
+					TriggerNextWave();
+				}
+			}
+		}
+
+		private void OnTimerDone()
+		{
+			_currentWaveIndex++;
+			if (_currentWaveIndex < RobotRampageStageService.currentStageData.WavesData.Count){
+				TriggerNextWave();
+			}
+			else{
+				//TODO: victory?
+			}
+		}
+
+		private void TriggerNextWave()
+		{
+			RobotRampageUIEvents.RaiseShowCentralNotificationEvent($"Wave {_currentWaveIndex + 1}");
+			RobotRampageTimerEvents.RaiseStartTimerEvent(RobotRampageStageService.currentStageData.WavesData[_currentWaveIndex].waveTimer);
+			RobotRampageWaveEvents.RaiseStartWaveSpawnEvent(RobotRampageStageService.currentStageData.WavesData[_currentWaveIndex].robotRampageWaveMonsterData);
+		}
+	}
 }

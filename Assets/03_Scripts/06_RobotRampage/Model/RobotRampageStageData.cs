@@ -11,6 +11,9 @@ namespace PeanutDashboard._06_RobotRampage
     public class RobotRampageStageData: ScriptableObject
     {
         [SerializeField]
+        private string _stageName;
+        
+        [SerializeField]
         private Sprite _defaultBackground;
 
         [SerializeField]
@@ -22,6 +25,8 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private AudioClip _stageBackgroundMusic;
 
+        public string StageName => _stageName;
+        
         public Sprite DefaultBackground => _defaultBackground;
 
         public List<Sprite> PossibleDecor => _possibleDecor;
