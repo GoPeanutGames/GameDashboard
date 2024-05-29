@@ -1,5 +1,4 @@
-﻿using System;
-using PeanutDashboard.Utils.Misc;
+﻿using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
@@ -12,6 +11,9 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         private float _maxHealthRef;
+
+        [SerializeField]
+        private GameObject _scrapPrefab;
         
         [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
@@ -45,6 +47,7 @@ namespace PeanutDashboard._06_RobotRampage
         {
             _currentHealth -= damage;
             if (_currentHealth <= 0){
+                Instantiate(_scrapPrefab, this.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }
