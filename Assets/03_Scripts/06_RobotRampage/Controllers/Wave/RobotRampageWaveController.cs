@@ -50,7 +50,7 @@ namespace PeanutDashboard._06_RobotRampage
 				TriggerNextWave();
 			}
 			else{
-				//TODO: victory?
+				RobotRampagePopupEvents.RaiseOpenVictoryPopupEvent();
 			}
 		}
 

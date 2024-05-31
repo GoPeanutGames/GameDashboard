@@ -25,6 +25,7 @@ namespace PeanutDashboard._06_RobotRampage
 				_currentHealth -= 10f;
 				if (_currentHealth <= 0){
 					RobotRampagePlayerEvents.RaisePlayerKilledEvent();
+					RobotRampagePopupEvents.RaiseOpenDefeatPopupEvent();
 				}
 			}
 		}
