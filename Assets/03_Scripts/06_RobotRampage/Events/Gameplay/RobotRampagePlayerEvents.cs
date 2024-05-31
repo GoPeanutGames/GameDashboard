@@ -8,6 +8,8 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		private static UnityAction _playerKilled;
 		
+		private static UnityAction<float> _addPlayerExperience;
+		
 		private static UnityAction<Vector3> _movementDirectionUpdated;
 		
 		public static event UnityAction OnPlayerKilled
@@ -15,6 +17,13 @@ namespace PeanutDashboard._06_RobotRampage
 			add => _playerKilled += value;
 			remove => _playerKilled -= value;
 		}
+		
+		public static event UnityAction<float> OnAddPlayerExperience
+		{
+			add => _addPlayerExperience += value;
+			remove => _addPlayerExperience -= value;
+		}
+		
 		public static event UnityAction<Vector3> OnMovementDirectionUpdated
 		{
 			add => _movementDirectionUpdated += value;
@@ -28,6 +37,15 @@ namespace PeanutDashboard._06_RobotRampage
 				return;
 			}
 			_playerKilled.Invoke();
+		}
+		
+		public static void RaiseAddPlayerExperienceEvent(float exp)
+		{
+			if (_addPlayerExperience == null){
+				LoggerService.LogWarning($"{nameof(RobotRampagePlayerEvents)}::{nameof(RaiseAddPlayerExperienceEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_addPlayerExperience.Invoke(exp);
 		}
 		
 		public static void RaiseMovementDirectionUpdated(Vector3 direction)

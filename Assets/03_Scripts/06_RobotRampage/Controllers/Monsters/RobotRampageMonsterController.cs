@@ -11,6 +11,9 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         private float _maxHealthRef;
+        
+        [SerializeField]
+        private RobotRampageExpType _expTypeDrop;
 
         [SerializeField]
         private GameObject _scrapPrefab;
@@ -47,6 +50,7 @@ namespace PeanutDashboard._06_RobotRampage
         {
             _currentHealth -= damage;
             if (_currentHealth <= 0){
+                RobotRampageExpSpawnEvents.RaiseSpawnExpTypeEvent(_expTypeDrop, this.transform.position);
                 Instantiate(_scrapPrefab, this.transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }

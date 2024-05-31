@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7163687324019459668}
   - component: {fileID: 4050631606791766292}
   - component: {fileID: 84310208684828007}
+  - component: {fileID: -4228264631747757768}
   m_Layer: 0
   m_Name: ScrapC
   m_TagString: Untagged
@@ -100,3 +101,17 @@ MonoBehaviour:
   _timeToDieMax: 10
   _spriteRenderer: {fileID: 4050631606791766292}
   _timeToDie: 0
+--- !u!114 &-4228264631747757768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105264482594737824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613c2531f464012891594eaa122476f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 2
+  _spriteRenderer: {fileID: 0}

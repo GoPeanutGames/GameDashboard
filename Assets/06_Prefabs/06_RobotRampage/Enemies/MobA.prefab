@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6484592698980619514}
   - component: {fileID: 3623840500386246626}
+  - component: {fileID: 3996891740833179123}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -85,6 +86,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3996891740833179123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362890025984825399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613c2531f464012891594eaa122476f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 5
+  _spriteRenderer: {fileID: 0}
 --- !u!1 &4495238537429630895
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyImage: {fileID: 1362890025984825399}
   _maxHealthRef: 15
+  _expTypeDrop: 0
   _scrapPrefab: {fileID: 2077015475260069591, guid: efa0752f73aec1b4ca92f4bb501d115a, type: 3}
   _currentHealth: 0
 --- !u!58 &967400986983787709
@@ -180,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6007195376878991109}
   - component: {fileID: 2835302045082546870}
+  - component: {fileID: 7728066488958810924}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
@@ -254,3 +271,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7728066488958810924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7403032688478405992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613c2531f464012891594eaa122476f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 8
+  _spriteRenderer: {fileID: 0}

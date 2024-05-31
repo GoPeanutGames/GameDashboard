@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8571248133001882667}
   - component: {fileID: 77104220306555455}
   - component: {fileID: 5878349892593113592}
+  - component: {fileID: 3432606339898662775}
   m_Layer: 0
   m_Name: BulletParticleTrail
   m_TagString: Untagged
@@ -4830,6 +4831,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3432606339898662775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460471299508996067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b04f07d4144471bc848a6a4bde4fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 6
+  _particleSystemRenderer: {fileID: 0}
 --- !u!1 &9124418380326949336
 GameObject:
   m_ObjectHideFlags: 0
@@ -4841,6 +4856,7 @@ GameObject:
   - component: {fileID: 6457947361067548161}
   - component: {fileID: 4599870033977795423}
   - component: {fileID: 340023664805939904}
+  - component: {fileID: 8275735448570583921}
   - component: {fileID: 8950454463126112081}
   - component: {fileID: 4590232816340442918}
   m_Layer: 0
@@ -4936,6 +4952,20 @@ MonoBehaviour:
   _direction: {x: 0, y: 0, z: 0}
   _speed: 0
   _lifetime: 0
+--- !u!114 &8275735448570583921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124418380326949336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613c2531f464012891594eaa122476f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 7
+  _spriteRenderer: {fileID: 0}
 --- !u!61 &8950454463126112081
 BoxCollider2D:
   m_ObjectHideFlags: 0
