@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterStats:
     attractionRange: 2
+  _levelExp:
+  - 4
+  - 8
+  - 14
+  - 25
+  - 45

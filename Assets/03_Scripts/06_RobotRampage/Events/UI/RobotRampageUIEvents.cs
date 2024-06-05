@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace PeanutDashboard._06_RobotRampage
 {
-	public class RobotRampageUIEvents
+	public static class RobotRampageUIEvents
 	{
 		private static UnityAction<string> _showCentralNotification;
 

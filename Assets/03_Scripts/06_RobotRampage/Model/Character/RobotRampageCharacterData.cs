@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils.Misc;
+﻿using System.Collections.Generic;
+using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
@@ -13,6 +14,11 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private RobotRampageCharacterStats _characterStats;
 
+		[SerializeField]
+		private List<float> _levelExp;
+
 		public float AttractionRange => _characterStats.attractionRange;
+
+		public List<float> LevelExp => _levelExp;
 	}
 }

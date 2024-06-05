@@ -10,26 +10,54 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private CircleCollider2D _circleCollider2D;
 
+		[SerializeField]
+		private int _currentLevel = 0;
+
+		[SerializeField]
+		private float _currentExp;
+		
+		[SerializeField]
+		private float _expToNextLevel;
+		
 		private void Awake()
 		{
 			_circleCollider2D = GetComponent<CircleCollider2D>();
 			_circleCollider2D.radius = RobotRampageCharacterStatsService.GetAttractionRange();
+			_expToNextLevel = RobotRampageCharacterStatsService.GetExpToNextLevel(_currentLevel);
 		}
 
 		private void OnEnable()
 		{
 			RobotRampagePlayerEvents.OnAddPlayerExperience += OnAddPlayerExperience;
+			RobotRampageUpgradeEvents.OnUpgradeChosen += OnUpgradeChosen;
 		}
 
 		private void OnDisable()
 		{
 			RobotRampagePlayerEvents.OnAddPlayerExperience -= OnAddPlayerExperience;
+			RobotRampageUpgradeEvents.OnUpgradeChosen -= OnUpgradeChosen;
 		}
 
 		private void OnAddPlayerExperience(float exp)
 		{
-			//TODO: add exp
-			// Debug.LogError($"ADD EXP: {exp}");
+			_currentExp += exp;
+			if (_currentExp >= _expToNextLevel){
+				RobotRampageLevelUIEvents.RaiseUpdateUIExpEvent(_expToNextLevel, _expToNextLevel);
+				RobotRampageUpgradeEvents.RaiseTriggerUpgradesUIEvent();
+			}
+			else{
+				RobotRampageLevelUIEvents.RaiseUpdateUIExpEvent(_currentExp, _expToNextLevel);
+			}
+		}
+
+		private void OnUpgradeChosen()
+		{
+			_currentExp -= _expToNextLevel;
+			_currentLevel += 1;
+			_expToNextLevel = RobotRampageCharacterStatsService.GetExpToNextLevel(_currentLevel);
+			RobotRampageLevelUIEvents.RaiseUpdateUIExpEvent(_currentExp, _expToNextLevel);
+			RobotRampageLevelUIEvents.RaiseUpdateUILevelEvent(_currentLevel + 1);
+			//TODO: add chosen weapon / passive + update UI
 		}
 		
 		private void OnTriggerEnter2D(Collider2D other)

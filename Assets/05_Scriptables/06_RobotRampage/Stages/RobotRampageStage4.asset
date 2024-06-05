@@ -33,7 +33,7 @@ MonoBehaviour:
     - prefab: {fileID: 4495238537429630895, guid: 28086c07b78aa464c9e0c238f8c21be2, type: 3}
       minToSpawn: 8
       maxToSpawn: 16
-    - prefab: {fileID: 4495238537429630895, guid: 3d72fe9f1af49c8438d545c4e28de1ab, type: 3}
+    - prefab: {fileID: 4495238537429630895, guid: 571dc2846bb9099429cb3c7f6dd690f7, type: 3}
       minToSpawn: 4
       maxToSpawn: 8
   - waveTimer: 60
@@ -41,12 +41,12 @@ MonoBehaviour:
     - prefab: {fileID: 4495238537429630895, guid: 28086c07b78aa464c9e0c238f8c21be2, type: 3}
       minToSpawn: 10
       maxToSpawn: 20
-    - prefab: {fileID: 4495238537429630895, guid: 3d72fe9f1af49c8438d545c4e28de1ab, type: 3}
+    - prefab: {fileID: 4495238537429630895, guid: 7f40d1027d66e4a4cbf0b9e33dccdae2, type: 3}
       minToSpawn: 10
       maxToSpawn: 20
   - waveTimer: 60
     robotRampageWaveMonsterData:
-    - prefab: {fileID: 4495238537429630895, guid: 3d72fe9f1af49c8438d545c4e28de1ab, type: 3}
+    - prefab: {fileID: 4495238537429630895, guid: 7f40d1027d66e4a4cbf0b9e33dccdae2, type: 3}
       minToSpawn: 15
       maxToSpawn: 30
   _stageBackgroundMusic: {fileID: 8300000, guid: 2bd055495ad5b814db710f3373610b02, type: 3}

@@ -13,17 +13,24 @@ namespace PeanutDashboard._06_RobotRampage
 
 		[SerializeField]
 		private GameObject _defeatPopup;
+		
+		[SerializeField]
+		private GameObject _upgradesPopup;
 
 		private void OnEnable()
 		{
 			RobotRampagePopupEvents.OnOpenVictoryPopup += OpenVictoryPopup;
 			RobotRampagePopupEvents.OnOpenDefeatPopup += OpenDefeatPopup;
+			RobotRampageUpgradeEvents.OnTriggerUpgradesUI += OpenUpgradesPopup;
+			RobotRampageUpgradeEvents.OnUpgradeChosen += CloseUpgradePopup;
 		}
 
 		private void OnDisable()
 		{
 			RobotRampagePopupEvents.OnOpenVictoryPopup -= OpenVictoryPopup;
 			RobotRampagePopupEvents.OnOpenDefeatPopup -= OpenDefeatPopup;
+			RobotRampageUpgradeEvents.OnTriggerUpgradesUI -= OpenUpgradesPopup;
+			RobotRampageUpgradeEvents.OnUpgradeChosen -= CloseUpgradePopup;
 		}
 
 		private void OpenVictoryPopup()
@@ -34,6 +41,16 @@ namespace PeanutDashboard._06_RobotRampage
 		private void OpenDefeatPopup()
 		{
 			_defeatPopup.Activate();
+		}
+
+		private void OpenUpgradesPopup()
+		{
+			_upgradesPopup.Activate();
+		}
+
+		private void CloseUpgradePopup()
+		{
+			_upgradesPopup.Deactivate();
 		}
 	}
 }

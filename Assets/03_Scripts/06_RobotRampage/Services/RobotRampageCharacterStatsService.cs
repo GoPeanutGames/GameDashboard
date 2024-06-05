@@ -23,5 +23,10 @@
 		{
 			return _calculatedStats.attractionRange;
 		}
+
+		public static float GetExpToNextLevel(int levelIndex)
+		{
+			return _currentCharacter.LevelExp[levelIndex];
+		}
 	}
 }
