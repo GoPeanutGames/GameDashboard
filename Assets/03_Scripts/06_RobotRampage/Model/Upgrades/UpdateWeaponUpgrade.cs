@@ -16,13 +16,8 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private UpgradeLevel _upgradeLevel;
 
-		[SerializeField]
-		private BaseUpgrade _nextUpgrade;
-
 		public WeaponType WeaponType => _weaponType;
 
 		public UpgradeLevel UpgradeLevel => _upgradeLevel;
-
-		public BaseUpgrade NextUpgrade => _nextUpgrade;
 	}
 }

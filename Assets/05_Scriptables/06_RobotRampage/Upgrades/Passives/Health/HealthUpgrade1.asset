@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseUpgradeType: 0
   _background: {fileID: 21300000, guid: 25364f3fb1134654e99b5ee06721966c, type: 3}
+  _icon: {fileID: 21300000, guid: 2f129f1911fbc2f40ac846869a0451df, type: 3}
+  _levelIcon: {fileID: 21300000, guid: 2fd9fb4b34ac61f42b4bdc069fa73826, type: 3}
+  _title: Health
+  _description: Max health + 10%
   _upgradeLevel:
     level: 0
     statDatas:

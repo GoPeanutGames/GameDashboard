@@ -69,6 +69,13 @@ namespace PeanutDashboard._06_RobotRampage
 		private void OnUpgradeChosen(BaseUpgrade baseUpgrade)
 		{
 			Debug.Log($"CHOSEN: {baseUpgrade.BaseUpgradeType}");
+			_upgradePool.Remove(baseUpgrade);
+			if (baseUpgrade.NextUpgrade != null)
+			{
+				_upgradePool.Add(baseUpgrade.NextUpgrade);
+			}
+			//TODO: send event to apply upgrade to character
+			RobotRampageUpgradeEvents.RaiseOnUpgradeChosenEvent();
 		}
 	}
 }

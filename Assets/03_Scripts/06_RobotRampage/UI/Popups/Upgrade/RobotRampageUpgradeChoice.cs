@@ -1,4 +1,5 @@
 ﻿using PeanutDashboard.Utils.Misc;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,6 +11,18 @@ namespace PeanutDashboard._06_RobotRampage
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
 		private Image _background;
+
+		[SerializeField]
+		private Image _icon;
+
+		[SerializeField]
+		private Image _levelIcon;
+
+		[SerializeField]
+		private TMP_Text _title;
+
+		[SerializeField]
+		private TMP_Text _description;
 
 		[SerializeField]
 		private Button _button;
@@ -43,6 +56,10 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			_currentUpgrade = baseUpgrade;
 			_background.sprite = baseUpgrade.Background;
+			_levelIcon.sprite = baseUpgrade.LevelIcon;
+			_icon.sprite = baseUpgrade.Icon;
+			_title.text = baseUpgrade.Title;
+			_description.text = baseUpgrade.Description;
 		}
 
 		private void OnClick()

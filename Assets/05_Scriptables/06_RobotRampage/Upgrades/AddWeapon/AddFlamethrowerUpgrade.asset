@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseUpgradeType: 1
   _background: {fileID: 21300000, guid: 19a41d52e2d9e0a42831b36cb4167641, type: 3}
+  _icon: {fileID: 21300000, guid: fd0f7b3d3bfdf824dab4a17fd84a4656, type: 3}
+  _levelIcon: {fileID: 21300000, guid: 2fd9fb4b34ac61f42b4bdc069fa73826, type: 3}
+  _title: Flamethrower
+  _description: A short range weapon that deals damage in a cone.
   _weaponType: 1
+  _nextUpgrade: {fileID: 0}

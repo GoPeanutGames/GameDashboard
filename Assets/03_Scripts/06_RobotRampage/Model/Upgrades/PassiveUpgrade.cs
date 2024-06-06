@@ -12,12 +12,7 @@ namespace PeanutDashboard._06_RobotRampage
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
 		private UpgradeLevel _upgradeLevel;
-
-		[SerializeField]
-		private BaseUpgrade _nextUpgrade;
-
+		
 		public UpgradeLevel UpgradeLevel => _upgradeLevel;
-
-		public BaseUpgrade NextUpgrade => _nextUpgrade;
 	}
 }
