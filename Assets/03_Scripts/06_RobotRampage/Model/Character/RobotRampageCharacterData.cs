@@ -15,6 +15,9 @@ namespace PeanutDashboard._06_RobotRampage
 		private RobotRampageCharacterStats _characterStats;
 
 		[SerializeField]
+		private List<BaseUpgrade> _startingWeapons;
+
+		[SerializeField]
 		private List<float> _levelExp;
 
 		public float AttractionRange => _characterStats.attractionRange;
@@ -22,5 +25,7 @@ namespace PeanutDashboard._06_RobotRampage
 		public float MaxHealth => _characterStats.maxHealth;
 
 		public List<float> LevelExp => _levelExp;
+
+		public List<BaseUpgrade> StartingWeapons => _startingWeapons;
 	}
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3aa335d4fd1a44041892cb48ef293884, type: 2}
   _addWeaponUpgrades:
   - {fileID: 11400000, guid: 75dbed2604586e348be2617f8521e096, type: 2}
-  _updateWeaponUpgrades:
-  - {fileID: 11400000, guid: 690dfeb7e1eceb64099e972ab753c49f, type: 2}
+  - {fileID: 11400000, guid: 50c69afc1ef70034c95471a03f24da8d, type: 2}
+  _updateWeaponUpgrades: []

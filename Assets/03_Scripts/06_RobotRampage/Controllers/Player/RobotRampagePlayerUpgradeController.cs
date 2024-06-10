@@ -1,9 +1,18 @@
-﻿using UnityEngine;
+﻿using PeanutDashboard._06_RobotRampage.Collection;
+using PeanutDashboard.Utils.Misc;
+using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
 	public class RobotRampagePlayerUpgradeController: MonoBehaviour
 	{
+		[Header(InspectorNames.SetInInspector)]
+		[SerializeField]
+		private GameObject _weaponParent;
+		
+		[SerializeField]
+		private WeaponCollection _weaponCollection;
+		
 		private void OnEnable()
 		{
 			RobotRampageUpgradeEvents.ApplyUpgrade += OnApplyUpgrade;
@@ -20,6 +29,9 @@ namespace PeanutDashboard._06_RobotRampage
 				case BaseUpgradeType.Passive:
 					ApplyPassive(baseUpgrade as PassiveUpgrade);
 					break;
+				case BaseUpgradeType.AddWeapon:
+					ApplyAddWeapon(baseUpgrade as AddWeaponUpgrade);
+					break;
 			}
 		}
 
@@ -32,7 +44,9 @@ namespace PeanutDashboard._06_RobotRampage
 
 		private void ApplyAddWeapon(AddWeaponUpgrade addWeaponUpgrade)
 		{
-			
+			RobotRampageWeaponData weaponData = _weaponCollection.GetWeaponData(addWeaponUpgrade.WeaponType);
+			RobotRampageWeaponStatsService.AddWeapon(weaponData);
+			Instantiate(weaponData.Prefab, _weaponParent.transform);
 		}
 
 		private void ApplyUpgradeWeapon(UpdateWeaponUpgrade updateWeaponUpgrade)

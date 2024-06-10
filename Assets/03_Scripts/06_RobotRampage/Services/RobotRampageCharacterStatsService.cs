@@ -1,4 +1,6 @@
-﻿namespace PeanutDashboard._06_RobotRampage
+﻿using System.Collections.Generic;
+
+namespace PeanutDashboard._06_RobotRampage
 {
 	public static class RobotRampageCharacterStatsService
 	{
@@ -8,6 +10,7 @@
 		
 		public static void SetCharacter(RobotRampageCharacterData characterData)
 		{
+			RobotRampageWeaponStatsService.Clear();
 			_currentCharacter = characterData;
 			InitModifiers();
 			CalculateStats();
@@ -45,6 +48,11 @@
 			return _currentCharacter.LevelExp[levelIndex];
 		}
 
+		public static List<BaseUpgrade> GetStartingUpgrades()
+		{
+			return _currentCharacter.StartingWeapons;
+		}
+		
 		public static void UpdateMaxHealth(float modifier)
 		{
 			_currentModifiers.healthModifier += modifier;

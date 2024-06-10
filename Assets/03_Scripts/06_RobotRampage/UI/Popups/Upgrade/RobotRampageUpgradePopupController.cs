@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using PeanutDashboard._06_RobotRampage.Collection;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
@@ -33,7 +32,10 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			_upgradePool = new List<BaseUpgrade>(_startingUpgrades.GetUpgrades());
 			foreach (RobotRampageUpgradeChoice robotRampageUpgradeChoice in _upgradeChoices){
-				robotRampageUpgradeChoice.AddListener(OnUpgradeChosen);
+				robotRampageUpgradeChoice.AddListener(OnChoiceClick);
+			}
+			foreach (BaseUpgrade startingUpgrade in RobotRampageCharacterStatsService.GetStartingUpgrades()){
+				OnUpgradeChosen(startingUpgrade, true);
 			}
 		}
 
@@ -41,7 +43,7 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			foreach (RobotRampageUpgradeChoice robotRampageUpgradeChoice in _upgradeChoices){
 				if (robotRampageUpgradeChoice != null){
-					robotRampageUpgradeChoice.RemoveListener(OnUpgradeChosen);
+					robotRampageUpgradeChoice.RemoveListener(OnChoiceClick);
 				}
 			}
 		}
@@ -57,7 +59,12 @@ namespace PeanutDashboard._06_RobotRampage
 			}
 		}
 
-		private void OnUpgradeChosen(BaseUpgrade baseUpgrade)
+		private void OnChoiceClick(BaseUpgrade baseUpgrade)
+		{
+			OnUpgradeChosen(baseUpgrade, false);
+		}
+
+		private void OnUpgradeChosen(BaseUpgrade baseUpgrade, bool starting)
 		{
 			Debug.Log($"{nameof(RobotRampageUpgradePopupController)}::{nameof(OnUpgradeChosen)} - {baseUpgrade.BaseUpgradeType}");
 			_upgradePool.Remove(baseUpgrade);
@@ -65,9 +72,11 @@ namespace PeanutDashboard._06_RobotRampage
 			{
 				_upgradePool.Add(baseUpgrade.NextUpgrade);
 			}
-			RobotRampageUpgradeEvents.RaiseOnUpgradeChosenEvent();
 			RobotRampageUpgradeEvents.RaiseApplyUpgradeEvent(baseUpgrade);
-			RobotRampagePauseEvents.RaiseUnPauseGameEventEvent();
+			if (!starting){
+				RobotRampageUpgradeEvents.RaiseOnUpgradeChosenEvent();
+				RobotRampagePauseEvents.RaiseUnPauseGameEventEvent();
+			}
 		}
 	}
 }

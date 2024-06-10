@@ -4860,7 +4860,7 @@ GameObject:
   - component: {fileID: 8950454463126112081}
   - component: {fileID: 4590232816340442918}
   m_Layer: 0
-  m_Name: GunBullet
+  m_Name: PhotonSpearBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

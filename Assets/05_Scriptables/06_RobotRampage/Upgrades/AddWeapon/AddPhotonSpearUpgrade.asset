@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaad4060226144168c26c11cfd85c58b, type: 3}
+  m_Name: AddPhotonSpearUpgrade
+  m_EditorClassIdentifier: 
+  _baseUpgradeType: 1
+  _background: {fileID: 21300000, guid: 19a41d52e2d9e0a42831b36cb4167641, type: 3}
+  _icon: {fileID: 21300000, guid: fd0f7b3d3bfdf824dab4a17fd84a4656, type: 3}
+  _levelIcon: {fileID: 21300000, guid: 2fd9fb4b34ac61f42b4bdc069fa73826, type: 3}
+  _title: Photon Spear
+  _description: A weapon that shoots bullets
+  _nextUpgrade: {fileID: 11400000, guid: 690dfeb7e1eceb64099e972ab753c49f, type: 2}
+  _weaponType: 0
