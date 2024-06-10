@@ -6,5 +6,6 @@ namespace PeanutDashboard._06_RobotRampage
 	public class RobotRampageCharacterStats
 	{
 		public float attractionRange;
+		public float maxHealth;
 	}
 }

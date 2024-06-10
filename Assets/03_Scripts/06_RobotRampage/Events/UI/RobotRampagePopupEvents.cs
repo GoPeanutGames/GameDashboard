@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace PeanutDashboard._06_RobotRampage
 {
-	public class RobotRampagePopupEvents
+	public static class RobotRampagePopupEvents
 	{
 		private static UnityAction _openVictoryPopup;
 		private static UnityAction _openDefeatPopup;

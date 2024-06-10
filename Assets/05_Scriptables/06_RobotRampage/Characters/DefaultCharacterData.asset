@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterStats:
     attractionRange: 2
+    maxHealth: 20
   _levelExp:
   - 4
   - 8

@@ -5,17 +5,27 @@ namespace PeanutDashboard._06_RobotRampage
 {
 	public class RobotRampagePlayerHealth: MonoBehaviour
 	{
-		[Header(InspectorNames.SetInInspector)]
+		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private float _maxHealth;
-
-		[Header(InspectorNames.DebugDynamic)]
+		
 		[SerializeField]
 		private float _currentHealth;
 
 		private void Awake()
 		{
-			_currentHealth = _maxHealth;
+			_currentHealth = RobotRampageCharacterStatsService.GetMaxHp();
+			_maxHealth = RobotRampageCharacterStatsService.GetMaxHp();
+		}
+
+		private void OnEnable()
+		{
+			RobotRampageUpgradeEvents.OnRefreshStats += RefreshHealth;
+		}
+
+		private void OnDisable()
+		{
+			RobotRampageUpgradeEvents.OnRefreshStats -= RefreshHealth;
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)
@@ -27,6 +37,18 @@ namespace PeanutDashboard._06_RobotRampage
 					RobotRampagePlayerEvents.RaisePlayerKilledEvent();
 					RobotRampagePopupEvents.RaiseOpenDefeatPopupEvent();
 				}
+			}
+		}
+
+		private void RefreshHealth()
+		{
+			Debug.Log($"{nameof(RobotRampagePlayerHealth)}::{nameof(RefreshHealth)}");
+			float newMaxHealth = RobotRampageCharacterStatsService.GetMaxHp();
+			if (newMaxHealth > _maxHealth){
+				float diff = newMaxHealth - _maxHealth;
+				_maxHealth = newMaxHealth;
+				_currentHealth += diff;
+				Debug.Log($"{nameof(RobotRampagePlayerHealth)}::{nameof(RefreshHealth)} - health changed by: {diff}");
 			}
 		}
 	}

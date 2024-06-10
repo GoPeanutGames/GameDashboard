@@ -7,6 +7,8 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		private static UnityAction _triggerUpgradesUI;
 		private static UnityAction _onUpgradeChosen;
+		private static UnityAction<BaseUpgrade> _applyUpgrade;
+		private static UnityAction _refreshStats;
 
 		public static event UnityAction OnTriggerUpgradesUI
 		{
@@ -18,6 +20,18 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			add => _onUpgradeChosen += value;
 			remove => _onUpgradeChosen -= value;
+		}
+		
+		public static event UnityAction<BaseUpgrade> ApplyUpgrade
+		{
+			add => _applyUpgrade += value;
+			remove => _applyUpgrade -= value;
+		}
+		
+		public static event UnityAction OnRefreshStats
+		{
+			add => _refreshStats += value;
+			remove => _refreshStats -= value;
 		}
 		
 		public static void RaiseTriggerUpgradesUIEvent()
@@ -36,6 +50,24 @@ namespace PeanutDashboard._06_RobotRampage
 				return;
 			}
 			_onUpgradeChosen.Invoke();
+		}
+		
+		public static void RaiseApplyUpgradeEvent(BaseUpgrade baseUpgrade)
+		{
+			if (_applyUpgrade == null){
+				LoggerService.LogWarning($"{nameof(RobotRampageUpgradeEvents)}::{nameof(RaiseApplyUpgradeEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_applyUpgrade.Invoke(baseUpgrade);
+		}
+		
+		public static void RaiseRefreshStatsEvent()
+		{
+			if (_refreshStats == null){
+				LoggerService.LogWarning($"{nameof(RobotRampageUpgradeEvents)}::{nameof(RaiseRefreshStatsEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_refreshStats.Invoke();
 		}
 	}
 }

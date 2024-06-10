@@ -18,9 +18,9 @@ MonoBehaviour:
   _levelIcon: {fileID: 21300000, guid: 2fd9fb4b34ac61f42b4bdc069fa73826, type: 3}
   _title: Health
   _description: Max health + 10%
+  _nextUpgrade: {fileID: 11400000, guid: 1ea38f2ca7cdb46438e7c5f869ce1af1, type: 2}
   _upgradeLevel:
     level: 0
     statDatas:
     - statType: 0
-      statChange: 10
-  _nextUpgrade: {fileID: 11400000, guid: 1ea38f2ca7cdb46438e7c5f869ce1af1, type: 2}
+      statChange: 0.1

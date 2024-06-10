@@ -19,6 +19,8 @@ namespace PeanutDashboard._06_RobotRampage
 
 		public float AttractionRange => _characterStats.attractionRange;
 
+		public float MaxHealth => _characterStats.maxHealth;
+
 		public List<float> LevelExp => _levelExp;
 	}
 }
