@@ -1,12 +1,18 @@
-﻿using UnityEngine;
+﻿using PeanutDashboard.Utils.Misc;
+using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
-    public class RobotRampageGunWeapon: MonoBehaviour
+    public class RobotRampagePhotonSpearWeapon: MonoBehaviour
     {
+        [Header(InspectorNames.SetInInspector)]
         [SerializeField]
         private GameObject _bulletPrefab;
         
+        [SerializeField]
+        private WeaponType _weaponType;
+        
+        [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private int _shotsPerSecond;
 
@@ -24,7 +30,7 @@ namespace PeanutDashboard._06_RobotRampage
             if (_timeToShoot <= 0)
             {
                 GameObject bullet = Instantiate(_bulletPrefab, this.transform.position + this.transform.right * 0.3f, Quaternion.identity);
-                bullet.GetComponent<RobotRampageGunBullet>().Setup("Enemy", 30f);
+                bullet.GetComponent<RobotRampageGunBullet>().Setup(_weaponType, "Enemy", RobotRampageWeaponStatsService.GetWeaponDamage(_weaponType));
                 bullet.GetComponent<RobotRampageGunBullet>().SetStats(this.transform.right, 2.4f, 3f);
                 _timeToShoot = 1f / _shotsPerSecond;
             }

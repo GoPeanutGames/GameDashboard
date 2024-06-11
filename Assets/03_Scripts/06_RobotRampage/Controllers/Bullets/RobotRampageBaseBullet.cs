@@ -11,24 +11,31 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         private float _damageToDeal;
+        
+        [SerializeField]
+        private int _penetration;
 
         [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private bool _ignoreTriggers;
 
-        public virtual void Setup(string tagToDamage, float damage)
+        public virtual void Setup(WeaponType weaponType, string tagToDamage, float damage)
         {
             _tagToDamage = tagToDamage;
             _damageToDeal = damage;
+            _penetration = RobotRampageWeaponStatsService.GetWeaponPenetration(weaponType);
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.tag.Equals(_tagToDamage) && !_ignoreTriggers)
             {
-                _ignoreTriggers = true;
                 other.GetComponent<RobotRampageMonsterController>().Damage(_damageToDeal);
-                Destroy(this.gameObject);
+                _penetration--;
+                if (_penetration < 0){
+                    _ignoreTriggers = true;
+                    Destroy(this.gameObject);
+                }
             }
         }
     }

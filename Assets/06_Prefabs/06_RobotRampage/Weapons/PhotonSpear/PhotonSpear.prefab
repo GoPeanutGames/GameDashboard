@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5837284890511667476}
-  - component: {fileID: 8096747842283318603}
+  - component: {fileID: 8863716641080042640}
   m_Layer: 0
   m_Name: PhotonSpear
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &8096747842283318603
+--- !u!114 &8863716641080042640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 9124418380326949336, guid: cdfbb1d8f12d29e41ac1e729a0f36d15, type: 3}
+  _weaponType: 0
   _shotsPerSecond: 3
   _timeToShoot: 0

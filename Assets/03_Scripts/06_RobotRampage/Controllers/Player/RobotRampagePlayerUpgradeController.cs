@@ -32,6 +32,9 @@ namespace PeanutDashboard._06_RobotRampage
 				case BaseUpgradeType.AddWeapon:
 					ApplyAddWeapon(baseUpgrade as AddWeaponUpgrade);
 					break;
+				case BaseUpgradeType.UpdateWeapon:
+					ApplyUpgradeWeapon(baseUpgrade as UpdateWeaponUpgrade);
+					break;
 			}
 		}
 
@@ -51,7 +54,9 @@ namespace PeanutDashboard._06_RobotRampage
 
 		private void ApplyUpgradeWeapon(UpdateWeaponUpgrade updateWeaponUpgrade)
 		{
-			
+			foreach (StatData upgradeLevelStatData in updateWeaponUpgrade.UpgradeLevel.statDatas){
+				UpdateWeaponStat(updateWeaponUpgrade.WeaponType, upgradeLevelStatData.statType, upgradeLevelStatData.statChange);
+			}
 		}
 
 		private void UpdateCharacterStat(StatType statType, float modifier)
@@ -59,6 +64,18 @@ namespace PeanutDashboard._06_RobotRampage
 			switch (statType){
 				case StatType.Health:
 					RobotRampageCharacterStatsService.UpdateMaxHealth(modifier);
+					break;
+			}
+		}
+
+		private void UpdateWeaponStat(WeaponType weaponType, StatType statType, float modifier)
+		{
+			switch (statType){
+				case StatType.Damage:
+					RobotRampageWeaponStatsService.UpdateWeaponDamage(weaponType, modifier);
+					break;
+				case StatType.Penetration:
+					RobotRampageWeaponStatsService.UpdateWeaponPenetration(weaponType, modifier);
 					break;
 			}
 		}
