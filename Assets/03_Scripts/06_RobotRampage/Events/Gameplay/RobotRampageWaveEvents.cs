@@ -6,15 +6,15 @@ namespace PeanutDashboard._06_RobotRampage
 {
     public static class RobotRampageWaveEvents
     {
-        private static UnityAction<List<RobotRampageWaveMonsterData>> _startWaveSpawn;
+        private static UnityAction<List<RobotRampageSubWaveTrigger>> _startWaveSpawn;
 		
-        public static event UnityAction<List<RobotRampageWaveMonsterData>> OnStartWaveSpawn
+        public static event UnityAction<List<RobotRampageSubWaveTrigger>> OnStartWaveSpawn
         {
             add => _startWaveSpawn += value;
             remove => _startWaveSpawn -= value;
         }
 		
-        public static void RaiseStartWaveSpawnEvent(List<RobotRampageWaveMonsterData> robotRampageMonstersData)
+        public static void RaiseStartWaveSpawnEvent(List<RobotRampageSubWaveTrigger> robotRampageMonstersData)
         {
             if (_startWaveSpawn == null){
                 LoggerService.LogWarning($"{nameof(RobotRampageWaveEvents)}::{nameof(RaiseStartWaveSpawnEvent)} raised, but nothing picked it up");

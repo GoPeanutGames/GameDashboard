@@ -40,7 +40,7 @@ namespace PeanutDashboard._06_RobotRampage
             float angle = Mathf.Atan2(currentPos.y, currentPos.x) * Mathf.Rad2Deg;
             _enemyImage.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
             
-            if (Vector2.Distance(this.transform.position, RobotRampagePlayerController.currentPosition) > 15f)
+            if (Vector2.Distance(this.transform.position, RobotRampagePlayerController.currentPosition) > 12f)
             {
                 Destroy(this.gameObject);
             }

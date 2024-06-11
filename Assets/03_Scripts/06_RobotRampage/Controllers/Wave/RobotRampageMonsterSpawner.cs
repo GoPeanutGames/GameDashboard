@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using PeanutDashboard.Shared.Logging;
+using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,10 +10,23 @@ namespace PeanutDashboard._06_RobotRampage
     {
         private const float TimeToSpawn = 0.3f;
 
-        private List<RobotRampageWaveMonsterData> _currentWaveSetup;
-        private readonly Dictionary<GameObject, List<GameObject>> _prefabCurrentMonstersList = new ();
+        [Header(InspectorNames.SetInInspector)]
+        [SerializeField]
+        private float _minSpawnCircleRadius;
+        
+        [SerializeField]
+        private float _maxSpawnCircleRadius;
+        
+        [SerializeField]
+        private MobCollection _mobCollection;
+        
+        private List<RobotRampageSubWaveTrigger> _currentSubWavesSetup;
+        private List<RobotRampageSubWaveTrigger> _activeSubWaves;
+        private readonly Dictionary<MobType, GameObject> _mobTypePrefabMap = new ();
+        private readonly Dictionary<MobType, List<GameObject>> _mobTypeCurrentMonstersMap = new ();
         private bool _spawnActive = false;
-        private float _timer;
+        private float _timerToSpawn;
+        private float _currentWaveTimer;
 
         private void OnEnable()
         {
@@ -24,61 +38,77 @@ namespace PeanutDashboard._06_RobotRampage
             RobotRampageWaveEvents.OnStartWaveSpawn -= OnStartWaveSpawn;
         }
 
-        private void OnStartWaveSpawn(List<RobotRampageWaveMonsterData> robotRampageMonstersData)
+        private void OnStartWaveSpawn(List<RobotRampageSubWaveTrigger> robotRampageMonstersData)
         {
             LoggerService.LogInfo($"{nameof(RobotRampageMonsterSpawner)}::{nameof(OnStartWaveSpawn)}");
-            _currentWaveSetup = robotRampageMonstersData;
-            foreach (RobotRampageWaveMonsterData robotRampageWaveMonsterData in _currentWaveSetup)
+            _currentWaveTimer = 0;
+            _currentSubWavesSetup = robotRampageMonstersData;
+            _activeSubWaves = new List<RobotRampageSubWaveTrigger>();
+            foreach (RobotRampageSubWaveTrigger robotRampageWaveMonsterData in _currentSubWavesSetup)
             {
-                _prefabCurrentMonstersList.TryAdd(robotRampageWaveMonsterData.prefab, new List<GameObject>());
+                foreach (RobotRampageMonsterSpawnConfig robotRampageMonsterSpawnConfig in robotRampageWaveMonsterData.spawnConfig){
+                    GameObject prefab = _mobCollection.GetPrefabForMonster(robotRampageMonsterSpawnConfig.mobType);
+                    _mobTypePrefabMap.TryAdd(robotRampageMonsterSpawnConfig.mobType, prefab);
+                    _mobTypeCurrentMonstersMap.TryAdd(robotRampageMonsterSpawnConfig.mobType, new List<GameObject>());
+                }
             }
-            _timer = TimeToSpawn;
+            _timerToSpawn = TimeToSpawn;
             _spawnActive = true;
         }
 
         private void RemoveDestroyed()
         {
-            foreach (GameObject prefabKey in _prefabCurrentMonstersList.Keys)
+            foreach (MobType mobTypeKey in _mobTypeCurrentMonstersMap.Keys)
             {
-                _prefabCurrentMonstersList[prefabKey].RemoveAll((m) => m == null);
+                _mobTypeCurrentMonstersMap[mobTypeKey].RemoveAll((m) => m == null);
+            }
+        }
+
+        private void UpdateActiveSubWaves()
+        {
+            for (int i = 0; i < _currentSubWavesSetup.Count; i++){
+                if (_currentWaveTimer > _currentSubWavesSetup[i].timeToStart){
+                    if (!_currentSubWavesSetup[i].keepLast){
+                        _activeSubWaves.Clear();
+                    }
+                    _activeSubWaves.Add(_currentSubWavesSetup[i]);
+                }
             }
         }
         
         private void Update()
         {
             RemoveDestroyed();
-            if (_spawnActive)
-            {
-                foreach (RobotRampageWaveMonsterData robotRampageWaveMonsterData in _currentWaveSetup)
-                {
-                    int currentMonsterAmount = _prefabCurrentMonstersList[robotRampageWaveMonsterData.prefab].Count;
-                    int minToSpawn = robotRampageWaveMonsterData.minToSpawn;
-                    int maxToSpawn = robotRampageWaveMonsterData.maxToSpawn;
-                    if (currentMonsterAmount < minToSpawn)
-                    {
-                        for (int i = 0; i < minToSpawn - currentMonsterAmount; i++)
-                        {
-                            SpawnMonster(robotRampageWaveMonsterData.prefab);
+            if (_spawnActive){
+                _currentWaveTimer += Time.deltaTime;
+                UpdateActiveSubWaves();
+                foreach (RobotRampageSubWaveTrigger robotRampageSubWaveTrigger in _activeSubWaves){
+                    foreach (RobotRampageMonsterSpawnConfig robotRampageMonsterSpawnConfig in robotRampageSubWaveTrigger.spawnConfig){
+                        int currentMonsterAmount = _mobTypeCurrentMonstersMap[robotRampageMonsterSpawnConfig.mobType].Count;
+                        int minToSpawn = robotRampageMonsterSpawnConfig.minToSpawn;
+                        int maxToSpawn = robotRampageMonsterSpawnConfig.maxToSpawn;
+                        if (currentMonsterAmount < minToSpawn){
+                            for (int i = 0; i < minToSpawn - currentMonsterAmount; i++){
+                                SpawnMonster(robotRampageMonsterSpawnConfig.mobType, _mobTypePrefabMap[robotRampageMonsterSpawnConfig.mobType]);
+                            }
                         }
-                    }
-                    else if (currentMonsterAmount < maxToSpawn)
-                    {
-                        _timer -= Time.deltaTime;
-                        if (_timer <= 0)
-                        {
-                            SpawnMonster(robotRampageWaveMonsterData.prefab);
-                            _timer = TimeToSpawn;
+                        else if (currentMonsterAmount < maxToSpawn){
+                            _timerToSpawn -= Time.deltaTime;
+                            if (_timerToSpawn <= 0){
+                                SpawnMonster(robotRampageMonsterSpawnConfig.mobType, _mobTypePrefabMap[robotRampageMonsterSpawnConfig.mobType]);
+                                _timerToSpawn = TimeToSpawn;
+                            }
                         }
                     }
                 }
             }
         }
 
-        private void SpawnMonster(GameObject prefab)
+        private void SpawnMonster(MobType mobType, GameObject prefab)
         {
-            Vector3 pos = RobotRampagePlayerController.currentPosition + (Vector3)Random.insideUnitCircle.normalized * Random.Range(8f,12f);
-            GameObject monster = Instantiate(prefab, pos, Quaternion.identity);
-            _prefabCurrentMonstersList[prefab].Add(monster);
+            Vector3 pos = RobotRampagePlayerController.currentPosition + (Vector3)Random.insideUnitCircle.normalized * Random.Range(_minSpawnCircleRadius, _maxSpawnCircleRadius);
+            GameObject monster = Instantiate(prefab, pos, Quaternion.identity); 
+            _mobTypeCurrentMonstersMap[mobType].Add(monster);
         }
     }
 }
