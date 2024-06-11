@@ -15,13 +15,14 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private float _lifetime;
 
-        public void SetStats(Vector3 direction, float speed, float lifetime)
+        public void SetStats(WeaponType weaponType, string tagToDamage, Vector3 direction, float speed, float lifetime)
         {
+            Setup(weaponType, tagToDamage);
+            float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+            this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             _direction = direction;
             _speed = speed;
             _lifetime = lifetime;
-            float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-            this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
         
         private void Update()

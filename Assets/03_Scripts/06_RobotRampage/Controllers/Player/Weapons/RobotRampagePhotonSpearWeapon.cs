@@ -30,8 +30,7 @@ namespace PeanutDashboard._06_RobotRampage
             if (_timeToShoot <= 0)
             {
                 GameObject bullet = Instantiate(_bulletPrefab, this.transform.position + this.transform.right * 0.3f, Quaternion.identity);
-                bullet.GetComponent<RobotRampageGunBullet>().Setup(_weaponType, "Enemy", RobotRampageWeaponStatsService.GetWeaponDamage(_weaponType));
-                bullet.GetComponent<RobotRampageGunBullet>().SetStats(this.transform.right, 2.4f, 3f);
+                bullet.GetComponent<RobotRampageGunBullet>().SetStats(_weaponType, "Enemy", this.transform.right, 2.4f, 3f);
                 _timeToShoot = 1f / _shotsPerSecond;
             }
         }

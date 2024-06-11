@@ -19,10 +19,10 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private bool _ignoreTriggers;
 
-        public virtual void Setup(WeaponType weaponType, string tagToDamage, float damage)
+        protected void Setup(WeaponType weaponType, string tagToDamage)
         {
             _tagToDamage = tagToDamage;
-            _damageToDeal = damage;
+            _damageToDeal = RobotRampageWeaponStatsService.GetWeaponDamage(weaponType);
             _penetration = RobotRampageWeaponStatsService.GetWeaponPenetration(weaponType);
         }
 
