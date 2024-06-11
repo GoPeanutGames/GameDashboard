@@ -18,8 +18,11 @@ MonoBehaviour:
   _startingWeapons:
   - {fileID: 11400000, guid: 50c69afc1ef70034c95471a03f24da8d, type: 2}
   _levelExp:
-  - 4
-  - 8
-  - 14
-  - 25
-  - 45
+  - 6
+  - 12
+  - 20
+  - 34
+  - 52
+  - 68
+  - 82
+  - 100

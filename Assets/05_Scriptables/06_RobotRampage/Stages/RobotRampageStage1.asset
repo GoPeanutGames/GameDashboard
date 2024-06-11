@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 63c0073155a305148a99453d389514ac, type: 3}
   - {fileID: 21300000, guid: 06aab0c63f4832f4db77fffe44c79d2f, type: 3}
   _wavesData:
-  - waveTimer: 120
+  - waveTimer: 60
     robotRampageWaveMonsterData:
     - timeToStart: 0
       keepLast: 0
@@ -26,19 +26,59 @@ MonoBehaviour:
       - mobType: 0
         minToSpawn: 5
         maxToSpawn: 10
-    - timeToStart: 40
+    - timeToStart: 30
       keepLast: 0
       spawnConfig:
       - mobType: 0
         minToSpawn: 10
         maxToSpawn: 20
-    - timeToStart: 80
+  - waveTimer: 60
+    robotRampageWaveMonsterData:
+    - timeToStart: 0
+      keepLast: 0
+      spawnConfig:
+      - mobType: 0
+        minToSpawn: 5
+        maxToSpawn: 10
+      - mobType: 1
+        minToSpawn: 4
+        maxToSpawn: 8
+    - timeToStart: 40
       keepLast: 0
       spawnConfig:
       - mobType: 0
         minToSpawn: 8
         maxToSpawn: 16
       - mobType: 1
+        minToSpawn: 6
+        maxToSpawn: 12
+  - waveTimer: 80
+    robotRampageWaveMonsterData:
+    - timeToStart: 0
+      keepLast: 0
+      spawnConfig:
+      - mobType: 0
+        minToSpawn: 10
+        maxToSpawn: 20
+      - mobType: 1
         minToSpawn: 4
         maxToSpawn: 8
+    - timeToStart: 30
+      keepLast: 0
+      spawnConfig:
+      - mobType: 0
+        minToSpawn: 10
+        maxToSpawn: 20
+      - mobType: 1
+        minToSpawn: 10
+        maxToSpawn: 20
+    - timeToStart: 50
+      keepLast: 0
+      spawnConfig:
+      - mobType: 0
+        minToSpawn: 12
+        maxToSpawn: 24
+      - mobType: 1
+        minToSpawn: 12
+        maxToSpawn: 24
   _stageBackgroundMusic: {fileID: 8300000, guid: 6af08cb35290a694c870221ee82813fe, type: 3}
