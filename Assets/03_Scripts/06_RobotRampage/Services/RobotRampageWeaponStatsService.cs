@@ -36,6 +36,11 @@ namespace PeanutDashboard._06_RobotRampage
 			return CurrentWeapons[weaponType].Penetration + Mathf.FloorToInt(CurrentWeaponModifiers[weaponType].penetrationModifier);
 		}
 
+		public static int GetWeaponBulletAmount(WeaponType weaponType)
+		{
+			return CurrentWeapons[weaponType].BulletAmount + Mathf.FloorToInt(CurrentWeaponModifiers[weaponType].bulletAmountModifier);
+		}
+
 		public static void UpdateWeaponDamage(WeaponType weaponType, float modifier)
 		{
 			CurrentWeaponModifiers[weaponType].damageModifier += modifier;
@@ -44,6 +49,11 @@ namespace PeanutDashboard._06_RobotRampage
 		public static void UpdateWeaponPenetration(WeaponType weaponType, float modifier)
 		{
 			CurrentWeaponModifiers[weaponType].penetrationModifier += modifier;
+		}
+
+		public static void UpdateWeaponBulletAmount(WeaponType weaponType, float modifier)
+		{
+			CurrentWeaponModifiers[weaponType].bulletAmountModifier += modifier;
 		}
 	}
 }

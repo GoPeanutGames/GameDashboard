@@ -77,6 +77,9 @@ namespace PeanutDashboard._06_RobotRampage
 				case StatType.Penetration:
 					RobotRampageWeaponStatsService.UpdateWeaponPenetration(weaponType, modifier);
 					break;
+				case StatType.BulletAmount:
+					RobotRampageWeaponStatsService.UpdateWeaponBulletAmount(weaponType, modifier);
+					break;
 			}
 		}
 	}

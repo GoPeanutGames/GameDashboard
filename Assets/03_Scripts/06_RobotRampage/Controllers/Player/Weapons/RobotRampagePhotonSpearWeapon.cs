@@ -11,6 +11,12 @@ namespace PeanutDashboard._06_RobotRampage
         
         [SerializeField]
         private WeaponType _weaponType;
+
+        [SerializeField]
+        private float _minAngle;
+
+        [SerializeField]
+        private float _maxAngle;
         
         [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
@@ -22,17 +28,35 @@ namespace PeanutDashboard._06_RobotRampage
         private void Start()
         {
             _timeToShoot = 1f / _shotsPerSecond;
+            _minAngle = -45;
+            _maxAngle = 45;
         }
 
         private void Update()
         {
             _timeToShoot -= Time.deltaTime;
-            if (_timeToShoot <= 0)
-            {
-                GameObject bullet = Instantiate(_bulletPrefab, this.transform.position + this.transform.right * 0.3f, Quaternion.identity);
-                bullet.GetComponent<RobotRampageGunBullet>().SetStats(_weaponType, "Enemy", this.transform.right, 2.4f, 3f);
-                _timeToShoot = 1f / _shotsPerSecond;
+            if (_timeToShoot <= 0){
+                int bulletAmount = RobotRampageWeaponStatsService.GetWeaponBulletAmount(_weaponType);
+                for (int i = 0; i < bulletAmount; i++){
+                    SpawnBullet(i+1, bulletAmount);
+                }
+                
             }
+        }
+
+        private void SpawnBullet(int bulletNumber, int bulletAmount)
+        {
+            float totalAngle = Mathf.Abs(_minAngle) + Mathf.Abs(_maxAngle);
+            float angleAdd = totalAngle / (bulletAmount + 1);
+
+            float bulletAngle = _minAngle + angleAdd * bulletNumber;
+            Quaternion angleAxis = Quaternion.AngleAxis(bulletAngle, Vector3.forward);
+            
+            
+            
+            GameObject bullet = Instantiate(_bulletPrefab, this.transform.position + this.transform.right * 0.3f, Quaternion.identity);
+            bullet.GetComponent<RobotRampageGunBullet>().SetStats(_weaponType, "Enemy", angleAxis * this.transform.right, 2.4f, 3f);
+            _timeToShoot = 1f / _shotsPerSecond;
         }
     }
 }
