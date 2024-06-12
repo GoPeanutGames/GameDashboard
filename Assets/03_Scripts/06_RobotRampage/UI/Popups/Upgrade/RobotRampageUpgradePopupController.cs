@@ -53,9 +53,14 @@ namespace PeanutDashboard._06_RobotRampage
 			RobotRampagePauseEvents.RaisePauseGameEventEvent();
 			List<BaseUpgrade> tempList = new List<BaseUpgrade>(_upgradePool);
 			for (int i = 0; i < 3; i++){
-				int randomIndex = Random.Range(0, tempList.Count);
-				_upgradeChoices[i].SetupChoice(tempList[randomIndex]);
-				tempList.RemoveAt(randomIndex);
+				if (tempList.Count > 0){
+					int randomIndex = Random.Range(0, tempList.Count);
+					_upgradeChoices[i].SetupChoice(tempList[randomIndex]);
+					tempList.RemoveAt(randomIndex);
+				}
+				else{
+					//TODO: upgrade choice gray or doesn't exist
+				}
 			}
 		}
 
