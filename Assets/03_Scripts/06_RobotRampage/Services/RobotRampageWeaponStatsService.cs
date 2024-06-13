@@ -26,9 +26,14 @@ namespace PeanutDashboard._06_RobotRampage
 			CurrentWeaponModifiers.Add(robotRampageWeaponData.WeaponType, modifierData);
 		}
 
-		public static float GetWeaponDamage(WeaponType weaponType)
+		public static DamageType GetWeaponDamageType(WeaponType weaponType)
 		{
-			return CurrentWeapons[weaponType].Damage + CurrentWeapons[weaponType].Damage * CurrentWeaponModifiers[weaponType].damageModifier;
+			return CurrentWeapons[weaponType].DamageType;
+		}
+		
+		public static float GetWeaponDamage(WeaponType weaponType, DamageType damageType)
+		{
+			return CurrentWeapons[weaponType].GetDamageForType(damageType) + CurrentWeapons[weaponType].GetDamageForType(damageType) * CurrentWeaponModifiers[weaponType].damageModifier;
 		}
 
 		public static int GetWeaponPenetration(WeaponType weaponType)

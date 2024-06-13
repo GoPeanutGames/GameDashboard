@@ -25,8 +25,12 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private float _timeToShoot;
 
+        [SerializeField]
+        private DamageType _damageType;
+
         private void Start()
         {
+            _damageType = RobotRampageWeaponStatsService.GetWeaponDamageType(_weaponType);
             _timeToShoot = 1f / _shotsPerSecond;
             _minAngle = -45;
             _maxAngle = 45;
@@ -55,7 +59,7 @@ namespace PeanutDashboard._06_RobotRampage
             
             
             GameObject bullet = Instantiate(_bulletPrefab, this.transform.position + this.transform.right * 0.3f, Quaternion.identity);
-            bullet.GetComponent<RobotRampageGunBullet>().SetStats(_weaponType, "Enemy", angleAxis * this.transform.right, 2.4f, 3f);
+            bullet.GetComponent<RobotRampageGunBullet>().SetStats(_weaponType, _damageType, "Enemy", angleAxis * this.transform.right, 2.4f, 3f);
             _timeToShoot = 1f / _shotsPerSecond;
         }
     }

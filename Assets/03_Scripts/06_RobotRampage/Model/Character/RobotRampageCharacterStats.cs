@@ -7,5 +7,7 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		public float attractionRange;
 		public float maxHealth;
+		public float plasmaStrength;
+		public float power;
 	}
 }

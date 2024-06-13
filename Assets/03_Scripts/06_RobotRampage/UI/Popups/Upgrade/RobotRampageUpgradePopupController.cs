@@ -59,7 +59,7 @@ namespace PeanutDashboard._06_RobotRampage
 					tempList.RemoveAt(randomIndex);
 				}
 				else{
-					//TODO: upgrade choice gray or doesn't exist
+					_upgradeChoices[i].SetupUnavailable();
 				}
 			}
 		}

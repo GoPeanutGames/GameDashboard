@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils.Misc;
+﻿using PeanutDashboard.Utils;
+using PeanutDashboard.Utils.Misc;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,6 +31,9 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private BaseUpgrade _currentUpgrade;
 
+		[SerializeField]
+		private Sprite _greyedOutBg;
+
 		private UnityAction<BaseUpgrade> _onUpgradeChosen;
 
 		private void OnEnable()
@@ -55,11 +59,24 @@ namespace PeanutDashboard._06_RobotRampage
 		public void SetupChoice(BaseUpgrade baseUpgrade)
 		{
 			_currentUpgrade = baseUpgrade;
+			_levelIcon.gameObject.Activate();
+			_icon.gameObject.Activate();
+			_title.gameObject.Activate();
+			_description.gameObject.Activate();
 			_background.sprite = baseUpgrade.Background;
 			_levelIcon.sprite = baseUpgrade.LevelIcon;
 			_icon.sprite = baseUpgrade.Icon;
 			_title.text = baseUpgrade.Title;
 			_description.text = baseUpgrade.Description;
+		}
+
+		public void SetupUnavailable()
+		{
+			_background.sprite = _greyedOutBg;
+			_levelIcon.gameObject.Deactivate();
+			_icon.gameObject.Deactivate();
+			_title.gameObject.Deactivate();
+			_description.gameObject.Deactivate();
 		}
 
 		private void OnClick()

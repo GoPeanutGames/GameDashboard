@@ -24,6 +24,10 @@ namespace PeanutDashboard._06_RobotRampage
 
 		public float MaxHealth => _characterStats.maxHealth;
 
+		public float PlasmaStrength => _characterStats.plasmaStrength;
+
+		public float Power => _characterStats.power;
+
 		public List<float> LevelExp => _levelExp;
 
 		public List<BaseUpgrade> StartingWeapons => _startingWeapons;

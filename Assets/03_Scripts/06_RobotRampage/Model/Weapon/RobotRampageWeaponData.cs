@@ -14,10 +14,13 @@ namespace PeanutDashboard._06_RobotRampage
 		private WeaponType _weaponType;
 
 		[SerializeField]
+		private DamageType _damageType;
+
+		[SerializeField]
 		private GameObject _prefab;
 
 		[SerializeField]
-		private float _damage;
+		private float _damageForType;
 
 		[SerializeField]
 		private int _penetration;
@@ -25,14 +28,19 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private int _bulletAmount;
 
+		public DamageType DamageType => _damageType;
+		
 		public WeaponType WeaponType => _weaponType;
 
 		public GameObject Prefab => _prefab;
 
-		public float Damage => _damage;
-
 		public int Penetration => _penetration;
 
 		public int BulletAmount => _bulletAmount;
+
+		public float GetDamageForType(DamageType damageType)
+		{
+			return _damageType == damageType ? _damageForType : 0;
+		}
 	}
 }

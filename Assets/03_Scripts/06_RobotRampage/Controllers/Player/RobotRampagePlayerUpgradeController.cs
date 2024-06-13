@@ -71,7 +71,7 @@ namespace PeanutDashboard._06_RobotRampage
 		private void UpdateWeaponStat(WeaponType weaponType, StatType statType, float modifier)
 		{
 			switch (statType){
-				case StatType.Damage:
+				case StatType.PlasmaStrength:
 					RobotRampageWeaponStatsService.UpdateWeaponDamage(weaponType, modifier);
 					break;
 				case StatType.Penetration:

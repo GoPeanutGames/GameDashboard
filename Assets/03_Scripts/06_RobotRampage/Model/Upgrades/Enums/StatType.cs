@@ -5,7 +5,8 @@
 		Health = 0,
 		Movement = 1,
 		BulletAmount = 2,
-		Damage = 3,
-		Penetration = 4
+		PlasmaStrength = 3,
+		Penetration = 4,
+		Power = 5
 	}
 }

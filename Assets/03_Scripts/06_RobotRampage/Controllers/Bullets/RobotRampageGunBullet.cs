@@ -15,9 +15,9 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private float _lifetime;
 
-        public void SetStats(WeaponType weaponType, string tagToDamage, Vector3 direction, float speed, float lifetime)
+        public void SetStats(WeaponType weaponType, DamageType damageType, string tagToDamage, Vector3 direction, float speed, float lifetime)
         {
-            Setup(weaponType, tagToDamage);
+            Setup(weaponType, tagToDamage, damageType);
             _direction = direction;
             _speed = speed;
             _lifetime = lifetime;
