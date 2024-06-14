@@ -27,9 +27,10 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			switch (baseUpgrade.BaseUpgradeType){
 				case BaseUpgradeType.AddPassive:
+					ApplyAddPassive(baseUpgrade as AddPassiveUpgrade);
 					break;
 				case BaseUpgradeType.UpdatePassive:
-					ApplyPassive(baseUpgrade as UpdatePassiveUpgrade);
+					ApplyUpgradePassive(baseUpgrade as UpdatePassiveUpgrade);
 					break;
 				case BaseUpgradeType.AddWeapon:
 					ApplyAddWeapon(baseUpgrade as AddWeaponUpgrade);
@@ -40,7 +41,14 @@ namespace PeanutDashboard._06_RobotRampage
 			}
 		}
 
-		private void ApplyPassive(UpdatePassiveUpgrade updatePassiveUpgrade)
+		private void ApplyAddPassive(AddPassiveUpgrade addPassiveUpgrade)
+		{
+			foreach (StatData upgradeLevelStatData in addPassiveUpgrade.UpgradeLevel.statDatas){
+				UpdateCharacterStat(upgradeLevelStatData.statType, upgradeLevelStatData.statChange);
+			}
+		}
+
+		private void ApplyUpgradePassive(UpdatePassiveUpgrade updatePassiveUpgrade)
 		{
 			foreach (StatData upgradeLevelStatData in updatePassiveUpgrade.UpgradeLevel.statDatas){
 				UpdateCharacterStat(upgradeLevelStatData.statType, upgradeLevelStatData.statChange);
