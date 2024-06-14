@@ -2,8 +2,9 @@
 {
 	public enum BaseUpgradeType
 	{
-		Passive = 0,
+		UpdatePassive = 0,
 		AddWeapon = 1,
-		UpdateWeapon = 2
+		UpdateWeapon = 2,
+		AddPassive = 3,
 	}
 }
