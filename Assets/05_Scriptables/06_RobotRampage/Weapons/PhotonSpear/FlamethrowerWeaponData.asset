@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5989453a4cc4a6f8b45b8883187f019, type: 3}
-  m_Name: PhotonSpearWeaponData
+  m_Name: FlamethrowerWeaponData
   m_EditorClassIdentifier: 
-  _weaponType: 0
+  _weaponType: 1
   _damageType: 1
-  _prefab: {fileID: 5488601554675896285, guid: 9eb40b1afdcc07a4a8359fc2e882978b, type: 3}
-  _damageForType: 20
+  _prefab: {fileID: 5488601554675896285, guid: a825dd9d4458f1447a70ae1ad91a6ade, type: 3}
+  _damageForType: 10
   _penetration: 0
-  _bulletAmount: 1
+  _bulletAmount: 0
