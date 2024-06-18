@@ -12,23 +12,16 @@ namespace PeanutDashboard._06_RobotRampage.Collection
 	{
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
-		private List<UpdatePassiveUpgrade> _updatePassiveUpgrades;
-
-		[SerializeField]
 		private List<AddPassiveUpgrade> _addPassiveUpgrades;
 		
 		[SerializeField]
 		private List<AddWeaponUpgrade> _addWeaponUpgrades;
 
-		[SerializeField]
-		private List<UpdateWeaponUpgrade> _updateWeaponUpgrades;
-
 		public List<BaseUpgrade> GetUpgrades()
 		{
 			List<BaseUpgrade> baseUpgrades = new List<BaseUpgrade>();
-			baseUpgrades.AddRange(_updatePassiveUpgrades);
 			baseUpgrades.AddRange(_addWeaponUpgrades);
-			baseUpgrades.AddRange(_updateWeaponUpgrades);
+            baseUpgrades.AddRange(_addPassiveUpgrades);
 			return baseUpgrades;
 		}
 	}

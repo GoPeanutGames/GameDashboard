@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624c0abd51ca48a08d20da456e08ceb8, type: 3}
   m_Name: UpgradeCollection
   m_EditorClassIdentifier: 
-  _passiveUpgrades:
-  - {fileID: 11400000, guid: 3aa335d4fd1a44041892cb48ef293884, type: 2}
+  _addPassiveUpgrades:
+  - {fileID: 11400000, guid: e088b6c76dfe3f943980684949908245, type: 2}
   _addWeaponUpgrades:
   - {fileID: 11400000, guid: 75dbed2604586e348be2617f8521e096, type: 2}
   - {fileID: 11400000, guid: 50c69afc1ef70034c95471a03f24da8d, type: 2}
-  _updateWeaponUpgrades: []
