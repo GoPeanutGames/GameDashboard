@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e014357d120f47d982bfc0ed346d654b, type: 3}
-  m_Name: PhotonSpearUpgrade2
+  m_Name: FlamethrowerUpgrade1
   m_EditorClassIdentifier: 
   _baseUpgradeType: 2
   _background: {fileID: 21300000, guid: 19a41d52e2d9e0a42831b36cb4167641, type: 3}
-  _icon: {fileID: 21300000, guid: 6f16ce37e8ed8984e92e500e6e3710a3, type: 3}
-  _levelIcon: {fileID: 21300000, guid: c4d2ec24f876bb34d84255eec830cd7a, type: 3}
-  _title: Photon Spear
-  _description: Damage + 10%\nPenetration + 1
-  _nextUpgrade: {fileID: 11400000, guid: 4c73c30b8e6efcd499d73dcf2f1684b9, type: 2}
-  _weaponType: 0
+  _icon: {fileID: 21300000, guid: fd0f7b3d3bfdf824dab4a17fd84a4656, type: 3}
+  _levelIcon: {fileID: 21300000, guid: 2fd9fb4b34ac61f42b4bdc069fa73826, type: 3}
+  _title: Flamethrower
+  _description: AOE + 10%\nDamage + 20%
+  _nextUpgrade: {fileID: 11400000, guid: 8f3c6ad1dafac564694606d23c48a17c, type: 2}
+  _weaponType: 1
   _upgradeLevel:
-    level: 1
+    level: 0
     statDatas:
-    - statType: 4
-      statChange: 1
     - statType: 3
+      statChange: 0.2
+    - statType: 6
       statChange: 0.1

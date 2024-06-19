@@ -24,4 +24,4 @@ MonoBehaviour:
     level: 0
     statDatas:
     - statType: 3
-      statChange: 10
+      statChange: 0.1

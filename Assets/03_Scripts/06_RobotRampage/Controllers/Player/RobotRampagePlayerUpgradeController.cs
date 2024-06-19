@@ -90,6 +90,12 @@ namespace PeanutDashboard._06_RobotRampage
 				case StatType.BulletAmount:
 					RobotRampageWeaponStatsService.UpdateWeaponBulletAmount(weaponType, modifier);
 					break;
+				case StatType.AOE:
+					RobotRampageWeaponStatsService.UpdateWeaponAOE(weaponType, modifier);
+					break;
+				case StatType.Cooldown:
+					RobotRampageWeaponStatsService.UpdateCooldown(weaponType, modifier);
+					break;
 			}
 		}
 	}

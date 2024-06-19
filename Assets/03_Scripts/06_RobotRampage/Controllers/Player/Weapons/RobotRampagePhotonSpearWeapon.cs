@@ -20,9 +20,6 @@ namespace PeanutDashboard._06_RobotRampage
         
         [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
-        private int _shotsPerSecond;
-
-        [SerializeField]
         private float _timeToShoot;
 
         [SerializeField]
@@ -31,7 +28,7 @@ namespace PeanutDashboard._06_RobotRampage
         private void Start()
         {
             _damageType = RobotRampageWeaponStatsService.GetWeaponDamageType(_weaponType);
-            _timeToShoot = 1f / _shotsPerSecond;
+            _timeToShoot = RobotRampageWeaponStatsService.GetWeaponCooldown(_weaponType);
             _minAngle = -45;
             _maxAngle = 45;
         }
@@ -44,7 +41,7 @@ namespace PeanutDashboard._06_RobotRampage
                 for (int i = 0; i < bulletAmount; i++){
                     SpawnBullet(i+1, bulletAmount);
                 }
-                _timeToShoot = 1f / _shotsPerSecond;
+                _timeToShoot = RobotRampageWeaponStatsService.GetWeaponCooldown(_weaponType);
             }
         }
 

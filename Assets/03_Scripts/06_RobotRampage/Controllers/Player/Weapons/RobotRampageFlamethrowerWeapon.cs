@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
@@ -9,8 +8,14 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
-		
 		private RobotRampageColliderTrigger _colliderTrigger;
+
+		[SerializeField]
+		private Transform _particleTransform;
+
+		[SerializeField]
+		private Transform _colliderTransform;
+		
 		[SerializeField]
 		private WeaponType _weaponType;
 		
@@ -22,9 +27,6 @@ namespace PeanutDashboard._06_RobotRampage
 		private List<RobotRampageMonsterController> _enemiesToRemove = new();
 		
 		[SerializeField]
-		private int _shotsPerSecond;
-		
-		[SerializeField]
 		private float _timeToShoot;
 		
 		[SerializeField]
@@ -32,6 +34,9 @@ namespace PeanutDashboard._06_RobotRampage
 
 		[SerializeField]
 		private bool _looping;
+
+		[SerializeField]
+		private float _currentAOE = 1;
 
 		private void OnEnable()
 		{
@@ -48,7 +53,7 @@ namespace PeanutDashboard._06_RobotRampage
 		private void Start()
 		{
 			_damageType = RobotRampageWeaponStatsService.GetWeaponDamageType(_weaponType);
-			_timeToShoot = 1f / _shotsPerSecond;
+			_timeToShoot = RobotRampageWeaponStatsService.GetWeaponCooldown(_weaponType);
 		}
 
 		private void Update()
@@ -57,6 +62,17 @@ namespace PeanutDashboard._06_RobotRampage
 			if (_timeToShoot <= 0){
 				DamageAllEnemies();
 			}
+			CheckForAOEChange();
+		}
+
+		private void CheckForAOEChange()
+		{
+			if (Mathf.Approximately(RobotRampageWeaponStatsService.GetWeaponAOE(_weaponType), _currentAOE)){
+				return;
+			}
+			_currentAOE = RobotRampageWeaponStatsService.GetWeaponAOE(_weaponType);
+			_colliderTransform.localScale = new Vector3( _colliderTransform.localScale.x * _currentAOE, _colliderTransform.localScale.y * _currentAOE, _colliderTransform.localScale.z * _currentAOE);
+			_particleTransform.localScale = new Vector3( _particleTransform.localScale.x * _currentAOE, _particleTransform.localScale.y * _currentAOE, _particleTransform.localScale.z * _currentAOE);
 		}
 
 		private void DamageAllEnemies()
@@ -71,7 +87,7 @@ namespace PeanutDashboard._06_RobotRampage
 				_enemiesToDamage.Remove(robotRampageMonsterController);
 			}
 			_enemiesToRemove.Clear();
-			_timeToShoot = 1f / _shotsPerSecond;
+			_timeToShoot = RobotRampageWeaponStatsService.GetWeaponCooldown(_weaponType);
 		}
 
 		private void OnTriggerEntered(Collider2D other)

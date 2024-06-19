@@ -7,6 +7,8 @@
 		BulletAmount = 2,
 		PlasmaStrength = 3,
 		Penetration = 4,
-		Power = 5
+		Power = 5,
+		AOE = 6,
+		Cooldown = 7
 	}
 }

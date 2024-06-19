@@ -18,3 +18,5 @@ MonoBehaviour:
   _damageForType: 10
   _penetration: 0
   _bulletAmount: 0
+  _cooldown: 0.5
+  _aoe: 1

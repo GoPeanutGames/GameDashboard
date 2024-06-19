@@ -28,6 +28,12 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private int _bulletAmount;
 
+		[SerializeField]
+		private float _cooldown;
+
+		[SerializeField]
+		private float _aoe;
+
 		public DamageType DamageType => _damageType;
 		
 		public WeaponType WeaponType => _weaponType;
@@ -37,6 +43,10 @@ namespace PeanutDashboard._06_RobotRampage
 		public int Penetration => _penetration;
 
 		public int BulletAmount => _bulletAmount;
+
+		public float AOE => _aoe;
+
+		public float Cooldown => _cooldown;
 
 		public float GetDamageForType(DamageType damageType)
 		{
