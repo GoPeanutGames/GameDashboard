@@ -4,6 +4,7 @@
 	{
 		private const int SortOrderBackground = 0;
 		private const int SortOrderBackgroundDecor = 1;
+		private const int SortOrderBackgroundProp = 3;
 		private const int SortOrderScrap = 10;
 		private const int SortOrderDrop = 12;
 		private const int SortOrderShadow = 18;
@@ -19,6 +20,8 @@
 					return SortOrderBackground;
 				case RobotRampageSortOrderType.BackgroundDecor:
 					return SortOrderBackgroundDecor;
+				case RobotRampageSortOrderType.BackgroundProp:
+					return SortOrderBackgroundProp;
 				case RobotRampageSortOrderType.Scrap:
 					return SortOrderScrap;
 				case RobotRampageSortOrderType.Drop:

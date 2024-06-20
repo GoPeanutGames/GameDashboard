@@ -20,6 +20,9 @@ namespace PeanutDashboard._06_RobotRampage
         private List<Sprite> _possibleDecor;
 
         [SerializeField]
+        private List<GameObject> _possibleProps;
+
+        [SerializeField]
         private List<RobotRampageWaveData> _wavesData;
 
         [SerializeField]
@@ -30,6 +33,8 @@ namespace PeanutDashboard._06_RobotRampage
         public Sprite DefaultBackground => _defaultBackground;
 
         public List<Sprite> PossibleDecor => _possibleDecor;
+
+        public List<GameObject> PropPrefabs => _possibleProps;
 
         public List<RobotRampageWaveData> WavesData => _wavesData;
 

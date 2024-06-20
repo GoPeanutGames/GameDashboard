@@ -14,10 +14,15 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private List<Sprite> _possibleDecor;
 
-        public void Setup(List<Sprite> decor)
+        [SerializeField]
+        private List<GameObject> _propPrefabs;
+
+        public void Setup(List<Sprite> decor, List<GameObject> propPrefabs)
         {
             _possibleDecor = decor;
+            _propPrefabs = propPrefabs;
             SetupDecor();
+            SetupProps();
         }
 
         private void SetupDecor()
@@ -30,8 +35,24 @@ namespace PeanutDashboard._06_RobotRampage
                                             Random.Range(-VerticalIncreaseHalf, VerticalIncreaseHalf), 0);
                 GameObject decor = Instantiate(_prefab, this.transform);
                 decor.GetComponent<SpriteRenderer>().sprite = _possibleDecor[Random.Range(0, _possibleDecor.Count)];
-                decor.GetComponent<SpriteRenderer>().sortingOrder = 1;
                 decor.transform.position = decorPosition;
+            }
+        }
+
+        private void SetupProps()
+        {
+            if (_propPrefabs.Count == 0){
+                return;
+            }
+            int propAmount = Random.Range(1, 5);
+            for (int i = 0; i < propAmount; i++)
+            {
+                Vector3 propPosition = this.transform.position +
+                                        new Vector3(Random.Range(-HorizontalIncreaseHalf, HorizontalIncreaseHalf),
+                                            Random.Range(-VerticalIncreaseHalf, VerticalIncreaseHalf), 0);
+                int propPrefabIndex = Random.Range(0, _propPrefabs.Count);
+                GameObject prop = Instantiate(_propPrefabs[propPrefabIndex], this.transform);
+                prop.transform.position = propPosition;
             }
         }
     }

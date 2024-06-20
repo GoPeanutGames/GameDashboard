@@ -10,6 +10,7 @@
 		Mob = 5,
 		WeaponEffect = 6,
 		WeaponBullet = 7,
-		Shadow = 8
+		Shadow = 8,
+		BackgroundProp = 9
 	}
 }

@@ -31,38 +31,42 @@ namespace PeanutDashboard._06_RobotRampage
         
         [SerializeField]
         private List<Sprite> _decor;
+
+        [SerializeField]
+        private List<GameObject> _propPrefabs;
         
         private void Start()
         {
             _defaultBackground = RobotRampageStageService.currentStageData.DefaultBackground;
             _decor = RobotRampageStageService.currentStageData.PossibleDecor;
+            _propPrefabs = RobotRampageStageService.currentStageData.PropPrefabs;
             GameObject bg = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, 0, 0), Quaternion.identity);
             bg.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + HorizontalIncrease, 0, 0), Quaternion.identity);
             bgRight.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - HorizontalIncrease, 0, 0), Quaternion.identity);
             bgLeft.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgTop = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, VerticalIncrease, 0), Quaternion.identity);
             bgTop.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgTop.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgTop.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgDown = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f, -VerticalIncrease, 0), Quaternion.identity);
             bgDown.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgDown.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgDown.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgTopRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + HorizontalIncrease, VerticalIncrease, 0), Quaternion.identity);
             bgTopRight.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgTopRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgTopRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgTopLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - HorizontalIncrease, VerticalIncrease, 0), Quaternion.identity);
             bgTopLeft.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgTopLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgTopLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgBottomLeft = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f - HorizontalIncrease, -VerticalIncrease, 0), Quaternion.identity);
             bgBottomLeft.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgBottomLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgBottomLeft.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             GameObject bgBottomRight = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + HorizontalIncrease, -VerticalIncrease, 0), Quaternion.identity);
             bgBottomRight.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-            bgBottomRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+            bgBottomRight.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
             _backgroundObjectsSpawned.Add(bg);
             _backgroundObjectsSpawned.Add(bgRight);
             _backgroundObjectsSpawned.Add(bgLeft);
@@ -136,7 +140,7 @@ namespace PeanutDashboard._06_RobotRampage
                     {
                         GameObject bg = Instantiate(_bgPrefab, new Vector3(_centralWidth / 2f + (i + newGridPosX)*HorizontalIncrease, (j+newGridPosY)*VerticalIncrease, 0), Quaternion.identity);
                         bg.GetComponent<SpriteRenderer>().sprite = _defaultBackground;
-                        bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor);
+                        bg.GetComponent<RobotRampageBgDecorController>().Setup(_decor, _propPrefabs);
                         _backgroundObjectsSpawned.Add(bg);
                     }
                 }
