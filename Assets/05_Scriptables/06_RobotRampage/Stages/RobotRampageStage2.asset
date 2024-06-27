@@ -17,6 +17,14 @@ MonoBehaviour:
   _possibleDecor:
   - {fileID: 21300000, guid: 025d67ddd6f4dcc48b1e09a2e9a70011, type: 3}
   - {fileID: 21300000, guid: 115bf84e0f065054ba8fcd2c4331675f, type: 3}
+  _possibleProps:
+  - {fileID: 1658024756686397134, guid: f2c46f8599125a840889477aa0e4b433, type: 3}
+  - {fileID: 1658024756686397134, guid: 7641f467f95993043b1c043a86131409, type: 3}
+  - {fileID: 1658024756686397134, guid: fff40e1cc045932468855aeb5ce63fe3, type: 3}
+  - {fileID: 1658024756686397134, guid: b58e55fea08bdab44be0dc917b0c3da2, type: 3}
+  - {fileID: 1658024756686397134, guid: c91c80a687173a14fb07b04ff81a5bf8, type: 3}
+  - {fileID: 1658024756686397134, guid: 428d1cc724493d84e88ddf200c7af07a, type: 3}
+  - {fileID: 1658024756686397134, guid: e322cc770d9f7db4a8872413fbec90f0, type: 3}
   _wavesData:
   - waveTimer: 60
     robotRampageWaveMonsterData:
