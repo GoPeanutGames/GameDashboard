@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6484592698980619514}
   - component: {fileID: 3623840500386246626}
   - component: {fileID: 3996891740833179123}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 967400986983787709}
   - component: {fileID: 3436983860943079145}
   - component: {fileID: 2915269913836896634}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: MobA
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 6007195376878991109}
   - component: {fileID: 2835302045082546870}
   - component: {fileID: 7728066488958810924}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

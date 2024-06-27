@@ -33,6 +33,7 @@ namespace PeanutDashboard._06_RobotRampage
 			if (other.tag == "Enemy"){
 				Destroy(other.gameObject);
 				_currentHealth -= 10f;
+				RobotRampageUIEvents.RaiseUpdatePlayerHealthBarEvent(_currentHealth, _maxHealth);
 				if (_currentHealth <= 0){
 					RobotRampagePlayerEvents.RaisePlayerKilledEvent();
 					RobotRampagePopupEvents.RaiseOpenDefeatPopupEvent();
@@ -48,6 +49,7 @@ namespace PeanutDashboard._06_RobotRampage
 				float diff = newMaxHealth - _maxHealth;
 				_maxHealth = newMaxHealth;
 				_currentHealth += diff;
+				RobotRampageUIEvents.RaiseUpdatePlayerHealthBarEvent(_currentHealth, _maxHealth);
 				Debug.Log($"{nameof(RobotRampagePlayerHealth)}::{nameof(RefreshHealth)} - health changed by: {diff}");
 			}
 		}

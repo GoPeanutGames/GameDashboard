@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6484592698980619514}
   - component: {fileID: 3623840500386246626}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 967400986983787709}
   - component: {fileID: 9054606487520403046}
   - component: {fileID: 3309347046637868712}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: MobC
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6007195376878991109}
   - component: {fileID: 2835302045082546870}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
