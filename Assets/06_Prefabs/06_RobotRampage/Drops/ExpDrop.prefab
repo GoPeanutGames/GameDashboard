@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 4527748998682963326}
+  _sfx: {fileID: 8300000, guid: 98d586c13ca9c734793a52f181d5deb2, type: 3}
   _expGain: 21
   _attract: 0
   _speed: 0

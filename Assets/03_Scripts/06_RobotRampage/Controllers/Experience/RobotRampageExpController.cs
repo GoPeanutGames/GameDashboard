@@ -10,6 +10,9 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private SpriteRenderer _spriteRenderer;
 		
+		[SerializeField]
+		private AudioClip _sfx;
+		
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
 		private float _expGain;
@@ -30,6 +33,7 @@ namespace PeanutDashboard._06_RobotRampage
 			this.transform.Translate(dir.normalized * _speed * Time.deltaTime);
 			if (Vector3.Distance(RobotRampagePlayerController.currentPosition, this.transform.position) < 0.2f){
 				RobotRampagePlayerEvents.RaiseAddPlayerExperienceEvent(_expGain);
+				RobotRampageAudioEvents.RaisePlaySfxOneShotEvent(_sfx, 0.3f);
 				Destroy(this.gameObject);
 			}
 		}

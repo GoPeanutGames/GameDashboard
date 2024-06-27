@@ -17,7 +17,7 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: fd0f7b3d3bfdf824dab4a17fd84a4656, type: 3}
   _levelIcon: {fileID: 21300000, guid: 2fd9fb4b34ac61f42b4bdc069fa73826, type: 3}
   _title: Flamethrower
-  _description: AOE + 10%\nDamage + 20%
+  _description: AOE + 10%<br>Damage + 20%
   _nextUpgrade: {fileID: 11400000, guid: 8f3c6ad1dafac564694606d23c48a17c, type: 2}
   _weaponType: 1
   _upgradeLevel:

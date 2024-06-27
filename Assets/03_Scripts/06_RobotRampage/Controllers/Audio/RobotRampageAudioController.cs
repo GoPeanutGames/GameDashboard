@@ -32,9 +32,9 @@ namespace PeanutDashboard._06_RobotRampage
 			_bgAudioSource.Play();
 		}
 
-		private void OnPlaySfxOneShot(AudioClip clip)
+		private void OnPlaySfxOneShot(AudioClip clip, float volume)
 		{
-			_sfxSource.PlayOneShot(clip);
+			_sfxSource.PlayOneShot(clip, volume);
 		}
 	}
 }

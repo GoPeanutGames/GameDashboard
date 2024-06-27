@@ -8,7 +8,7 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		private static UnityAction<AudioClip, bool> _playBgMusic;
 		
-		private static UnityAction<AudioClip> _playSfxOneShot;
+		private static UnityAction<AudioClip, float> _playSfxOneShot;
 		
 		public static event UnityAction<AudioClip, bool> OnPlayBgMusic
 		{
@@ -16,7 +16,7 @@ namespace PeanutDashboard._06_RobotRampage
 			remove => _playBgMusic -= value;
 		}
 		
-		public static event UnityAction<AudioClip> OnPlaySfxOneShot
+		public static event UnityAction<AudioClip, float> OnPlaySfxOneShot
 		{
 			add => _playSfxOneShot += value;
 			remove => _playSfxOneShot -= value;
@@ -31,13 +31,13 @@ namespace PeanutDashboard._06_RobotRampage
 			_playBgMusic.Invoke(clip, loop);
 		}
 		
-		public static void RaisePlaySfxOneShotEvent(AudioClip clip)
+		public static void RaisePlaySfxOneShotEvent(AudioClip clip, float volume)
 		{
 			if (_playSfxOneShot == null){
 				LoggerService.LogWarning($"{nameof(RobotRampageAudioEvents)}::{nameof(RaisePlaySfxOneShotEvent)} raised, but nothing picked it up");
 				return;
 			}
-			_playSfxOneShot.Invoke(clip);
+			_playSfxOneShot.Invoke(clip, volume);
 		}
 	}
 }
