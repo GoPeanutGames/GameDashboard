@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 4a51ec975cdf9f04a9d7c33bcb139dca
   m_SerializeEntries:
-  - m_GUID: a4736b3086fa95e4e9155ad5e4d49b37
-    m_Address: BattleDashGameScene
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BattleDash
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e2d033b134a20344b665dddd4563966
     m_Address: Assets/02_Art/02_BattleDash/Blummer/Blummer.png
     m_ReadOnly: 0

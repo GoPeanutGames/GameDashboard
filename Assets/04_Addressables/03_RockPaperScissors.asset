@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9b5aa719a61ca184b9fca7a18026211b
   m_SerializeEntries:
-  - m_GUID: 0d96e876f6f11ae41bd504cbb96aa166
-    m_Address: RockPaperScissorsScene
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - RockPaperScissors
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d7929a68ff76d414ea58d09d692443af
     m_Address: Assets/02_Art/03_RockPaperScissors/Background/Background.png
     m_ReadOnly: 0
