@@ -6,10 +6,7 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.OpenSsl;
-using PeanutDashboard.Server.Data;
 using PeanutDashboard.Shared.Environment;
-using UnityEditor;
-using UnityEngine;
 
 namespace PeanutDashboard.Utils
 {
@@ -82,33 +79,5 @@ namespace PeanutDashboard.Utils
 			return encryptedData;
 		}
 
-#if UNITY_EDITOR
-		[MenuItem("Peanut Games/Rsa encrypt test")]
-		public static void EncryptTest()
-		{
-			string key = string.Join("\n", testKey);
-			string dataToEncrypt =
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vulputate libero ac libero ultricies dictum. Fusce elementum aliquet neque vel suscipit. Nulla scelerisque et libero ut hendrerit. Pellentesque et molestie ex. Integer libero ligula, efficitur in viverra et, pulvinar tincidunt augue. Suspendisse porta magna nec nibh semper convallis. Cras commodo lectus et nibh dapibus scelerisque.";
-			List<string> encrypted = Encrypt(dataToEncrypt, key);
-			EncryptedData d = new()
-			{
-				data = encrypted
-			};
-			Debug.Log(JsonUtility.ToJson(d));
-		}
-
-		[MenuItem("Peanut Games/Rsa decrypt test")]
-		public static void DecryptTest()
-		{
-			string key = string.Join("\n", testKey);
-			List<string> encrypted = new()
-			{
-				"cusJuCEfr8+v7iWW3pkybxzVSf1uBz0cd4oE5uliRBazaKW7ALGmSwvP/izDOEdXTTzHqU3fAd/MuiEioflL0ccbZ2KLw/60xy6i/QcL/F5jn5DzOyHUiEDmx2MKmwrSAlzs25rqx6oZC53C+9BCHPQh4L0dQ4wJ/GDChClxzeHhHqWMhi5UcKW/l5HLSHBqsXsvABUL4AbY+2ykI6dmPJvX+wb1CiD0R0LeNaGiEF1Dy8WUVLpLsRB/hwEbJqFNn7vJXr6rQYXuP0NRkTWXTzQ32cGvJ4l5vMpxBsQZHRM7BzObSlXqQogLuvEmrl01GldU6wptGEGnCVYzbhQmUQ==",
-				"sWMw3k5rokoc5MiPP1KrC7Q7dZJi0XIssXSpSM16UNHBApce5G+usgSLgn3TlSPdQw5v1nAaa0OPoYIhra5rDvWWc+mfIwDAp8s6zSi5vkbZG+tGYrB37RZMm4qb4Ebls0k4iadnGgriM68/0jCEQTX14raoBTHSQE90AlMB5IpjzE6b4+RaWrKqIfoZjIxp4mr/5Xt4DymRNQ7mAm/EFEkRP2ubyI+x6BxMM15Nwf6rU33q0ZMAe1RNUP8vwTUETBH/EOwR4bzKb3z3u/E/HsMWiwLZFIEsCucrziKDVyosvP+PuMedVQGuMOKx04nu8U3n+HG+o/iqnyePBNmMMQ=="
-			};
-			string decrypted = Decrypt(encrypted, key);
-			Debug.Log(decrypted);
-		}
-#endif
 	}
 }
