@@ -49,6 +49,7 @@ namespace PeanutDashboard._06_RobotRampage
         public void Damage(float damage)
         {
             _currentHealth -= damage;
+            RobotRampageOverlayUIEvents.RaiseSpawnDamageIndicatorEvent(this.transform.position, damage);
             if (_currentHealth <= 0){
                 RobotRampageExpSpawnEvents.RaiseSpawnExpTypeEvent(_expTypeDrop, this.transform.position);
                 Instantiate(_scrapPrefab, this.transform.position, Quaternion.identity);

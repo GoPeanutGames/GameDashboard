@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1895657239186117909}
   - component: {fileID: 3560185937299712664}
   - component: {fileID: 6952987714977141419}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ExpDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 2218946833283374946}
   - component: {fileID: 4527748998682963326}
   - component: {fileID: 8937417917355971576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
