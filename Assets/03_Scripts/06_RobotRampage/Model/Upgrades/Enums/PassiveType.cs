@@ -2,7 +2,8 @@
 {
 	public enum PassiveType
 	{
-		Health,
-		Movement
+		Health = 0,
+		Movement = 1,
+		AttractionRange = 2
 	}
 }

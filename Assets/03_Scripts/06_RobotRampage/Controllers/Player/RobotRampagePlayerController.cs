@@ -34,7 +34,7 @@ namespace PeanutDashboard._06_RobotRampage
 		private void Update()
 		{
 			if (_currentDirection != Vector3.zero){
-				this.transform.Translate(_currentDirection * Time.deltaTime * 2f);
+				this.transform.Translate(_currentDirection * Time.deltaTime * RobotRampageCharacterStatsService.GetSpeed());
 				float angle = Mathf.Atan2(_currentDirection.y, _currentDirection.x) * Mathf.Rad2Deg;
 				_playerImage.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 				currentPosition = this.transform.position;

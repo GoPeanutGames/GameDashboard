@@ -3,5 +3,7 @@
 	public class RobotRampageCharacterModifierData
 	{
 		public float healthModifier;
+		public float speedModifier;
+		public float attractionRangeModifier;
 	}
 }

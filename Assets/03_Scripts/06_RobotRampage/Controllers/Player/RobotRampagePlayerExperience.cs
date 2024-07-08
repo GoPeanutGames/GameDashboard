@@ -30,12 +30,19 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			RobotRampagePlayerEvents.OnAddPlayerExperience += OnAddPlayerExperience;
 			RobotRampageUpgradeEvents.OnUpgradeChosen += OnUpgradeChosen;
+			RobotRampageUpgradeEvents.OnRefreshStats += OnRefreshStats;
 		}
 
 		private void OnDisable()
 		{
 			RobotRampagePlayerEvents.OnAddPlayerExperience -= OnAddPlayerExperience;
 			RobotRampageUpgradeEvents.OnUpgradeChosen -= OnUpgradeChosen;
+			RobotRampageUpgradeEvents.OnRefreshStats -= OnRefreshStats;
+		}
+
+		private void OnRefreshStats()
+		{
+			_circleCollider2D.radius = RobotRampageCharacterStatsService.GetAttractionRange();
 		}
 
 		private void OnAddPlayerExperience(float exp)

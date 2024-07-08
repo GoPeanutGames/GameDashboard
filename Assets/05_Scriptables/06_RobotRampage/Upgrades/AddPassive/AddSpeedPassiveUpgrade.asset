@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77350e9dc85c44d19bc98d064bd2e12c, type: 3}
+  m_Name: AddSpeedPassiveUpgrade
+  m_EditorClassIdentifier: 
+  _baseUpgradeType: 3
+  _background: {fileID: 21300000, guid: 25364f3fb1134654e99b5ee06721966c, type: 3}
+  _icon: {fileID: 21300000, guid: 519d20a916ffcb3478a68da01174c2df, type: 3}
+  _levelIcon: {fileID: 21300000, guid: 2fd9fb4b34ac61f42b4bdc069fa73826, type: 3}
+  _title: Speed
+  _description: Passive increasing movement speed
+  _nextUpgrade: {fileID: 11400000, guid: ff6798a13ed59ee498934719bf8529cd, type: 2}
+  _upgradeLevel:
+    level: 0
+    statDatas:
+    - statType: 1
+      statChange: 0.1
+  _passiveType: 1

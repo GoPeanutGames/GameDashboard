@@ -28,6 +28,8 @@ namespace PeanutDashboard._06_RobotRampage
 
 		public float Power => _characterStats.power;
 
+		public float Speed => _characterStats.speed;
+
 		public List<float> LevelExp => _levelExp;
 
 		public List<BaseUpgrade> StartingWeapons => _startingWeapons;

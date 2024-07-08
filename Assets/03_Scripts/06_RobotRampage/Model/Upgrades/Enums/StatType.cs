@@ -9,6 +9,7 @@
 		Penetration = 4,
 		Power = 5,
 		AOE = 6,
-		Cooldown = 7
+		Cooldown = 7,
+		AttractionRange = 8
 	}
 }

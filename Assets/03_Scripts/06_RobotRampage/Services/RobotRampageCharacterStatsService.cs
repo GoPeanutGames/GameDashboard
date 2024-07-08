@@ -20,7 +20,9 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			_currentModifiers = new RobotRampageCharacterModifierData()
 			{
-				healthModifier = 1
+				healthModifier = 0,
+				speedModifier = 0,
+				attractionRangeModifier = 0
 			};			
 		}
 		
@@ -28,14 +30,20 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			_calculatedStats = new RobotRampageCharacterStats()
 			{
-				attractionRange = _currentCharacter.AttractionRange,
-				maxHealth = _currentCharacter.MaxHealth + _currentCharacter.MaxHealth * _currentModifiers.healthModifier
+				attractionRange = _currentCharacter.AttractionRange + _currentCharacter.AttractionRange * _currentModifiers.attractionRangeModifier,
+				maxHealth = _currentCharacter.MaxHealth + _currentCharacter.MaxHealth * _currentModifiers.healthModifier,
+				speed = _currentCharacter.Speed + _currentCharacter.Speed * _currentModifiers.speedModifier
 			};
 		}
 
 		public static float GetAttractionRange()
 		{
 			return _calculatedStats.attractionRange;
+		}
+
+		public static float GetSpeed()
+		{
+			return _calculatedStats.speed;
 		}
 
 		public static float GetMaxHp()
@@ -56,6 +64,20 @@ namespace PeanutDashboard._06_RobotRampage
 		public static void UpdateMaxHealth(float modifier)
 		{
 			_currentModifiers.healthModifier += modifier;
+			CalculateStats();
+			RobotRampageUpgradeEvents.RaiseRefreshStatsEvent();
+		}
+
+		public static void UpdateSpeed(float modifier)
+		{
+			_currentModifiers.speedModifier += modifier;
+			CalculateStats();
+			RobotRampageUpgradeEvents.RaiseRefreshStatsEvent();
+		}
+
+		public static void UpdateAttractionRange(float modifier)
+		{
+			_currentModifiers.attractionRangeModifier += modifier;
 			CalculateStats();
 			RobotRampageUpgradeEvents.RaiseRefreshStatsEvent();
 		}

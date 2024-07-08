@@ -75,6 +75,12 @@ namespace PeanutDashboard._06_RobotRampage
 				case StatType.Health:
 					RobotRampageCharacterStatsService.UpdateMaxHealth(modifier);
 					break;
+				case StatType.Movement:
+					RobotRampageCharacterStatsService.UpdateSpeed(modifier);
+					break;
+				case StatType.AttractionRange:
+					RobotRampageCharacterStatsService.UpdateAttractionRange(modifier);
+					break;
 			}
 		}
 

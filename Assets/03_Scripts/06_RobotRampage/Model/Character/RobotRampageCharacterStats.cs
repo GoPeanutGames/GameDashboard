@@ -9,5 +9,6 @@ namespace PeanutDashboard._06_RobotRampage
 		public float maxHealth;
 		public float plasmaStrength;
 		public float power;
+		public float speed;
 	}
 }
