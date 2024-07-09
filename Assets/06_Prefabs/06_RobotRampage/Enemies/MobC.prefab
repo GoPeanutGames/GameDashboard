@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyImage: {fileID: 1362890025984825399}
-  _maxHealthRef: 45
+  _maxHealthRef: 90
   _expTypeDrop: 1
   _scrapPrefab: {fileID: 105264482594737824, guid: 01e3e430435fe6445b61b08cadcd4c09, type: 3}
   _currentHealth: 0
