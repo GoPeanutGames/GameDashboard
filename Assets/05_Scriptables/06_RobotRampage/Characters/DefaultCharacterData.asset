@@ -17,6 +17,7 @@ MonoBehaviour:
     maxHealth: 20
     plasmaStrength: 0
     power: 0
+    speed: 2
   _startingWeapons:
   - {fileID: 11400000, guid: 50c69afc1ef70034c95471a03f24da8d, type: 2}
   _levelExp:

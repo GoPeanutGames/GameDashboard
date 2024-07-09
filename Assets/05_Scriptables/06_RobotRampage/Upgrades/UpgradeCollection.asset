@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _addPassiveUpgrades:
   - {fileID: 11400000, guid: e088b6c76dfe3f943980684949908245, type: 2}
+  - {fileID: 11400000, guid: a6ed7affc1ed278479dcb2324d6d54e5, type: 2}
+  - {fileID: 11400000, guid: e2f4fa588bf1043419218fefc317a72c, type: 2}
   _addWeaponUpgrades:
   - {fileID: 11400000, guid: 75dbed2604586e348be2617f8521e096, type: 2}
   - {fileID: 11400000, guid: 50c69afc1ef70034c95471a03f24da8d, type: 2}
