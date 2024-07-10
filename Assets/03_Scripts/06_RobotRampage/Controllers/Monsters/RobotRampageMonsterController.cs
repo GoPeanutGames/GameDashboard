@@ -11,6 +11,9 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         private float _maxHealthRef;
+
+        [SerializeField]
+        protected float _damage;
         
         [SerializeField]
         private RobotRampageExpType _expTypeDrop;
@@ -27,7 +30,7 @@ namespace PeanutDashboard._06_RobotRampage
             _currentHealth = _maxHealthRef;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             Vector3 direction = RobotRampagePlayerController.currentPosition - this.transform.position;
             this.transform.Translate(direction.normalized * 0.7f * Time.deltaTime);
@@ -48,13 +51,22 @@ namespace PeanutDashboard._06_RobotRampage
 
         public void Damage(float damage)
         {
+            if (_currentHealth <= 0)
+            {
+                return;
+            }
             _currentHealth -= damage;
             RobotRampageOverlayUIEvents.RaiseSpawnDamageIndicatorEvent(this.transform.position, damage);
             if (_currentHealth <= 0){
-                RobotRampageExpSpawnEvents.RaiseSpawnExpTypeEvent(_expTypeDrop, this.transform.position);
-                Instantiate(_scrapPrefab, this.transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
+                OnKilled();
             }
+        }
+
+        protected virtual void OnKilled()
+        {
+            RobotRampageExpSpawnEvents.RaiseSpawnExpTypeEvent(_expTypeDrop, this.transform.position);
+            Instantiate(_scrapPrefab, this.transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
     }
 }

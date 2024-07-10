@@ -32,12 +32,17 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			if (other.tag == "Enemy"){
 				Destroy(other.gameObject);
-				_currentHealth -= 10f;
-				RobotRampageUIEvents.RaiseUpdatePlayerHealthBarEvent(_currentHealth, _maxHealth);
-				if (_currentHealth <= 0){
-					RobotRampagePlayerEvents.RaisePlayerKilledEvent();
-					RobotRampagePopupEvents.RaiseOpenDefeatPopupEvent();
-				}
+				DealDamage(10);
+			}
+		}
+
+		public void DealDamage(float damage)
+		{
+			_currentHealth -= damage;
+			RobotRampageUIEvents.RaiseUpdatePlayerHealthBarEvent(_currentHealth, _maxHealth);
+			if (_currentHealth <= 0){
+				RobotRampagePlayerEvents.RaisePlayerKilledEvent();
+				RobotRampagePopupEvents.RaiseOpenDefeatPopupEvent();
 			}
 		}
 

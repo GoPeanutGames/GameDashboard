@@ -4,6 +4,8 @@
 	{
 		MobA = 0,
 		MobB = 1,
-		MobC = 2
+		MobC = 2,
+		MobD = 3,
+		MobE = 4
 	}
 }
