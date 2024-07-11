@@ -28,14 +28,6 @@ namespace PeanutDashboard._06_RobotRampage
 			RobotRampageUpgradeEvents.OnRefreshStats -= RefreshHealth;
 		}
 
-		private void OnTriggerEnter2D(Collider2D other)
-		{
-			if (other.tag == "Enemy"){
-				Destroy(other.gameObject);
-				DealDamage(10);
-			}
-		}
-
 		public void DealDamage(float damage)
 		{
 			_currentHealth -= damage;

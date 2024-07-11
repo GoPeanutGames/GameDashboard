@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils.Misc;
+﻿using System;
+using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
@@ -14,6 +15,12 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         protected float _damage;
+        
+        [SerializeField]
+        protected float _cooldown;
+        
+        [SerializeField]
+        protected float _timeToAttack;
         
         [SerializeField]
         private RobotRampageExpType _expTypeDrop;
@@ -32,6 +39,7 @@ namespace PeanutDashboard._06_RobotRampage
 
         protected virtual void Update()
         {
+            _timeToAttack -= Time.deltaTime;
             Vector3 direction = RobotRampagePlayerController.currentPosition - this.transform.position;
             this.transform.Translate(direction.normalized * 0.7f * Time.deltaTime);
 
@@ -46,6 +54,15 @@ namespace PeanutDashboard._06_RobotRampage
             if (Vector2.Distance(this.transform.position, RobotRampagePlayerController.currentPosition) > 12f)
             {
                 Destroy(this.gameObject);
+            }
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.tag == "Player" && _timeToAttack < 0)
+            {
+                _timeToAttack = _cooldown;
+                other.GetComponent<RobotRampagePlayerHealth>().DealDamage(_damage);
             }
         }
 

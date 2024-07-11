@@ -150,7 +150,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.8, y: -0.5}
+  m_Offset: {x: -0.4, y: -0.7}
   serializedVersion: 2
   m_Radius: 1.6
 --- !u!50 &1470696962629937948
@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 3309347046637868712}
   - component: {fileID: 4856066394038159173}
   - component: {fileID: 4590284705983729441}
+  - component: {fileID: 2706931527474322717}
   m_Layer: 8
   m_Name: MobD
   m_TagString: Enemy
@@ -246,10 +247,10 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.4, y: -0.7}
   serializedVersion: 2
   m_Radius: 1.6
 --- !u!50 &3309347046637868712
@@ -315,6 +316,8 @@ MonoBehaviour:
   _enemyImage: {fileID: 1362890025984825399}
   _maxHealthRef: 40
   _damage: 10
+  _cooldown: 0
+  _timeToAttack: 0
   _expTypeDrop: 0
   _scrapPrefab: {fileID: 105264482594737824, guid: 46b15390746ed9a4d93b6c08c6a7e858, type: 3}
   _currentHealth: 0
@@ -323,6 +326,42 @@ MonoBehaviour:
     m_Bits: 1280
   _explosionRadius: 5
   _distanceToExplode: 2
+  _drawGizmos: 0
+--- !u!58 &2706931527474322717
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4495238537429630895}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.4, y: -0.7}
+  serializedVersion: 2
+  m_Radius: 1.6
 --- !u!1 &7403032688478405992
 GameObject:
   m_ObjectHideFlags: 0
