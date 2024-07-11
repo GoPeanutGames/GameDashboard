@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 967400986983787709}
   - component: {fileID: 2915269913836896634}
   - component: {fileID: -5254063262700577362}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: MobA
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -21,6 +21,9 @@ namespace PeanutDashboard._06_RobotRampage
         
         [SerializeField]
         protected float _timeToAttack;
+
+        [SerializeField]
+        protected bool stopMoving;
         
         [SerializeField]
         private RobotRampageExpType _expTypeDrop;
@@ -32,7 +35,7 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private float _currentHealth;
 
-        private void Start()
+        protected virtual void Start()
         {
             _currentHealth = _maxHealthRef;
         }
@@ -41,7 +44,10 @@ namespace PeanutDashboard._06_RobotRampage
         {
             _timeToAttack -= Time.deltaTime;
             Vector3 direction = RobotRampagePlayerController.currentPosition - this.transform.position;
-            this.transform.Translate(direction.normalized * 0.7f * Time.deltaTime);
+            if (!stopMoving)
+            {
+                this.transform.Translate(direction.normalized * 0.7f * Time.deltaTime);
+            }
 
             Vector3 currentPos = this.transform.position;
             
@@ -57,7 +63,7 @@ namespace PeanutDashboard._06_RobotRampage
             }
         }
 
-        private void OnTriggerStay2D(Collider2D other)
+        protected virtual void OnTriggerStay2D(Collider2D other)
         {
             if (other.tag == "Player" && _timeToAttack < 0)
             {

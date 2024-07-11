@@ -17,8 +17,8 @@ TagManager:
   - Mobs
   - Drop
   - PlayerHealth
-  - 
-  - 
+  - PlayerBullet
+  - MobHealth
   - 
   - 
   - 

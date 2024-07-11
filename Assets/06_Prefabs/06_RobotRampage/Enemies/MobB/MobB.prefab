@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6484592698980619514}
   - component: {fileID: 3623840500386246626}
+  - component: {fileID: 4531913139547345976}
   m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
@@ -180,6 +181,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4531913139547345976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362890025984825399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613c2531f464012891594eaa122476f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 5
+  _spriteRenderer: {fileID: 0}
 --- !u!1 &4495238537429630895
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +208,7 @@ GameObject:
   - component: {fileID: 5437468311440383680}
   - component: {fileID: 5289320046812838337}
   - component: {fileID: 197748518755772836}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: MobB
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -231,9 +246,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyImage: {fileID: 1362890025984825399}
   _maxHealthRef: 20
-  _damage: 0
-  _cooldown: 0
+  _damage: 1
+  _cooldown: 3
   _timeToAttack: 0
+  stopMoving: 0
   _expTypeDrop: 0
   _scrapPrefab: {fileID: 6315671743919875504, guid: 2c5bb1b82aabb6d4ebd563eea03d8f72, type: 3}
   _currentHealth: 0

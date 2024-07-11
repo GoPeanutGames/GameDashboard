@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9175641920957217702}
   - component: {fileID: 2178733724042465521}
   - component: {fileID: 4782227575088578197}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4976,7 +4976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6880516208782115604}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ColliderWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5051,7 +5051,6 @@ MonoBehaviour:
   _weaponType: 1
   _enemiesToDamage: []
   _enemiesToRemove: []
-  _shotsPerSecond: 2
   _timeToShoot: 0
   _damageType: 1
   _looping: 0
