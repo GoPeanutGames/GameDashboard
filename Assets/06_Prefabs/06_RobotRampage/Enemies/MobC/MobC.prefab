@@ -249,6 +249,7 @@ MonoBehaviour:
   _damage: 1
   _cooldown: 3
   _timeToAttack: 0
+  speed: 0.7
   stopMoving: 0
   _expTypeDrop: 1
   _scrapPrefab: {fileID: 105264482594737824, guid: 01e3e430435fe6445b61b08cadcd4c09, type: 3}

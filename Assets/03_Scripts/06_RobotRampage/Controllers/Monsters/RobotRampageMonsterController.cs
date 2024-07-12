@@ -23,6 +23,9 @@ namespace PeanutDashboard._06_RobotRampage
         protected float _timeToAttack;
 
         [SerializeField]
+        protected float speed;
+
+        [SerializeField]
         protected bool stopMoving;
         
         [SerializeField]
@@ -46,7 +49,7 @@ namespace PeanutDashboard._06_RobotRampage
             Vector3 direction = RobotRampagePlayerController.currentPosition - this.transform.position;
             if (!stopMoving)
             {
-                this.transform.Translate(direction.normalized * 0.7f * Time.deltaTime);
+                this.transform.Translate(direction.normalized * speed * Time.deltaTime);
             }
 
             Vector3 currentPos = this.transform.position;
