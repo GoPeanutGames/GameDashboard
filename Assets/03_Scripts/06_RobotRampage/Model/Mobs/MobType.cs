@@ -6,6 +6,7 @@
 		MobB = 1,
 		MobC = 2,
 		MobD = 3,
-		MobE = 4
+		MobE = 4,
+		SubBossA = 5,
 	}
 }
