@@ -389,6 +389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6007195376878991109}
   - component: {fileID: 2835302045082546870}
+  - component: {fileID: 4863391471043744399}
   m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
@@ -463,3 +464,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4863391471043744399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7403032688478405992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613c2531f464012891594eaa122476f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 8
+  _spriteRenderer: {fileID: 0}

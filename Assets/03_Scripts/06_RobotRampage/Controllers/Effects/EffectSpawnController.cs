@@ -11,6 +11,9 @@ namespace PeanutDashboard._06_RobotRampage
 		
 		[SerializeField]
 		private GameObject _swordixSwordVfxPrefab;
+		
+		[SerializeField]
+		private GameObject _quakeFistVfxPrefab;
 
 		private void OnEnable()
 		{
@@ -30,6 +33,9 @@ namespace PeanutDashboard._06_RobotRampage
 					break;
 				case EffectType.SwordixSwordVfx:
 					Instantiate(_swordixSwordVfxPrefab, position, Quaternion.identity);
+					break;
+				case EffectType.QuakefistVfx:
+					Instantiate(_quakeFistVfxPrefab, position, Quaternion.identity);
 					break;
 			}
 		}

@@ -3,6 +3,7 @@
 	public enum EffectType
 	{
 		BombasticExplosion,
-		SwordixSwordVfx
+		SwordixSwordVfx,
+		QuakefistVfx
 	}
 }
