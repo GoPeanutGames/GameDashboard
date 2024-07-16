@@ -30,15 +30,21 @@ MonoBehaviour:
     - timeToStart: 0
       keepLast: 0
       spawnConfig:
-      - mobType: 5
+      - mobType: 3
+        minToSpawn: 1
+        maxToSpawn: 1
+    - timeToStart: 15
+      keepLast: 0
+      spawnConfig:
+      - mobType: 4
         minToSpawn: 1
         maxToSpawn: 1
     - timeToStart: 30
       keepLast: 0
       spawnConfig:
-      - mobType: 3
-        minToSpawn: 2
-        maxToSpawn: 4
+      - mobType: 5
+        minToSpawn: 1
+        maxToSpawn: 1
   - waveTimer: 60
     robotRampageWaveMonsterData:
     - timeToStart: 0

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 339493304534246244}
   - component: {fileID: 339493304534246247}
   - component: {fileID: 339493304534246246}
+  - component: {fileID: 3781603756620162151}
   m_Layer: 0
-  m_Name: CFXR3 Fire Trail A
+  m_Name: BombasticFuseEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4844,6 +4845,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3781603756620162151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339493304534246249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b04f07d4144471bc848a6a4bde4fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 6
+  _particleSystemRenderer: {fileID: 0}
 --- !u!1 &339493305108384162
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,6 +4870,7 @@ GameObject:
   - component: {fileID: 339493305108384163}
   - component: {fileID: 339493305108384161}
   - component: {fileID: 339493305108384160}
+  - component: {fileID: 294281482336137073}
   m_Layer: 0
   m_Name: Ember
   m_TagString: Untagged
@@ -9686,6 +9702,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &294281482336137073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339493305108384162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b04f07d4144471bc848a6a4bde4fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 6
+  _particleSystemRenderer: {fileID: 0}
 --- !u!1 &1156109751711266978
 GameObject:
   m_ObjectHideFlags: 0
@@ -9697,6 +9727,7 @@ GameObject:
   - component: {fileID: 1156109751711266977}
   - component: {fileID: 1156109751711266983}
   - component: {fileID: 1156109751711266976}
+  - component: {fileID: 1270995733236377133}
   m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
@@ -14348,3 +14379,17 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1270995733236377133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156109751711266978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b04f07d4144471bc848a6a4bde4fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotRampageSortOrderType: 6
+  _particleSystemRenderer: {fileID: 0}
