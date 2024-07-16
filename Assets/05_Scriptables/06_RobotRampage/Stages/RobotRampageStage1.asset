@@ -30,7 +30,7 @@ MonoBehaviour:
     - timeToStart: 0
       keepLast: 0
       spawnConfig:
-      - mobType: 3
+      - mobType: 4
         minToSpawn: 2
         maxToSpawn: 4
     - timeToStart: 30

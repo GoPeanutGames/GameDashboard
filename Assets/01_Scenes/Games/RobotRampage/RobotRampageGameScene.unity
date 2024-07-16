@@ -1982,6 +1982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bombasticExplosionPrefab: {fileID: 8295974722891363362, guid: 0f7ee72d42ac8f7499cfe269a036c429, type: 3}
+  _swordixSwordVfxPrefab: {fileID: 1346918073532921006, guid: 9d7c9dd279dc5b7429c347c2eff44436, type: 3}
 --- !u!1 &1016290087
 GameObject:
   m_ObjectHideFlags: 0
