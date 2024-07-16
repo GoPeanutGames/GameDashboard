@@ -38,6 +38,7 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void Explosion()
         {
+            EffectEvents.RaiseSpawnEffectAt(EffectType.BombasticExplosion, this.transform.position);
             List<Collider2D> allToDamage =
                 Physics2D.OverlapCircleAll(this.transform.position, _explosionRadius, _layersToDamage).ToList();
             foreach (Collider2D colliderToDamage in allToDamage)
