@@ -28,6 +28,7 @@ namespace PeanutDashboard._06_RobotRampage
 
 		private void OnRetryButtonClick()
 		{
+			RobotRampageWeaponStatsService.Clear();
 			SceneManager.LoadScene(1);
 		}
 	}
