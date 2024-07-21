@@ -6,9 +6,6 @@
     <title>{{{ PRODUCT_NAME }}}</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <link rel="manifest" href="manifest.webmanifest">
-    <script src="TemplateData/socket.io.js"></script>
-	<script src="TemplateData/local_auth.js"></script>
   </head>
   <body>
     <div id="unity-container">
@@ -22,6 +19,7 @@
       <div id="unity-warning"> </div>
     </div>
     <script>
+      var unityInstanceRef;
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -102,6 +100,7 @@
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
+          unityInstanceRef = unityInstance;
           loadingBar.style.display = "none";
           window.unityInstance = unityInstance;
         }).catch((message) => {
