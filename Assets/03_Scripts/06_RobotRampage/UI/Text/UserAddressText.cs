@@ -1,5 +1,4 @@
-﻿using System;
-using PeanutDashboard.Utils.Misc;
+﻿using PeanutDashboard.Utils.Misc;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +13,7 @@ namespace PeanutDashboard._06_RobotRampage
 		private void Awake()
 		{
 			_addressText = GetComponent<TMP_Text>();
+			_addressText.text = UserService.UserAddress;
 		}
 
 		private void OnEnable()

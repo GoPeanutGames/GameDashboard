@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using PeanutDashboard._06_RobotRampage;
 using PeanutDashboard.Utils;
 using PeanutDashboard.Utils.Misc;
-using TMPro;
 using TonSdk.Connect;
 using TonSdk.Core;
 using UnityEngine;
-using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ConnectTonButton : MonoBehaviour
@@ -18,14 +17,17 @@ public class ConnectTonButton : MonoBehaviour
 
     [SerializeField]
     private GameObject _walletParent;
+
+    [SerializeField]
+    private Button _telegramWalletButton;
     
     [SerializeField]
-    private GameObject _walletConnectButtonPrefab;
+    private Button _tonkeeperWallet;
+
+    [SerializeField]
+    private List<string> _allowedWalletNames;
 
     [Header(InspectorNames.DebugDynamic)]
-    [SerializeField]
-    private List<GameObject> _walletButtons;
-    
     [SerializeField]
     private Button _button;
         
@@ -69,31 +71,26 @@ public class ConnectTonButton : MonoBehaviour
     {
         Debug.Log($"{nameof(ConnectTonButton)}::{nameof(LoadWalletsIntoModal)}");
         _walletParent.Activate();
-        foreach (GameObject walletButton in _walletButtons){
-            Destroy(walletButton);
-        }
-        _walletButtons.Clear();
         foreach (WalletConfig t in wallets){
-            GameObject walletButton = Instantiate(_walletConnectButtonPrefab, _walletParent.transform);
-            using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(t.Image))
+            if (!_allowedWalletNames.Contains(t.Name))
             {
-                yield return request.SendWebRequest();
-
-                if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError) 
-                    Debug.LogError("Error while loading wallet image: " + request.error);
-                else
-                {
-                    Texture2D texture = DownloadHandlerTexture.GetContent(request);
-                    if (texture != null && walletButton != null){
-                        walletButton.GetComponentInChildren<Image>().sprite = Sprite.Create(texture, new Rect(0,0,texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f);
-                        walletButton.GetComponentInChildren<Image>().preserveAspect = true;
-                    }
-                }
+                continue;
             }
-            walletButton.GetComponentInChildren<TMP_Text>().text = t.Name;
+
+            if (t.Name == "Tonkeeper" && t.BridgeUrl != null)
+            {
+                continue;
+            }
+
             WalletConfig tempConfig = t;
-            walletButton.GetComponentInChildren<Button>().onClick.AddListener(()=> OpenWallet(tempConfig));
-            _walletButtons.Add(walletButton);
+            if (t.Name == "Tonkeeper")
+            {
+                _tonkeeperWallet.onClick.AddListener(()=> OpenWallet(tempConfig));
+            }
+            else
+            {
+                _telegramWalletButton.onClick.AddListener(()=> OpenWallet(tempConfig));
+            }
         }
         yield return null;
     }
@@ -102,21 +99,22 @@ public class ConnectTonButton : MonoBehaviour
     {
         Debug.Log($"{nameof(ConnectTonButton)}::{nameof(OpenWallet)} - {walletConfig.Name}");
         _tonConnectHandler.tonConnect.Connect(walletConfig);
-        _walletParent.Deactivate();
     }
 
     private void OnProviderStatusChange(Wallet wallet)
     {
         if(_tonConnectHandler.tonConnect.IsConnected)
         {
-            Debug.Log("Wallet connected. Address: " + wallet.Account.Address + ". Platform: " + wallet.Device.Platform + "," + wallet.Device.AppName + "," + wallet.Device.AppVersion);
-            //TODO: we're conencted
-            TonEvents.RaiseTonWalletConnectedEvent(wallet.Account.Address.ToString(AddressType.Base64));
-            // EnableWalletInfoButton(ProcessWalletAddress(wallet.Account.Address.ToString(AddressType.Base64)));
+            Debug.Log("Wallet connected. Address: " + wallet.Account.Address + ". Platform: " + wallet.Device.Platform +
+                      "," + wallet.Device.AppName + "," + wallet.Device.AppVersion);
+            string address = wallet.Account.Address.ToString(AddressType.Base64);
+            TonEvents.RaiseTonWalletConnectedEvent(address);
+            UserService.SetUserAddress(address);
+            SceneManager.LoadScene(1);
         }
         else
         {
-            //TODO: we're not connected
+            _walletParent.Deactivate();
         }
     }
 

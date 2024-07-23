@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/01_Scenes/Games/RobotRampage/RobotRampageIntroScene.unity
+    guid: e9105f7a0c784c4429841df32708c586
+  - enabled: 1
     path: Assets/01_Scenes/Games/RobotRampage/RobotRampageHomeScene.unity
     guid: e8a839a023e1fab4c8d71b04ed10d6d7
   - enabled: 1
