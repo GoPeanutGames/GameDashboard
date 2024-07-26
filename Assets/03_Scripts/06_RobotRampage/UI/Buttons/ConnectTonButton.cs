@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using PeanutDashboard._06_RobotRampage;
@@ -22,7 +23,10 @@ public class ConnectTonButton : MonoBehaviour
     private Button _telegramWalletButton;
     
     [SerializeField]
-    private Button _tonkeeperWallet;
+    private Button _tonkeeperWalletExtension;
+
+    [SerializeField]
+    private Button _tonkeeperWalletApp;
 
     [SerializeField]
     private List<string> _allowedWalletNames;
@@ -77,15 +81,17 @@ public class ConnectTonButton : MonoBehaviour
                 continue;
             }
 
-            if (t.Name == "Tonkeeper" && t.BridgeUrl != null)
-            {
-                continue;
-            }
-
             WalletConfig tempConfig = t;
             if (t.Name == "Tonkeeper")
             {
-                _tonkeeperWallet.onClick.AddListener(()=> OpenWallet(tempConfig));
+                if (t.JsBridgeKey != null && InjectedProvider.IsWalletInjected(t.JsBridgeKey))
+                {
+                    _tonkeeperWalletExtension.onClick.AddListener(()=> OpenWebWallet(tempConfig));
+                }
+                else
+                {
+                    _tonkeeperWalletApp.onClick.AddListener(()=> OpenWallet(tempConfig));
+                }
             }
             else
             {
@@ -95,9 +101,17 @@ public class ConnectTonButton : MonoBehaviour
         yield return null;
     }
 
-    private void OpenWallet(WalletConfig walletConfig)
+    private async void OpenWallet(WalletConfig walletConfig)
     {
         Debug.Log($"{nameof(ConnectTonButton)}::{nameof(OpenWallet)} - {walletConfig.Name}");
+        string connectUrl = await _tonConnectHandler.tonConnect.Connect(walletConfig);
+        string escapedUrl = Uri.EscapeUriString(connectUrl);
+        Application.OpenURL(escapedUrl);
+    }
+    
+    private void OpenWebWallet(WalletConfig walletConfig)
+    {
+        Debug.Log($"{nameof(ConnectTonButton)}::{nameof(OpenWebWallet)} - {walletConfig.Name}");
         _tonConnectHandler.tonConnect.Connect(walletConfig);
     }
 
