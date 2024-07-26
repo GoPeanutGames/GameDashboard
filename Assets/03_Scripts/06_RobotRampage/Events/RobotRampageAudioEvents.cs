@@ -6,9 +6,17 @@ namespace PeanutDashboard._06_RobotRampage
 {
 	public static class RobotRampageAudioEvents
 	{
+		private static UnityAction<bool> _triggerMute;
+		
 		private static UnityAction<AudioClip, bool> _playBgMusic;
 		
 		private static UnityAction<AudioClip, float> _playSfxOneShot;
+		
+		public static event UnityAction<bool> OnTriggerMute
+		{
+			add => _triggerMute += value;
+			remove => _triggerMute -= value;
+		}
 		
 		public static event UnityAction<AudioClip, bool> OnPlayBgMusic
 		{
@@ -20,6 +28,15 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			add => _playSfxOneShot += value;
 			remove => _playSfxOneShot -= value;
+		}
+		
+		public static void RaiseTriggerMuteEvent(bool mute)
+		{
+			if (_triggerMute == null){
+				LoggerService.LogWarning($"{nameof(RobotRampageAudioEvents)}::{nameof(RaiseTriggerMuteEvent)} raised, but nothing picked it up");
+				return;
+			}
+			_triggerMute.Invoke(mute);
 		}
 		
 		public static void RaisePlayBgMusicEvent(AudioClip clip, bool loop)

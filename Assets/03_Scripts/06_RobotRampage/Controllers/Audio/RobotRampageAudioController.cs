@@ -1,4 +1,5 @@
-﻿using PeanutDashboard.Utils;
+﻿using System;
+using PeanutDashboard.Utils;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
 
@@ -17,12 +18,28 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			RobotRampageAudioEvents.OnPlayBgMusic += OnPlayBgMusic;
 			RobotRampageAudioEvents.OnPlaySfxOneShot += OnPlaySfxOneShot;
+			RobotRampageAudioEvents.OnTriggerMute += OnTriggerMute;
 		}
 
 		private void OnDisable()
 		{
 			RobotRampageAudioEvents.OnPlayBgMusic -= OnPlayBgMusic;
 			RobotRampageAudioEvents.OnPlaySfxOneShot -= OnPlaySfxOneShot;
+			RobotRampageAudioEvents.OnTriggerMute -= OnTriggerMute;
+		}
+
+		private void Start()
+		{
+			_bgAudioSource.mute = AudioService.bgMusicMuted;
+			_sfxSource.mute = AudioService.sfxMuted;
+		}
+
+		private void OnTriggerMute(bool mute)
+		{
+			AudioService.bgMusicMuted = mute;
+			AudioService.sfxMuted = mute;
+			_bgAudioSource.mute = mute;
+			_sfxSource.mute = mute;
 		}
 
 		private void OnPlayBgMusic(AudioClip clip, bool loop)
