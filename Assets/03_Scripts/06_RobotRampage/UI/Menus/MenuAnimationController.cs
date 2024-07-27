@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using DG.Tweening;
 using PeanutDashboard.Utils;
 using PeanutDashboard.Utils.Misc;
 using UnityEngine;
@@ -18,17 +19,14 @@ namespace PeanutDashboard._06_RobotRampage
         private Animator _menuPopupAnimator;
 
         [SerializeField]
-        private GameObject _heroesPopup;
-
-        [SerializeField]
-        private GameObject _shopPopup;
-
-        [SerializeField]
-        private GameObject _rankPopup;
+        private List<GameObject> _menuTypePopups;
         
         [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private bool _menuOpen;
+
+        [SerializeField]
+        private int _currentMenuIndex;
 
         private void OnEnable()
         {
@@ -44,8 +42,13 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void OnOpenMenu(MenuType menuType)
         {
+            if (menuType == MenuType.Rank)
+            {
+                return;
+            }
             if (_menuOpen)
             {
+                SlideTo(menuType);
                 return;
             }
 
@@ -53,10 +56,25 @@ namespace PeanutDashboard._06_RobotRampage
             _menuAnimator.SetBool("Open", true);
             _menuPopup.Activate();
             _menuPopupAnimator.SetBool("Open", true);
-            //TODO: bring correct popup to center
-            //TODO: if already open use Do tween to slide it in
-            //TODO: it should be a wrapper that has all three of them?
-            //TODO: tween should just bring one forward
+            _currentMenuIndex = (int)menuType;
+            for (int i = 0; i < _menuTypePopups.Count; i++)
+            {
+                int diff = i - _currentMenuIndex; 
+                RectTransform rectTransform = _menuTypePopups[i].GetComponent<RectTransform>();
+                rectTransform.offsetMin = new Vector2(1046 * diff, 0);
+                rectTransform.offsetMax = new Vector2(1046 * diff, 0);
+            }
+        }
+
+        private void SlideTo(MenuType menuType)
+        {
+            _currentMenuIndex = (int)menuType;
+            for (int i = 0; i < _menuTypePopups.Count; i++)
+            {
+                int diff = i - _currentMenuIndex; 
+                RectTransform rectTransform = _menuTypePopups[i].GetComponent<RectTransform>();
+                rectTransform.DOLocalMove(new Vector3(1046 * diff, 0, 0), 0.3f);
+            }            
         }
 
         private void OnCloseMenu()

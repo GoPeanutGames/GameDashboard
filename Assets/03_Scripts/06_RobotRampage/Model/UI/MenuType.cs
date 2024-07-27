@@ -4,6 +4,7 @@
     {
         Heroes = 0,
         Shop = 1,
-        Rank = 2
+        Boost = 2,
+        Rank = 3
     }
 }
