@@ -38,7 +38,7 @@ namespace PeanutDashboard._06_RobotRampage
         {
             RobotRampageStageService.currentStageData = _stageData;
             RobotRampageAudioEvents.RaisePlaySfxOneShotEvent(_sfx, 1);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }

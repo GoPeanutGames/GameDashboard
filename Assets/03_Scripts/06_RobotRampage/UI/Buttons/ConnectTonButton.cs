@@ -37,6 +37,7 @@ public class ConnectTonButton : MonoBehaviour
         
     private void Awake()
     {
+        _tonConnectHandler.RestoreConnectionOnAwake = !UserService.LoggedOut;
         _button = GetComponent<Button>();
     }
 
