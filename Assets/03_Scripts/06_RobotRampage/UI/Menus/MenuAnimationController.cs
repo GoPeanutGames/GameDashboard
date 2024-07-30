@@ -19,6 +19,9 @@ namespace PeanutDashboard._06_RobotRampage
         private Animator _menuPopupAnimator;
 
         [SerializeField]
+        private OnAnimationDoneTrigger _onMenuCloseAnimationDone;
+        
+        [SerializeField]
         private List<GameObject> _menuTypePopups;
         
         [Header(InspectorNames.DebugDynamic)]
@@ -32,12 +35,14 @@ namespace PeanutDashboard._06_RobotRampage
         {
             MenuEvents.OnOpenMenu += OnOpenMenu;
             MenuEvents.OnCloseMenu += OnCloseMenu;
+            _onMenuCloseAnimationDone.AddListener(OnCloseMenuDone);
         }
 
         private void OnDisable()
         {
             MenuEvents.OnOpenMenu -= OnOpenMenu;
             MenuEvents.OnCloseMenu -= OnCloseMenu;
+            _onMenuCloseAnimationDone.RemoveListener(OnCloseMenuDone);
         }
 
         private void OnOpenMenu(MenuType menuType)
@@ -87,6 +92,11 @@ namespace PeanutDashboard._06_RobotRampage
             _menuPopupAnimator.SetBool("Open", false);
             _menuAnimator.SetBool("Open", false);
             _menuOpen = false;
+        }
+
+        private void OnCloseMenuDone()
+        {
+            _menuPopup.Deactivate();
         }
     }
 }
