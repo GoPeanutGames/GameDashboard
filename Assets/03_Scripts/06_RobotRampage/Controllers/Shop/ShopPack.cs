@@ -20,14 +20,8 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private int _currencyAmount;
 
-        [Header(InspectorNames.DebugDynamic)]
         [SerializeField]
         private Button _button;
-
-        private void Awake()
-        {
-            _button = GetComponentInChildren<Button>();
-        }
 
         private void OnEnable()
         {

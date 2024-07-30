@@ -330,8 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyImage: {fileID: 1362890025984825399}
-  _maxHealthRef: 40
-  _damage: 10
+  _maxHealthRef: 4000
+  _damage: 600
   _cooldown: 999
   _timeToAttack: 999
   speed: 2.1

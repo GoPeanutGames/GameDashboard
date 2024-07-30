@@ -15,8 +15,8 @@ MonoBehaviour:
   _weaponType: 0
   _damageType: 1
   _prefab: {fileID: 5488601554675896285, guid: 9eb40b1afdcc07a4a8359fc2e882978b, type: 3}
-  _damageForType: 20
+  _damageForType: 2000
   _penetration: 0
   _bulletAmount: 1
-  _cooldown: 0.4
+  _cooldown: 0.25
   _aoe: 1

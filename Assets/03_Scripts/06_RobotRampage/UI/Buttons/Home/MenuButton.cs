@@ -17,6 +17,9 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         private Image _image;
+
+        [SerializeField]
+        private bool _active;
         
         private void Awake()
         {
@@ -27,21 +30,15 @@ namespace PeanutDashboard._06_RobotRampage
         private void OnEnable()
         {
             _button.onClick.AddListener(OnHeroesButtonClick);
-            if (_menuType == MenuType.Rank || _menuType == MenuType.Boost)
-            {
-                MenuEvents.OnOpenMenu += OnMenuOpen;
-                MenuEvents.OnCloseMenu += OnCloseMenu;
-            }
+            MenuEvents.OnOpenMenu += OnMenuOpen;
+            MenuEvents.OnCloseMenu += OnCloseMenu;
         }
 
         private void OnDisable()
         {
             _button.onClick.RemoveListener(OnHeroesButtonClick);
-            if (_menuType == MenuType.Rank || _menuType == MenuType.Boost)
-            {
-                MenuEvents.OnOpenMenu -= OnMenuOpen;
-                MenuEvents.OnCloseMenu -= OnCloseMenu;
-            }
+            MenuEvents.OnOpenMenu -= OnMenuOpen;
+            MenuEvents.OnCloseMenu -= OnCloseMenu;
         }
 
         private void OnHeroesButtonClick()
@@ -51,6 +48,21 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void OnMenuOpen(MenuType menuType)
         {
+            if (_menuType == MenuType.Rank)
+            {
+                return;
+            }
+
+            _active = _menuType == menuType;
+            if (_active)
+            {
+                this.GetComponent<RectTransform>().DOScale(new Vector3(1.1f, 1.1f, 1f), 0.5f);
+            }
+            else
+            {
+                this.GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1f), 0.5f);
+            }
+            
             if (_menuType == MenuType.Rank)
             {
                 _image.DOFade(0, 0.5f);
@@ -65,6 +77,7 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void OnCloseMenu()
         {
+            this.GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1f), 0.5f);
             if (_menuType == MenuType.Rank)
             {
                 _image.raycastTarget = true;

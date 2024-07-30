@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterStats:
     attractionRange: 2
-    maxHealth: 20
+    maxHealth: 2000
     plasmaStrength: 0
     power: 0
     speed: 2
