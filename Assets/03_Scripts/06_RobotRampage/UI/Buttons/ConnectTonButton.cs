@@ -31,6 +31,9 @@ public class ConnectTonButton : MonoBehaviour
     [SerializeField]
     private List<string> _allowedWalletNames;
 
+    [SerializeField]
+    private AudioClip _onSuccessfulConnectSfx;
+
     [Header(InspectorNames.DebugDynamic)]
     [SerializeField]
     private Button _button;
@@ -122,6 +125,7 @@ public class ConnectTonButton : MonoBehaviour
         {
             Debug.Log("Wallet connected. Address: " + wallet.Account.Address + ". Platform: " + wallet.Device.Platform +
                       "," + wallet.Device.AppName + "," + wallet.Device.AppVersion);
+            RobotRampageAudioEvents.RaisePlaySfxOneShotEvent(_onSuccessfulConnectSfx, 1f);
             string address = wallet.Account.Address.ToString(AddressType.Base64);
             TonEvents.RaiseTonWalletConnectedEvent(address);
             UserService.SetUserAddress(address);

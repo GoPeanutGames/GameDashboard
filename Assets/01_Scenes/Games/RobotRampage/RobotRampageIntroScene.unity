@@ -795,6 +795,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029377725}
   m_CullTransparentMesh: 1
+--- !u!1 &1129749904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1129749906}
+  - component: {fileID: 1129749905}
+  m_Layer: 0
+  m_Name: LoginSceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1129749905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129749904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a39522e90645fa9db8882ad5b6533e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bgMusic: {fileID: 8300000, guid: 7747bbd0d451dbf4a964fe39c97f75d7, type: 3}
+--- !u!4 &1129749906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129749904}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1134168557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1147,7 @@ MonoBehaviour:
   _allowedWalletNames:
   - Tonkeeper
   - Wallet
+  _onSuccessfulConnectSfx: {fileID: 8300000, guid: ddc0b2b9d438c3f429c901570869977c, type: 3}
   _button: {fileID: 0}
 --- !u!1 &1352759014
 GameObject:
@@ -2654,3 +2700,4 @@ SceneRoots:
   - {fileID: 1391981341}
   - {fileID: 2087773082}
   - {fileID: 1924636198}
+  - {fileID: 1129749906}
