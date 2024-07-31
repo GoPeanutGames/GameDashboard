@@ -14,15 +14,6 @@ namespace PeanutDashboard._06_RobotRampage
         private float _maxHealthRef;
 
         [SerializeField]
-        protected float _damage;
-        
-        [SerializeField]
-        protected float _cooldown;
-        
-        [SerializeField]
-        protected float _timeToAttack;
-
-        [SerializeField]
         protected float speed;
 
         [SerializeField]
@@ -45,7 +36,6 @@ namespace PeanutDashboard._06_RobotRampage
 
         protected virtual void Update()
         {
-            _timeToAttack -= Time.deltaTime;
             Vector3 direction = RobotRampagePlayerController.currentPosition - this.transform.position;
             if (!stopMoving)
             {
@@ -63,15 +53,6 @@ namespace PeanutDashboard._06_RobotRampage
             if (Vector2.Distance(this.transform.position, RobotRampagePlayerController.currentPosition) > 12f)
             {
                 Destroy(this.gameObject);
-            }
-        }
-
-        protected virtual void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.tag == "Player" && _timeToAttack < 0)
-            {
-                _timeToAttack = _cooldown;
-                other.GetComponent<RobotRampagePlayerHealth>().DealDamage(_damage);
             }
         }
 

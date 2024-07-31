@@ -16,6 +16,9 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         private float _distanceToExplode;
+        
+        [SerializeField]
+        private float _damage;
 
         [SerializeField]
         private bool _drawGizmos;

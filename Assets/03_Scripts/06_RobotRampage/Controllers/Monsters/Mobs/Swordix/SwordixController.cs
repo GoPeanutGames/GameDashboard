@@ -4,6 +4,12 @@ using UnityEngine;
 public class SwordixController : RobotRampageMonsterController
 {
     [SerializeField]
+    private float _cooldown;
+        
+    [SerializeField]
+    private float _damage;
+    
+    [SerializeField]
     private SwordixAttackTrigger _swordixAttackTrigger;
 
     protected override void Start()
@@ -23,9 +29,5 @@ public class SwordixController : RobotRampageMonsterController
         {
             stopMoving = false;
         }
-    }
-
-    protected override void OnTriggerStay2D(Collider2D other)
-    {
     }
 }

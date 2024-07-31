@@ -34,7 +34,7 @@ namespace PeanutDashboard._06_RobotRampage
 		
 		public void SetIndicator(float damage)
 		{
-			_text.text = $"-{Mathf.FloorToInt(damage)}";
+			_text.text = $"{Mathf.FloorToInt(damage)}";
 		}
 	}
 }
