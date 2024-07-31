@@ -18,12 +18,12 @@ namespace PeanutDashboard._06_RobotRampage
 
 		private void OnEnable()
 		{
-			TonEvents.OnTonWalletConnected += OnTonWalletConnected;
+			TonAuthEvents.OnTonWalletConnected += OnTonWalletConnected;
 		}
 
 		private void OnDisable()
 		{
-			TonEvents.OnTonWalletConnected -= OnTonWalletConnected;
+			TonAuthEvents.OnTonWalletConnected -= OnTonWalletConnected;
 		}
 
 		private void OnTonWalletConnected(string address)

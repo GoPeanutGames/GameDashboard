@@ -1,6 +1,5 @@
 ﻿using PeanutDashboard.Utils.Misc;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace PeanutDashboard._06_RobotRampage
@@ -28,8 +27,7 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void OnLoggedOutClick()
         {
-            UserService.SetLoggedOut(true);
-            SceneManager.LoadScene(0);
+            TonAuthEvents.RaiseTonDisconnectEvent();
         }
     }
 }
