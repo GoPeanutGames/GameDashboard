@@ -38,7 +38,7 @@ namespace PeanutDashboard.Utils
 
 		public static string Decrypt(List<string> encryptedData, string publicKey = "")
 		{
-			publicKey = string.IsNullOrEmpty(publicKey) ? EnvironmentManager.Instance.GetCurrentPublicKey() : publicKey;
+			publicKey = string.IsNullOrEmpty(publicKey) ? string.Join("\n", EnvironmentManager.Instance.PublicKey) : publicKey;
 
 			List<string> decryptedData = new();
 			foreach (string part in encryptedData){
@@ -59,7 +59,7 @@ namespace PeanutDashboard.Utils
 
 		public static List<string> Encrypt(string data, string publicKey = "")
 		{
-			publicKey = string.IsNullOrEmpty(publicKey) ? EnvironmentManager.Instance.GetCurrentPublicKey() : publicKey;
+			publicKey = string.IsNullOrEmpty(publicKey) ? string.Join("\n", EnvironmentManager.Instance.PublicKey) : publicKey;
 
 			List<string> encryptedData = new();
 			List<string> spltData = SplitDataIntoList(data);

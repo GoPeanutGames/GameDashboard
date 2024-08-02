@@ -26,10 +26,10 @@ namespace PeanutDashboard._06_RobotRampage
 			TonAuthEvents.OnTonWalletConnected -= OnTonWalletConnected;
 		}
 
-		private void OnTonWalletConnected(string address)
+		private void OnTonWalletConnected()
 		{
 			Debug.Log($"{nameof(ConnectTonButton)}::{nameof(OnTonWalletConnected)}");
-			_addressText.text = address;
+			_addressText.text = UserService.UserAddress;
 		}
 	}
 }

@@ -7,9 +7,9 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		private static UnityAction _tonConnect;
 		private static UnityAction _tonDisconnect;
-		private static UnityAction<string> _tonWalletConnected;
+		private static UnityAction _tonWalletConnected;
 		
-		public static event UnityAction<string> OnTonWalletConnected
+		public static event UnityAction OnTonWalletConnected
 		{
 			add => _tonWalletConnected += value;
 			remove => _tonWalletConnected -= value;
@@ -28,13 +28,13 @@ namespace PeanutDashboard._06_RobotRampage
 			remove => _tonDisconnect -= value;
 		}
 		
-		public static void RaiseTonWalletConnectedEvent(string address)
+		public static void RaiseTonWalletConnectedEvent()
 		{
 			if (_tonWalletConnected == null){
 				LoggerService.LogWarning($"{nameof(TonAuthEvents)}::{nameof(RaiseTonWalletConnectedEvent)} raised, but nothing picked it up");
 				return;
 			}
-			_tonWalletConnected.Invoke(address);
+			_tonWalletConnected.Invoke();
 		}
 		
 		public static void RaiseTonConnectEvent()

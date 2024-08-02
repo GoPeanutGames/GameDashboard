@@ -10,7 +10,7 @@ namespace PeanutDashboard.Shared.Logging
 			if (EnvironmentManager.Instance == null){
 				Debug.Log(log);
 			}
-			else if (EnvironmentManager.Instance.IsLoggingEnabled()){
+			else if (EnvironmentManager.Instance.LoggingEnabled){
 				Debug.Log(log);
 			}
 		}
@@ -20,7 +20,7 @@ namespace PeanutDashboard.Shared.Logging
 			if (EnvironmentManager.Instance == null){
 				Debug.LogWarning(log);
 			}
-			else if (EnvironmentManager.Instance.IsLoggingEnabled()){
+			else if (EnvironmentManager.Instance.LoggingEnabled){
 				Debug.LogWarning(log);
 			}
 		}
@@ -30,7 +30,7 @@ namespace PeanutDashboard.Shared.Logging
 			if (EnvironmentManager.Instance == null){
 				Debug.LogError(log);
 			}
-			else if (EnvironmentManager.Instance.IsLoggingEnabled()){
+			else if (EnvironmentManager.Instance.LoggingEnabled){
 				Debug.LogError(log);
 			}
 		}

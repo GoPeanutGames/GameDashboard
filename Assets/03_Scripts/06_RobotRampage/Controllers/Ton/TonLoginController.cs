@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PeanutDashboard.Server;
 using PeanutDashboard.Utils;
 using PeanutDashboard.Utils.Misc;
 using TonSdk.Connect;
@@ -66,7 +67,7 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void LoadWalletsIntoModal(List<WalletConfig> wallets)
         {
-            Debug.Log($"{nameof(ConnectTonButton)}::{nameof(LoadWalletsIntoModal)}");
+            Debug.Log($"{nameof(TonLoginController)}::{nameof(LoadWalletsIntoModal)}");
             _walletParent.Activate();
             foreach (WalletConfig t in wallets)
             {
@@ -97,7 +98,7 @@ namespace PeanutDashboard._06_RobotRampage
 
         private async void OpenWallet(WalletConfig walletConfig)
         {
-            Debug.Log($"{nameof(ConnectTonButton)}::{nameof(OpenWallet)} - {walletConfig.Name}");
+            Debug.Log($"{nameof(TonLoginController)}::{nameof(OpenWallet)} - {walletConfig.Name}");
             string connectUrl = await _tonConnectHandler.tonConnect.Connect(walletConfig);
             string escapedUrl = Uri.EscapeUriString(connectUrl);
             Application.OpenURL(escapedUrl);
@@ -105,7 +106,8 @@ namespace PeanutDashboard._06_RobotRampage
 
         private void OpenWebWallet(WalletConfig walletConfig)
         {
-            Debug.Log($"{nameof(ConnectTonButton)}::{nameof(OpenWebWallet)} - {walletConfig.Name}");
+            Debug.Log($"{nameof(TonLoginController)}::{nameof(OpenWebWallet)} - {walletConfig.Name}");
+            //TODO: do something to get ton proof
             _tonConnectHandler.tonConnect.Connect(walletConfig);
         }
 
@@ -113,21 +115,70 @@ namespace PeanutDashboard._06_RobotRampage
         {
             if (_tonConnectHandler.tonConnect.IsConnected)
             {
-                Debug.Log("Wallet connected. Address: " + wallet.Account.Address + ". Platform: " +
-                          wallet.Device.Platform +
-                          "," + wallet.Device.AppName + "," + wallet.Device.AppVersion);
-                RobotRampageAudioEvents.RaisePlaySfxOneShotEvent(_onSuccessfulConnectSfx, 1f);
+                Debug.Log(
+                    $"{nameof(TonLoginController)}::{nameof(OnProviderStatusChange)} - Wallet connected. Address: " +
+                    wallet.Account.Address + ". Platform: " +
+                    wallet.Device.Platform + "," + wallet.Device.AppName + "," + wallet.Device.AppVersion);
+                if (wallet.TonProof == null)
+                {
+                    Debug.LogWarning($"{nameof(TonLoginController)}::{nameof(OnProviderStatusChange)} - Ton proof is null");
+                    _tonConnectHandler.tonConnect.Disconnect();
+                    return;
+                }
                 string address = wallet.Account.Address.ToString(AddressType.Base64);
-                TonAuthEvents.RaiseTonWalletConnectedEvent(address);
                 UserService.SetUserAddress(address);
-                _tonConnectHandler.RestoreConnectionOnAwake = true;
-                UserService.SetLoggedOut(false);
-                SceneManager.LoadScene(1);
+                VerifyTonProof(wallet);
             }
             else
             {
                 _walletParent.Deactivate();
             }
+        }
+
+        private void VerifyTonProof(Wallet wallet)
+        {
+            Debug.Log($"{nameof(TonLoginController)}::{nameof(VerifyTonProof)}");
+            TonVerifyProofData tonVerifyProofData = new()
+            {
+                proof = new()
+                {
+                    domain = new()
+                    {
+                        lengthBytes = wallet.TonProof.DomainLen,
+                        value = wallet.TonProof.DomainVal
+                    },
+                    payload = wallet.TonProof.Payload,
+                    signature = Convert.ToBase64String(wallet.TonProof.Signature),
+                    timestamp = wallet.TonProof.Timestamp
+                },
+                walletInfo = new()
+                {
+                    address = wallet.Account.Address.ToString(),
+                    chain = wallet.Account.Chain.ToString(),
+                    publicKey = wallet.Account.PublicKey.ToString(),
+                    walletStateInit = wallet.Account.WalletStateInit,
+                }
+            };
+            string formData = JsonUtility.ToJson(tonVerifyProofData);
+            
+            ServerService.PostDataToServer<TonAuthApi>(TonAuthApi.VerifyProof, formData,TonVerifyProofSuccess, TonVerifyProofFail);
+        }
+
+        private void TonVerifyProofSuccess(string response)
+        {
+            Debug.Log($"{nameof(TonLoginController)}::{nameof(TonVerifyProofSuccess)}");
+            TonProofResponse tonProofResponse = JsonUtility.FromJson<TonProofResponse>(response);
+            UserService.SetTonToken(tonProofResponse.token);
+            RobotRampageAudioEvents.RaisePlaySfxOneShotEvent(_onSuccessfulConnectSfx, 1f);
+            TonAuthEvents.RaiseTonWalletConnectedEvent();
+            _tonConnectHandler.RestoreConnectionOnAwake = true;
+            UserService.SetLoggedOut(false);
+            SceneManager.LoadScene(1);
+        }
+
+        private void TonVerifyProofFail(string response)
+        {
+            Debug.LogError($"{nameof(TonLoginController)}::{nameof(TonVerifyProofSuccess)} - {response}");
         }
     }
 }
