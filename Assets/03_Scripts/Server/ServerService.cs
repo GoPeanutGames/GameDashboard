@@ -72,9 +72,11 @@ namespace PeanutDashboard.Server
 				string data = webRequest.downloadHandler.text;
 				string decryptedData = EnvironmentManager.Instance.UseRSA ? Decrypt(data) : data;
 				if (webRequest.result == UnityWebRequest.Result.Success){
+					LoggerService.LogInfo($"{nameof(ServerService)}::{nameof(SendWebRequest)} - complete with data: {decryptedData}");
 					onComplete?.Invoke(decryptedData);
 				}
 				else{
+					LoggerService.LogWarning($"{nameof(ServerService)}::{nameof(SendWebRequest)} - fail with data: {decryptedData}");
 					onFail?.Invoke(decryptedData);
 				}
 

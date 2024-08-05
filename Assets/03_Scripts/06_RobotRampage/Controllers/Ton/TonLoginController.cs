@@ -184,6 +184,7 @@ namespace PeanutDashboard._06_RobotRampage
             TonAuthEvents.RaiseTonWalletConnectedEvent();
             _tonConnectHandler.RestoreConnectionOnAwake = true;
             UserService.SetLoggedOut(false);
+            TonDataService.GetAccountData();
             SceneManager.LoadScene(1);
         }
 
