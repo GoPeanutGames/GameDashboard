@@ -21,7 +21,7 @@ namespace PeanutDashboard.Shared.Environment
 
 		public bool UseRSA => !_isDev;
 
-		public bool LoggingEnabled => !_isDev;
+		public bool LoggingEnabled => _isDev;
 
 		public string ServerUrl => _isDev ? _devServerUrl : _prodServerUrl;
 

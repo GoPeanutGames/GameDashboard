@@ -6,6 +6,7 @@ namespace PeanutDashboard.Server
 {
 	public enum TonAuthApi
 	{
+		GetVerifyProof,
 		VerifyProof
 	}
 
@@ -13,7 +14,8 @@ namespace PeanutDashboard.Server
 	{
         private static readonly Dictionary<TonAuthApi, string> TonAuthApiMap = new()
         {
-            { TonAuthApi.VerifyProof, "/ton/verify" },
+	        { TonAuthApi.GetVerifyProof , "/ton/get-payload"},
+            { TonAuthApi.VerifyProof, "/ton/verify-proof" },
         };
         
         

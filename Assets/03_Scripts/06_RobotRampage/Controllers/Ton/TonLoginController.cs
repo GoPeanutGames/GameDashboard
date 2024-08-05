@@ -6,6 +6,7 @@ using PeanutDashboard.Utils.Misc;
 using TonSdk.Connect;
 using TonSdk.Core;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -82,33 +83,43 @@ namespace PeanutDashboard._06_RobotRampage
                 {
                     if (t.JsBridgeKey != null && InjectedProvider.IsWalletInjected(t.JsBridgeKey))
                     {
-                        _tonkeeperWalletExtension.onClick.AddListener(() => OpenWebWallet(tempConfig));
+                        _tonkeeperWalletExtension.onClick.AddListener(() => GetTonPayload(OpenWebWallet, tempConfig));
                     }
                     else
                     {
-                        _tonkeeperWalletApp.onClick.AddListener(() => OpenWallet(tempConfig));
+                        _tonkeeperWalletApp.onClick.AddListener(() => GetTonPayload(OpenWallet, tempConfig));
                     }
                 }
                 else
                 {
-                    _telegramWalletButton.onClick.AddListener(() => OpenWallet(tempConfig));
+                    _telegramWalletButton.onClick.AddListener(() => GetTonPayload(OpenWallet, tempConfig));
                 }
             }
         }
+        
+        private void GetTonPayload(UnityAction<WalletConfig, TonPayloadData> continueAuthCb, WalletConfig wallet)
+        {
+            ServerService.GetDataFromServer(TonAuthApi.GetVerifyProof,(data)=> OnGetPayloadSuccess(data, continueAuthCb, wallet));
+        }
 
-        private async void OpenWallet(WalletConfig walletConfig)
+        private void OnGetPayloadSuccess(string response, UnityAction<WalletConfig, TonPayloadData> continueAuthCb, WalletConfig wallet)
+        {
+            TonPayloadData payloadData = JsonUtility.FromJson<TonPayloadData>(response);
+            continueAuthCb?.Invoke(wallet, payloadData);
+        }
+
+        private async void OpenWallet(WalletConfig walletConfig, TonPayloadData tonPayloadData)
         {
             Debug.Log($"{nameof(TonLoginController)}::{nameof(OpenWallet)} - {walletConfig.Name}");
-            string connectUrl = await _tonConnectHandler.tonConnect.Connect(walletConfig);
+            string connectUrl = await _tonConnectHandler.tonConnect.Connect(walletConfig, new ConnectAdditionalRequest(){TonProof = tonPayloadData.payload});
             string escapedUrl = Uri.EscapeUriString(connectUrl);
             Application.OpenURL(escapedUrl);
         }
 
-        private void OpenWebWallet(WalletConfig walletConfig)
+        private void OpenWebWallet(WalletConfig walletConfig, TonPayloadData tonPayloadData)
         {
             Debug.Log($"{nameof(TonLoginController)}::{nameof(OpenWebWallet)} - {walletConfig.Name}");
-            //TODO: do something to get ton proof
-            _tonConnectHandler.tonConnect.Connect(walletConfig);
+            _tonConnectHandler.tonConnect.Connect(walletConfig, new ConnectAdditionalRequest(){TonProof = tonPayloadData.payload});
         }
 
         private void OnProviderStatusChange(Wallet wallet)
