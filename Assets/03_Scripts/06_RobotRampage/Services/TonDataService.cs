@@ -1,5 +1,5 @@
 ﻿using PeanutDashboard.Server;
-using PeanutDashboard.Shared.Logging;
+using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
@@ -7,7 +7,15 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		public static void GetAccountData()
 		{
-			ServerService.GetDataFromServer(TonUserApi.GetUserData, (data)=> LoggerService.LogWarning(data));
+			ServerService.GetDataFromServer(TonUserApi.GetUserData, GetAccountDataSuccess);
+		}
+
+		private static void GetAccountDataSuccess(string response)
+		{
+			GetUserData userData = JsonUtility.FromJson<GetUserData>(response);
+			UserService.SetGems(userData.player.wallet.gems);
+			UserService.SetPoints(userData.player.wallet.bubbles);
+			UserService.SetNutz(userData.player.wallet.fragments);
 		}
 	}
 }

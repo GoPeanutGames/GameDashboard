@@ -99,7 +99,11 @@ namespace PeanutDashboard._06_RobotRampage
         
         private void GetTonPayload(UnityAction<WalletConfig, TonPayloadData> continueAuthCb, WalletConfig wallet)
         {
+#if !UNITY_EDITOR
             ServerService.GetDataFromServer(TonAuthApi.GetVerifyProof,(data)=> OnGetPayloadSuccess(data, continueAuthCb, wallet));
+#else
+            OnGetPayloadSuccess("d1c5b6acaba5e709acfe0da12f731395c59fcbac387c2f0819121569dcb",continueAuthCb, wallet);
+#endif
         }
 
         private void OnGetPayloadSuccess(string response, UnityAction<WalletConfig, TonPayloadData> continueAuthCb, WalletConfig wallet)

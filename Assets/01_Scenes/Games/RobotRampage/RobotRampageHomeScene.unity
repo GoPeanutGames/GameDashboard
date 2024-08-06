@@ -3487,6 +3487,7 @@ GameObject:
   - component: {fileID: 387232335}
   - component: {fileID: 387232337}
   - component: {fileID: 387232336}
+  - component: {fileID: 387232338}
   m_Layer: 5
   m_Name: GemsAmount
   m_TagString: Untagged
@@ -3610,6 +3611,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387232334}
   m_CullTransparentMesh: 1
+--- !u!114 &387232338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387232334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dff8212fec4ce6868caae771bda69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gemsText: {fileID: 0}
 --- !u!1 &397738723
 GameObject:
   m_ObjectHideFlags: 0
@@ -6649,6 +6663,7 @@ GameObject:
   - component: {fileID: 864301869}
   - component: {fileID: 864301871}
   - component: {fileID: 864301870}
+  - component: {fileID: 864301872}
   m_Layer: 5
   m_Name: PointsAmount
   m_TagString: Untagged
@@ -6772,6 +6787,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864301868}
   m_CullTransparentMesh: 1
+--- !u!114 &864301872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864301868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ccf8c1201b04e06b9f8f8fb2daf789b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointsText: {fileID: 0}
 --- !u!1 &871281319
 GameObject:
   m_ObjectHideFlags: 0
@@ -8600,6 +8628,7 @@ GameObject:
   - component: {fileID: 1075099484}
   - component: {fileID: 1075099486}
   - component: {fileID: 1075099485}
+  - component: {fileID: 1075099487}
   m_Layer: 5
   m_Name: NutzAmount
   m_TagString: Untagged
@@ -8723,6 +8752,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075099483}
   m_CullTransparentMesh: 1
+--- !u!114 &1075099487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075099483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87db89e0b1684084a40550b63a6de9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nutzText: {fileID: 0}
 --- !u!1 &1100662227
 GameObject:
   m_ObjectHideFlags: 0
