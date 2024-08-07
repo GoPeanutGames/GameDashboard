@@ -8,7 +8,7 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
-		private GameObject _weaponParent;
+		private RobotRampagePlayerController _playerController;
 		
 		[SerializeField]
 		private WeaponCollection _weaponCollection;
@@ -59,7 +59,7 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			RobotRampageWeaponData weaponData = _weaponCollection.GetWeaponData(addWeaponUpgrade.WeaponType);
 			RobotRampageWeaponStatsService.AddWeapon(weaponData);
-			Instantiate(weaponData.Prefab, _weaponParent.transform);
+			Instantiate(weaponData.Prefab, _playerController.GetWeaponParent().transform);
 		}
 
 		private void ApplyUpgradeWeapon(UpdateWeaponUpgrade updateWeaponUpgrade)

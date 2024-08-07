@@ -12,6 +12,9 @@ namespace PeanutDashboard._06_RobotRampage
 	{
 		[Header(InspectorNames.SetInInspector)]
 		[SerializeField]
+		private GameObject _characterVisualsPrefab;
+		
+		[SerializeField]
 		private RobotRampageCharacterStats _characterStats;
 
 		[SerializeField]
@@ -20,6 +23,8 @@ namespace PeanutDashboard._06_RobotRampage
 		[SerializeField]
 		private List<float> _levelExp;
 
+		public GameObject CharacterVisualsPrefab => _characterVisualsPrefab;
+		
 		public float AttractionRange => _characterStats.attractionRange;
 
 		public float MaxHealth => _characterStats.maxHealth;

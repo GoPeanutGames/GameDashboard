@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace PeanutDashboard._06_RobotRampage
 {
@@ -36,6 +37,11 @@ namespace PeanutDashboard._06_RobotRampage
 			};
 		}
 
+		public static GameObject GetVisualsPrefab()
+		{
+			return _currentCharacter.CharacterVisualsPrefab;
+		}
+		
 		public static float GetAttractionRange()
 		{
 			return _calculatedStats.attractionRange;

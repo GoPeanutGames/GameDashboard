@@ -9,10 +9,10 @@ namespace PeanutDashboard._06_RobotRampage
 
 		[Header(InspectorNames.DebugDynamic)]
 		[SerializeField]
-		private GameObject _playerImage;
-		
-		[SerializeField]
 		private Vector3 _currentDirection = Vector3.zero;
+
+		[SerializeField]
+		private GameObject _visuals;
 
 		private void OnEnable()
 		{
@@ -26,9 +26,10 @@ namespace PeanutDashboard._06_RobotRampage
 			RobotRampagePlayerEvents.OnMovementDirectionUpdated -= OnUpdateMovementDirection;
 		}
 
-		private void Start()
+		private void Awake()
 		{
 			Camera.main.transform.SetParent(this.transform);
+			_visuals = GameObject.Instantiate(RobotRampageCharacterStatsService.GetVisualsPrefab(), this.transform);
 		}
 
 		private void Update()
@@ -36,7 +37,7 @@ namespace PeanutDashboard._06_RobotRampage
 			if (_currentDirection != Vector3.zero){
 				this.transform.Translate(_currentDirection * Time.deltaTime * RobotRampageCharacterStatsService.GetSpeed());
 				float angle = Mathf.Atan2(_currentDirection.y, _currentDirection.x) * Mathf.Rad2Deg;
-				_playerImage.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+				_visuals.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
 				currentPosition = this.transform.position;
 			}
 		}
@@ -50,6 +51,11 @@ namespace PeanutDashboard._06_RobotRampage
 		{
 			Camera.main.transform.SetParent(null);
 			Destroy(this.gameObject);
+		}
+
+		public GameObject GetWeaponParent()
+		{
+			return _visuals;
 		}
 	}
 }

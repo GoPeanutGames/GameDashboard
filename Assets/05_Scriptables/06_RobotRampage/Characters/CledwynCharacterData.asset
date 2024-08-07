@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc0f66c742ac4fcbb74a2e22d945c4e7, type: 3}
-  m_Name: DefaultCharacterData
+  m_Name: CledwynCharacterData
   m_EditorClassIdentifier: 
-  _characterVisualsPrefab: {fileID: 6619374326964960278, guid: 24926c09a6dda6847bf60f1a30508d96, type: 3}
+  _characterVisualsPrefab: {fileID: 6619374326964960278, guid: 70fd81e3247e21e4e998df03672fc839, type: 3}
   _characterStats:
     attractionRange: 2
     maxHealth: 2000
