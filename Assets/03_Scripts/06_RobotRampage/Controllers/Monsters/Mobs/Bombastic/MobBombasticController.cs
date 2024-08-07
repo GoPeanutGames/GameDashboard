@@ -22,11 +22,15 @@ namespace PeanutDashboard._06_RobotRampage
 
         [SerializeField]
         private bool _drawGizmos;
+
+        [SerializeField]
+        private float _lifetime;
         
         protected override void Update()
         {
             base.Update();
-            if (Vector3.Distance(this.transform.position, RobotRampagePlayerController.currentPosition) < _distanceToExplode)
+            _lifetime -= Time.deltaTime;
+            if (Vector3.Distance(this.transform.position, RobotRampagePlayerController.currentPosition) < _distanceToExplode || _lifetime < 0)
             {
                 Explosion();
                 Destroy(this.gameObject);

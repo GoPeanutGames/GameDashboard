@@ -28,6 +28,8 @@ namespace PeanutDashboard._06_RobotRampage
 
         public static int PointsAmount => _pointsAmount;
 
+        public static event UnityAction addressUpdated;
+        
         public static event UnityAction pointsUpdated;
         
         public static event UnityAction gemsUpdated;
@@ -37,6 +39,7 @@ namespace PeanutDashboard._06_RobotRampage
         public static void SetUserAddress(string address)
         {
             _userAddress = address;
+            addressUpdated?.Invoke();
         }
 
         public static void SetLoggedOut(bool loggedOut)

@@ -4,7 +4,6 @@ using PeanutDashboard.Server;
 using PeanutDashboard.Utils;
 using PeanutDashboard.Utils.Misc;
 using TonSdk.Connect;
-using TonSdk.Core;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -36,9 +35,10 @@ namespace PeanutDashboard._06_RobotRampage
         [SerializeField]
         private AudioClip _onSuccessfulConnectSfx;
 
-        private void Start()
+        private void Awake()
         {
             _tonConnectHandler = GameObject.FindObjectOfType<TonConnectHandler>();
+            _tonConnectHandler.RestoreConnectionOnAwake = false;
         }
 
         private void OnEnable()
@@ -77,7 +77,7 @@ namespace PeanutDashboard._06_RobotRampage
                 {
                     continue;
                 }
-
+                
                 WalletConfig tempConfig = t;
                 if (t.Name == "Tonkeeper")
                 {
@@ -99,11 +99,7 @@ namespace PeanutDashboard._06_RobotRampage
         
         private void GetTonPayload(UnityAction<WalletConfig, TonPayloadData> continueAuthCb, WalletConfig wallet)
         {
-#if !UNITY_EDITOR
             ServerService.GetDataFromServer(TonAuthApi.GetVerifyProof,(data)=> OnGetPayloadSuccess(data, continueAuthCb, wallet));
-#else
-            OnGetPayloadSuccess("d1c5b6acaba5e709acfe0da12f731395c59fcbac387c2f0819121569dcb",continueAuthCb, wallet);
-#endif
         }
 
         private void OnGetPayloadSuccess(string response, UnityAction<WalletConfig, TonPayloadData> continueAuthCb, WalletConfig wallet)
@@ -140,8 +136,8 @@ namespace PeanutDashboard._06_RobotRampage
                     _tonConnectHandler.tonConnect.Disconnect();
                     return;
                 }
-                string address = wallet.Account.Address.ToString(AddressType.Base64);
-                UserService.SetUserAddress(address);
+                // string address = wallet.Account.Address.ToString(AddressType.Base64);
+                // UserService.SetUserAddress(address);
                 VerifyTonProof(wallet);
             }
             else
@@ -169,6 +165,7 @@ namespace PeanutDashboard._06_RobotRampage
                 walletInfo = new()
                 {
                     address = wallet.Account.Address.ToString(),
+                    // chain = EnvironmentManager.Instance.LoggingEnabled ? "TESTNET" : wallet.Account.Chain.ToString(),
                     chain = wallet.Account.Chain.ToString(),
                     publicKey = wallet.Account.PublicKey.ToString(),
                     walletStateInit = wallet.Account.WalletStateInit,

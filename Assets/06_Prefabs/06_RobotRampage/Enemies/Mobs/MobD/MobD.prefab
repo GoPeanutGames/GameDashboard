@@ -331,9 +331,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyImage: {fileID: 1362890025984825399}
   _maxHealthRef: 4000
-  _damage: 600
-  _cooldown: 999
-  _timeToAttack: 999
   speed: 2.1
   stopMoving: 0
   _expTypeDrop: 0
@@ -344,7 +341,9 @@ MonoBehaviour:
     m_Bits: 1280
   _explosionRadius: 2.5
   _distanceToExplode: 1
+  _damage: 600
   _drawGizmos: 0
+  _lifetime: 8
 --- !u!58 &2706931527474322717
 CircleCollider2D:
   m_ObjectHideFlags: 0
