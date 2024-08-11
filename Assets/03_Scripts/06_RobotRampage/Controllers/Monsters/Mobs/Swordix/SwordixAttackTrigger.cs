@@ -35,6 +35,13 @@ public class SwordixAttackTrigger : MonoBehaviour
     private void Update()
     {
         _timeToAttack -= Time.deltaTime;
+        if (_playerInCollision && _timeToAttack < 0 ){
+            _timeToAttack = _cooldown;
+            _animator.SetTrigger("Attack");
+            _shadowAnimator.SetTrigger("Attack");
+            EffectEvents.RaiseSpawnEffectAt(EffectType.SwordixSwordVfx, this.transform.position);
+            StartCoroutine(DamagePlayerAfter());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -43,17 +50,6 @@ public class SwordixAttackTrigger : MonoBehaviour
         {
             _playerHealth = other.GetComponent<RobotRampagePlayerHealth>();
             _playerInCollision = true;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (_timeToAttack < 0 && other.CompareTag("Player"))
-        {
-            _timeToAttack = _cooldown;
-            _animator.SetTrigger("Attack");
-            _shadowAnimator.SetTrigger("Attack");
-            StartCoroutine(DamagePlayerAfter());
         }
     }
 
